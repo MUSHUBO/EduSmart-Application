@@ -59,7 +59,7 @@ const Navbar = () => {
                 <div className="">
                     <Link href="/login" class="rounded relative inline-flex group items-center justify-center px-3.5 py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
                         <span class="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
-                        <span class="relative flex justify-center items-center gap-1.5"><LogIn size={18} /> Button Text</span>
+                        <span class="relative flex justify-center items-center gap-1.5"><LogIn size={18} />  Button Text</span>
                     </Link>
                 </div>
             </div>
