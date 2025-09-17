@@ -3,7 +3,7 @@ import { FaFacebookF, FaTwitter, FaLinkedinIn, FaEnvelope, FaPhoneAlt, FaMapMark
 
 export default function Footer() {
     return (
-        <footer className="text-base-content p-8 md:p-12 border-2">
+        <footer className="text-base-100 dark:text-[#FFFFFF] p-8 md:p-12 border-2">
             <div className="container mx-auto">
                 {/* Top section */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
