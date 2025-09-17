@@ -1,6 +1,17 @@
-import React from 'react';
+"use client";
+import { Moon, Sun } from 'lucide-react';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
 const Navbar = () => {
+    const [isDark, setIsDark] = useState(false);
+    useEffect(() => {
+        if (isDark) {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+    }, [isDark]);
     const nav = <>
         <li><a>Home</a></li>
         <li><a>About</a></li>
@@ -19,12 +30,25 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">daisyUI</a>
+                <Link href={"/"}>
+                    {
+                        isDark ?  <img src="/images/edusmart_light.png" alt="edusmarty_icon" /> :  <img src="/images/edusmart_dark.png" alt="edusmarty_icon" />
+                    }
+                   
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {nav}
                 </ul>
+            </div>
+            <div>
+                <button
+                    onClick={() => setIsDark(!isDark)}
+                    className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                    {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                </button>
             </div>
             <div className="navbar-end">
                 <a className="btn">Button</a>
