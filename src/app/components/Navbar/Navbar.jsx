@@ -30,7 +30,7 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <Link href={"/"}>
+                <Link className='max-w-[100px]' href={"/"}>
                     {
                         isDark ?  <img src="/images/edusmart_light.png" alt="edusmarty_icon" /> :  <img src="/images/edusmart_dark.png" alt="edusmarty_icon" />
                     }
