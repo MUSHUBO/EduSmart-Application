@@ -20,7 +20,7 @@ const MissionVisionSection = () => {
         
         <div className="relative">
           <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
-          <div className="relative bg-white border-2 border-primary rounded-3xl p-8 h-full">
+          <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 h-full">
             <div className="absolute top-8 right-8">
               <Image 
                 src="/mission-icon.svg"
@@ -40,7 +40,7 @@ const MissionVisionSection = () => {
 
         <div className="relative">
           <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
-          <div className="relative bg-white border-2 border-primary rounded-3xl p-8 h-full">
+          <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 h-full">
             <div className="absolute top-8 right-8">
               <Image 
                 src="/vision-icon.svg"

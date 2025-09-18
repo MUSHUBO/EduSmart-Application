@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
@@ -57,8 +58,10 @@ export default function StudentForm() {
   return (
     <section className=" min-h-screen flex flex-col items-center justify-center px-4 py-10">
       {/* Top Button */}
-      <button className="mb-6 px-4 py-2 border border-primary rounded-md bg-white shadow hover:bg-popover-foreground hover:dark:bg-popover-foreground  text-primary font-medium">
-        Contact Form
+      <button
+        className="btn border-primary hover:bg-primary shadow-md px-6 border-b-4 border-r-4"
+      >
+        Contact Form <ArrowRight className="ml-2 w-4 h-4" />
       </button>
 
       {/* Title */}
@@ -94,7 +97,7 @@ export default function StudentForm() {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-lg rounded-md p-6 w-full max-w-3xl border border-secondary"
+        className="bg-muted dark:bg-muted shadow-lg rounded-md p-6 w-full max-w-3xl border border-secondary"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <input
@@ -152,7 +155,7 @@ export default function StudentForm() {
             name="program"
             value={form.program}
             onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full border border-accent rounded-md p-2 text-gray-500 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
             required
           >
             <option value="">Select Program</option>

@@ -34,7 +34,11 @@ export default function OurPages() {
         <section className="py-6 foreground">
             <div className="container mx-auto px-4 text-center">
                 {/* Section Heading */}
-                <button className="btn btn-outline mb-6 text-foreground">Explore More</button>
+                <button
+                                    className="btn border-primary hover:bg-primary shadow-md px-6 border-b-4 border-r-4"
+                                >
+                                    Explore More <ArrowRight className="ml-2 w-4 h-4" />
+                                </button>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                     Navigate through our Pages
                 </h2>
@@ -49,11 +53,11 @@ export default function OurPages() {
                     {pages.map((page, index) => (
                         <div
                             key={index}
-                            className="border-2 rounded-2xl bg-white shadow-md p-6 flex flex-col text-center border-b-8 border-r-8 border-primary"
+                            className="border-2 rounded-2xl bg-muted dark:bg-muted shadow-md p-6 flex flex-col text-center border-b-8 border-r-8 border-primary"
                         >
                             {/* Top Part (Title + Line + Text) */}
                             <div className="flex-1 flex flex-col items-center">
-                                <h3 className="text-xl font-bold mb-4">{page.title}</h3>
+                                <h3 className="text-xl text-popover dark:text-popover font-bold mb-4">{page.title}</h3>
 
                                 {/* Decorative Line */}
                                 <div className="flex items-center justify-center w-full mb-6">
@@ -63,7 +67,7 @@ export default function OurPages() {
                                 </div>
 
                                 {/* Description */}
-                                <p className="text-sm">{page.description}</p>
+                                <p className="text-sm text-popover-foreground dark:text-popover-foreground">{page.description}</p>
                             </div>
 
                             {/* Button (Stays at bottom) */}
