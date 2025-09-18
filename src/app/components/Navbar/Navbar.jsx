@@ -3,9 +3,11 @@ import { LogIn, Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 
 const Navbar = () => {
     const [isDark, setIsDark] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const pathname = usePathname()
     console.log(pathname);
     useEffect(() => {
@@ -26,16 +28,22 @@ const Navbar = () => {
         <div className="navbar bg-background shadow-sm border-b border-primary/55">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+                    <div
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="btn btn-ghost w-12 h-12 p-0 text-primary lg:hidden"
+                        role="button"
+                        tabIndex={0}
+                    >
+                        {isOpen ? <RiMenuUnfold2Fill size={18} /> : <RiMenuLine size={18} />}
                     </div>
+
                     <ul
                         tabIndex={0}
-                        className="menu text-base-100 font-medium dark:text-white menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                        className="menu text-base-100 font-medium dark:text-white menu-sm dropdown-content bg-secondary rounded-box z-1 mt-3 w-52 p-2 shadow">
                         {nav}
                     </ul>
                 </div>
-                <Link className='max-w-[100px]' href={"/"}>
+                <Link className='max-w-[100px] md:max-w-[140px]' href={"/"}>
                     {
                         isDark ? <img src="/images/edusmart_dark.png" alt="edusmarty_icon" /> : <img src="/images/edusmart_light.png" alt="edusmarty_icon" />
                     }
@@ -53,13 +61,13 @@ const Navbar = () => {
                         onClick={() => setIsDark(!isDark)}
                         className="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                        {isDark ? <Sun className="h-5 w-5 text-primary" /> : <Moon fill='#FF8D4D' className="h-5 w-5 text-primary" />}
                     </button>
                 </div>
                 <div className="">
                     <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-3.5 py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
                         <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
-                        <span className="relative flex justify-center items-center gap-1.5"><LogIn size={18} />  Button Text</span>
+                        <span className="relative font-medium flex justify-center items-center gap-1.5"><LogIn size={18} />  Login</span>
                     </Link>
                 </div>
             </div>
