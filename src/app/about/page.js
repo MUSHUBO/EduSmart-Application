@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import AboutOurTeam from '../components/about-ourTeam/about-ourTeam';
 
 const About = () => {
   return (
@@ -40,6 +41,7 @@ const About = () => {
         </div>
       </div>
     </section>
+    <AboutOurTeam/>
     </div>
   );
 };
