@@ -16,10 +16,10 @@ const Navbar = () => {
         }
     }, [isDark]);
     const nav = <>
-        <li><Link href={"/"} className='cursor-pointer hover:text-primary duration-200'>Home</Link></li>
-        <li><Link href={"/about"} className={`cursor-pointer hover:text-primary duration-200  ${pathname === "/about" && "text-primary border-b-2 border-primary"
+        <li><Link href={"/"} className='cursor-pointer text-black dark:text-white hover:text-primary duration-200'>Home</Link></li>
+        <li><Link href={"/about"} className={`cursor-pointer text-black dark:text-white hover:text-primary duration-200  ${pathname === "/about" && "text-primary border-b-2 border-primary"
             }`}>About</Link></li>
-        <li><Link href={"/contact"} className={`cursor-pointer hover:text-primary duration-200 ${pathname === "/contact" && "text-primary border-b-2 border-primary"
+        <li><Link href={"/contact"} className={`cursor-pointer text-black dark:text-white hover:text-primary duration-200 ${pathname === "/contact" && "text-primary border-b-2 border-primary"
             }`}>Contact</Link></li>
     </>
     return (
