@@ -1,11 +1,15 @@
 
 import React from 'react';
 import Image from 'next/image';
+import AboutOurTeam from '../components/about-ourTeam/about-ourTeam';
+import MissionVisionSection from '../components/about-ourTeam/MissionVisionSection';
+import AwardsSection from '../components/about-ourTeam/AwardsSection';
+import HistorySection from '../components/about-ourTeam/HistorySection';
 
 const About = () => {
   return (
     <div>
-      <section className="relative m-5 bg-[#FFF]">
+      <section className="relative mx-5 mt-10 bg-[#FFF]">
       <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
 
       <div className="relative bg-white border-2 border-primary rounded-3xl p-8 md:p-14 overflow-hidden">
@@ -40,6 +44,14 @@ const About = () => {
         </div>
       </div>
     </section>
+    <section>
+
+    </section>
+    <MissionVisionSection />
+    <AwardsSection />
+    <HistorySection />
+    <AboutOurTeam/>
+    
     </div>
   );
 };

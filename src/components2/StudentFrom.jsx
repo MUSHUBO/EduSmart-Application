@@ -57,7 +57,7 @@ export default function StudentForm() {
   return (
     <section className=" min-h-screen flex flex-col items-center justify-center px-4 py-10">
       {/* Top Button */}
-      <button className="mb-6 px-4 py-2 border border-primary rounded-md bg-white shadow hover:bg-accent text-primary font-medium">
+      <button className="mb-6 px-4 py-2 border border-primary rounded-md bg-white shadow hover:bg-popover-foreground hover:dark:bg-popover-foreground  text-primary font-medium">
         Contact Form
       </button>
 
@@ -65,7 +65,7 @@ export default function StudentForm() {
       <h2 className="text-2xl font-bold mb-2 text-primary">
         Student Information
       </h2>
-      <p className="text-center text-gray-700 max-w-xl mb-6">
+      <p className="text-center dark:text-white text-base-100  max-w-xl mb-6">
         Please fill the form below to help us better understand your needs.
       </p>
 
@@ -73,19 +73,19 @@ export default function StudentForm() {
       <div className="flex space-x-4 mb-6">
         <a
           href="#"
-          className="p-2 bg-white shadow rounded-md hover:bg-accent text-primary"
+          className="p-2 bg-white shadow rounded-md hover:bg-accent-foreground  text-primary"
         >
           <FaFacebookF />
         </a>
         <a
           href="#"
-          className="p-2 bg-white shadow rounded-md hover:bg-accent text-primary"
+          className="p-2 bg-white shadow rounded-md hover:bg-accent-foreground text-primary"
         >
           <FaTwitter />
         </a>
         <a
           href="#"
-          className="p-2 bg-white shadow rounded-md hover:bg-accent text-primary"
+          className="p-2 bg-white shadow rounded-md hover:bg-accent-foreground text-primary"
         >
           <FaInstagram />
         </a>
