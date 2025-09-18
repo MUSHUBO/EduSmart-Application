@@ -1,5 +1,5 @@
-import ContactInfo from "@/components/ContactInfo";
-import StudentFrom from "@/components/StudentFrom";
+import ContactInfo from "@/components2/ContactInfo";
+import StudentFrom from "@/components2/StudentFrom";
 
 
 
