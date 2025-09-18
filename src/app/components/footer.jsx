@@ -1,13 +1,13 @@
-// components/Footer.tsx
+
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <footer className="text-base-100 dark:text-[#FFFFFF] p-8 md:p-12 border-2">
+        <footer className="text-black dark:text-white p-8 md:p-12 border-2">
             <div className="container mx-auto">
-                {/* Top section */}
+              
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                    {/* Logo & Description */}
+                   
                     <div>
                         <div className="flex items-center space-x-2">
                             <div className="w-8 h-8 bg-base-300 rounded-lg flex items-center justify-center">
@@ -28,17 +28,17 @@ export default function Footer() {
                             </p>
                             <p className="flex items-center gap-2">
                                 <FaPhoneAlt className="text-base" />
-                                +91 9183 23 2309
+                                +8801912716966
                             </p>
                             <p className="flex items-center gap-2">
                                 <FaMapMarkerAlt className="text-base" />
-                                Somewhere in the World
+                                Dhaka,Bangladesh
                             </p>
                         </div>
 
                     </div>
 
-                    {/* Home */}
+                    
                     <div>
                         <h6 className="footer-title">Home</h6>
                         <ul className="space-y-1">
@@ -48,7 +48,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* About Us */}
+                    
                     <div>
                         <h6 className="footer-title">About Us</h6>
                         <ul className="space-y-1">
@@ -60,7 +60,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Academics & Contact */}
+                 
                     <div>
                         <h6 className="footer-title">Academics</h6>
                         <ul className="space-y-1">
@@ -75,10 +75,10 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Divider */}
+                
                 <div className="border-t border-base-600 my-6"></div>
 
-                {/* Bottom section */}
+            
                 <div className="flex flex-col md:flex-row justify-between items-center text-sm">
                     <div className="flex gap-4 mb-4 md:mb-0">
                         <a className="link link-hover">Terms of Service</a>
@@ -98,7 +98,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Copyright */}
+                
                 <p className="text-center mt-4 text-xs">
                     Copyright © {new Date().getFullYear()} Little Learners Academy. All
                     rights reserved.
