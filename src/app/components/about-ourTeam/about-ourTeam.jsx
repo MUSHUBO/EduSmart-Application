@@ -4,20 +4,49 @@ import { FaEnvelope } from "react-icons/fa";
 
 const teamMembers = [
     {
-        name: "Ms. Sarah Anderson",
+        name: "Kazi Sabbir",
         qualification: "Bachelor’s Degree in Early Childhood Education",
         description:
-            "Ms. Sarah is a passionate educator with over 10 years of experience in guiding young minds. Her warm and nurturing approach creates a welcoming classroom environment where children feel comfortable to explore and learn.",
+            "Kazi Sabbir is a passionate educator dedicated to creating a nurturing and inspiring classroom environment for young learners.",
         image: "https://i.ibb.co.com/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
     },
     {
-        name: "Mr. David Roberts",
+        name: "Mahafuj Hossain",
         qualification: "Master’s Degree in Elementary Education",
         description:
-            "With a strong background in elementary education, Mr. David brings a creative and interactive teaching style to his classroom. His enthusiasm for learning inspires students to ask questions and think critically.",
+            "Mahafuj Hossain brings creativity and enthusiasm to his teaching, fostering curiosity and critical thinking among students.",
+        image: "https://i.ibb.co.com/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
+    },
+    {
+        name: "Mazedul Islam",
+        qualification: "Bachelor’s Degree in Early Childhood Education",
+        description:
+            "Mazedul Islam focuses on hands-on learning and providing a supportive environment where children feel valued and encouraged.",
+        image: "https://i.ibb.co.com/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
+    },
+    {
+        name: "Md Rabiul",
+        qualification: "Master’s Degree in Elementary Education",
+        description:
+            "Md Rabiul uses interactive teaching methods to make learning engaging and accessible for all students.",
+        image: "https://i.ibb.co.com/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
+    },
+    {
+        name: "Mehedi Hasan",
+        qualification: "Bachelor’s Degree in Early Childhood Education",
+        description:
+            "Mehedi Hasan emphasizes creativity and problem-solving in his classroom, inspiring young learners to explore and grow.",
+        image: "https://i.ibb.co.com/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
+    },
+    {
+        name: "Shekh Shubo",
+        qualification: "Master’s Degree in Elementary Education",
+        description:
+            "Shekh Shubo is committed to nurturing a dynamic and interactive classroom, encouraging a lifelong love for learning.",
         image: "https://i.ibb.co.com/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
     },
 ];
+
 
 export default function AboutOurTeam() {
     return (
@@ -44,13 +73,13 @@ export default function AboutOurTeam() {
                     {teamMembers.map((member, index) => (
                         <div
                             key={index}
-                            className="card bg-white shadow-md border rounded-2xl overflow-hidden"
+                            className="card bg-white shadow-md border rounded-2xl overflow-hidden border-b-8 border-r-8"
                         >
                             <div className="card-body">
                                 {/* Top Section */}
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center gap-3">
-                                        <div className="w-14 h-14 rounded-full overflow-hidden bg-background relative">
+                                        <div className="w-14 h-14 rounded-xl overflow-hidden bg-background relative">
                                             <Image
                                                 src={member.image}
                                                 alt={member.name}
@@ -61,24 +90,25 @@ export default function AboutOurTeam() {
                                             />
                                         </div>
 
-                                        <h3 className="font-semibold text-lg">{member.name}</h3>
+                                        <h3 className="font-bold text-lg ">{member.name}</h3>
                                     </div>
-                                    <div className="border-2 rounded-xl p-2 bg-background">
+                                    <div className="border rounded-xl p-2 bg-background">
                                         <FaEnvelope className="" />
                                     </div>
                                 </div>
 
-                                <div className="border-2 rounded-2xl bg-background">
+                                <div className="border-2 rounded-xl bg-background p-4 flex flex-col gap-3 mt-3">
                                     {/* Qualification */}
-                                    <p className="mt-4 font-medium p-3">
+                                    <p className="font-medium text-base">
                                         Qualification: {member.qualification}
                                     </p>
 
                                     {/* Description */}
-                                    <p className="mt-3 text-sm text-gray-600">
+                                    <p className="text-sm text-gray-600 leading-relaxed">
                                         {member.description}
                                     </p>
                                 </div>
+
                             </div>
                         </div>
                     ))}
