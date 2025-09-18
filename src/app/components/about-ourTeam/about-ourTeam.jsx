@@ -53,12 +53,12 @@ export default function AboutOurTeam() {
         <section className="py-12">
             <div className="container mx-auto px-4">
                 {/* Section Header */}
-                <div className="text-center max-w-2xl mx-auto mb-12">
-                    <button className="btn btn-outline mb-4">
+                <div className="text-center max-w-2xl mx-auto mb-12 ">
+                    <button className="btn btn-outline mb-4 dark:text-white">
                         Our Teachers With Expertise
                     </button>
-                    <h2 className="text-3xl md:text-4xl font-bold">Our Team Members</h2>
-                    <p className="mt-4 text-base text-gray-600">
+                    <h2 className="text-3xl md:text-4xl font-bold dark:text-white">Our Team Members</h2>
+                    <p className="mt-4 text-base text-gray-600 dark:text-white">
                         At Little Learners Academy, our teaching team is the heart of our
                         educational journey. We take great pride in employing highly
                         qualified and passionate educators who possess a deep understanding
@@ -92,19 +92,19 @@ export default function AboutOurTeam() {
 
                                         <h3 className="font-bold text-lg ">{member.name}</h3>
                                     </div>
-                                    <div className="border rounded-xl p-2 bg-background">
+                                    <div className="border rounded-xl p-2 bg-background dark:text-white">
                                         <FaEnvelope className="" />
                                     </div>
                                 </div>
 
                                 <div className="border-2 rounded-xl bg-background p-4 flex flex-col gap-3 mt-3">
                                     {/* Qualification */}
-                                    <p className="font-medium text-base">
+                                    <p className="font-medium text-base dark:text-white">
                                         Qualification: {member.qualification}
                                     </p>
 
                                     {/* Description */}
-                                    <p className="text-sm text-gray-600 leading-relaxed">
+                                    <p className="text-sm text-gray-600 leading-relaxed dark:text-white">
                                         {member.description}
                                     </p>
                                 </div>
