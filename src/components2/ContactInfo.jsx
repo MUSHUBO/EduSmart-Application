@@ -22,7 +22,7 @@ export default function ContactInfo() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
          
           <div className="space-y-4 p-7">
-            <button className="p-5 btn btn-outline btn-sm rounded-full text-primary">
+            <button className="p-5 btn btn-outline btn-sm rounded-full text-primary ">
               Contact Us
             </button>
             <h2 className="text-2xl md:text-3xl font-bold text-black">
@@ -43,7 +43,7 @@ export default function ContactInfo() {
             </div>
             <div className="flex items-center gap-3 p-4 border rounded-lg shadow-sm">
               <FaPhoneAlt className="text-primary text-xl" />
-              <span className="text-gray-700">+88 98765 21309</span>
+              <span className="text-gray-700">+88 9183 23  2309</span>
             </div>
             <div className="flex items-center gap-3 p-4 border rounded-lg shadow-sm">
               <MdLocationOn className="text-primary text-xl" />
