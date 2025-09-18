@@ -27,7 +27,7 @@ const timelineData = [
 
 const HistorySection = () => {
   return (
-    <section className="text-center my-16 md:my-24 mx-4">
+    <section className="text-center pt-10 mx-5">
       <div className="mb-12">
         <div className="inline-block border border-primary rounded text-sm font-medium px-5 py-1 mb-4">
           Our Progressive Journey
