@@ -51,7 +51,7 @@ export default function AboutOurTeam() {
         <section className="my-10">
             <div className="container mx-auto px-5">
                 <div className="text-center mx-auto mb-12">
-                    <div className="inline-block border border-primary rounded text-sm font-medium px-5 py-1 mb-4 ">
+                    <div className="inline-block border text-black dark:text-white border-primary rounded text-sm font-medium px-5 py-1 mb-4 ">
                         Our Teachers With Expertise
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Team Members</h2>
