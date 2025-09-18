@@ -65,7 +65,7 @@ export default function StudentForm() {
       <h2 className="text-2xl font-bold mb-2 text-primary">
         Student Information
       </h2>
-      <p className="text-center text-gray-700 max-w-xl mb-6">
+      <p className="text-center text-base-100 max-w-xl mb-6">
         Please fill the form below to help us better understand your needs.
       </p>
 
