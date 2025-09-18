@@ -67,7 +67,7 @@ const Navbar = () => {
                 <div className="">
                     <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
                         <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
-                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn  size={18}/>  Login</span>
+                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn  size={19}/>  Login</span>
                     </Link>
                 </div>
             </div>
