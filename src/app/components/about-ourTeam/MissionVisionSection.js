@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const MissionVisionSection = () => {
   return (
-    <section className="text-center mx-5 my-10">
+    <section className="text-center mx-5 mt-10">
       <div className="mb-12">
         <div className="inline-block border border-primary rounded text-sm font-medium px-5 py-1 mb-4">
           Mission & Visions

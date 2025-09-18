@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import AboutOurTeam from '../components/about-ourTeam/about-ourTeam';
 import MissionVisionSection from '../components/about-ourTeam/MissionVisionSection';
+import AwardsSection from '../components/about-ourTeam/AwardsSection';
 
 const About = () => {
   return (
@@ -46,7 +47,9 @@ const About = () => {
 
     </section>
     <MissionVisionSection />
+    <AwardsSection />
     <AboutOurTeam/>
+    
     </div>
   );
 };
