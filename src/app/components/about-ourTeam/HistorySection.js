@@ -42,7 +42,7 @@ const HistorySection = () => {
 
       <div className="relative">
         <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
-        <div className="relative bg-white border-2 border-primary rounded-3xl p-4 md:p-8 lg:p-12 text-left">
+        <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-4 md:p-8 lg:p-12 text-left">
           <div className="space-y-12">
             {timelineData.map((item, index) => (
               <div key={index} className="md:flex md:gap-x-4">
