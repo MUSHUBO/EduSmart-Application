@@ -62,7 +62,7 @@ export default function OurPages() {
                                 {/* Decorative Line */}
                                 <div className="flex items-center justify-center w-full mb-6">
                                     <span className="w-4 h-4 rounded-full border-2 border-primary"></span>
-                                    <div className="flex-1 border-t-4 border-dashed border-primary mx-0"></div>
+                                    <div className="flex-1 border-t-4 border-double border-primary mx-0"></div>
                                     <span className="w-4 h-4 rounded-full border-2 border-primary"></span>
                                 </div>
 
