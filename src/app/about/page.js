@@ -9,10 +9,10 @@ import HistorySection from '../components/about-ourTeam/HistorySection';
 const About = () => {
   return (
     <div>
-      <section className="relative mx-5 mt-10 bg-[#FFF]">
+      <section className="relative mx-5 mt-10">
       <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
 
-      <div className="relative bg-white border-2 border-primary rounded-3xl p-8 md:p-14 overflow-hidden">
+      <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 md:p-14 overflow-hidden">
         <Image
           src="/corner.svg"
           alt="Decorative corner pattern"
@@ -25,7 +25,7 @@ const About = () => {
           <div className="flex flex-col items-start">
             <div className="relative group mb-6">
               <div className="absolute top-1.5 left-1.5 w-full h-full bg-primary rounded group-hover:top-0 group-hover:left-0 transition-all duration-200"></div>
-              <button className="relative bg-white border border-primary rounded text-sm font-medium px-5 py-1 group-hover:top-1.5 group-hover:left-1.5 transition-all duration-200">
+              <button className="relative text-black bg-white border border-primary rounded text-sm font-medium px-5 py-1 group-hover:top-1.5 group-hover:left-1.5 transition-all duration-200">
                 Overview
               </button>
             </div>
@@ -36,7 +36,7 @@ const About = () => {
           </div>
 
           <div className="flex items-center">
-            <p className=" font-small leading-relaxed">
+            <p className=" font-small text-primary leading-relaxed">
               A trusted education platform for your next life success, we believe in shaping curious minds and building a strong foundation for a lifelong love of learning. Our holistic approach fosters intellectual, social, emotional, and physical development, ensuring that each child reaches their full potential.
             </p>
           </div>
