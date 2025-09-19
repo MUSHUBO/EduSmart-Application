@@ -15,7 +15,7 @@ const Hero = () => {
           <div className="absolute -top-2 -left-2 w-3 h-3 md:w-4 md:h-4 bg-popover dark:bg-popover border border-foreground rounded-full"></div>
           <div className="absolute -top-2 -right-2 w-3 h-3 md:w-4 md:h-4 bg-popover dark:bg-popover border border-foreground rounded-full"></div>
           <div className="absolute -bottom-2 -left-2 w-3 h-3 md:w-4 md:h-4 bg-popover dark:bg-popover border border-foreground rounded-full"></div>
-          <div className="absolute -bottom-2 -right-2 w-3 h-3 md:w-4 md:h-4 bg-popover dark:bg-popover b-popobg-popover dark:bg-popoverborder-foreground rounded-full"></div>
+          <div className="absolute -bottom-2 -right-2 w-3 h-3 md:w-4 md:h-4 bg-popover dark:bg-popover border border-foreground rounded-full"></div>
         </div>
 
         {/* Main Image */}
