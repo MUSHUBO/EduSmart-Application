@@ -7,7 +7,7 @@ const teamMembers = [
         qualification: "Bachelor’s Degree in Early Childhood Education",
         description:
             "Kazi Sabbir is a passionate educator dedicated to creating a nurturing and inspiring classroom environment for young learners.",
-        image: "https://i.ibb.co/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
+        image: "https://i.ibb.co.com/rKVkwCx9/IMG20250808162448-removebg-preview.png",
     },
     {
         name: "Mahafuj Hossain",
@@ -67,7 +67,7 @@ export default function AboutOurTeam() {
                     {teamMembers.map((member, index) => (
                         <div
                             key={index}
-                            className="card bg-white shadow-md border border-primary rounded-2xl overflow-hidden border-b-8 border-r-8 border-primary flex flex-col"
+                            className="card bg-muted dark:bg-muted shadow-md border border-primary rounded-2xl overflow-hidden border-b-8 border-r-8 flex flex-col"
                         >
                             <div className="card-body p-10 flex flex-col flex-grow">
                                 <div className="flex justify-between items-center">

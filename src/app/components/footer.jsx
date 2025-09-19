@@ -1,19 +1,22 @@
 
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
     return (
-        <footer className="text-black dark:text-white p-8 md:p-12 border-2">
+        <footer style={{
+            backgroundImage: "url('/images/gradient-orange-waves-background-fluid-gradient-shapes-composition-vector.jpg')",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "cover"
+        }}
+            className="text-black dark:text-white bg p-8 md:p-12 border-2">
             <div className="container mx-auto">
-              
+
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                   
+
                     <div>
-                        <div className="flex items-center space-x-2">
-                            <div className="w-8 h-8 bg-base-300 rounded-lg flex items-center justify-center">
-                                <span className="font-bold">L</span>
-                            </div>
-                            <span className="font-bold text-lg">EduSmart</span>
+                        <div className="max-w-[160px]">
+                            <img src="/images/Dumondi (4)-Photoroom.png" alt="edusmart_logo" />
                         </div>
                         <p className="mt-3 text-sm">
                             We believe in the power of play to foster creativity,
@@ -38,7 +41,7 @@ export default function Footer() {
 
                     </div>
 
-                    
+
                     <div>
                         <h6 className="footer-title">Home</h6>
                         <ul className="space-y-1">
@@ -48,7 +51,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    
+
                     <div>
                         <h6 className="footer-title">About Us</h6>
                         <ul className="space-y-1">
@@ -60,7 +63,7 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                 
+
                     <div>
                         <h6 className="footer-title">Academics</h6>
                         <ul className="space-y-1">
@@ -75,10 +78,10 @@ export default function Footer() {
                     </div>
                 </div>
 
-                
+
                 <div className="border-t border-base-600 my-6"></div>
 
-            
+
                 <div className="flex flex-col md:flex-row justify-between items-center text-sm">
                     <div className="flex gap-4 mb-4 md:mb-0">
                         <a className="link link-hover">Terms of Service</a>
@@ -86,19 +89,28 @@ export default function Footer() {
                         <a className="link link-hover">Cookie Policy</a>
                     </div>
                     <div className="flex gap-3">
-                        <a className="btn btn-circle btn-sm bg-base-300">
+                        <a
+                            href="#"
+                            className="p-2 bg-white shadow border border-primary rounded-md hover:bg-accent-foreground  text-primary"
+                        >
                             <FaFacebookF />
                         </a>
-                        <a className="btn btn-circle btn-sm bg-base-300">
+                        <a
+                            href="#"
+                            className="p-2 bg-white shadow border border-primary rounded-md hover:bg-accent-foreground text-primary"
+                        >
                             <FaTwitter />
                         </a>
-                        <a className="btn btn-circle btn-sm bg-base-300">
-                            <FaLinkedinIn />
+                        <a
+                            href="#"
+                            className="p-2 bg-white shadow border border-primary rounded-md hover:bg-accent-foreground text-primary"
+                        >
+                            <FaInstagram />
                         </a>
                     </div>
                 </div>
 
-                
+
                 <p className="text-center mt-4 text-xs">
                     Copyright © {new Date().getFullYear()} Little Learners Academy. All
                     rights reserved.
