@@ -11,7 +11,7 @@
 
 /* For default text color and bg [mus] */
 body {
-  color: var(--foreground);
+  color: var(--popover);
   background: var(--background);
 }
 
