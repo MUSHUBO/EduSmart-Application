@@ -31,14 +31,16 @@ const pages = [
 
 export default function OurPages() {
     return (
-        <section className="py-6 foreground">
-            <div className="container mx-auto px-4 text-center">
+        <section className="my-24 foreground">
+            <div className="container mx-auto text-center">
                 {/* Section Heading */}
-                <button
-                                    className="btn border-primary hover:bg-primary shadow-md px-6 border-b-4 border-r-4"
-                                >
-                                    Explore More <ArrowRight className="ml-2 w-4 h-4" />
-                                </button>
+                
+                {/* <button
+                    className="btn border-primary hover:bg-primary shadow-md px-6 border-b-4 border-r-4"
+                >
+                    Explore More <ArrowRight className="ml-2 w-4 h-4" />
+                </button> */}
+
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                     Navigate through our Pages
                 </h2>
