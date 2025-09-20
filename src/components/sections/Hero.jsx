@@ -5,7 +5,7 @@ import bannerImg from "../../../public/images/banner-img/banner-img.png";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-14 min-h-screen px-4 my-4">
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-14 min-h-screen px-4 my-4 md:my-0">
       {/* Left Container */}
       <div className="relative bg-secondary p-4 flex-shrink-0">
         {/* Border with corner circles */}
