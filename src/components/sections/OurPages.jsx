@@ -55,7 +55,7 @@ export default function OurPages() {
                     {pages.map((page, index) => (
                         <div
                             key={index}
-                            className="border-2 rounded-2xl bg-muted dark:bg-muted shadow-md p-6 flex flex-col text-center border-b-8 border-r-8 border-primary"
+                            className="border-2 rounded-2xl bg-muted dark:bg-muted shadow-md p-6 flex flex-col text-center border-b-4 border-r-4"
                         >
                             {/* Top Part (Title + Line + Text) */}
                             <div className="flex-1 flex flex-col items-center">
@@ -63,9 +63,9 @@ export default function OurPages() {
 
                                 {/* Decorative Line */}
                                 <div className="flex items-center justify-center w-full mb-6">
-                                    <span className="w-4 h-4 rounded-full border-2 border-primary"></span>
-                                    <div className="flex-1 border-t-4 border-double border-primary mx-0"></div>
-                                    <span className="w-4 h-4 rounded-full border-2 border-primary"></span>
+                                    <span className="w-4 h-4 rounded-full border-2"></span>
+                                    <div className="flex-1 border-t-4 border-dashed border-primary mx-0"></div>
+                                    <span className="w-4 h-4 rounded-full border-2"></span>
                                 </div>
 
                                 {/* Description */}
@@ -73,10 +73,10 @@ export default function OurPages() {
                             </div>
 
                             {/* Button (Stays at bottom) */}
-                            <div className="mt-6">
+                            <div className="mt-6 mx-10">
                                 <a
                                     href={page.link}
-                                    className="btn border-primary shadow-md px-6 border-b-4 border-r-4"
+                                    className="btn w-full rounded-md bg-accent border font-medium text-black shadow-md px-6 border-b-4 border-r-4"
                                 >
                                     Learn More <ArrowRight className="ml-2 w-4 h-4" />
                                 </a>

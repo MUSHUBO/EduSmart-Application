@@ -44,11 +44,11 @@ const OurBenefits = () => {
             </div>
 
             {/* Card Grid */}
-            <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16'>
+            <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16 px-4 lg:px-0'>
                 {BenefitsData.map((benefit, index) => (
                     <div
                         key={index}
-                        className="relative bg-muted border border-r-4 border-b-4 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        className="relative bg-muted border border-r-4 border-b-4 rounded-lg p-3 md:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
                     >
                         {/* The small top-left icon box */}
                         <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-md flex items-center justify-center shadow-sm border text-xl text-black"
