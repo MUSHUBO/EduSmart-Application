@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 import Footer from "./components/footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -30,6 +31,9 @@ export default function RootLayout({ children }) {
             {children}
           </div>
           <Footer></Footer>
+
+          {/* Analytics should be outside main content */}
+          <Analytics />
         </div>
       </body>
     </html>
