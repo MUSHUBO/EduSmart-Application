@@ -9,6 +9,12 @@
 
 } */
 
+/* For default text color and bg [mus] */
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
