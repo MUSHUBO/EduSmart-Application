@@ -39,8 +39,8 @@ const Hero = () => {
 
         <p className="text-popover-foreground dark:text-popover-foreground text-sm sm:text-base">
           Our kinder garden school provides a nurturing and stimulating
-          environment, fostering a love for learning that lasts a lifetime.
-          Join us as we embark on an exciting educational journey together!
+          environment, fostering a love for learning that lasts a lifetime. Join
+          us as we embark on an exciting educational journey together!
         </p>
       </div>
     </div>
