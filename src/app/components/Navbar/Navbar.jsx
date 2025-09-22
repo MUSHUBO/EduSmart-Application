@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
-
+import { IoPersonSharp } from "react-icons/io5";
 
 const Navbar = () => {
     const [isDark, setIsDark] = useState(false);
@@ -84,8 +84,13 @@ const Navbar = () => {
                         onClick={() => setIsDark(!isDark)}
                         className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                        {isDark ? <Sun className="h-5 w-5 text-primary" /> : <Moon fill='#FF8D4D' className="h-5 w-5 text-primary" />}
+                        {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-6 lg:h-6  text-primary" />}
                     </button>
+                </div>
+                <div>
+                    <div className='md:w-8 md:h-8 lg:w-9 h-9 rounded-full  '>
+                    <IoPersonSharp  className='w-full h-full text-primary '/>
+                    </div>
                 </div>
                 <div className="">
                     <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
