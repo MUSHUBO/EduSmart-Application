@@ -36,35 +36,35 @@ const testimonials = [
       name: "Ahsan Rahman",
       photo: "https://randomuser.me/api/portraits/men/32.jpg",
       rating: 5,
-      description: "eduSmart school management system makes our school's operations smooth and efficient. Highly recommended!",
+      description: "EduSmart school management system makes our school's operation efficient. Highly recommended!",
    },
    {
       id: 2,
       name: "Nusrat Jahan",
       photo: "https://randomuser.me/api/portraits/women/44.jpg",
       rating: 5,
-      description: "Managing students, teachers, and schedules has never been easier. eduSmart is a lifesaver for our administration team.",
+      description: "Managing students, teachers has never been easier. eduSmart is a lifesaver for our administration team.",
    },
    {
       id: 3,
       name: "Rafiq Ahmed",
       photo: "https://randomuser.me/api/portraits/men/56.jpg",
       rating: 5,
-      description: "The dashboard is very intuitive and user-friendly. eduSmart helps us save time and avoid confusion in daily tasks.",
+      description: "The dashboard is very intuitive and user-friendly. this helps us save time and avoid confusion in daily tasks.",
    },
    {
       id: 4,
       name: "Shabnur Akter",
       photo: "https://randomuser.me/api/portraits/women/65.jpg",
       rating: 5,
-      description: "Our teachers love how simple it is to track attendance and grades. eduSmart is a perfect solution for modern schools.",
+      description: "Our teachers love how simple it is to track attendance and grades. this is a perfect solution for modern schools.",
    },
    {
       id: 5,
       name: "Imran Hossain",
       photo: "https://randomuser.me/api/portraits/men/78.jpg",
       rating: 5,
-      description: "From student management to report generation, eduSmart does it all efficiently. Truly a game-changer for school management.",
+      description: "From student management to report generation, this does it all efficiently. Truly a for school management.",
    }
 ];
 
@@ -87,7 +87,8 @@ function Testimonials() {
                slidesToShow: 3,
                slidesToScroll: 3,
                infinite: true,
-               dots: true
+               dots: true,
+               
             }
          },
          {
@@ -95,7 +96,7 @@ function Testimonials() {
             settings: {
                slidesToShow: 2,
                slidesToScroll: 2,
-               initialSlide: 2
+               initialSlide: 2,
             }
          },
          {
@@ -129,7 +130,7 @@ function Testimonials() {
                      <img
                         src={t.photo}
                         alt={t.name}
-                        className="w-24 h-24 rounded-full object-cover -mt-12 border-4 border-white shadow-lg"
+                        className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
                      />
                      <h3 className="mt-4 text-lg font-semibold text-gray-800">{t.name}</h3>
                      <div className="flex mt-2">
