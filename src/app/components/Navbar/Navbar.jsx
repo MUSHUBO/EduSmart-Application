@@ -27,12 +27,14 @@ const Navbar = () => {
     return (
         <div className="navbar bg-background shadow-sm border-b border-primary/55">
             <div className="navbar-start">
-                <div className="dropdown p-1">
+                <div
+                    className="dropdown max-w-8 p-1 cursor-pointer max-h-8"
+                >
                     <div
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="btn btn-ghost p-0 text-primary lg:hidden"
+                        className="btn bg-transparent border-none shadow-none hover:bg-primary hover:text-popover p-1 rounded-sm -mt-1 w-full h-full text-primary lg:hidden"
                         role="button"
                         tabIndex={0}
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <RiMenuUnfold2Fill size={18} /> : <RiMenuLine size={18} />}
                     </div>
@@ -67,7 +69,7 @@ const Navbar = () => {
                 <div className="">
                     <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
                         <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
-                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn  size={19}/> Login</span>
+                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn size={19} /> Login</span>
                     </Link>
                 </div>
             </div>
