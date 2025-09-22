@@ -6,7 +6,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 export default function ContactInfo() {
   return (
     <section className=" py-8 px-6">
-      <div className="relative max-w-6xl mx-auto bg-white rounded-2xl shadow-md border border-gray-200 p-8 overflow-hidden">
+      <div className="relative max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl border-2 border-primary p-8 overflow-hidden">
      
         <div className="absolute top-0 left-0 flex flex-wrap w-24 h-24">
           {Array.from({ length: 16 }).map((_, i) => (
