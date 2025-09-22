@@ -35,8 +35,8 @@ const HistorySection = () => {
         <h2 className="font-serif text-3xl md:text-4xl font-bold text-primary mb-4">
           Our History
         </h2>
-        <p className="text-secondary max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
-          Founded with a passion for early education in 2005, our kindergarten school boasts a rich history...
+        <p className="text-foreground max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
+          Founded with a passion for early education in 2023, our EduSmart with a rich history...
         </p>
       </div>
 
@@ -78,7 +78,7 @@ const HistorySection = () => {
 
                     <div className="md:ml-2">
                       <h3 className="font-bold text-lg md:text-xl text-primary mb-1">{item.title}</h3>
-                      <p className="text-secondary text-sm leading-relaxed">{item.description}</p>
+                      <p className="text-foreground text-sm leading-relaxed">{item.description}</p>
                     </div>
                   </div>
                 </div>
