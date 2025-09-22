@@ -5,9 +5,11 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 
+
 const Navbar = () => {
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isFixed, setIsFixed] = useState(false);
     const pathname = usePathname()
     console.log(pathname);
     useEffect(() => {
@@ -24,8 +26,27 @@ const Navbar = () => {
         <li><Link href={"/contact"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/contact" && "text-primary dark:text-primary border-b-2 border-primary"
             }`}>Contact</Link></li>
     </>
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const navbarHeight = document.getElementById("navbarId").offsetHeight;
+            if (window.scrollY > navbarHeight) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
     return (
-        <div className="navbar bg-background shadow-sm border-b border-primary/55">
+        <div id="navbarId" className={`navbar bg-background shadow-sm border-b border-primary/55 z-50 transition-all duration-500 ease-in-out sticky ${isFixed
+                ? 'fixed top-0 left-0 right-0 backdrop-blur-xl bg-background/60 translate-y-0'
+                : 'relative -top-30'
+            }`}>
             <div className="navbar-start">
                 <div
                     className="dropdown max-w-8 p-1 cursor-pointer max-h-8"
