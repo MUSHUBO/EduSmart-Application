@@ -1,5 +1,8 @@
+"use client";
 import React from 'react';
 import { FaGraduationCap, FaCrown, FaShieldAlt, FaFlag, FaFutbol, FaHandsHelping } from 'react-icons/fa';
+import { motion } from "framer-motion";
+
 
 const BenefitsData = [
     {
@@ -46,9 +49,13 @@ const OurBenefits = () => {
             {/* Card Grid */}
             <div className='container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-16 px-4 lg:px-0'>
                 {BenefitsData.map((benefit, index) => (
-                    <div
+                    <motion.div
                         key={index}
                         className="relative bg-muted border border-r-4 border-b-4 rounded-lg p-3 md:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 0.8, delay: index * 0.2 }}j
                     >
                         {/* The small top-left icon box */}
                         <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-md flex items-center justify-center shadow-sm border text-xl text-black"
@@ -61,7 +68,7 @@ const OurBenefits = () => {
                             <h3 className="text-2xl font-semibold mb-2">{benefit.title}</h3>
                             <p className="text-gray-600">{benefit.description}</p>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>
