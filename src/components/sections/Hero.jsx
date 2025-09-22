@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import bannerImg from "../../../public/images/banner-img/banner-img.png";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
@@ -27,21 +28,40 @@ const Hero = () => {
       </div>
 
       {/* Right Container */}
-      <div className="font-medium text-center md:text-left">
-        <h5 className="text-popover dark:text-popover text-lg sm:text-xl mb-1 underline underline-offset-8">
+      <div>
+        <motion.h5
+          className="text-popover dark:text-popover text-lg sm:text-xl mb-1 underline underline-offset-8"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
           Welcome to EduSmart Application
-        </h5>
+        </motion.h5>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-popover dark:text-popover mb-4 md:mb-8">
-          Where Young Minds Blossom and{" "}
-          <span className="text-primary">Dreams Take Flight</span>.
-        </h1>
+        <motion.div
+          className="font-medium text-center md:text-left"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.1, ease: "easeOut" }}
+        >
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-popover dark:text-popover mb-4 md:mb-8">
+            Where Young Minds Blossom and{" "}
+            <span className="text-primary">Dreams Take Flight</span>.
+          </h1>
+        </motion.div>
 
-        <p className="text-popover-foreground dark:text-popover-foreground text-sm sm:text-base">
-          Our kinder garden school provides a nurturing and stimulating
-          environment, fostering a love for learning that lasts a lifetime. Join
-          us as we embark on an exciting educational journey together!
-        </p>
+        <motion.div
+          className="font-medium text-center md:text-left"
+          initial={{ opacity: 0, x: 100 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <p className="text-popover-foreground dark:text-popover-foreground text-sm sm:text-base">
+            Our kinder garden school provides a nurturing and stimulating
+            environment, fostering a love for learning that lasts a lifetime. Join
+            us as we embark on an exciting educational journey together!
+          </p>
+        </motion.div>
       </div>
     </div>
   );
