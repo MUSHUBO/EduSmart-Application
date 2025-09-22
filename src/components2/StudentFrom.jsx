@@ -17,7 +17,7 @@ export default function StudentForm() {
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
-
+  const [message, setMessage] = useState({ type: "", text: "" });
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -26,6 +26,12 @@ export default function StudentForm() {
     e.preventDefault();
     setLoading(true);
     setSuccess(null);
+
+    if (Number(form.studentAge) < 10) {
+      setMessage({ type: "error", text: "Student age must be at least 10 years old." });
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch("/api/contact", {
@@ -56,12 +62,10 @@ export default function StudentForm() {
   };
 
   return (
-    <section className=" min-h-screen flex flex-col items-center justify-center px-4 py-10">
+    <section className=" min-h-screen flex flex-col items-center justify-center px-4 py-10 ">
       {/* Top Button */}
-      <button
-        className="btn border-primary hover:bg-primary shadow-md px-6 border-b-4 border-r-4"
-      >
-        Contact Form <ArrowRight className="ml-2 w-4 h-4" />
+      <button className="mb-6 px-4 py-2 border border-primary rounded-md bg-white shadow hover:bg-black text-primary font-medium">
+        Contact Form
       </button>
 
       {/* Title */}
@@ -72,33 +76,34 @@ export default function StudentForm() {
         Please fill the form below to help us better understand your needs.
       </p>
 
-      {/* Social Icons */}
-      <div className="flex space-x-4 mb-6">
+     
+
+      {/* Form */}
+      <form
+        onSubmit={handleSubmit}
+        className="relative bg-white shadow-lg rounded-md p-6 w-full max-w-3xl border-2 border-secondary flex flex-col items-center"
+      >
+         {/* Social Icons */}
+      <div className=" absolute -top-6 left-1/2 transform -translate-x-1/2 flex space-x-4">
         <a
           href="#"
-          className="p-2 bg-white shadow rounded-md hover:bg-accent-foreground  text-primary"
+          className="p-3 bg-secondary shadow rounded-md hover:bg-accent text-black"
         >
           <FaFacebookF />
         </a>
         <a
           href="#"
-          className="p-2 bg-white shadow rounded-md hover:bg-accent-foreground text-primary"
+          className="p-3 bg-secondary shadow rounded-md hover:bg-accent text-black"
         >
           <FaTwitter />
         </a>
         <a
           href="#"
-          className="p-2 bg-white shadow rounded-md hover:bg-accent-foreground text-primary"
+          className="p-3 bg-secondary shadow rounded-md hover:bg-accent text-black"
         >
           <FaInstagram />
         </a>
       </div>
-
-      {/* Form */}
-      <form
-        onSubmit={handleSubmit}
-        className="bg-muted dark:bg-muted shadow-lg rounded-md p-6 w-full max-w-3xl border border-secondary"
-      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <input
             type="text"
@@ -150,6 +155,7 @@ export default function StudentForm() {
             onChange={handleChange}
             className="w-full border border-accent rounded-md p-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
             required
+             min="10" 
           />
           <select
             name="program"
@@ -162,6 +168,7 @@ export default function StudentForm() {
             <option value="Science">Science</option>
             <option value="Math">Math</option>
             <option value="Arts">Arts</option>
+            <option value="Arts">Others</option>
           </select>
         </div>
 
