@@ -55,7 +55,7 @@ export default function AboutOurTeam() {
                         Our Teachers With Expertise
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Team Members</h2>
-                    <p className="mt-4 text-base text-secondary">
+                    <p className="mt-4 text-base text-foreground">
                         At Little Learners Academy, our teaching team is the heart of our
                         educational journey. We take great pride in employing highly
                         qualified and passionate educators who possess a deep understanding
@@ -90,7 +90,7 @@ export default function AboutOurTeam() {
                                     <p className="font-medium text-base text-primary">
                                         Qualification: {member.qualification}
                                     </p>
-                                    <p className="text-sm text-secondary leading-relaxed">
+                                    <p className="text-sm text-foreground leading-relaxed">
                                         {member.description}
                                     </p>
                                 </div>

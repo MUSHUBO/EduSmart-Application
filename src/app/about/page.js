@@ -36,7 +36,7 @@ const About = () => {
           </div>
 
           <div className="flex items-center">
-            <p className=" font-small text-primary leading-relaxed">
+            <p className=" font-small text-foreground leading-relaxed">
               A trusted education platform for your next life success, we believe in shaping curious minds and building a strong foundation for a lifelong love of learning. Our holistic approach fosters intellectual, social, emotional, and physical development, ensuring that each child reaches their full potential.
             </p>
           </div>
