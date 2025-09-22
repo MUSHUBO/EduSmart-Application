@@ -78,6 +78,7 @@ const Hero = () => {
           </p>
         </motion.div>
 
+        
         {/* Achievements */}
         <motion.div
           className="flex justify-center mt-7 xl:mt-14"
