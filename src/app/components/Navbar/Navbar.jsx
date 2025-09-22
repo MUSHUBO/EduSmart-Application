@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
+import { IoPersonSharp } from "react-icons/io5";
 
 const Navbar = () => {
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isFixed, setIsFixed] = useState(false);
     const pathname = usePathname()
     console.log(pathname);
     useEffect(() => {
@@ -24,15 +26,36 @@ const Navbar = () => {
         <li><Link href={"/contact"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/contact" && "text-primary dark:text-primary border-b-2 border-primary"
             }`}>Contact</Link></li>
     </>
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const navbarHeight = document.getElementById("navbarId").offsetHeight;
+            if (window.scrollY > navbarHeight) {
+                setIsFixed(true);
+            } else {
+                setIsFixed(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+
     return (
-        <div className="navbar bg-background shadow-sm border-b border-primary/55">
+        <div id="navbarId" className={`navbar bg-background shadow-sm border-b border-primary/55 z-50 transition-all duration-500 ease-in-out sticky ${isFixed
+                ? 'fixed top-0 left-0 right-0 backdrop-blur-xl bg-background/60 translate-y-0'
+                : 'relative -top-30'
+            }`}>
             <div className="navbar-start">
-                <div className="dropdown p-1">
+                <div
+                    className="dropdown max-w-8 p-1 cursor-pointer max-h-8"
+                >
                     <div
-                        onClick={() => setIsOpen(!isOpen)}
-                        className="btn btn-ghost p-0 text-primary lg:hidden"
+                        className="btn bg-transparent border-none shadow-none hover:bg-primary hover:text-popover p-1 rounded-sm -mt-1 w-full h-full text-primary lg:hidden"
                         role="button"
                         tabIndex={0}
+                        onClick={() => setIsOpen(!isOpen)}
                     >
                         {isOpen ? <RiMenuUnfold2Fill size={18} /> : <RiMenuLine size={18} />}
                     </div>
@@ -61,13 +84,18 @@ const Navbar = () => {
                         onClick={() => setIsDark(!isDark)}
                         className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                        {isDark ? <Sun className="h-5 w-5 text-primary" /> : <Moon fill='#FF8D4D' className="h-5 w-5 text-primary" />}
+                        {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-6 lg:h-6  text-primary" />}
                     </button>
+                </div>
+                <div>
+                    <div className='md:w-8 md:h-8 lg:w-9 h-9 rounded-full  '>
+                    <IoPersonSharp  className='w-full h-full text-primary '/>
+                    </div>
                 </div>
                 <div className="">
                     <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
                         <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
-                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn  size={19}/> Login</span>
+                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn size={19} /> Login</span>
                     </Link>
                 </div>
             </div>
