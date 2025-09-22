@@ -1,5 +1,6 @@
 "use client";
 
+import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
@@ -160,7 +161,7 @@ export default function StudentForm() {
             name="program"
             value={form.program}
             onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full border border-accent rounded-md p-2 text-gray-500 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
             required
           >
             <option value="">Select Program</option>

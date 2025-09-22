@@ -11,7 +11,7 @@ const MissionVisionSection = () => {
         <h2 className="font-serif text-4xl font-bold text-primary mb-4">
           Our Mission & Visions
         </h2>
-        <p className="text-secondary max-w-2xl mx-auto leading-relaxed">
+        <p className="text-foreground max-w-2xl mx-auto leading-relaxed">
           We are here to provide a nurturing and inclusive environment where young minds can thrive, fostering a love for learning and personal growth.
         </p>
       </div>
@@ -20,7 +20,7 @@ const MissionVisionSection = () => {
         
         <div className="relative">
           <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
-          <div className="relative bg-white border-2 border-primary rounded-3xl p-8 h-full">
+          <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 h-full">
             <div className="absolute top-8 right-8">
               <Image 
                 src="/mission-icon.svg"
@@ -32,7 +32,7 @@ const MissionVisionSection = () => {
             <h3 className="font-serif text-3xl font-bold text-primary mb-6">
               Mission
             </h3>
-            <p className="text-secondary leading-relaxed pr-10">
+            <p className="text-foreground leading-relaxed pr-10">
               At Little Learners Academy, our mission is to inspire a passion for learning and empower young minds to become confident, compassionate, and creative individuals. We strive to create a safe and inclusive space where children thrive academically, socially, and emotionally, setting the stage for a successful educational journey.
             </p>
           </div>
@@ -40,7 +40,7 @@ const MissionVisionSection = () => {
 
         <div className="relative">
           <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
-          <div className="relative bg-white border-2 border-primary rounded-3xl p-8 h-full">
+          <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 h-full">
             <div className="absolute top-8 right-8">
               <Image 
                 src="/vision-icon.svg"
@@ -52,7 +52,7 @@ const MissionVisionSection = () => {
             <h3 className="font-serif text-3xl font-bold text-primary mb-6">
               Vision
             </h3>
-            <p className="text-secondary leading-relaxed pr-10">
+            <p className="text-foreground leading-relaxed pr-10">
               Our vision is to be a beacon of educational excellence, where children are encouraged to explore, discover, and express their unique talents. We aim to foster a generation of lifelong learners equipped with critical thinking, empathy, and a deep appreciation for diversity.
             </p>
           </div>

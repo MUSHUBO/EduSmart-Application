@@ -7,7 +7,7 @@ const teamMembers = [
         qualification: "Bachelor’s Degree in Early Childhood Education",
         description:
             "Kazi Sabbir is a passionate educator dedicated to creating a nurturing and inspiring classroom environment for young learners.",
-        image: "https://i.ibb.co/LhSDZbY8/72bb0e9b-1a9c-40ab-949f-a3bbb1855171.png",
+        image: "https://i.ibb.co.com/rKVkwCx9/IMG20250808162448-removebg-preview.png",
     },
     {
         name: "Mahafuj Hossain",
@@ -55,7 +55,7 @@ export default function AboutOurTeam() {
                         Our Teachers With Expertise
                     </div>
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">Our Team Members</h2>
-                    <p className="mt-4 text-base text-secondary">
+                    <p className="mt-4 text-base text-foreground">
                         At Little Learners Academy, our teaching team is the heart of our
                         educational journey. We take great pride in employing highly
                         qualified and passionate educators who possess a deep understanding
@@ -67,7 +67,7 @@ export default function AboutOurTeam() {
                     {teamMembers.map((member, index) => (
                         <div
                             key={index}
-                            className="card bg-white shadow-md border border-primary rounded-2xl overflow-hidden border-b-8 border-r-8 border-primary flex flex-col"
+                            className="card bg-muted dark:bg-muted shadow-md border border-primary rounded-2xl overflow-hidden border-b-8 border-r-8 flex flex-col"
                         >
                             <div className="card-body p-10 flex flex-col flex-grow">
                                 <div className="flex justify-between items-center">
@@ -90,7 +90,7 @@ export default function AboutOurTeam() {
                                     <p className="font-medium text-base text-primary">
                                         Qualification: {member.qualification}
                                     </p>
-                                    <p className="text-sm text-secondary leading-relaxed">
+                                    <p className="text-sm text-foreground leading-relaxed">
                                         {member.description}
                                     </p>
                                 </div>

@@ -24,12 +24,12 @@ const AwardCard = ({ icon: Icon, title, description }) => {
   return (
     <div className="relative h-full">
       <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
-      <div className="relative bg-white border-2 border-primary rounded-3xl p-8 h-full text-left">
+      <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 h-full text-left">
         <div className="border border-primary rounded-lg w-12 h-12 flex items-center justify-center mb-6">
-          <Icon className="text-2xl text-accent" />
+          <Icon className="text-2xl text-popover dark:text-popover" />
         </div>
         <h3 className="font-bold text-xl text-primary mb-3">{title}</h3>
-        <p className="text-secondary text-sm leading-relaxed">{description}</p>
+        <p className="text-foreground text-sm leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -45,7 +45,7 @@ const AwardsSection = () => {
         <h2 className="font-serif text-4xl font-bold text-primary mb-4">
           Our Awards and Recognitions
         </h2>
-        <p className="text-secondary max-w-3xl mx-auto leading-relaxed">
+        <p className="text-foreground max-w-3xl mx-auto leading-relaxed">
           Little Learners Academy takes pride in our commitment to delivering high-quality education and outstanding student experiences. We are honored to have received various awards and recognitions for our dedication to early childhood education.
         </p>
       </div>
