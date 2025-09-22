@@ -9,9 +9,6 @@ import { FaArrowLeft } from "react-icons/fa6";
 import TestimonialsCard from "@/app/components/Card/TestimonialsCard";
 
 
-
-
-
 const PrevArrow = ({ className, style, onClick }) => (
    <button
       className="absolute -left-9 md:-left-12 lg:-left-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted text-popover dark:text-popover border border-popover dark:border-popover p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary duration-150"
@@ -114,10 +111,10 @@ function Testimonials() {
    return (
       <div className="slider-container px-4 md:px-6 lg:px-12 py-12 md:py-20 lg:py-28">
          <div className="text-center">
-            <h2 class="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
+            <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
                Our Testimonials
             </h2>
-            <h3 class="text-sm md:text-base text-popover-foreground dark:text-popover-foreground max-w-[800px] mx-auto font-medium mb-6 md:mb-8 lg:mb-12">
+            <h3 className="text-sm md:text-base text-popover-foreground dark:text-popover-foreground max-w-[800px] mx-auto font-medium mb-6 md:mb-8 lg:mb-12">
                Our testimonials are heartfelt reflections of the nurturing environment er provide, where children flourish both ocodemically and emotionally.
             </h3>
          </div>

@@ -55,7 +55,7 @@ const OurBenefits = () => {
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
-                        transition={{ duration: 0.8, delay: index * 0.2 }}j
+                        transition={{ duration: 0.8, delay: index * 0.2 }}
                     >
                         {/* The small top-left icon box */}
                         <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-md flex items-center justify-center shadow-sm border text-xl text-black"
