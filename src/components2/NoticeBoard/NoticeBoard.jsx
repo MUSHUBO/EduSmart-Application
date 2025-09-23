@@ -14,6 +14,9 @@ import {
   Legend,
 } from "recharts";
 import { Users, Bell, Calendar, Trophy } from "lucide-react";
+import UpcomingExams from "./UpcomingExam";
+import SearchNotice from "./SearchNotice";
+import NoticeTable from "./NoticeTable";
 
 export default function NoticeBoard() {
   const [stats, setStats] = useState({});
@@ -27,11 +30,12 @@ export default function NoticeBoard() {
   }, []);
 
   const weeklyAttendance = [
+    { day: "Sun", present: 960, absent: 40 },
     { day: "Mon", present: 950, absent: 50 },
     { day: "Tue", present: 900, absent: 80 },
     { day: "Wed", present: 980, absent: 20 },
     { day: "Thu", present: 970, absent: 30 },
-    { day: "Fri", present: 960, absent: 40 },
+  
   ];
 
   const dataByDept = [
@@ -127,45 +131,11 @@ export default function NoticeBoard() {
         </div>
       </div>
 
-      {/* Upcoming Exams */}
-      <div className="bg-background text-foreground p-4 rounded shadow">
-        <h2 className="font-semibold mb-2">Upcoming Exams</h2>
-        <ul className="space-y-2">
-          {exams.map((exam, i) => (
-            <li key={i} className="flex justify-between border p-2 rounded">
-              {exam.subject} - {new Date(exam.date).toLocaleDateString()}
-              <button className="text-primary font-medium">See Routine</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Notices Table */}
-      <div className="bg-background text-foreground p-4 rounded shadow overflow-x-auto">
-        <h2 className="font-semibold mb-2">Notices</h2>
-        <table className="table-auto w-full">
-          <thead>
-            <tr className="text-left border-b">
-              <th className="p-2">Date</th>
-              <th className="p-2">Title</th>
-              <th className="p-2">Department</th>
-              <th className="p-2">Download</th>
-              <th className="p-2">View</th>
-            </tr>
-          </thead>
-          <tbody>
-            {notices.map((n, i) => (
-              <tr key={i} className="border-b">
-                <td className="p-2">{new Date(n.createdAt).toLocaleDateString()}</td>
-                <td className="p-2">{n.title}</td>
-                <td className="p-2">{n.department}</td>
-                <td className="p-2"><a href={n.fileUrl} download>📂</a></td>
-                <td className="p-2"><a href={`/notices/${n._id}`}>👁</a></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="space-y-3">
+     {/* <UpcomingExams></UpcomingExams> */}
+      <SearchNotice></SearchNotice>
+      {/* <NoticeTable></NoticeTable> */}
+    </div>
     </div>
   );
 }

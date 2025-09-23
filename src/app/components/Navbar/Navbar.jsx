@@ -23,6 +23,8 @@ const Navbar = () => {
             }`}>About</Link></li>
         <li><Link href={"/contact"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/contact" && "text-primary dark:text-primary border-b-2 border-primary"
             }`}>Contact</Link></li>
+        <li><Link href={"/noticeBoard"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/contact" && "text-primary dark:text-primary border-b-2 border-primary"
+            }`}>Notice</Link></li>
     </>
     return (
         <div className="navbar bg-background shadow-sm border-b border-primary/55">

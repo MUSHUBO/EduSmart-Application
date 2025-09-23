@@ -1,6 +1,8 @@
 "use client";
 
-import NoticeBoard from "@/components2/NoticeBoard";
+import NoticeBoard from "@/components2/NoticeBoard/NoticeBoard";
+
+
 
 
 
