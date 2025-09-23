@@ -62,7 +62,7 @@ export default function StudentForm() {
   };
 
   return (
-    <section className=" min-h-screen flex flex-col items-center justify-center px-4 py-10 ">
+    <section className="  flex flex-col items-center justify-center px-8 py-10 ">
       {/* Top Button */}
       <button className="mb-6 px-4 py-2 border border-primary rounded-md bg-white shadow hover:bg-black text-primary font-medium">
         Contact Form
@@ -72,7 +72,7 @@ export default function StudentForm() {
       <h2 className="text-2xl font-bold mb-2 text-primary">
         Student Information
       </h2>
-      <p className="text-center dark:text-white text-base-100  max-w-xl mb-6">
+      <p className="text-center dark:text-white text-base-100  max-w-xl my-2 py-5">
         Please fill the form below to help us better understand your needs.
       </p>
 
@@ -81,25 +81,25 @@ export default function StudentForm() {
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="relative bg-white shadow-lg rounded-md p-6 w-full max-w-3xl border-2 border-secondary flex flex-col items-center"
+        className="relative  bg-muted dark:bg-muted  shadow-2xl rounded-md p-6 w-full max-w-3xl border-2 border-primary  flex flex-col "
       >
          {/* Social Icons */}
       <div className=" absolute -top-6 left-1/2 transform -translate-x-1/2 flex space-x-4">
         <a
           href="#"
-          className="p-3 bg-secondary shadow rounded-md hover:bg-accent text-black"
+          className="p-2 bg-secondary shadow rounded-md hover:bg-accent text-black"
         >
           <FaFacebookF />
         </a>
         <a
           href="#"
-          className="p-3 bg-secondary shadow rounded-md hover:bg-accent text-black"
+          className="p-2 bg-secondary shadow rounded-md hover:bg-accent text-black"
         >
           <FaTwitter />
         </a>
         <a
           href="#"
-          className="p-3 bg-secondary shadow rounded-md hover:bg-accent text-black"
+          className="p-2 bg-secondary shadow rounded-md hover:bg-accent text-black"
         >
           <FaInstagram />
         </a>
