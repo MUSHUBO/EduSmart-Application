@@ -23,7 +23,7 @@ const achievementsData = [
 
 const Hero = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-14 min-h-screen my-4 lg:my-0">
+    <div className="flex flex-col lg:flex-row items-center justify-center gap-10 md:gap-14 my-4 lg:my-16">
       {/* Left Container */}
       <div className="relative bg-secondary p-4 flex-shrink-0">
         {/* Border with corner circles */}

@@ -7,8 +7,8 @@ import { ArrowRight } from "lucide-react";
 
 export default function ContactInfo() {
   return (
-    <section className="py-8 px-6">
-      <div className="relative max-w-6xl mx-auto  bg-muted dark:bg-muted  text-foreground rounded-2xl shadow-md border-2 border-primary p-8 overflow-hidden">
+    <section>
+      <div className="relative max-w-7xl mx-auto  bg-muted dark:bg-muted  text-foreground rounded-2xl shadow-md border-2 border-primary p-8 overflow-hidden">
 
         <div className="absolute top-0 left-0 flex flex-wrap w-24 h-24">
           {Array.from({ length: 16 }).map((_, i) => (
@@ -39,24 +39,28 @@ export default function ContactInfo() {
           </div>
 
           {/* Right contact info grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             <div className="flex items-center gap-3 p-4 border border-border rounded-lg shadow-sm bg-card hover:shadow-md transition">
               <MdEmail className="text-primary text-xl" />
               <span className="text-foreground">eduSmart@gmail.com</span>
             </div>
+
             <div className="flex items-center gap-3 p-4 border border-border rounded-lg shadow-sm bg-card hover:shadow-md transition">
               <FaPhoneAlt className="text-primary text-xl" />
               <span className="text-foreground">+88 9183 23 2309</span>
             </div>
-            <div className="flex items-center gap-3 p-4 border border-border rounded-lg shadow-sm bg-card hover:shadow-md transition sm:col-span-2">
+
+            <div className="flex items-center gap-3 p-4 border border-border rounded-lg shadow-sm bg-card hover:shadow-md transition sm:col-span-2 lg:col-span-1">
               <MdLocationOn className="text-primary text-xl" />
               <span className="text-foreground">Somewhere in the World</span>
             </div>
-            <div className="flex items-center gap-3 p-4 border border-border rounded-lg shadow-sm bg-card hover:shadow-md transition sm:col-span-2">
+
+            <div className="flex items-center gap-3 p-4 border border-border rounded-lg shadow-sm bg-card hover:shadow-md transition sm:col-span-2 lg:col-span-1">
               <MdAccessTime className="text-primary text-xl" />
               <span className="text-foreground">Office Hours: 10am - 6pm</span>
             </div>
           </div>
+
         </div>
       </div>
     </section>

@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 
@@ -16,8 +15,8 @@ export default function StudentForm() {
   });
 
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(null);
-  const [message, setMessage] = useState({ type: "", text: "" });
+  const [feedback, setFeedback] = useState({ type: "", text: "" });
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -25,10 +24,10 @@ export default function StudentForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setSuccess(null);
+    setFeedback({ type: "", text: "" });
 
     if (Number(form.studentAge) < 10) {
-      setMessage({ type: "error", text: "Student age must be at least 10 years old." });
+      setFeedback({ type: "error", text: "Student age must be at least 10 years old." });
       setLoading(false);
       return;
     }
@@ -41,7 +40,7 @@ export default function StudentForm() {
       });
 
       if (res.ok) {
-        setSuccess("Form submitted successfully!");
+        setFeedback({ type: "success", text: "Form submitted successfully!" });
         setForm({
           parentName: "",
           email: "",
@@ -52,146 +51,164 @@ export default function StudentForm() {
           message: "",
         });
       } else {
-        setSuccess("Something went wrong. Try again!");
+        setFeedback({ type: "error", text: "Something went wrong. Try again!" });
       }
     } catch (err) {
-      setSuccess("Error: Could not submit form.");
+      setFeedback({ type: "error", text: "Error: Could not submit form." });
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="  flex flex-col items-center justify-center px-8 py-10 ">
+    <section className="flex flex-col items-center justify-center py-16 px-4">
       {/* Top Button */}
-      <button className="mb-6 px-4 py-2 border border-primary rounded-md bg-white shadow hover:bg-black text-primary font-medium">
+      <button className="mb-8 px-6 py-3 border border-primary rounded-lg bg-white shadow hover:bg-primary hover:text-white text-primary font-medium transition">
         Contact Form
       </button>
 
       {/* Title */}
-      <h2 className="text-2xl font-bold mb-2 text-primary">
-        Student Information
-      </h2>
-      <p className="text-center dark:text-white text-base-100  max-w-xl my-2 py-5">
-        Please fill the form below to help us better understand your needs.
+      <h2 className="text-3xl font-bold text-primary">Student Information</h2>
+      <p className="text-center text-gray-600 dark:text-gray-300 max-w-xl my-3">
+        If you have specific questions or wish to request more information about Little Learners Academy, please complete the contact form below. Kindly provide the following details to help us better understand your needs.
       </p>
-
-     
 
       {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="relative  bg-muted dark:bg-muted  shadow-2xl rounded-md p-6 w-full max-w-3xl border-2 border-primary  flex flex-col "
+        className="relative bg-muted dark:bg-muted shadow-2xl rounded-xl mt-12 p-10 w-full max-w-5xl border-2 border-primary flex flex-col space-y-6"
       >
-         {/* Social Icons */}
-      <div className=" absolute -top-6 left-1/2 transform -translate-x-1/2 flex space-x-4">
-        <a
-          href="#"
-          className="p-2 bg-secondary shadow rounded-md hover:bg-accent text-black"
-        >
-          <FaFacebookF />
-        </a>
-        <a
-          href="#"
-          className="p-2 bg-secondary shadow rounded-md hover:bg-accent text-black"
-        >
-          <FaTwitter />
-        </a>
-        <a
-          href="#"
-          className="p-2 bg-secondary shadow rounded-md hover:bg-accent text-black"
-        >
-          <FaInstagram />
-        </a>
-      </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <input
-            type="text"
-            name="parentName"
-            placeholder="Enter Parent Name"
-            value={form.parentName}
+        {/* Social Icons (unchanged) */}
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 flex space-x-4">
+          <a href="#" aria-label="Facebook" className="py-3 px-5 bg-secondary shadow rounded-sm hover:bg-accent text-black">
+            <FaFacebookF />
+          </a>
+          <a href="#" aria-label="Twitter" className="py-3 px-5 bg-secondary shadow rounded-sm hover:bg-accent text-black">
+            <FaTwitter />
+          </a>
+          <a href="#" aria-label="Instagram" className="py-3 px-5 bg-secondary shadow rounded-sm hover:bg-accent text-black">
+            <FaInstagram />
+          </a>
+        </div>
+
+        {/* Inputs */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Parent Name</label>
+            <input
+              type="text"
+              name="parentName"
+              placeholder="Enter Parent Name"
+              value={form.parentName}
+              onChange={handleChange}
+              className="w-full border border-popover rounded-md p-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Email Address"
+              value={form.email}
+              onChange={handleChange}
+              className="w-full border border-popover rounded-md p-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Phone Number</label>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Enter Phone Number"
+              value={form.phone}
+              onChange={handleChange}
+              className="w-full border border-popover rounded-md p-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Student Name</label>
+            <input
+              type="text"
+              name="studentName"
+              placeholder="Enter Student Name"
+              value={form.studentName}
+              onChange={handleChange}
+              className="w-full border border-popover rounded-md p-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Student Age</label>
+            <input
+              type="number"
+              name="studentAge"
+              placeholder="Enter Student Age"
+              value={form.studentAge}
+              onChange={handleChange}
+              className="w-full border border-popover rounded-md p-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+              min="10"
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Program</label>
+            <select
+              name="program"
+              value={form.program}
+              onChange={handleChange}
+              className="w-full border border-popover rounded-md p-4 text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
+              required
+            >
+              <option value="">Select Program</option>
+              <option value="Science">Science</option>
+              <option value="Math">Math</option>
+              <option value="Arts">Arts</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="flex flex-col">
+          <label className="mb-1 font-medium text-gray-700 dark:text-gray-200">Message</label>
+          <textarea
+            name="message"
+            placeholder="Enter your Message"
+            value={form.message}
             onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter Email Address"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="w-full border border-popover rounded-md p-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
+            rows={6}
             required
           />
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Enter Phone Number"
-            value={form.phone}
-            onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
-          <input
-            type="text"
-            name="studentName"
-            placeholder="Enter Student Name"
-            value={form.studentName}
-            onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <input
-            type="number"
-            name="studentAge"
-            placeholder="Enter Student Age"
-            value={form.studentAge}
-            onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-             min="10" 
-          />
-          <select
-            name="program"
-            value={form.program}
-            onChange={handleChange}
-            className="w-full border border-accent rounded-md p-2 text-gray-500 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
-            required
-          >
-            <option value="">Select Program</option>
-            <option value="Science">Science</option>
-            <option value="Math">Math</option>
-            <option value="Arts">Arts</option>
-            <option value="Arts">Others</option>
-          </select>
-        </div>
-
-        <textarea
-          name="message"
-          placeholder="Enter your Message"
-          value={form.message}
-          onChange={handleChange}
-          className="w-full border border-accent rounded-md p-2 mb-4 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary"
-          rows={4}
-          required
-        ></textarea>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-primary hover:bg-secondary text-white font-medium py-2 rounded-md disabled:opacity-50"
+          className="w-full bg-primary hover:bg-secondary text-white font-medium py-3 rounded-md transition disabled:opacity-50"
         >
           {loading ? "Submitting..." : "Submit!"}
         </button>
 
-        {success && (
-          <p className="text-center mt-4 text-sm text-green-600">{success}</p>
+        {feedback.text && (
+          <p
+            className={`text-center mt-4 text-sm ${feedback.type === "success" ? "text-green-600" : "text-red-600"
+              }`}
+          >
+            {feedback.text}
+          </p>
         )}
       </form>
     </section>
