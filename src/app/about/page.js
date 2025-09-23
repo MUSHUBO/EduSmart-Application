@@ -8,8 +8,8 @@ import HistorySection from '../components/about-ourTeam/HistorySection';
 
 const About = () => {
   return (
-    <div>
-      <section className="relative mx-5 mt-10">
+    <div className='w-11/12 mx-auto'>
+      <section className="relative mx-5 mt-8 lg:mt-16">
       <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
 
       <div className="relative bg-muted dark:bg-muted border-2 border-primary rounded-3xl p-8 md:p-14 overflow-hidden">
