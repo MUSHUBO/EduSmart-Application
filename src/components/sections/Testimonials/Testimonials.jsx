@@ -147,7 +147,7 @@ function Testimonials() {
    }, []);
 
    return (
-      <div data-aos="fade-zoom-in" className="slider-container px-4 md:px-6 lg:px-12">
+      <div data-aos="fade-up" className="slider-container px-4 md:px-6 lg:px-12">
          <div className="text-center">
             <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
                Our Testimonials
