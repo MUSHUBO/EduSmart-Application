@@ -54,6 +54,7 @@ const RegisterForm = () => {
       fileFormData.append('file', file);
       fileFormData.append('filename', file.name);
       fileFormData.append('filetype', file.type);
+      fileFormData.append('filePurpose', 'profile');
       try {
         const fileRes = await fetch('/api/fileupload', {
           method: 'POST',
