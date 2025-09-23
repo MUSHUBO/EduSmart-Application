@@ -34,6 +34,7 @@ const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [attachmentUrl, setAttachmentUrl] = useState('');
+  const [file, setFile] = useState(null);
 
 
 
@@ -44,7 +45,7 @@ const RegisterForm = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data, "photo URL :::",attachmentUrl);
+    
     let uploadedFileUrl = '';
     if (file) {
 
@@ -70,7 +71,7 @@ const RegisterForm = () => {
         return;
       }
     }
-
+console.log("Form Data:", data, "photo URL :::",file);
   };
 
   const googleHandler = () => {
