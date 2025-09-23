@@ -24,7 +24,7 @@ const pages = [
         title: "Admissions",
         description:
             "Learn about our Enrollment Process and how to secure your child's place at Little Learners Academy. Find information about our admission requirements, application deadlines, and available spaces.",
-        link: "/admissions",
+        link: "/admission",
     },
 ];
 

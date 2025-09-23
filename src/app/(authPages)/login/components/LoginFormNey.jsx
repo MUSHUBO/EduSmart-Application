@@ -31,12 +31,11 @@ const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height
   <circle cx="12" cy="7" r="4"></circle>
 </svg>;
 
-const RegisterForm = () => {
+const LoginFormNey = () => {
 
   const [showPassword, setShowPassword] = useState(false);
-  // const [attachmentUrl, setAttachmentUrl] = useState('');
   const [file, setFile] = useState(null);
-  // const [message, setMessage] = useState(null);
+ 
 
 
 
@@ -48,31 +47,6 @@ const RegisterForm = () => {
 
   const onSubmit = (data) => {
 
-    // let uploadedFileUrl = '';
-    // if (file) {
-
-    //   const fileFormData = new FormData();
-    //   fileFormData.append('file', file);
-    //   fileFormData.append('filename', file.name);
-    //   fileFormData.append('filetype', file.type);
-    //   try {
-    //     const fileRes = await fetch('/api/fileupload', {
-    //       method: 'POST',
-    //       body: fileFormData,
-    //     });
-    //     const fileData = await fileRes.json();
-    //     if (fileRes.ok && fileData.url) {
-    //       uploadedFileUrl = fileData.url;
-    //       setAttachmentUrl(uploadedFileUrl);
-    //     } else {
-    //       setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
-    //       return;
-    //     }
-    //   } catch (error) {
-    //     setMessage('File upload failed.');
-    //     return;
-    //   }
-    // }
     console.log("Form Data:", data);
   };
 
@@ -96,7 +70,7 @@ const RegisterForm = () => {
             <Lottie animationData={profile} loop={true} />
           </div>
           <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-            Create account
+           Welcome back
           </h1>
         </div>
 
@@ -131,56 +105,7 @@ const RegisterForm = () => {
         { }
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          { }
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Full Name
-            </label>
-            <div className='relative'>
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
-                <UserIcon />
-              </div>
-              <input
-                type="text"
-                {...register("fullName", { required: "Full Name is required" })}
-                placeholder="Enter your full name"
-                className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
-              />
-            </div>
-
-            {errors.fullName && (
-              <p className="text-red-500 text-xs">
-                {String(errors.fullName.message)}
-              </p>
-            )}
-          </div>
-
-          { }
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Photo
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
-                <IoMdPhotos />
-              </div>
-              <input
-                type="file"
-                {...register("photo", { required: "Photo is required" })}
-                onChange={(e) => setFile(e.target.files[0])}
-                className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
-              />
-            </div>
-            {errors.photo && (
-              <p className="text-red-500 text-xs">
-                {String(errors.photo.message)}
-              </p>
-            )}
-          </div>
-
-          { }
-
-
+        
           { }
           <div className="space-y-2">
             <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
@@ -275,15 +200,15 @@ const RegisterForm = () => {
             type="submit"
             className="signin-button cursor-pointer w-full bg-primary dark:bg-primary text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium"
           >
-            Create account
+           Sign In
           </button>
         </form>
 
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Already have an account?{' '}
+            Don't have an account?{' '}
             <Link href="/login" className="text-gray-900 dark:text-gray-100 font-medium hover:underline">
-              Sign in
+              Sign up for free
             </Link>
           </p>
         </div>
@@ -291,7 +216,7 @@ const RegisterForm = () => {
     </div>
   </div>;
 };
-export default RegisterForm;
+export default LoginFormNey;
 const styles = `
   .signin-input:focus {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);

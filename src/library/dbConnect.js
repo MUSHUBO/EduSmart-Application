@@ -6,19 +6,22 @@ export const collectionNamesObj = {
 
 };
 
-export default function dbConnect(collectionName) {
+let cachedClient = null;
 
-  const uri = process.env.MONGODB_URL
+export async function dbConnect(collectionName) {
+  const uri = process.env.MONGODB_URL;
+  const dbName = process.env.DB_NAME;
 
-  // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-  const client = new MongoClient(uri, {
-    serverApi: {
-      version: ServerApiVersion.v1,
-      strict: true,
-      deprecationErrors: true,
-    }
-  });
+  if (!cachedClient) {
+    cachedClient = new MongoClient(uri, {
+      serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+      }
+    });
+    await cachedClient.connect();
+  }
 
-  return client.db(process.env.DB_NAME).collection(collectionName);
-  
+  return cachedClient.db(dbName).collection(collectionName);
 }
