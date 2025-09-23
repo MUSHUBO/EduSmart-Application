@@ -31,7 +31,7 @@ const pages = [
 
 export default function OurPages() {
     return (
-        <section className="my-24 foreground">
+        <section className="my-12 md:my-20 lg:my-28 foreground">
             <div className="container mx-auto text-center">
                 {/* Section Heading */}
                 
@@ -55,11 +55,11 @@ export default function OurPages() {
                     {pages.map((page, index) => (
                         <div
                             key={index}
-                            className="border-2 rounded-2xl bg-muted dark:bg-muted shadow-md p-6 flex flex-col text-center border-b-4 border-r-4"
+                            className="border-2 rounded-md bg-muted dark:bg-muted shadow-md px-8 md:px-12 lg:px-16 py-6 md:py-8 lg:py-10 flex flex-col text-center border-b-4 border-r-4"
                         >
                             {/* Top Part (Title + Line + Text) */}
                             <div className="flex-1 flex flex-col items-center">
-                                <h3 className="text-xl text-popover dark:text-popover font-bold mb-4">{page.title}</h3>
+                                <h3 className="text-2xl text-popover dark:text-popover font-bold mb-4">{page.title}</h3>
 
                                 {/* Decorative Line */}
                                 <div className="flex items-center justify-center w-full mb-6">
@@ -69,7 +69,7 @@ export default function OurPages() {
                                 </div>
 
                                 {/* Description */}
-                                <p className="text-sm text-popover-foreground dark:text-popover-foreground">{page.description}</p>
+                                <p className="text-sm mb-6 text-popover-foreground dark:text-popover-foreground">{page.description}</p>
                             </div>
 
                             {/* Button (Stays at bottom) */}

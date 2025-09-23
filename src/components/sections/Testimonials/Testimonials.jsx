@@ -109,7 +109,7 @@ function Testimonials() {
       ]
    };
    return (
-      <div className="slider-container px-4 md:px-6 lg:px-12 py-12 md:py-20 lg:py-28">
+      <div className="slider-container px-4 md:px-6 lg:px-12 my-12 md:my-20 lg:my-28">
          <div className="text-center">
             <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
                Our Testimonials
