@@ -36,7 +36,7 @@ export default function AdmissionProcess() {
         <div className="py-16 bg-background">
             <div className="container mx-auto px-6 text-center">
                 {/* Heading */}
-                <span className="px-4 py-1 text-xs border rounded-xl border-foreground text-foreground">
+                <span className="px-4 py-1 text-xs border rounded-sm border-foreground text-foreground">
                     Process
                 </span>
                 <h2 className="mt-4 text-3xl md:text-4xl font-bold text-foreground">
