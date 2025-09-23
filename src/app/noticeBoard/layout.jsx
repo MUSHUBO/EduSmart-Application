@@ -19,17 +19,17 @@ import {
 } from "lucide-react";
 
 const menuItems = [
-  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { name: "All Notices", href: "/dashboard/notices", icon: Bell },
-  { name: "Class Routine", href: "/dashboard/class-routine", icon: Clock },
-  { name: "Exam Routine", href: "/dashboard/exam-routine", icon: FileText },
-  { name: "Notice", href: "/dashboard/notice", icon: BookOpen },
-  { name: "Syllabus", href: "/dashboard/syllabus", icon: BookOpen },
-  { name: "Academic Calendar", href: "/dashboard/academic-calendar", icon: CalendarDays },
-  { name: "Holiday List", href: "/dashboard/holidays", icon: Umbrella },
-  { name: "Magazine", href: "/dashboard/magazine", icon: Newspaper },
-  { name: "Sports & Play", href: "/dashboard/sports", icon: Volleyball },
-  { name: "Cultural Function", href: "/dashboard/cultural", icon: Music },
+  { name: "Notice Board", href: "/noticeBoard", icon: LayoutDashboard },
+  { name: "All Notices", href: "/noticeBoard/notice/all-notices", icon: Bell },
+  { name: "Class Routine", href: "/noticeBoard/notice/class-routine", icon: Clock },
+  { name: "Exam Routine", href: "/noticeBoard/notice/exam-routine", icon: FileText },
+  { name: "Notice", href: "/noticeBoard/notice/update", icon: BookOpen },
+  { name: "Syllabus", href: "/noticeBoard/notice/syllabus", icon: BookOpen },
+  { name: "Academic Calendar", href: "/noticeBoard/notice/academic-calendar", icon: CalendarDays },
+  { name: "Holiday List", href: "/noticeBoard/notice/holidays", icon: Umbrella },
+  { name: "Magazine", href: "/noticeBoard/notice/magazine", icon: Newspaper },
+  { name: "Sports & Play", href: "/noticeBoard/notice/sports", icon: Volleyball },
+  { name: "Cultural Function", href: "/noticeBoard/notice/cultural", icon: Music },
 ];
 
 export default function DashboardLayout({ children }) {
@@ -51,7 +51,7 @@ export default function DashboardLayout({ children }) {
               !open && "hidden"
             }`}
           >
-            eduSmart
+            Digital Notice Board
           </h2>
           <button
             className="md:hidden text-gray-600"
