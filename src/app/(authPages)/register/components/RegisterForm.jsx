@@ -35,31 +35,7 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [attachmentUrl, setAttachmentUrl] = useState('');
 
-  let uploadedFileUrl = '';
-  if (file) {
 
-    const fileFormData = new FormData();
-    fileFormData.append('file', file);
-    fileFormData.append('filename', file.name);
-    fileFormData.append('filetype', file.type);
-    try {
-      const fileRes = await fetch('/api/fileupload', {
-        method: 'POST',
-        body: fileFormData,
-      });
-      const fileData = await fileRes.json();
-      if (fileRes.ok && fileData.url) {
-        uploadedFileUrl = fileData.url;
-        setAttachmentUrl(uploadedFileUrl);
-      } else {
-        setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
-        return;
-      }
-    } catch (error) {
-      setMessage('File upload failed.');
-      return;
-    }
-  }
 
   const {
     register,
@@ -67,8 +43,34 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data) => {
+    console.log("Form Data:", data, "photo URL :::",attachmentUrl);
+    let uploadedFileUrl = '';
+    if (file) {
+
+      const fileFormData = new FormData();
+      fileFormData.append('file', file);
+      fileFormData.append('filename', file.name);
+      fileFormData.append('filetype', file.type);
+      try {
+        const fileRes = await fetch('/api/fileupload', {
+          method: 'POST',
+          body: fileFormData,
+        });
+        const fileData = await fileRes.json();
+        if (fileRes.ok && fileData.url) {
+          uploadedFileUrl = fileData.url;
+          setAttachmentUrl(uploadedFileUrl);
+        } else {
+          setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
+          return;
+        }
+      } catch (error) {
+        setMessage('File upload failed.');
+        return;
+      }
+    }
+
   };
 
   const googleHandler = () => {
