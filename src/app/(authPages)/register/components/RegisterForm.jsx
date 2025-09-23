@@ -33,14 +33,32 @@ const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height
 const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
+  const [attachmentUrl, setAttachmentUrl] = useState('');
 
-  const fileHandler = async (e) => {
-    const files = e.target.files[0]
-    const form = new FormData()
-    form.append("image", files)
-    const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_BB}`, form)
-    const publicImage = res.data.data.url
-    setImage(publicImage)
+  let uploadedFileUrl = '';
+  if (file) {
+
+    const fileFormData = new FormData();
+    fileFormData.append('file', file);
+    fileFormData.append('filename', file.name);
+    fileFormData.append('filetype', file.type);
+    try {
+      const fileRes = await fetch('/api/fileupload', {
+        method: 'POST',
+        body: fileFormData,
+      });
+      const fileData = await fileRes.json();
+      if (fileRes.ok && fileData.url) {
+        uploadedFileUrl = fileData.url;
+        setAttachmentUrl(uploadedFileUrl);
+      } else {
+        setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
+        return;
+      }
+    } catch (error) {
+      setMessage('File upload failed.');
+      return;
+    }
   }
 
   const {
@@ -144,7 +162,7 @@ const RegisterForm = () => {
               <input
                 type="file"
                 {...register("photo", { required: "Photo is required" })}
-                onChange={fileHandler}
+                onChange={(e) => setFile(e.target.files[0])}
                 className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
               />
             </div>
