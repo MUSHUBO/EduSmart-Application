@@ -39,7 +39,7 @@ const BenefitsData = [
 
 const OurBenefits = () => {
     return (
-        <div className='mb-24 mt-24 lg:mt-0'>
+        <div className='my-12 md:my-20 lg:my-28 lg:mt-0'>
             {/* Title */}
             <div className='text-center'>
                 <h1 className='text-foreground text-4xl font-bold'>Our Benefits</h1>
@@ -51,14 +51,14 @@ const OurBenefits = () => {
                 {BenefitsData.map((benefit, index) => (
                     <motion.div
                         key={index}
-                        className="relative bg-muted border border-r-4 border-b-4 rounded-lg p-3 md:p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+                        className="relative bg-muted border border-r-4 border-b-4 rounded-lg p-3 md:p-6 shadow-md hover:shadow-md hover:shadow-primary transition-shadow duration-300"
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
                         transition={{ duration: 0.8, delay: index * 0.2 }}
                     >
                         {/* The small top-left icon box */}
-                        <div className="absolute -top-6 -left-6 w-12 h-12 bg-accent rounded-md flex items-center justify-center shadow-sm border text-xl text-black"
+                        <div className="absolute -top-6 left-6 w-12 h-12 bg-accent rounded-md flex items-center justify-center shadow-sm border text-xl text-black"
                         >
                             {benefit.icon}
                         </div>
