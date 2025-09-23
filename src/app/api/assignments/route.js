@@ -45,3 +45,13 @@ export async function POST(req) {
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
+
+export async function GET() {
+  try {
+    const collection = await dbConnect("assignments");
+    const assignments = await collection.find({}).sort({ createdAt: -1 }).toArray();
+    return NextResponse.json({ assignments });
+  } catch (error) {
+    return NextResponse.json({ message: error.message }, { status: 500 });
+  }
+}

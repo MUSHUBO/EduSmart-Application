@@ -71,33 +71,6 @@ const testimonials = [
 
 function Testimonials() {
 
-   //    className: "center",
-   //    centerMode: true,
-   //    infinite: true,
-   //    centerPadding: "60px",
-   //    slidesToShow: 3,
-   //    speed: 500,
-   //    nextArrow: <NextArrow />,
-   //    prevArrow: <PrevArrow />,
-   //    autoplay: true,
-   //    autoplaySpeed: 3000,
-   //    pauseOnHover: true,
-   //    responsive: [
-   //       {
-   //          breakpoint: 1024, // Tablet
-   //          settings: {
-   //             slidesToShow: 2,
-   //             slidesToScroll: 1,
-   //             centerPadding: "40px",
-   //          }
-   //       },
-   //       {
-   //          breakpoint: 640, // Mobile
-   //          settings: {
-   //             slidesToShow: 1,
-   //             slidesToScroll: 1,
-   //             centerPadding: "20px",
-
    const settings = {
       className: "center",
       centerMode: false,
@@ -147,7 +120,7 @@ function Testimonials() {
    }, []);
 
    return (
-      <div data-aos="fade-zoom-in" className="slider-container px-4 md:px-6 lg:px-12">
+      <div data-aos="fade-up" className="slider-container px-4 md:px-6 lg:px-12">
          <div className="text-center">
             <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
                Our Testimonials
