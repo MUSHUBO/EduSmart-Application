@@ -20,11 +20,13 @@ const Navbar = () => {
         }
     }, [isDark]);
     const nav = <>
-        <li><Link href={"/"} className='cursor-pointer text-black dark:text-white dark:hover:text-primary hover:text-primary duration-200'>Home</Link></li>
-        <li><Link href={"/about"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200  ${pathname === "/about" && "text-primary dark:text-primary border-b-2 border-primary"
+        <li><Link href={"/"} className='cursor-pointer text-black dark:text-white text-popover dark:hover:text-primary hover:text-primary duration-200'>Home</Link></li>
+        <li><Link href={"/about"} className={`cursor-pointer  dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200  ${pathname === "/about" && "text-primary dark:text-primary border-b-2 border-primary"
             }`}>About</Link></li>
         <li><Link href={"/contact"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/contact" && "text-primary dark:text-primary border-b-2 border-primary"
             }`}>Contact</Link></li>
+        <li><Link href={"/admission"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/admission" && "text-primary dark:text-primary border-b-2 border-primary"
+            }`}>Admission</Link></li>
     </>
 
     useEffect(() => {
