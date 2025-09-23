@@ -1,19 +1,12 @@
 "use client";
-
-
 import React, { useState } from 'react';
-const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-  <circle cx="12" cy="7" r="4"></circle>
-</svg>;
+import { useForm } from "react-hook-form";
+import { IoMdPhotos } from "react-icons/io";
+import profile from "../../../../../public/lotttie-file/profile.json"
+import Lottie from 'lottie-react';
 const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
   <polyline points="22,6 12,13 2,6"></polyline>
-</svg>;
-const LockIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-  <circle cx="12" cy="16" r="1"></circle>
-  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
 </svg>;
 const EyeIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
@@ -32,100 +25,73 @@ const GoogleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" heig
   <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" />
   <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" />
 </svg>;
-const CheckIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-  <polyline points="20,6 9,17 4,12"></polyline>
+const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+  <circle cx="12" cy="7" r="4"></circle>
 </svg>;
+
 const RegisterForm = () => {
+
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [isChecked, setIsChecked] = useState(false);
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+
+  const fileHandler = async (e) => {
+    const files = e.target.files[0]
+    const form = new FormData()
+    form.append("image", files)
+    const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMG_BB}`, form)
+    const publicImage = res.data.data.url
+    setImage(publicImage)
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
   };
+
+  const googleHandler = () => {
+    console.log("googleHandler");
+  };
+  const GitHubHandler = () => {
+    console.log("GitHubHandler");
+  };
+
+
+
   return <div className="flex items-center justify-center p-4">
     <div className="w-full max-w-sm">
       { }
-      <div className="signin-card bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-lg shadow-sm p-6">
+      <div className="signin-card bg-muted dark:bg-muted border-2 border-primary/45 dark:border-primary/45 rounded-lg shadow-sm p-6">
         { }
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-100 dark:bg-gray-900 rounded-full mb-4">
-            <UserIcon />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/20 dark:bg-primary/20 rounded-full mb-4">
+
+            <Lottie animationData={profile} loop={true} />
           </div>
-          <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
+          <h1 className="text-3xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
             Create account
           </h1>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            Enter your details to get started
-          </p>
         </div>
 
-        <form className="space-y-4">
-          { }
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Full Name
-            </label>
-            <input type="text" value={fullName} onChange={e => setFullName(e.target.value)} placeholder="Enter your full name" className="signin-input w-full px-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:border-transparent transition-all duration-200" />
-          </div>
 
-          { }
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Email
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
-                <MailIcon />
-              </div>
-              <input type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="name@example.com" className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:border-transparent transition-all duration-200" />
-            </div>
-          </div>
-
-          { }
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Password
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
-                <LockIcon />
-              </div>
-              <input type={showPassword ? "text" : "password"} value={password} onChange={e => setPassword(e.target.value)} placeholder="Create a password" className="signin-input w-full pl-9 pr-10 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-500 dark:placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:border-transparent transition-all duration-200" />
-              <button type="button" onClick={togglePasswordVisibility} className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-                {showPassword ? <EyeOffIcon /> : <EyeIcon />}
-              </button>
-            </div>
-          </div>
-
-          { }
-          <div className="flex items-start space-x-2">
-            <div className="relative flex items-center">
-              <input id="terms" type="checkbox" checked={isChecked} onChange={e => setIsChecked(e.target.checked)} className="sr-only" />
-              <label htmlFor="terms" className="flex items-center cursor-pointer">
-                <div className={`w-4 h-4 border border-gray-300 dark:border-gray-600 rounded flex items-center justify-center transition-all duration-200 ${isChecked ? 'bg-gray-900 dark:bg-gray-100 border-gray-900 dark:border-gray-100' : 'bg-white dark:bg-black hover:border-gray-400 dark:hover:border-gray-500'}`}>
-                  {isChecked && <CheckIcon />}
-                </div>
-              </label>
-            </div>
-            <label htmlFor="terms" className="text-sm text-gray-600 dark:text-gray-400 cursor-pointer leading-4">
-              I agree to the{' '}
-              <a href="#" className="text-gray-900 dark:text-gray-100 hover:underline">
-                Terms of Service
-              </a>{' '}
-              and{' '}
-              <a href="#" className="text-gray-900 dark:text-gray-100 hover:underline">
-                Privacy Policy
-              </a>
-            </label>
-          </div>
-
-          { }
-          <button type="submit" className="signin-button w-full bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium hover:bg-gray-800 dark:hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-gray-100 focus:ring-offset-2 focus:ring-offset-white dark:focus:ring-offset-black transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed" disabled={!isChecked}>
-            Create account
+        { }
+        <div className="grid grid-cols-2 gap-4">
+          <button onClick={googleHandler} className="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white dark:ring-offset-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-200 dark:border-gray-800 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-950 hover:text-gray-900 dark:hover:text-gray-50 h-10 px-4 py-2">
+            <GoogleIcon />
+            <span className="ml-2">Google</span>
           </button>
-        </form>
+          <button onClick={GitHubHandler} className="inline-flex cursor-pointer items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white dark:ring-offset-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-200 dark:border-gray-800 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-950 hover:text-gray-900 dark:hover:text-gray-50 h-10 px-4 py-2">
+            <GitHubIcon />
+            <span className="ml-2">GitHub</span>
+          </button>
+
+        </div>
+
+        { }
 
         { }
         <div className="relative my-6">
@@ -140,19 +106,156 @@ const RegisterForm = () => {
         </div>
 
         { }
-        <div className="grid grid-cols-2 gap-4">
-          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white dark:ring-offset-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-200 dark:border-gray-800 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-950 hover:text-gray-900 dark:hover:text-gray-50 h-10 px-4 py-2">
-            <GoogleIcon />
-            <span className="ml-2">Google</span>
-          </button>
-          <button className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white dark:ring-offset-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 dark:focus-visible:ring-gray-300 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gray-200 dark:border-gray-800 bg-white dark:bg-black hover:bg-gray-50 dark:hover:bg-gray-950 hover:text-gray-900 dark:hover:text-gray-50 h-10 px-4 py-2">
-            <GitHubIcon />
-            <span className="ml-2">GitHub</span>
-          </button>
 
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          { }
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Full Name
+            </label>
+            <div className='relative'>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
+                <UserIcon />
+              </div>
+              <input
+                type="text"
+                {...register("fullName", { required: "Full Name is required" })}
+                placeholder="Enter your full name"
+                className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
+              />
+            </div>
 
-        { }
+            {errors.fullName && (
+              <p className="text-red-500 text-xs">
+                {String(errors.fullName.message)}
+              </p>
+            )}
+          </div>
+
+          { }
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Photo
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
+                <IoMdPhotos />
+              </div>
+              <input
+                type="file"
+                {...register("photo", { required: "Photo is required" })}
+                onChange={fileHandler}
+                className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
+              />
+            </div>
+            {errors.photo && (
+              <p className="text-red-500 text-xs">
+                {String(errors.photo.message)}
+              </p>
+            )}
+          </div>
+
+          { }
+
+
+          { }
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Email
+            </label>
+            <div className='relative'>
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 dark:text-gray-500">
+                <MailIcon />
+              </div>
+              <input
+                type="email"
+                {...register("email", { required: "Email is required" })}
+                placeholder="name@example.com"
+                className="signin-input w-full pl-9 pr-3 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
+              />
+            </div>
+
+            {errors.email && (
+              <p className="text-red-500 text-xs">
+                {String(errors.email.message)}
+              </p>
+            )}
+          </div>
+
+          { }
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters",
+                  },
+                  pattern: {
+                    value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                    message:
+                      "Password must include uppercase, lowercase, number & special character",
+                  },
+                })}
+                placeholder="Create a password"
+                className="signin-input w-full pl-3 pr-10 py-2 bg-white dark:bg-black border border-gray-200 dark:border-gray-800 rounded-md text-sm text-gray-900 dark:text-gray-100"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3  flex items-center text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300"
+              >
+                {showPassword ? <EyeIcon /> : <EyeOffIcon />}
+              </button>
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-xs">
+                {String(errors.password.message)}
+              </p>
+            )}
+          </div>
+          { }
+          <div className="flex items-start space-x-2">
+            <input
+              id="terms"
+              type="checkbox"
+              {...register("terms", { required: "You must accept terms" })}
+              className=" w-4 h-4 bg-primary"
+            />
+            <label
+              htmlFor="terms"
+              className="text-sm text-popover dark:text-popover cursor-pointer leading-4"
+            >
+              I agree to the{" "}
+              <a href="#" className="text-gray-900 dark:text-gray-100 hover:underline">
+                Terms of Service
+              </a>{" "}
+              and{" "}
+              <a href="#" className="text-gray-900 dark:text-gray-100 hover:underline">
+                Privacy Policy
+              </a>
+            </label>
+          </div>
+          {errors.terms && (
+            <p className="text-red-500 text-xs">
+              {String(errors.terms.message)}
+            </p>
+          )}
+
+          { }
+          <button
+            type="submit"
+            className="signin-button cursor-pointer w-full bg-primary dark:bg-primary text-white dark:text-gray-900 py-2 px-4 rounded-md text-sm font-medium"
+          >
+            Create account
+          </button>
+        </form>
+
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Already have an account?{' '}
