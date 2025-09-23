@@ -46,10 +46,10 @@ const testimonials = [
    },
    {
       id: 3,
-      name: "Rafiq Ahmed",
-      photo: "https://randomuser.me/api/portraits/men/56.jpg",
+      name: "Imran Hossain",
+      photo: "https://randomuser.me/api/portraits/men/78.jpg",
       rating: 5,
-      description: "The dashboard is very intuitive and user-friendly. this helps us save time and avoid confusion in daily tasks.",
+      description: "From student management to report generation, this does it all efficiently. Truly a for school management.",
    },
    {
       id: 4,
@@ -60,10 +60,10 @@ const testimonials = [
    },
    {
       id: 5,
-      name: "Imran Hossain",
-      photo: "https://randomuser.me/api/portraits/men/78.jpg",
+      name: "Rafiq Ahmed",
+      photo: "https://randomuser.me/api/portraits/men/56.jpg",
       rating: 5,
-      description: "From student management to report generation, this does it all efficiently. Truly a for school management.",
+      description: "The dashboard is very intuitive and user-friendly. this helps us save time and avoid confusion in daily tasks.",
    }
 ];
 
@@ -147,7 +147,7 @@ function Testimonials() {
    }, []);
 
    return (
-      <div data-aos="fade-zoom-in" className="slider-container px-4 md:px-6 lg:px-12 py-12 md:py-20 lg:py-28">
+      <div data-aos="fade-zoom-in" className="slider-container px-4 md:px-6 lg:px-12">
          <div className="text-center">
             <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
                Our Testimonials

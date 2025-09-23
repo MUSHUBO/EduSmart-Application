@@ -23,7 +23,7 @@ const AdmissionBanner = () => {
                 Admission
               </button>
             </div> */}
-            <div className='sm:mx-4 my-2 border-2 border-b-8 border-r-8 px-4 py-2 text-foreground  mx-auto border-primary'>
+            <div className='sm:mx-4 my-2 rounded-sm border-2 border-b-8 border-r-8 px-4 py-2 text-foreground  mx-auto border-primary'>
               Admission
             </div>
 

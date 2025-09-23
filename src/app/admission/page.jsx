@@ -5,7 +5,7 @@ import React from 'react';
 
 const AdmissionPage = () => {
     return (
-        <div>
+        <div className='w-11/12 mx-auto'>
             <AdmissionBanner/>
             <AdmissionProcess/>
             <FeeStructure/>
