@@ -11,7 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 
-const PrevArrow = ({ className, style, onClick }) => (
+const PrevArrow = ({ onClick }) => (
    <button
       className="absolute -left-9 md:-left-12 lg:-left-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted text-popover dark:text-popover border border-popover dark:border-popover dark:hover:bg-primary p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary duration-150"
       onClick={onClick}
@@ -20,7 +20,7 @@ const PrevArrow = ({ className, style, onClick }) => (
    </button>
 );
 
-const NextArrow = ({ className, style, onClick }) => (
+const NextArrow = ({ onClick }) => (
    <button
       className="absolute -right-9 md:-right-12 lg:-right-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted  text-popover dark:text-popover border border-popover dark:border-popover p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary dark:hover:bg-primary duration-150"
       onClick={onClick}
@@ -110,6 +110,8 @@ function Testimonials() {
          },
       ],
    };
+
+   
 
 
    useEffect(() => {

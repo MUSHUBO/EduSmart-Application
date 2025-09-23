@@ -33,9 +33,9 @@ const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height
 const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
-  const [attachmentUrl, setAttachmentUrl] = useState('');
+  // const [attachmentUrl, setAttachmentUrl] = useState('');
   const [file, setFile] = useState(null);
-  const [message, setMessage] = useState(null);
+  // const [message, setMessage] = useState(null);
 
 
 
@@ -45,34 +45,34 @@ const RegisterForm = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
 
-    let uploadedFileUrl = '';
-    if (file) {
+    // let uploadedFileUrl = '';
+    // if (file) {
 
-      const fileFormData = new FormData();
-      fileFormData.append('file', file);
-      fileFormData.append('filename', file.name);
-      fileFormData.append('filetype', file.type);
-      try {
-        const fileRes = await fetch('/api/fileupload', {
-          method: 'POST',
-          body: fileFormData,
-        });
-        const fileData = await fileRes.json();
-        if (fileRes.ok && fileData.url) {
-          uploadedFileUrl = fileData.url;
-          setAttachmentUrl(uploadedFileUrl);
-        } else {
-          setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
-          return;
-        }
-      } catch (error) {
-        setMessage('File upload failed.');
-        return;
-      }
-    }
-    console.log("Form Data:", data, "photo URL :::", attachmentUrl, message);
+    //   const fileFormData = new FormData();
+    //   fileFormData.append('file', file);
+    //   fileFormData.append('filename', file.name);
+    //   fileFormData.append('filetype', file.type);
+    //   try {
+    //     const fileRes = await fetch('/api/fileupload', {
+    //       method: 'POST',
+    //       body: fileFormData,
+    //     });
+    //     const fileData = await fileRes.json();
+    //     if (fileRes.ok && fileData.url) {
+    //       uploadedFileUrl = fileData.url;
+    //       setAttachmentUrl(uploadedFileUrl);
+    //     } else {
+    //       setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
+    //       return;
+    //     }
+    //   } catch (error) {
+    //     setMessage('File upload failed.');
+    //     return;
+    //   }
+    // }
+    console.log("Form Data:", data);
   };
 
   const googleHandler = () => {
