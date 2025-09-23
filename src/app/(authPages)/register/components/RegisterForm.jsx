@@ -43,6 +43,7 @@ const RegisterForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -74,6 +75,7 @@ const RegisterForm = () => {
     //   }
     // }
     console.log("Form Data:", data);
+    reset();
   };
 
   const googleHandler = () => {

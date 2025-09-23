@@ -32,12 +32,13 @@ const LoginFormNey = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
 
     const onSubmit = (data) => {
-
-        console.log("Form Data:", data);
+       console.log("Form Data:", data);
+       reset();
     };
 
     const googleHandler = () => {
