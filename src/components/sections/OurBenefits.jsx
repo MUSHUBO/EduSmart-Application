@@ -66,7 +66,7 @@ const OurBenefits = () => {
                         {/* Box */}
                         <div className="pt-6 p-4">
                             <h3 className="text-2xl font-semibold mb-2">{benefit.title}</h3>
-                            <p className="text-gray-600">{benefit.description}</p>
+                            <p className="text-muted-foreground">{benefit.description}</p>
                         </div>
                     </motion.div>
                 ))}
