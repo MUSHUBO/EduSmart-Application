@@ -50,14 +50,43 @@ export default function NoticeBoard() {
 
   return (
     <div className="space-y-6 p-4 text-foreground">
-      {/* 🔴 Breaking News */}
-      <div className="bg-red-600 text-white rounded-lg overflow-hidden shadow-md">
-        <div className="whitespace-nowrap animate-marquee py-2 px-4 font-semibold">
-          {notices.length > 0
-            ? notices.map((n) => `${n.title} | `)
-            : "🚨 Breaking News: No new notices available"}
-        </div>
+   
+     {/* 🔴 Breaking News */}
+<div className="bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg shadow-md overflow-hidden">
+  <div className="flex items-center gap-2 py-2 px-4">
+    <span className="font-bold text-yellow-300">🔔 BREAKING NEWS</span>
+    <div className="overflow-hidden w-full">
+      <div
+        style={{
+          display: "inline-block",
+          whiteSpace: "nowrap",
+          animation: "marquee 15s linear infinite",
+        }}
+      >
+        {notices.length > 0
+          ? notices.map((n, i) => (
+              <span key={i} style={{ marginRight: "2rem" }}>
+                {n.title}
+              </span>
+            ))
+          : "🚨 No new notices available"}
       </div>
+    </div>
+  </div>
+
+  {/* Inline keyframes */}
+  <style jsx>{`
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  `}</style>
+</div>
+
 
       {/* Top Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
