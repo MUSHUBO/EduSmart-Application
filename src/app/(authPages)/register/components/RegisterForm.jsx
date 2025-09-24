@@ -44,17 +44,22 @@ const RegisterForm = () => {
     setMessage('');
     setAttachmentUrl('');
     let uploadedFileUrl = '';
+  
     if (file) {
+    
       const fileFormData = new FormData();
       
       fileFormData.append('file', file);
       fileFormData.append('filename', file.name);
       fileFormData.append('filetype', file.type);
+      fileFormData.append('filePurpose', 'assignment');
+  
       try {
         const fileRes = await fetch('/api/fileupload', {
           method: 'POST',
           body: fileFormData,
         });
+      
         const fileData = await fileRes.json();
         
         if (fileRes.ok && fileData.url) {
@@ -70,9 +75,9 @@ const RegisterForm = () => {
       }
     }
 
-
-    console.log("Form Data:", data, "AttachmentUrl:", attachmentUrl);
-    // reset();
+    if (attachmentUrl) {
+       console.log("Form Data:", data, "AttachmentUrl:", attachmentUrl);
+    }
   };
 
   const googleHandler = () => {
