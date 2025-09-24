@@ -129,7 +129,7 @@ const RegisterForm = () => {
 
 
   return <div className="flex items-center justify-center p-4">
-    <div className="w-full max-w-sm">
+        <div className="w-full max-w-md">
       { }
       <div className="signin-card bg-muted dark:bg-muted border-2 border-primary/45 dark:border-primary/45 rounded-lg shadow-sm p-6">
         { }
