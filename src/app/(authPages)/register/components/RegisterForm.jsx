@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { IoMdPhotos } from "react-icons/io";
 import profile from "../../../../../public/lotttie-file/profile.json"
 import Lottie from 'lottie-react';
+import Link from 'next/link';
 const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
   <polyline points="22,6 12,13 2,6"></polyline>
@@ -33,47 +34,24 @@ const UserIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height
 const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
-  const [attachmentUrl, setAttachmentUrl] = useState('');
   const [file, setFile] = useState(null);
-  const [message, setMessage] = useState(null);
+ 
 
 
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
 
-    let uploadedFileUrl = '';
-    if (file) {
+      
+    console.log("Form Data:", data);
+    reset();
 
-      const fileFormData = new FormData();
-      fileFormData.append('file', file);
-      fileFormData.append('filename', file.name);
-      fileFormData.append('filetype', file.type);
-      fileFormData.append('filePurpose', 'profile');
-      try {
-        const fileRes = await fetch('/api/fileupload', {
-          method: 'POST',
-          body: fileFormData,
-        });
-        const fileData = await fileRes.json();
-        if (fileRes.ok && fileData.url) {
-          uploadedFileUrl = fileData.url;
-          setAttachmentUrl(uploadedFileUrl);
-        } else {
-          setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
-          return;
-        }
-      } catch (error) {
-        setMessage('File upload failed.');
-        return;
-      }
-    }
-    console.log("Form Data:", data, "photo URL :::", attachmentUrl, message);
   };
 
   const googleHandler = () => {
@@ -282,9 +260,9 @@ const RegisterForm = () => {
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Already have an account?{' '}
-            <a href="#" className="text-gray-900 dark:text-gray-100 font-medium hover:underline">
+            <Link href="/login" className="text-gray-900 dark:text-gray-100 font-medium hover:underline">
               Sign in
-            </a>
+            </Link>
           </p>
         </div>
       </div>
