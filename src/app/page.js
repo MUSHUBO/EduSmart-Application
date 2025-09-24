@@ -7,12 +7,16 @@ import Testimonials from "@/components/sections/Testimonials/Testimonials";
 
 export default function Home() {
   return (
-    <div className="w-10/12 mx-auto">
-      <Hero />
-      <OurBenefits />
-      <FAQ />
-      <Testimonials />
-      <OurPages />
+    <div>
+      <div className="mx-2">
+        <Hero />
+      </div>
+      <div className="w-10/12 mx-auto">
+        <OurBenefits />
+        <FAQ />
+        <Testimonials />
+        <OurPages />
+      </div>
     </div>
   );
 }

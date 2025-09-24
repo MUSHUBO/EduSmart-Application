@@ -14,8 +14,8 @@ export async function POST(req) {
     const uploadResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
-          resource_type: "raw",
-          folder: "EduSmart-files",
+          resource_type: "auto",
+          folder: "EduSmart_Application",
           public_id: filename ? filename.split(".")[0] : undefined,
           format: filename ? filename.split(".").pop() : undefined,
           type: "upload",
