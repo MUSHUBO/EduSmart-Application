@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from 'react';
@@ -26,11 +25,11 @@ export default function CreateAssignmentForm() {
 
         let uploadedFileUrl = '';
         if (file) {
-        
             const fileFormData = new FormData();
             fileFormData.append('file', file);
             fileFormData.append('filename', file.name);
             fileFormData.append('filetype', file.type);
+            fileFormData.append('filePurpose', 'assignment'); 
             try {
                 const fileRes = await fetch('/api/fileupload', {
                     method: 'POST',
