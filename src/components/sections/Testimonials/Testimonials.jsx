@@ -11,7 +11,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 
-const PrevArrow = ({ className, style, onClick }) => (
+const PrevArrow = ({ onClick }) => (
    <button
       className="absolute -left-9 md:-left-12 lg:-left-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted text-popover dark:text-popover border border-popover dark:border-popover dark:hover:bg-primary p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary duration-150"
       onClick={onClick}
@@ -20,7 +20,7 @@ const PrevArrow = ({ className, style, onClick }) => (
    </button>
 );
 
-const NextArrow = ({ className, style, onClick }) => (
+const NextArrow = ({ onClick }) => (
    <button
       className="absolute -right-9 md:-right-12 lg:-right-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted  text-popover dark:text-popover border border-popover dark:border-popover p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary dark:hover:bg-primary duration-150"
       onClick={onClick}
@@ -71,33 +71,6 @@ const testimonials = [
 
 function Testimonials() {
 
-   //    className: "center",
-   //    centerMode: true,
-   //    infinite: true,
-   //    centerPadding: "60px",
-   //    slidesToShow: 3,
-   //    speed: 500,
-   //    nextArrow: <NextArrow />,
-   //    prevArrow: <PrevArrow />,
-   //    autoplay: true,
-   //    autoplaySpeed: 3000,
-   //    pauseOnHover: true,
-   //    responsive: [
-   //       {
-   //          breakpoint: 1024, // Tablet
-   //          settings: {
-   //             slidesToShow: 2,
-   //             slidesToScroll: 1,
-   //             centerPadding: "40px",
-   //          }
-   //       },
-   //       {
-   //          breakpoint: 640, // Mobile
-   //          settings: {
-   //             slidesToShow: 1,
-   //             slidesToScroll: 1,
-   //             centerPadding: "20px",
-
    const settings = {
       className: "center",
       centerMode: false,
@@ -138,6 +111,8 @@ function Testimonials() {
       ],
    };
 
+   
+
 
    useEffect(() => {
       AOS.init({
@@ -147,7 +122,7 @@ function Testimonials() {
    }, []);
 
    return (
-      <div data-aos="fade-zoom-in" className="slider-container px-4 md:px-6 lg:px-12">
+      <div data-aos="fade-up" className="slider-container px-4 md:px-6 lg:px-12">
          <div className="text-center">
             <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
                Our Testimonials
