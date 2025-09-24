@@ -19,15 +19,58 @@ const Navbar = () => {
             document.documentElement.classList.remove("dark");
         }
     }, [isDark]);
+
     const nav = <>
-        <li><Link href={"/"} className='cursor-pointer text-black dark:text-white text-popover dark:hover:text-primary hover:text-primary duration-200'>Home</Link></li>
-        <li><Link href={"/about"} className={`cursor-pointer  dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200  ${pathname === "/about" && "text-primary dark:text-primary border-b-2 border-primary"
-            }`}>About</Link></li>
-        <li><Link href={"/contact"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/contact" && "text-primary dark:text-primary border-b-2 border-primary"
-            }`}>Contact</Link></li>
-        <li><Link href={"/admission"} className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 ${pathname === "/admission" && "text-primary dark:text-primary border-b-2 border-primary"
-            }`}>Admission</Link></li>
+        <li>
+            <Link
+                href="/"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Home
+            </Link>
+        </li>
+
+        <li>
+            <Link
+                href="/about"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/about" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                About
+            </Link>
+        </li>
+
+        <li>
+            <Link
+                href="/contact"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/contact" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Contact
+            </Link>
+        </li>
+
+        <li>
+            <Link
+                href="/admission"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/admission" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Admission
+            </Link>
+        </li>
+        <li>
+            <Link
+                href="/assignment/new"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/assignment/new" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Assignments
+            </Link>
+        </li>
     </>
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -46,8 +89,8 @@ const Navbar = () => {
 
     return (
         <div id="navbarId" className={`navbar bg-background shadow-sm border-b border-primary/55 z-50 transition-all duration-500 ease-in-out sticky ${isFixed
-                ? 'fixed top-0 left-0 right-0 backdrop-blur-xl bg-background/60 translate-y-0'
-                : 'relative -top-30'
+            ? 'fixed top-0 left-0 right-0 backdrop-blur-xl bg-background/60 translate-y-0'
+            : 'relative -top-30'
             }`}>
             <div className="navbar-start">
                 <div
@@ -86,12 +129,12 @@ const Navbar = () => {
                         onClick={() => setIsDark(!isDark)}
                         className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                        {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-6 lg:h-6  text-primary" />}
+                        {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
                     </button>
                 </div>
                 <div>
-                    <div className='md:w-8 md:h-8 lg:w-9 h-9 rounded-full  '>
-                    <IoPersonSharp  className='w-full h-full text-primary '/>
+                    <div className='md:w-7 md:h-7 lg:w-8 h-8 rounded-full  '>
+                        <IoPersonSharp className='w-full h-full text-primary ' />
                     </div>
                 </div>
                 <div className="">
