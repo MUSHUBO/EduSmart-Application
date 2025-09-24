@@ -7,7 +7,8 @@ export async function POST(req) {
     const file = formData.get("file");
     const filename = formData.get("filename");
     const filetype = formData.get("filetype");
-    const filePurpose = formData.get("filePurpose");     fileFormData.append('filePurpose', 'assignment');    fileFormData.append('filePurpose', 'assignment');    fileFormData.append('filePurpose', 'assignment');
+    const filePurpose = formData.get("filePurpose");     
+    fileFormData.append('filePurpose', 'assignment');    fileFormData.append('filePurpose', 'assignment');    fileFormData.append('filePurpose', 'assignment');
 
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
@@ -29,8 +30,8 @@ export async function POST(req) {
     const uploadResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
-          resource_type: resourceType,
-          folder: folder,
+          resource_type: "auto",
+          folder: "EduSmart_Application",
           public_id: filename ? filename.split(".")[0] : undefined,
           format: filename ? filename.split(".").pop() : undefined,
           type: "upload",
