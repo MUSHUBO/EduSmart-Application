@@ -5,7 +5,7 @@ import React from "react";
 const Resetform = () => {
   return <div className="flex items-center justify-center p-4 font-sans relative overflow-hidden">
       <div className="p-8 rounded-xl border max-w-md w-full relative z-10 transform transition-all duration-300 hover:border-primary/50">
-        <h1 className="text-foreground text-3xl md:text-4xl font-light mb-3 text-center tracking-tight">
+        <h1 className="text-foreground text-3xl md:text-4xl font-semibold mb-3 text-center tracking-tight">
           Recover Password
         </h1>
         <p className="text-muted-foreground text-base md:text-lg mb-8 text-center leading-relaxed">
