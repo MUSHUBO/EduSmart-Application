@@ -129,11 +129,11 @@ const Navbar = () => {
                         onClick={() => setIsDark(!isDark)}
                         className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
                     >
-                        {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-6 lg:h-6  text-primary" />}
+                        {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
                     </button>
                 </div>
                 <div>
-                    <div className='md:w-8 md:h-8 lg:w-9 h-9 rounded-full  '>
+                    <div className='md:w-7 md:h-7 lg:w-8 h-8 rounded-full  '>
                         <IoPersonSharp className='w-full h-full text-primary ' />
                     </div>
                 </div>
