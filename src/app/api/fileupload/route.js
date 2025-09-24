@@ -29,8 +29,8 @@ export async function POST(req) {
     const uploadResponse = await new Promise((resolve, reject) => {
       cloudinary.uploader.upload_stream(
         {
-          resource_type: resourceType, // use computed value
-          folder: folder,              // use computed value
+          resource_type: resourceType, 
+          folder: folder,             
           public_id: filename ? filename.split(".")[0] : undefined,
           format: filename ? filename.split(".").pop() : undefined,
           type: "upload",
