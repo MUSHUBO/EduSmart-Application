@@ -3,8 +3,9 @@ import { MongoClient, ServerApiVersion } from "mongodb"
 
 export const collectionNamesObj = {
   userCollection: "users",
-
+ 
 };
+
 
 let cachedClient = null;
 
@@ -21,6 +22,7 @@ export async function dbConnect(collectionName) {
       }
     });
     await cachedClient.connect();
+      
   }
 
   return cachedClient.db(dbName).collection(collectionName);

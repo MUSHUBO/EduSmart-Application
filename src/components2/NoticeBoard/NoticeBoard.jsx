@@ -16,7 +16,8 @@ import {
 import { Users, Bell, Calendar, Trophy } from "lucide-react";
 import UpcomingExams from "./UpcomingExam";
 import SearchNotice from "./SearchNotice";
-import NoticeTable from "./NoticeTable";
+import NoticeTablePage from "./NoticeTablePage";
+
 
 export default function NoticeBoard() {
   const [stats, setStats] = useState({});
@@ -163,7 +164,7 @@ export default function NoticeBoard() {
     <div className="space-y-3">
      {/* <UpcomingExams></UpcomingExams> */}
       <SearchNotice></SearchNotice>
-      {/* <NoticeTable></NoticeTable> */}
+   <NoticeTablePage></NoticeTablePage>
     </div>
     </div>
   );
