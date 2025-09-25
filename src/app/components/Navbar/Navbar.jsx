@@ -1,17 +1,52 @@
 "use client";
-import { LogIn, Moon, Sun } from 'lucide-react';
+import { LogIn, LogOut, Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
+import { useAuth } from '@/Hoks/UseAuth/UseAuth';
+import { Bounce, toast } from 'react-toastify';
 
 const Navbar = () => {
     const [isDark, setIsDark] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [isFixed, setIsFixed] = useState(false);
+    const { user, logoutAccount } = useAuth()
     const pathname = usePathname()
+    const router = useRouter()
+
     console.log(pathname);
+    const logoutHandler = () => {
+        logoutAccount()
+            .then(() => {
+                toast.success('Logout Successfully', {
+                    position: "top-right",
+                    autoClose: 500,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce
+                });
+                router.push("/")
+            })
+            .then(error => {
+                toast.error(`${error.code}`, {
+                    position: "top-right",
+                    autoClose: 500,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce
+                });
+            })
+    }
     useEffect(() => {
         if (isDark) {
             document.documentElement.classList.add("dark");
@@ -134,14 +169,24 @@ const Navbar = () => {
                 </div>
                 <div>
                     <div className='md:w-7 md:h-7 lg:w-8 h-8 rounded-full  '>
-                        <IoPersonSharp className='w-full h-full text-primary ' />
+                        {
+                            user?.email ?  <img className='w-full rounded-full' src={user?.photoURL} alt={user?.photoURL} /> : <IoPersonSharp className='w-full h-full text-primary ' />
+                        }
+                        
                     </div>
                 </div>
                 <div className="">
-                    <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
-                        <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
-                        <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn size={19} /> Login</span>
-                    </Link>
+
+                    {
+                        user?.email ? <button onClick={logoutHandler} className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
+                            <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
+                            <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogOut size={19} /> Logout</span>
+                        </button> : <Link href="/login" className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
+                            <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-32 group-hover:h-32 opacity-10"></span>
+                            <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn size={19} /> Login</span>
+                        </Link>
+                    }
+
                 </div>
             </div>
         </div>
