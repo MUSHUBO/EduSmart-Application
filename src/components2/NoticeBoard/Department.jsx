@@ -15,7 +15,7 @@ export default function DepartmentNotices({ department, title }) {
         const data = await res.json();
         setNotices(data);
       } catch (err) {
-        console.error("Failed to fetch notices:", err);
+        
       } finally {
         setLoading(false);
       }

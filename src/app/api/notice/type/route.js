@@ -13,7 +13,7 @@ export async function GET(req) {
     }
 
     const academics = await collection.find(query).sort({ createdAt: -1 }).toArray();
-    console.log("Fetched Academics:", academics);
+  
 
     return NextResponse.json(academics);
   } catch (error) {

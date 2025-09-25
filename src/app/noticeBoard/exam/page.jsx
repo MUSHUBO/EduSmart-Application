@@ -14,7 +14,7 @@ export default function ExamPage() {
         const res = await fetch("/api/notice/exam-routine");
         const data = await res.json();
         setExams(data);
-            console.log("Fetched exams:", data);
+           
       } catch (err) {
         console.error("Failed to fetch exams:", err);
       } finally {

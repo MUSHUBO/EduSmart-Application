@@ -12,10 +12,10 @@ export default function SearchNotice() {
   };
 
   return (
-    <div className="bg-background text-foreground rounded-xl shadow p-3 flex flex-col md:flex-row items-center gap-3 w-full">
+    <div className="bg-background text-foreground rounded-xl shadow p-3 flex flex-col md:flex-row items-stretch md:items-center gap-3 w-full">
       {/* 🔍 Search Input */}
       <div className="flex items-center w-full md:flex-1 bg-muted rounded-lg px-3 py-2">
-        <Search className="w-5 h-5 text-muted-foreground mr-2" />
+        <Search className="w-5 h-5 text-muted-foreground mr-2 flex-shrink-0" />
         <input
           type="text"
           placeholder="Search notices by content or department..."
@@ -29,7 +29,7 @@ export default function SearchNotice() {
       <select
         value={sort}
         onChange={(e) => setSort(e.target.value)}
-        className="border rounded-lg px-3 py-2 bg-background text-foreground shadow-sm"
+        className="border rounded-lg px-3 py-2 bg-background text-foreground shadow-sm w-full md:w-auto"
       >
         <option value="date">Sort by Date</option>
         <option value="department">Sort by Department</option>
@@ -38,7 +38,7 @@ export default function SearchNotice() {
       {/* ✅ Apply Filters Button */}
       <button
         onClick={handleSearch}
-        className="flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow hover:opacity-90 transition"
+        className="flex items-center justify-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg shadow hover:opacity-90 transition w-full md:w-auto"
       >
         <Filter className="w-5 h-5" />
         Apply Filters

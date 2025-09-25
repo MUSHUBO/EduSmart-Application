@@ -13,7 +13,7 @@ export async function GET(req) {
     }
 
     const notices = await collection.find(query).sort({ date: -1 }).toArray();
-    console.log("Fetched Notices:", notices);
+    
 
     return NextResponse.json(notices);
   } catch (error) {
