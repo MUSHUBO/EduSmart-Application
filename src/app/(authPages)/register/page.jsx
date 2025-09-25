@@ -17,14 +17,13 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-      {/* Left Side */}
-      <div data-aos="fade-left" className="p-4">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+        <div data-aos="fade-left" className="p-4 w-xl md:w-2xl lg:w-3xl">
         <RegisterForm />
       </div>
 
       {/* Right Side */}
-      <div data-aos="fade-right" className="max-w-md md:max-w-lg lg:max-w-xl p-4">
+     <div data-aos="fade-right" className="max-w-sm md:max-w-md lg:max-w-lg p-4">
         <Lottie animationData={signuplottie} loop={true} />
       </div>
     </div>
