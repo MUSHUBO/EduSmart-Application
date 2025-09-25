@@ -1,20 +1,10 @@
 "use client";
 
-import { useState } from "react";
-
-export default function NoticeTable({ notices = [] }) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
-
-  // Pagination logic
-  const totalPages = Math.ceil(notices.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentNotices = notices.slice(startIndex, startIndex + itemsPerPage);
-
+export default function NoticeTable({ notices }) {
   return (
     <div className="bg-background text-foreground p-4 rounded shadow overflow-x-auto">
-      <h2 className="font-semibold mb-4 text-lg">Notices</h2>
-      <table className="table-auto w-full text-sm sm:text-base">
+      <h2 className="font-semibold mb-2">Notices</h2>
+      <table className="table-auto w-full">
         <thead>
           <tr className="text-left border-b">
             <th className="p-2">Date</th>
@@ -25,79 +15,17 @@ export default function NoticeTable({ notices = [] }) {
           </tr>
         </thead>
         <tbody>
-          {currentNotices.map((n) => (
-            <tr key={n._id} className="border-b hover:bg-gray-100">
-              <td className="p-2 whitespace-nowrap">
-                {n.date ? new Date(n.date).toLocaleDateString() : "—"}
-              </td>
+          {notices.map((n, i) => (
+            <tr key={i} className="border-b">
+              <td className="p-2">{new Date(n.createdAt).toLocaleDateString()}</td>
               <td className="p-2">{n.title}</td>
               <td className="p-2">{n.department}</td>
-              <td className="p-2">
-                {n.download ? (
-                  <a
-                    href={n.download}
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 hover:underline"
-                  >
-                    📂
-                  </a>
-                ) : (
-                  "—"
-                )}
-              </td>
-              <td className="p-2">
-                {n.view ? (
-                  <a
-                    href={n.view}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-green-500 hover:underline"
-                  >
-                    👁
-                  </a>
-                ) : (
-                  "—"
-                )}
-              </td>
+              <td className="p-2"><a href={n.fileUrl} download>📂</a></td>
+              <td className="p-2"><a href={`/notices/${n._id}`}>👁</a></td>
             </tr>
           ))}
         </tbody>
       </table>
-
-      {/* Pagination */}
-      <div className="flex justify-center items-center gap-2 mt-4 flex-wrap">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => p - 1)}
-          className="px-3 py-1 rounded border bg-gray-100 hover:bg-gray-200 disabled:opacity-50"
-        >
-          ⬅ Prev
-        </button>
-
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-          <button
-            key={page}
-            onClick={() => setCurrentPage(page)}
-            className={`px-3 py-1 rounded border transition ${
-              currentPage === page
-                ? "bg-blue-500 text-white font-bold"
-                : "bg-white hover:bg-gray-100"
-            }`}
-          >
-            {page}
-          </button>
-        ))}
-
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((p) => p + 1)}
-          className="px-3 py-1 rounded border bg-gray-100 hover:bg-gray-200 disabled:opacity-50"
-        >
-          Next ➡
-        </button>
-      </div>
     </div>
   );
 }
