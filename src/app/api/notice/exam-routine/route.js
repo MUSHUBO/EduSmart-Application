@@ -2,13 +2,13 @@ import { dbConnect } from "@/library/dbConnect";
 
 export async function GET() {
   try {
-    // connect to "exam" collection
+    
     const collection = await dbConnect("exam");
 
-    // fetch all exam documents
+
     const exams = await collection.find().toArray();
 
-    // MongoDB _id needs to be converted to string for JSON
+ 
     const formattedExams = exams.map((exam) => ({
       ...exam,
       _id: exam._id.toString(),

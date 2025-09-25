@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { dbConnect } from "@/library/dbConnect";
 export async function GET(req) {
   try {
-    // ✅ Use req.nextUrl (Next.js gives this by default)
+   
     const department = req.nextUrl.searchParams.get("department");
 
     const collection = await dbConnect("notices");
