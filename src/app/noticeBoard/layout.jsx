@@ -20,16 +20,16 @@ import {
 
 const menuItems = [
   { name: "Notice Board", href: "/noticeBoard", icon: LayoutDashboard },
-  { name: "All Notices", href: "/noticeBoard/notice/all-notices", icon: Bell },
-  { name: "Class Routine", href: "/noticeBoard/notice/class-routine", icon: Clock },
-  { name: "Exam Routine", href: "/noticeBoard/notice/exam-routine", icon: FileText },
-  { name: "Notice", href: "/noticeBoard/notice/update", icon: BookOpen },
-  { name: "Syllabus", href: "/noticeBoard/notice/syllabus", icon: BookOpen },
-  { name: "Academic Calendar", href: "/noticeBoard/notice/academic-calendar", icon: CalendarDays },
-  { name: "Holiday List", href: "/noticeBoard/notice/holidays", icon: Umbrella },
-  { name: "Magazine", href: "/noticeBoard/notice/magazine", icon: Newspaper },
-  { name: "Sports & Play", href: "/noticeBoard/notice/sports", icon: Volleyball },
-  { name: "Cultural Function", href: "/noticeBoard/notice/cultural", icon: Music },
+  { name: "All Notices", href: "/noticeBoard/all-notice", icon: Bell },
+  { name: "Class Routine", href: "/noticeBoard/class-routine", icon: Clock },
+  { name: "Exam Routine", href: "/noticeBoard/exam", icon: FileText },
+  { name: "Administration", href: "/noticeBoard/administration", icon: BookOpen },
+  { name: "Academic Calendar", href: "/noticeBoard/academic-calendar", icon: CalendarDays },
+  { name: "Academic ", href: "/noticeBoard/academic", icon: CalendarDays },
+  { name: "Holiday List", href: "/noticeBoard/holidays", icon: Umbrella },
+ 
+  { name: "Sports & Play", href: "/noticeBoard/sports", icon: Volleyball },
+  { name: "Cultural Function", href: "/noticeBoard/cultural", icon: Music },
 ];
 
 export default function DashboardLayout({ children }) {

@@ -16,18 +16,22 @@ import {
 import { Users, Bell, Calendar, Trophy } from "lucide-react";
 import UpcomingExams from "./UpcomingExam";
 import SearchNotice from "./SearchNotice";
-import NoticeTable from "./NoticeTable";
+import NoticeTablePage from "./NoticeTablePage";
+
 
 export default function NoticeBoard() {
   const [stats, setStats] = useState({});
   const [notices, setNotices] = useState([]);
   const [exams, setExams] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/stats").then((res) => res.json()).then(setStats);
-    fetch("/api/notices").then((res) => res.json()).then(setNotices);
-    fetch("/api/exams").then((res) => res.json()).then(setExams);
-  }, []);
+ useEffect(() => {
+  fetch("/api/notice/seed")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("Fetched Notices:", data);
+      setNotices(data);
+    });
+}, []);
 
   const weeklyAttendance = [
     { day: "Sun", present: 960, absent: 40 },
@@ -51,7 +55,7 @@ export default function NoticeBoard() {
   return (
     <div className="space-y-6 p-4 text-foreground">
    
-     {/* 🔴 Breaking News */}
+    {/* 🔴 Breaking News */}
 <div className="bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg shadow-md overflow-hidden">
   <div className="flex items-center gap-2 py-2 px-4">
     <span className="font-bold text-yellow-300">🔔 BREAKING NEWS</span>
@@ -60,11 +64,11 @@ export default function NoticeBoard() {
         style={{
           display: "inline-block",
           whiteSpace: "nowrap",
-          animation: "marquee 15s linear infinite",
+          animation: "marquee 40s linear infinite",
         }}
       >
         {notices.length > 0
-          ? notices.map((n, i) => (
+          ? notices.slice(0, 4).map((n, i) => ( 
               <span key={i} style={{ marginRight: "2rem" }}>
                 {n.title}
               </span>
@@ -163,7 +167,7 @@ export default function NoticeBoard() {
     <div className="space-y-3">
      {/* <UpcomingExams></UpcomingExams> */}
       <SearchNotice></SearchNotice>
-      {/* <NoticeTable></NoticeTable> */}
+   <NoticeTablePage></NoticeTablePage>
     </div>
     </div>
   );

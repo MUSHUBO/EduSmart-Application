@@ -2,24 +2,19 @@
 
 import { useState } from "react";
 
-export default function NoticeTable({ notices = [] }) {
+export default function TypeTable({ notices = [] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
 
-  // Pagination logic
   const totalPages = Math.ceil(notices.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentNotices = notices.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div className="bg-background text-foreground p-4 rounded shadow overflow-x-auto">
-      <h2 className="font-semibold mb-4 text-lg">Notices</h2>
       <table className="table-auto w-full text-sm sm:text-base">
         <thead>
           <tr className="text-left border-b">
-            <th className="p-2">Date</th>
-            <th className="p-2">Title</th>
-            <th className="p-2">Department</th>
             <th className="p-2">Download</th>
             <th className="p-2">View</th>
           </tr>
@@ -27,12 +22,7 @@ export default function NoticeTable({ notices = [] }) {
         <tbody>
           {currentNotices.map((n) => (
             <tr key={n._id} className="border-b hover:bg-primary-foreground">
-              <td className="p-2 whitespace-nowrap">
-                {n.date ? new Date(n.date).toLocaleDateString() : "—"}
-              </td>
-              <td className="p-2">{n.title}</td>
-              <td className="p-2">{n.department}</td>
-              <td className="p-2">
+              <td className="p-2 text-center">
                 {n.download ? (
                   <a
                     href={n.download}
@@ -41,13 +31,13 @@ export default function NoticeTable({ notices = [] }) {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:underline"
                   >
-                    📂
+                    📂 Download
                   </a>
                 ) : (
                   "—"
                 )}
               </td>
-              <td className="p-2">
+              <td className="p-2 text-center">
                 {n.view ? (
                   <a
                     href={n.view}
@@ -55,7 +45,7 @@ export default function NoticeTable({ notices = [] }) {
                     rel="noopener noreferrer"
                     className="text-green-500 hover:underline"
                   >
-                    👁
+                    👁 View
                   </a>
                 ) : (
                   "—"

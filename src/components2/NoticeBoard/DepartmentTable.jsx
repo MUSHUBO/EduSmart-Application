@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function NoticeTable({ notices = [] }) {
+export default function DepartmentTable({ notices = [] }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
 
