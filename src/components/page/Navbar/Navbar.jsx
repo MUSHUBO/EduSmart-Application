@@ -103,10 +103,8 @@ const Navbar = () => {
         </div>
 
         {/* Logo */}
-        <Link className='max-w-[100px] md:max-w-[140px]' href={"/"}>
-          {
-            isDark ? <img src="/images/edusmart_dark.png" alt="edusmarty_dark_icon" /> : <img src="/images/edusmart_light.png" alt="edusmarty_light_icon" />
-          }
+        <Link className='max-w-[120px] md:max-w-[140px]' href={"/"}>
+          <img src="/images/eduSmart.png" alt="eduSmart.png" /> 
 
         </Link>
       </div>
@@ -126,7 +124,7 @@ const Navbar = () => {
             onClick={() => setIsDark(!isDark)}
             className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
+            {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
           </button>
         </div>
 
