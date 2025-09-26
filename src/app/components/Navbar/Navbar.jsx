@@ -155,11 +155,8 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <Link className='max-w-[100px] md:max-w-[140px]' href={"/"}>
-                    {
-                        isDark ? <img src="/images/edusmart_dark.png" alt="edusmarty_dark_icon" /> : <img src="/images/edusmart_light.png" alt="edusmarty_light_icon" />
-                    }
-
+                <Link className='max-w-[100px] md:max-w-[180px]' href={"/"}>
+                    <img src="/images/eduSmart.png" alt="eduSmart.png" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
