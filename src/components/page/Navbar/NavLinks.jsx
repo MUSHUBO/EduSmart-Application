@@ -1,4 +1,4 @@
-// src/components/page/Navbar/NavLinks.jsx
+
 import Link from 'next/link';
 
 const NavLinks = ({ pathname }) => {
@@ -7,7 +7,7 @@ const NavLinks = ({ pathname }) => {
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },
     { href: "/admission", label: "Admission" },
-    { href: "/assignment/new", label: "Assignments" },
+    { href: "/assignment", label: "Assignments" },
     { href: "/noticeBoard", label: "Notice" },
   ];
 
