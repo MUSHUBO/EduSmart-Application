@@ -97,9 +97,9 @@ const Navbar = () => {
         </li>
         <li>
             <Link
-                href="/assignment/new"
+                href="/assignment"
                 className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
-                ${pathname === "/assignment/new" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+                ${pathname === "/assignment" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
             >
                 Assignments
             </Link>
@@ -155,11 +155,8 @@ const Navbar = () => {
                         {nav}
                     </ul>
                 </div>
-                <Link className='max-w-[100px] md:max-w-[140px]' href={"/"}>
-                    {
-                        isDark ? <img src="/images/edusmart_dark.png" alt="edusmarty_dark_icon" /> : <img src="/images/edusmart_light.png" alt="edusmarty_light_icon" />
-                    }
-
+                <Link className='max-w-[100px] md:max-w-[180px]' href={"/"}>
+                    <img src="/images/eduSmart.png" alt="eduSmart.png" />
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
