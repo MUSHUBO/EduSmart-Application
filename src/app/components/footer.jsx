@@ -1,5 +1,6 @@
 
-import { FaFacebookF, FaTwitter, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaPhoneAlt, FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
+import { MdMailOutline } from "react-icons/md";
 
 export default function Footer() {
     return (
@@ -9,7 +10,7 @@ export default function Footer() {
             backgroundPosition: "center",
             backgroundSize: "cover"
         }}
-            className="text-black dark:text-white bg p-8 md:p-12 border-2">
+            className="text-black dark:text-white bg py-6 md:py-8 lg:py-12 px-8 md:px-16 lg:px-24 border-2">
             <div className="container mx-auto">
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -19,14 +20,13 @@ export default function Footer() {
                             <img src="/images/Dumondi (4)-Photoroom.png" alt="edusmart_logo" />
                         </div>
                         <p className="mt-3 text-sm">
-                            We believe in the power of play to foster creativity,
-                            problem-solving skills, and imagination.
+                            We are many variations of passages available but the majority have suffered alteration in some form by injected humour words believable.
                         </p>
 
                         {/* Contact Info */}
                         <div className="mt-4 space-y-2 text-sm">
                             <p className="flex items-center gap-2">
-                                <FaEnvelope className="text-base" />
+                                <MdMailOutline  className="text-base" />
                                 majedulislam223311@gmail.com
                             </p>
                             <p className="flex items-center gap-2">
