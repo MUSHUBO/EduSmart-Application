@@ -17,7 +17,7 @@ export default function Home() {
         <FAQ />
         <Testimonials />
         <OurPages />
-        <Marketing></Marketing>
+<Marketing></Marketing>
       </div>
     </div>
   );
