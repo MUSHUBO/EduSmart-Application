@@ -9,7 +9,7 @@ import { SiMinutemailer } from "react-icons/si";
 export default function Footer() {
     return (
         <footer
-            className="relative text-white py-6 md:py-8 lg:py-12 px-8 md:px-16 lg:px-24"
+            className="relative text-white bg-black py-6 md:py-8 lg:py-12 px-8 md:px-16 lg:px-24"
             style={{
                 backgroundImage: "url('/images/eduSmart.png')",
                 backgroundRepeat: "no-repeat",
@@ -81,7 +81,7 @@ export default function Footer() {
                             <p className="text-base font-medium">
                                 Subscribe Our Newsletter To Get Latest Update And News
                             </p>
-                            <div className="w-53 mt-4">
+                            <div className="max-w-53 mt-4">
                                 <label className="flex items-center p-2.5 md:p-3 lg:p-3.5 gap-2 bg-red-50 text-black rounded-md">
                                     <svg
                                         className="h-[1em] opacity-50"
