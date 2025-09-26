@@ -1,3 +1,6 @@
+import PhotoGallery from "@/components/polishedHome/PhotoGallery";
+import TeachersSection from "@/components/polishedHome/TeachersSection";
+import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
 import FAQ from "@/components/sections/FAQ";
 import Hero from "@/components/sections/Hero";
 import OurBenefits from "@/components/sections/OurBenefits";
@@ -19,6 +22,9 @@ export default function Home() {
         <FAQ />
         <Testimonials />
         <OurPages />
+        <TeachersSection/>
+        <WhyChooseUs/>
+        <PhotoGallery/>
       </div>
 
     </div>
