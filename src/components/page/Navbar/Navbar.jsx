@@ -8,6 +8,8 @@ import { IoPersonSharp } from "react-icons/io5";
 import { useAuth } from '@/Hoks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
 import NavLinks from './NavLinks';
+import Image from 'next/image';
+import logo from '../../../../public/images/eduSmart.png'
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
@@ -106,11 +108,22 @@ const Navbar = () => {
           <Link className='max-w-[100px] md:max-w-[150px]' href={"/"}>
             {
               isDark ?
-              <img src="/images/edusmart_light.png" alt="edusmarty_light_icon" />
-              :
-              <img src="/images/edusmart_dark.png" alt="edusmarty_dark_icon" />
+                <Image
+                  src={logo}
+                  alt="edusmarty_light_icon"
+                  width={150}
+                  height={50}
+                  className="w-full h-auto"
+                />
+                :
+                <Image
+                  src={logo}
+                  alt="edusmarty_dark_icon"
+                  width={150}
+                  height={50}
+                  className="w-full h-auto"
+                />
             }
-
           </Link>
         </div>
 
