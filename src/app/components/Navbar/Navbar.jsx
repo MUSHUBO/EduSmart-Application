@@ -97,9 +97,9 @@ const Navbar = () => {
         </li>
         <li>
             <Link
-                href="/assignment/new"
+                href="/assignment"
                 className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
-                ${pathname === "/assignment/new" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+                ${pathname === "/assignment" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
             >
                 Assignments
             </Link>
