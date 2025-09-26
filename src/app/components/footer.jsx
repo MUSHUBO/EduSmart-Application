@@ -18,7 +18,7 @@ export default function Footer() {
             }}
         >
             {/* Overlay */}
-            <div className="absolute inset-0 bg-[#012758] bg-opacity-90"></div>
+              <div className="absolute inset-0 bg-[#012758] bg-opacity-20"></div>
 
             {/* Content */}
             <div className="relative z-10 container mx-auto">
@@ -78,10 +78,10 @@ export default function Footer() {
                     <div className="flex flex-col mt-8">
                         <h6 className=" text-lg font-bold text-[#FFFFFF] mb-6">Quick Links</h6>
                         <div className="space-y-3 text-base font-normal">
-                            <p className="mt-3 text-base font-medium">
+                            <p className="text-base font-medium">
                                 Subscribe Our Newsletter To Get Latest Update And News
                             </p>
-                            <div className="w-53">
+                            <div className="w-53 mt-4">
                                 <label className="flex items-center p-2.5 md:p-3 lg:p-3.5 gap-2 bg-red-50 text-black rounded-md">
                                     <svg
                                         className="h-[1em] opacity-50"
