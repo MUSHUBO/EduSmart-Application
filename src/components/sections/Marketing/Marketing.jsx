@@ -1,11 +1,20 @@
+'use client'
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function Marketing() {
+     useEffect(() => {
+      AOS.init({
+         duration: 1000,
+         once: true,
+      });
+   }, []);
     return (
-        <div className="bg-teal-500 container mx-auto my-10 md:my-16 lg:my-22 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div data-aos="fade-up" className="bg-teal-500 container mx-auto my-10 md:my-16 lg:my-22 rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
             {/* Left Side Text */}
-            <div className="flex-1 space-y-8 text-center md:text-left">
+            <div data-aos="fade-right"  className="flex-1 space-y-8 text-center md:text-left">
                 <h2 className="text-2xl md:text-3xl font-bold text-white leading-snug">
                     Start today and get certified in <br />
                     <span className="text-white">Fundamentals of digital marketing</span>
@@ -24,7 +33,7 @@ export default function Marketing() {
             {/* Right Side Image */}
             <div className="relative flex-1 flex justify-center items-center">
   {/* Circle Background */}
-  <div
+  <div data-aos="fade-left"
     className="
       absolute w-40 h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 
       bg-secondary rounded-full 
