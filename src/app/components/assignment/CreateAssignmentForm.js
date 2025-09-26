@@ -136,7 +136,7 @@ export default function CreateAssignmentForm() {
                         className="w-full text-sm text-primary file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-background file:text-primary hover:file:bg-accent hover:file:text-white"
                     />
                 </div>
-                <button type="submit" className="w-full bg-primary text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">
+                <button type="submit" className="w-full bg-primary hover:cursor-pointer text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors">
                     Assign Now
                 </button>
                 {message && <p className="mt-4 text-center">{message}</p>}
