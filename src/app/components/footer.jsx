@@ -34,24 +34,24 @@ export default function Footer() {
 
                         {/* Contact Info */}
                         <div className="mt-4 space-y-5 text-base font-medium">
-                            <p className="flex items-center gap-2">
+                            <div className="flex items-center gap-2">
                                 <div className="p-1.5 bg-secondary text-[#FFFFFF] rounded-sm">
                                     <MdEmail className="text-base" />
                                 </div>
                                 edusmartbd@gmail.com
-                            </p>
-                            <p className="flex items-center gap-2">
+                            </div>
+                            <div className="flex items-center gap-2">
                                 <div className="p-1.5 bg-secondary text-[#FFFFFF] rounded-sm">
                                     <FaPhoneAlt className="text-base" />
                                 </div>
                                 +8801912716966
-                            </p>
-                            <p className="flex items-center gap-2">
+                            </div>
+                            <div className="flex items-center gap-2">
                                 <div className="p-1.5 bg-secondary text-[#FFFFFF] rounded-sm">
                                     <FaMapMarkerAlt className="text-base" />
                                 </div>
                                 Dhaka,Bangladesh
-                            </p>
+                            </div>
                         </div>
                     </div>
 

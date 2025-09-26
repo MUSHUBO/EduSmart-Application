@@ -11,7 +11,7 @@ import Testimonials from "@/components/sections/Testimonials/Testimonials";
 export default function Home() {
   return (
     <div>
-      
+
       {/* Hero section with full width */}
       <div>
         <Hero />
@@ -20,13 +20,13 @@ export default function Home() {
       {/* Other Section */}
       <div className="w-10/12 mx-auto">
         <OurBenefits />
-        <FAQ />
-        <Testimonials />
         <OurPages />
-<Marketing></Marketing>
-        <TeachersSection/>
-        <WhyChooseUs/>
-        <PhotoGallery/>
+        <Marketing />
+        <TeachersSection />
+        <WhyChooseUs />
+        <PhotoGallery />
+        <Testimonials />
+        <FAQ />
       </div>
 
     </div>

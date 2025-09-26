@@ -1,48 +1,27 @@
 "use client";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import CountUp from "react-countup";
+import { AnimatePresence, motion } from "framer-motion";
 
 // Images import
-import bannerImg from "../../../public/images/banner-img/banner1.jpg";
-import bannerImg2 from "../../../public/images/banner-img/banner2.jpg";
-import bannerImg3 from "../../../public/images/banner-img/banner3.jpg";
+import slide1 from "../../../public/assets/banner-slides/slide1.jpg";
+import slide2 from "../../../public/assets/banner-slides/slide2.jpg"
+import Image from "next/image";
 
 // Slides Data
-const slides = [
+const slidesData = [
   {
-    image: bannerImg,
+    image: slide1,
+    preTitle: "Enjoy smooth learning",
     title: "Where Young Minds Blossom with Creativity and Curiosity",
     subtitle:
       "Our kindergarten school provides a nurturing and stimulating environment, fostering a love for learning from the very first day.",
-    achievements: [
-      { value: 1050, label: "Students Passed Out" },
-      { value: 12, label: "Creative Workshops" },
-      { value: 8, label: "Sports Events Organized" },
-    ],
   },
   {
-    image: bannerImg2,
+    image: slide2,
+    preTitle: "Enjoy smooth learning",
     title: "Dreams Take Flight in a World of Knowledge and Fun",
     subtitle:
       "We inspire creativity, critical thinking, and curiosity in every child, helping them explore their unique talents and abilities.",
-    achievements: [
-      { value: 19, label: "Awards & Recognitions" },
-      { value: 7, label: "Science Projects" },
-      { value: 5, label: "Field Trips" },
-    ],
-  },
-  {
-    image: bannerImg3,
-    title: "Learn, Play, Grow: Building Confident Young Leaders",
-    subtitle:
-      "Education made fun and engaging, combining play-based learning with essential life skills to shape confident, well-rounded children.",
-    achievements: [
-      { value: 15, label: "Experience Educators" },
-      { value: 20, label: "Art Exhibitions" },
-      { value: 10, label: "Music Performances" },
-    ],
   },
 ];
 
@@ -52,14 +31,32 @@ const Hero = () => {
   // Slide auto change
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setCurrentSlide((prev) => (prev + 1) % slidesData.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
+  const slide = slidesData[currentSlide];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+  };
+
   return (
-    <div className="relative w-full h-screen overflow-hidden mt-2 mb-24">
+    <div className="relative w-full h-screen overflow-hidden mt-2 mb-24 font-sans bg-gray-900">
       {/* Background Image */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -71,49 +68,52 @@ const Hero = () => {
           className="absolute inset-0"
         >
           <Image
-            src={slides[currentSlide].image}
+            src={slide.image}
             alt="Banner"
-            fill
-            className="object-cover object-center rounded-lg"
-            priority
+            className="object-cover object-center w-full h-full"
           />
-          <div className="absolute inset-0 bg-black/50 rounded-lg" /> {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/50" /> {/* Dark overlay */}
         </motion.div>
       </AnimatePresence>
 
       {/* Text Overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4">
-        <motion.h1
-          key={slides[currentSlide].title}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white max-w-4xl mb-4"
+      <div className="relative z-10 flex flex-col items-start justify-center text-left h-full px-4 md:px-24">
+        <motion.div
+          key={slide.title}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
-          {slides[currentSlide].title}
-        </motion.h1>
-        <p className="text-white/90 text-sm sm:text-lg md:text-xl max-w-2xl">
-          {slides[currentSlide].subtitle}
-        </p>
-
-        {/* Achievements */}
-        <div className="mt-8 bg-white/20 backdrop-blur-md rounded-lg p-6 max-w-4xl w-full">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
-            {slides[currentSlide].achievements.map((achievement, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <motion.h2
-                  className="text-4xl font-bold mb-2"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1 }}
-                >
-                  <CountUp start={0} end={achievement.value} duration={2} />
-                </motion.h2>
-                <p className="text-md">{achievement.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+          <motion.p
+            variants={itemVariants}
+            className="text-orange-400 text-sm sm:text-lg md:text-xl font-medium mb-4"
+          >
+            {slide.preTitle}
+          </motion.p>
+          <motion.h1
+            variants={itemVariants}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white max-w-4xl mb-4"
+          >
+            {slide.title}
+          </motion.h1>
+          <motion.p
+            variants={itemVariants}
+            className="text-white/90 text-sm sm:text-lg md:text-xl max-w-2xl"
+          >
+            {slide.subtitle}
+          </motion.p>
+          <motion.div
+            variants={itemVariants}
+            className="mt-8 flex flex-col sm:flex-row gap-4"
+          >
+            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+              Learn More
+            </button>
+            <button className="bg-white hover:bg-gray-200 text-blue-600 font-semibold py-3 px-6 rounded-lg transition-colors">
+              Our Courses
+            </button>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );
