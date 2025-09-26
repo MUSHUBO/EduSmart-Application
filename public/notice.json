@@ -1,0 +1,18 @@
+[
+  {
+    "type": "holiday",
+    "download": "https://drive.google.com/uc?export=download&id=HOLIDAY_FILE_ID_1",
+   
+    "view": "https://drive.google.com/file/d/HOLIDAY_FILE_ID_1/view?usp=sharing"
+  },
+  {
+    "type": "holiday",
+    "download": "https://drive.google.com/uc?export=download&id=HOLIDAY_FILE_ID_2",
+    "view": "https://drive.google.com/file/d/HOLIDAY_FILE_ID_2/view?usp=sharing"
+  },
+  {
+    "type": "holiday",
+    "download": "https://drive.google.com/uc?export=download&id=HOLIDAY_FILE_ID_3",
+    "view": "https://drive.google.com/file/d/HOLIDAY_FILE_ID_3/view?usp=sharing"
+  }
+]
