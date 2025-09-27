@@ -113,6 +113,15 @@ const Navbar = () => {
                 Notice
             </Link>
         </li>
+          <li>
+            <Link
+                href="/student_life"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/student_life" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Student Life
+            </Link>
+        </li>
     </>
 
 
