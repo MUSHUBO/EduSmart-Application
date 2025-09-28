@@ -27,6 +27,26 @@ const cards = [
     },
 ];
 
+// Variants
+const containerVariants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
+const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
 export default function WhyChooseUs() {
     return (
         <section
@@ -37,31 +57,53 @@ export default function WhyChooseUs() {
         >
             <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
                 {/* Left Text & Cards */}
-                <div>
-                    <p className="text-orange-500 font-semibold uppercase mb-2 tracking-wide">Why Choose Us</p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white leading-snug mb-4">
-                        We Are Expert & <span className="text-orange-400">Do Our Best</span> For Your Goal
-                    </h2>
-                    <p className="text-white/80 mb-8 max-w-md">
-                        It is a long established fact that a reader will be distracted by the readable content of a page when many desktop and web page editors looking at its layout.
-                    </p>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={containerVariants}
+                    className=""
+                >
+                    <motion.p
+                        className="text-orange-500 font-semibold uppercase mb-2 tracking-wide"
+                        variants={cardVariants}
+                    >
+                        Why Choose Us
+                    </motion.p>
 
-                    <div className="grid sm:grid-cols-2 gap-6">
+                    <motion.h2
+                        className="text-3xl md:text-4xl font-bold text-white leading-snug mb-4"
+                        variants={cardVariants}
+                    >
+                        We Are Expert & <span className="text-orange-400">Do Our Best</span> For Your Goal
+                    </motion.h2>
+
+                    <motion.p className="text-white/80 mb-8 max-w-md" variants={cardVariants}>
+                        It is a long established fact that a reader will be distracted by the readable content of a page when many desktop and web page editors looking at its layout.
+                    </motion.p>
+
+                    <motion.div className="grid sm:grid-cols-2 gap-6" variants={containerVariants}>
                         {cards.map((card, index) => (
-                            <div
+                            <motion.div
                                 key={index}
                                 className="bg-[#008080]/90 p-5 rounded-lg shadow-md hover:shadow-lg transition text-white"
+                                variants={cardVariants}
                             >
                                 <div className="mb-3">{card.icon}</div>
                                 <h3 className="font-semibold text-lg mb-1">{card.title}</h3>
                                 <p className="text-sm text-white/90">{card.text}</p>
-                            </div>
+                            </motion.div>
                         ))}
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
 
-              
-                <div>
+                {/* Right Image */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    variants={imageVariants}
+                >
                     <Image
                         src="/images/teachers/why.jpg"
                         alt="Students"
@@ -69,10 +111,8 @@ export default function WhyChooseUs() {
                         height={370}
                         className="border-primary border-8 rounded-b-full rounded-tl-full rounded-left-full object-cover"
                     />
-                </div>
-
+                </motion.div>
             </div>
-        </section >
+        </section>
     );
 }
-

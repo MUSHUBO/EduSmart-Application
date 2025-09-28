@@ -57,6 +57,30 @@ const events = [
   },
 ];
 
+// Variants for card animation
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+// Variants for staggered text
+const textContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const textItem = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 export default function EventSlider() {
   const sliderRef = useRef(null);
   const [showArrows, setShowArrows] = useState(false);
@@ -77,13 +101,19 @@ export default function EventSlider() {
 
   return (
     <section
-      className="py-10  relative"
+      className="py-10 relative"
       onMouseEnter={() => setShowArrows(true)}
       onMouseLeave={() => setShowArrows(false)}
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <div className="text-center mb-8">
+        <motion.div
+          className="text-center mb-8"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <span className="text-orange-500 font-semibold uppercase">
             Events
           </span>
@@ -94,7 +124,7 @@ export default function EventSlider() {
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout.
           </p>
-        </div>
+        </motion.div>
 
         {/* Slider */}
         <div className="relative">
@@ -102,7 +132,11 @@ export default function EventSlider() {
             {events.map((event) => (
               <motion.div
                 key={event.id}
-                whileHover={{ y: -6 }}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                whileHover={{ y: -8 }}
                 transition={{ type: "spring", stiffness: 200 }}
                 className="px-3"
               >
@@ -122,13 +156,26 @@ export default function EventSlider() {
                     />
                   </motion.div>
 
-                  {/* Info */}
-                  <div className="mt-3">
-                    <div className="flex items-center text-xs text-gray-500 gap-2 mb-1">
+                  {/* Info with stagger */}
+                  <motion.div
+                    className="mt-3"
+                    variants={textContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
+                    <motion.div
+                      className="flex items-center text-xs text-gray-500 gap-2 mb-1"
+                      variants={textItem}
+                    >
                       <FaMapMarkerAlt className="text-orange-500" />
                       {event.location}
-                    </div>
-                    <div className="flex items-center gap-4 text-xs text-gray-500 mb-2">
+                    </motion.div>
+
+                    <motion.div
+                      className="flex items-center gap-4 text-xs text-gray-500 mb-2"
+                      variants={textItem}
+                    >
                       <span className="flex items-center gap-1">
                         <FaCalendarAlt className="text-orange-500" />{" "}
                         {event.date}
@@ -136,25 +183,38 @@ export default function EventSlider() {
                       <span className="flex items-center gap-1">
                         <FaClock className="text-orange-500" /> {event.time}
                       </span>
-                    </div>
-                    <h3 className="text-base font-bold text-gray-900">
+                    </motion.div>
+
+                    <motion.h3
+                      className="text-base font-bold text-gray-900"
+                      variants={textItem}
+                    >
                       {event.title}
-                    </h3>
-                    <p className="text-gray-600 text-xs mt-1">
+                    </motion.h3>
+
+                    <motion.p
+                      className="text-gray-600 text-xs mt-1"
+                      variants={textItem}
+                    >
                       {event.description}
-                    </p>
+                    </motion.p>
 
                     {/* Button */}
-                    <button className="mt-3 bg-orange-500 text-white font-semibold text-xs px-4 py-1.5 rounded shadow hover:bg-orange-600 transition">
+                    <motion.button
+                      className="mt-3 bg-orange-500 text-white font-semibold text-xs px-4 py-1.5 rounded shadow hover:bg-orange-600 transition"
+                      variants={textItem}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       JOIN EVENT →
-                    </button>
-                  </div>
+                    </motion.button>
+                  </motion.div>
                 </div>
               </motion.div>
             ))}
           </Slider>
 
-          {/* Custom Arrows (padding added) */}
+          {/* Custom Arrows */}
           {showArrows && (
             <>
               <button
