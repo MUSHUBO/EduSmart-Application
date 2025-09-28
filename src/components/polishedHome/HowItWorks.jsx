@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const steps = [
   {
@@ -29,38 +30,81 @@ const steps = [
   },
 ];
 
+// Variants for animations
+const containerVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { staggerChildren: 0.2, duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8, y: 40 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 export default function HowItWorks() {
   return (
-    <section className="relative py-10 ">
+    <section className="relative py-16 overflow-hidden">
       <div className="container mx-auto px-6 text-center">
         {/* Section Heading */}
-        <div className="mb-12">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <span className="uppercase text-xs tracking-widest font-semibold text-orange-500 bg-orange-100 px-3 py-1 rounded">
             Process
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mt-4">
             How <span className="text-green-500">It Works?</span>
           </h2>
-        </div>
+        </motion.div>
 
         {/* Background Line */}
-        <div className="absolute inset-0 top-32 hidden md:block">
+        <motion.div
+          className="absolute inset-0 top-32 hidden md:block"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <Image
             src="/images/process/process-line.png"
             alt="background line"
             fill
             className="object-contain pointer-events-none"
           />
-        </div>
+        </motion.div>
 
         {/* Steps */}
-        <div className="relative grid gap-10 md:grid-cols-4 z-10">
+        <motion.div
+          className="relative grid gap-10 md:grid-cols-4 z-10"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {steps.map((step, index) => (
-            <div key={step.id} className="text-center">
+            <motion.div
+              key={step.id}
+              className="text-center"
+              variants={cardVariants}
+            >
               {/* Image */}
-              <div
-                className={`relative w-48 h-48 mx-auto mb-4 rounded-lg shadow-lg overflow-hidden transform 
-                ${index % 2 === 0 ? "-rotate-6" : "rotate-6"} hover:rotate-0 transition-transform duration-300`}
+              <motion.div
+                className={`relative w-44 h-44 mx-auto mb-4 rounded-lg shadow-lg overflow-hidden transform 
+                  ${index % 2 === 0 ? "-rotate-6" : "rotate-6"} hover:rotate-0 transition-transform duration-300`}
+                whileHover={{ scale: 1.05 }}
               >
                 <Image
                   src={step.img}
@@ -68,7 +112,7 @@ export default function HowItWorks() {
                   fill
                   className="object-cover"
                 />
-              </div>
+              </motion.div>
 
               {/* Info */}
               <h3 className="font-bold text-lg text-gray-900 dark:text-white">
@@ -77,9 +121,9 @@ export default function HowItWorks() {
               <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 max-w-xs mx-auto">
                 {step.desc}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
