@@ -2,12 +2,12 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { CirclePlus } from "lucide-react";
+
 
 // Images import
 import slide1 from "../../../public/assets/banner-slides/slide1.jpg";
 import slide2 from "../../../public/assets/banner-slides/slide2.jpg"
-import { CirclePlus } from "lucide-react";
-
 
 // Slides Data
 const slidesData = [
@@ -58,7 +58,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden mt-2 mb-24 font-sans bg-gray-900">
+    <div className="relative w-full h-screen overflow-hidden font-sans bg-gray-900">
       {/* Background Image */}
       <AnimatePresence mode="wait">
         <motion.div
