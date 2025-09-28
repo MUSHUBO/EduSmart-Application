@@ -8,6 +8,7 @@ const NavLinks = ({ pathname }) => {
     { href: "/contact", label: "Contact" },
     { href: "/admission", label: "Admission" },
     { href: "/assignment", label: "Assignments" },
+    { href: "/student_life", label: "Student life" },
     { href: "/noticeBoard", label: "Notice" },
   ];
 

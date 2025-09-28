@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 // Images import
 import slide1 from "../../../public/assets/banner-slides/slide1.jpg";
 import slide2 from "../../../public/assets/banner-slides/slide2.jpg"
-import Image from "next/image";
+import { CirclePlus } from "lucide-react";
+
 
 // Slides Data
 const slidesData = [
@@ -102,17 +104,22 @@ const Hero = () => {
           >
             {slide.subtitle}
           </motion.p>
+
+          {/* buttons */}
           <motion.div
             variants={itemVariants}
             className="mt-8 flex flex-col sm:flex-row gap-4"
           >
-            <button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+            <button className="flex items-center justify-center gap-2 bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+              <CirclePlus className="" />
               Learn More
             </button>
-            <button className="bg-white hover:bg-gray-200 text-blue-600 font-semibold py-3 px-6 rounded-lg transition-colors">
+            <button className="flex items-center justify-center gap-2 bg-white hover:bg-secondary text-primary hover:text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+              <CirclePlus className="" />
               Our Courses
             </button>
           </motion.div>
+
         </motion.div>
       </div>
     </div>

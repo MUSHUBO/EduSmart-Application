@@ -25,7 +25,11 @@ export default function Home() {
         <OurPages />
         <Marketing />
         <TeachersSection />
-        <WhyChooseUs />
+      </div>
+
+      <WhyChooseUs />
+
+      <div className="w-11/12 mx-auto">
         <PhotoGallery />
         <EventSlider/>
         <HowItWorks/>
