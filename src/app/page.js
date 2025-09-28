@@ -24,7 +24,6 @@ export default function Home() {
       <div className="w-10/12 mx-auto">
         <AboutUsSection />
         <OurBenefits />
-        <OurPages />
         <Marketing />
         <TeachersSection />
       </div>
@@ -37,6 +36,7 @@ export default function Home() {
         <HowItWorks />
         <Testimonials />
         <FAQ />
+        <OurPages />
       </div>
 
     </div>

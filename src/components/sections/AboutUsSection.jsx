@@ -1,13 +1,30 @@
+"use client";
 import React from 'react';
 import { BookOpen, Globe, Phone, ArrowRight, Quote } from 'lucide-react';
 import Image from 'next/image';
+import { motion } from "framer-motion";
 
 
 // Images import
 import mainImagePath from "../../../public/assets/about_us-images/about-us01.jpg"
 
-
 const AboutUsSection = () => {
+
+  // Helper Component for the service cards
+  const ServiceCard = ({ icon: Icon, title, description }) => {
+    return (
+      <div className="flex items-start space-x-4">
+        <div className="flex-shrink-0 p-3 bg-orange-100 text-orange-500 rounded-lg shadow-sm">
+          <Icon className="w-7 h-7" />
+        </div>
+        <div>
+          <h3 className="text-xl font-bold text-popover mb-1">{title}</h3>
+          <p className="text-gray-600">{description}</p>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <section className="py-16 md:py-24 font-sans">
       <div className="max-w-7xl mx-auto ">
@@ -15,6 +32,7 @@ const AboutUsSection = () => {
 
           {/* === LEFT COLUMN: Image and Service Badge === */}
           <div className="relative flex-1 w-full lg:w-5/12">
+            
             {/* Main image container with colored borders */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               {/* Orange top bar */}
@@ -30,27 +48,39 @@ const AboutUsSection = () => {
               <div className="absolute bottom-0 right-0 h-2/3 w-10 bg-teal-700 opacity-100 rounded-tl-[100px]" />
             </div>
 
-            {/* 30 Years of Quality Service Badge */}
-            <div className="absolute -left-10 bottom-12 w-72 p-4 bg-orange-500 shadow-xl text-center">
-              {/* Assuming the icon is a custom image, using a placeholder div */}
-              {/* For a real project, replace the div with a proper <img> tag */}
-              <div className="w-12 h-12 mx-auto mb-2 bg-orange-300 rounded-full flex items-center justify-center border-2 border-white">
-                {/* Placeholder for the icon in the image */}
-                <span className="text-xl text-white font-bold">💡</span>
+            {/* 5+ Years of Quality Service Badge */}
+            <motion.div
+              className="absolute -left-12 bottom-20 w-72 py-6 px-4 border-l-5 border-primary bg-muted shadow-xl text-center"
+              animate={{ y: [0, -30, 0] }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut"
+              }}
+            >
+              <div className="flex justify-center items-center gap-4">
+                <div>
+                  <span className="text-5xl text-primary font-medium">5+</span>
+                </div>
+
+                <div className="text-popover text-lg font-medium text-start">
+                  <p className="">YEARS EXPERIENCE</p>
+                  <p className="leading-tight">JUST ACHIVED</p>
+                </div>
               </div>
-              <p className="text-white text-lg font-bold">5+ Years Of</p>
-              <p className="text-white text-base leading-tight">Quality Service</p>
-            </div>
+            </motion.div>
+            {/* Left End */}
           </div>
 
           {/* === RIGHT COLUMN: Content === */}
-          <div className="w-full flex-1 pt-16 lg:pt-0">
+          <div className="w-full flex-1 pt-6 lg:pt-0">
             <p className="text-lg font-semibold uppercase tracking-widest text-orange-500 mb-2">
-              About Us
+              <span className='bg-accent-foreground/50 px-4 py-1 rounded-md'>About Us</span>
             </p>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-popover mb-6 leading-tight">
               Our Education System <br />
-              <span className="text-orange-500">Inspires</span> You More.
+              <span className="text-secondary">Inspires</span> You More.
             </h2>
 
             <p className="text-gray-600 mb-8 max-w-xl">
@@ -59,7 +89,7 @@ const AboutUsSection = () => {
               even slightly believable. If you are going to use passage...
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10">
               {/* Aligned to the Left layout */}
               <div className='flex flex-col gap-6'>
                 {/* Education Services Card */}
@@ -85,8 +115,8 @@ const AboutUsSection = () => {
                     It is a long established fact that a reader will be distracted by the
                     content of a page when looking at its reader for the long words layout.
                   </p>
-                  <div className="absolute bottom-0 right-22 text-6xl font-extrabold text-primary opacity-50 select-none -translate-x-3 translate-y-3">
-                    <Quote />
+                  <div className="absolute -bottom-1 right-22 text-6xl font-extrabold text-secondary select-none -translate-x-3 translate-y-3">
+                    <Quote className="w-10 h-10 fill-secondary" />
                   </div>
                 </div>
               </div>
@@ -95,7 +125,7 @@ const AboutUsSection = () => {
 
 
             {/* Call to Action and Contact */}
-            <div className="flex items-center space-x-6 mt-16">
+            <div className="flex sm:flex-row flex-col-reverse gap-6 items-center sm:mt-16">
               <button className="flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
                 DISCOVER MORE <ArrowRight className="ml-2 w-5 h-5" />
               </button>
@@ -118,21 +148,6 @@ const AboutUsSection = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-// Helper Component for the service cards
-const ServiceCard = ({ icon: Icon, title, description }) => {
-  return (
-    <div className="flex items-start space-x-4">
-      <div className="flex-shrink-0 p-3 bg-orange-100 text-orange-500 rounded-lg shadow-sm">
-        <Icon className="w-7 h-7" />
-      </div>
-      <div>
-        <h3 className="text-xl font-bold text-gray-800 mb-1">{title}</h3>
-        <p className="text-gray-600">{description}</p>
-      </div>
-    </div>
   );
 };
 
