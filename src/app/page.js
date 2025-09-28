@@ -1,4 +1,5 @@
 import EventSlider from "@/components/polishedHome/EventSlider";
+import HowItWorks from "@/components/polishedHome/HowItWorks";
 import PhotoGallery from "@/components/polishedHome/PhotoGallery";
 import TeachersSection from "@/components/polishedHome/TeachersSection";
 import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
@@ -31,6 +32,7 @@ export default function Home() {
       <div className="w-11/12 mx-auto">
         <PhotoGallery />
         <EventSlider/>
+        <HowItWorks/>
         <Testimonials />
         <FAQ />
       </div>
