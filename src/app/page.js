@@ -1,3 +1,4 @@
+import EventSlider from "@/components/polishedHome/EventSlider";
 import PhotoGallery from "@/components/polishedHome/PhotoGallery";
 import TeachersSection from "@/components/polishedHome/TeachersSection";
 import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
@@ -25,6 +26,7 @@ export default function Home() {
         <TeachersSection />
         <WhyChooseUs />
         <PhotoGallery />
+        <EventSlider/>
         <Testimonials />
         <FAQ />
       </div>
