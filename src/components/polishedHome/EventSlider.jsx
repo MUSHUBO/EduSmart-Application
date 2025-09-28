@@ -23,7 +23,7 @@ const events = [
     location: "25/B Milford Road, New York",
     description:
       "There are many variations of passages the majority have some injected humour.",
-    img: "/images/teachers/01.jpg",
+    img: "/images/events/01 (2).jpg",
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const events = [
     location: "25/B Milford Road, New York",
     description:
       "Explore creative science projects made by students and learn together.",
-    img: "/images/teachers/02.jpg",
+    img: "/images/events/02 (2).jpg",
   },
   {
     id: 3,
@@ -43,7 +43,7 @@ const events = [
     location: "25/B Milford Road, New York",
     description:
       "An event full of joy, cultural performances, music, and celebration.",
-    img: "/images/teachers/03.jpg",
+    img: "/images/events/03 (2).jpg",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ const events = [
     location: "25/B Milford Road, New York",
     description:
       "Exciting sports competitions and teamwork activities all day long.",
-    img: "/images/teachers/04.jpg",
+    img: "/images/events/04 (2).jpg",
   },
 ];
 
@@ -117,10 +117,10 @@ export default function EventSlider() {
           <span className="text-orange-500 font-semibold uppercase">
             Events
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
             Our Upcoming <span className="text-orange-500">Events</span>
           </h2>
-          <p className="text-gray-600 mt-2 max-w-2xl mx-auto text-sm">
+          <p className="text-gray-900 dark:text-white mt-2 max-w-2xl mx-auto text-sm">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout.
           </p>
@@ -145,13 +145,13 @@ export default function EventSlider() {
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4 }}
-                    className="w-full h-40 overflow-hidden rounded-lg"
+                    className="w-full h-50 overflow-hidden rounded-lg"
                   >
                     <Image
                       src={event.img}
                       alt={event.title}
                       width={400}
-                      height={200}
+                      height={250}
                       className="w-full h-full object-cover"
                     />
                   </motion.div>
