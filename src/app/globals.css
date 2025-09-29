@@ -101,6 +101,14 @@ body {
 
   --accent: oklch(0.9388 0.031 184.17);
   --accent-foreground: oklch(0.9328 0.0372 47.44);
+}
 
 
+
+/* achievements section background image */
+.bg-achievements {
+  background-image: url('/assets/achievements-imgs/01.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
