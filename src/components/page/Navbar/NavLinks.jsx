@@ -18,7 +18,7 @@ const NavLinks = ({ pathname }) => {
         <li key={link.href}>
           <Link
             href={link.href}
-            className={`cursor-pointer dark:hover:text-primary text-white hover:text-primary duration-200 
+            className={`cursor-pointer duration-200 
               ${pathname === link.href ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
           >
             {link.label}
