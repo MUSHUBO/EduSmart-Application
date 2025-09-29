@@ -16,11 +16,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      staggerChildren: 0.2,
-      duration: 0.6,
-      ease: "easeOut",
-    },
+    transition: { staggerChildren: 0.2, duration: 0.6, ease: "easeOut" },
   },
 };
 
@@ -34,12 +30,13 @@ const cardVariants = {
   },
 };
 
+// Social Icon Animation (right → left)
 const iconVariants = {
-  hidden: { x: 40, opacity: 0 },
+  hidden: { opacity: 0, x: 50 },
   visible: (i) => ({
-    x: 0,
     opacity: 1,
-    transition: { delay: i * 0.12, duration: 0.35, ease: "easeOut" },
+    x: 0,
+    transition: { delay: i * 0.15, duration: 0.45, ease: "easeOut" },
   }),
 };
 
@@ -131,7 +128,7 @@ export default function TeachersSection() {
             return (
               <motion.div
                 key={teacher.id}
-                className="relative bg-card shadow-md rounded-xl overflow-hidden group cursor-pointer"
+                className="relative bg-card shadow-md rounded-xl overflow-hidden group cursor-pointer p-4"
                 variants={cardVariants}
                 whileHover={{ y: -10 }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
@@ -139,48 +136,48 @@ export default function TeachersSection() {
                 onMouseLeave={() => setIsHovered(false)}
               >
                 {/* Image */}
-                <motion.div
-                  className="relative w-full h-72 overflow-hidden"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.4 }}
-                >
+                <div className="relative w-full h-72 overflow-hidden rounded-lg">
                   <img
                     src={teacher.img}
                     alt={teacher.name}
-                    className="w-full h-full object-cover rounded-t-xl"
+                    className="w-full h-full object-cover"
                   />
 
-                  {/* Social Icons */}
-                  <div className="absolute top-3 right-3 flex flex-col gap-3">
-                    {[
-                      teacher.socials.facebook,
-                      teacher.socials.twitter,
-                      teacher.socials.linkedin,
-                      teacher.socials.instagram,
-                    ].map((link, i) => (
-                      <motion.a
-                        key={i}
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        custom={i}
-                        variants={iconVariants}
-                        initial="hidden"
-                        animate={isHovered ? "visible" : "hidden"}
-                        className="bg-primary text-white p-2 rounded-full shadow hover:bg-primary/80"
-                      >
-                        {i === 0 && <FaFacebookF />}
-                        {i === 1 && <FaTwitter />}
-                        {i === 2 && <FaLinkedinIn />}
-                        {i === 3 && <FaInstagram />}
-                      </motion.a>
-                    ))}
+                  {/* Social Icons (center vertically) */}
+                  <div className="absolute inset-0 flex items-center justify-end">
+                    <div className="flex flex-col gap-4">
+                      {[
+                        teacher.socials.facebook,
+                        teacher.socials.twitter,
+                        teacher.socials.linkedin,
+                        teacher.socials.instagram,
+                      ].map((link, i) => (
+                        <motion.a
+                          key={i}
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          custom={i}
+                          variants={iconVariants}
+                          initial="hidden"
+                          animate={isHovered ? "visible" : "hidden"}
+                          className="bg-primary text-white p-3 rounded-full shadow 
+                                     transition-colors duration-300 
+                                     hover:bg-secondary"
+                        >
+                          {i === 0 && <FaFacebookF />}
+                          {i === 1 && <FaTwitter />}
+                          {i === 2 && <FaLinkedinIn />}
+                          {i === 3 && <FaInstagram />}
+                        </motion.a>
+                      ))}
+                    </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Info */}
-                <div className="text-center flex justify-between items-center my-5">
-                  <div className="pl-5 text-left">
+                <div className="flex justify-between items-center mt-5">
+                  <div className="text-left">
                     <h3 className="text-lg font-semibold text-foreground">
                       {teacher.name}
                     </h3>
@@ -188,7 +185,10 @@ export default function TeachersSection() {
                       {teacher.role}
                     </p>
                   </div>
-                  <div className="border rounded-l-2xl p-3 bg-primary/80 text-white">
+                  <div
+                    className="border rounded-full p-3 bg-primary/80 text-white cursor-pointer 
+                               transition-colors duration-300 hover:bg-secondary"
+                  >
                     <FaShare />
                   </div>
                 </div>
