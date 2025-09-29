@@ -4,6 +4,7 @@ import PhotoGallery from "@/components/polishedHome/PhotoGallery";
 import TeachersSection from "@/components/polishedHome/TeachersSection";
 import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
 import AboutUsSection from "@/components/sections/AboutUsSection";
+import Achievements from "@/components/sections/Achievements";
 import FAQ from "@/components/sections/FAQ";
 import Hero from "@/components/sections/Hero";
 import Marketing from "@/components/sections/Marketing/Marketing";
@@ -23,8 +24,12 @@ export default function Home() {
       {/* Other Section */}
       <div className="w-10/12 mx-auto">
         <AboutUsSection />
+      </div>
+
+      <Achievements />
+
+      <div className="w-10/12 mx-auto">
         <OurBenefits />
-        <Marketing />
         <TeachersSection />
       </div>
 
@@ -37,6 +42,7 @@ export default function Home() {
         <Testimonials />
         <FAQ />
         <OurPages />
+        <Marketing />
       </div>
 
     </div>
