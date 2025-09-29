@@ -79,8 +79,8 @@ const Navbar = () => {
     <div
       id="navbarId"
       className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isFixed
-        ? "backdrop-blur-xl bg-background/60 shadow-md"
-        : "bg-transparent"
+        ? "backdrop-blur-xl bg-background/85 font-extrabold shadow-sm shadow-accent"
+        : "bg-transparent text-white dark:text-white"
         }`}
     >
       {/* Navbar */}
@@ -130,7 +130,7 @@ const Navbar = () => {
 
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-7 items-center text-base-100 font-medium dark:text-white menu-horizontal px-1">
+          <ul className="flex gap-7 items-center font-medium menu-horizontal px-1">
             <NavLinks pathname={pathname} />
           </ul>
         </div>

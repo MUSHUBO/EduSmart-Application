@@ -25,14 +25,31 @@ const AboutUsSection = () => {
     );
   };
 
+  // Variants for defining reusable animations in Framer Motion
+  const leftVariant = {
+    hidden: { opacity: 0, x: -100 },
+    visible: { opacity: 1, x: 0 }
+  };
+
+  const rightVariant = {
+    hidden: { opacity: 0, x: 100 },
+    visible: { opacity: 1, x: 0 }
+  };
+
   return (
     <section className="py-16 md:py-24 font-sans">
       <div className="max-w-7xl mx-auto ">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row justify-center items-center gap-12 lg:gap-16">
 
           {/* === LEFT COLUMN: Image and Service Badge === */}
-          <div className="relative flex-1 w-full lg:w-5/12">
-            
+          <motion.div
+            className="relative flex-1 w-full lg:w-5/12"
+            variants={leftVariant}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 1, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             {/* Main image container with colored borders */}
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               {/* Orange top bar */}
@@ -50,7 +67,7 @@ const AboutUsSection = () => {
 
             {/* 5+ Years of Quality Service Badge */}
             <motion.div
-              className="absolute -left-12 bottom-20 w-72 py-6 px-4 border-l-5 border-primary bg-muted shadow-xl text-center"
+              className="absolute  -left-7 md:-left-12  bottom-14 md:bottom-20  w-62 md:w-72  py-2 md:py-6  px-4 border-l-5 border-primary bg-muted shadow-xl text-center"
               animate={{ y: [0, -30, 0] }}
               transition={{
                 duration: 4,
@@ -61,21 +78,29 @@ const AboutUsSection = () => {
             >
               <div className="flex justify-center items-center gap-4">
                 <div>
-                  <span className="text-5xl text-primary font-medium">5+</span>
+                  <span className="text-2xl md:text-3xl lg:text-5xl text-primary font-medium">5+</span>
                 </div>
 
-                <div className="text-popover text-lg font-medium text-start">
+                <div className="text-popover text-md md:text-lg font-medium text-start">
                   <p className="">YEARS EXPERIENCE</p>
                   <p className="leading-tight">JUST ACHIVED</p>
                 </div>
               </div>
             </motion.div>
+
             {/* Left End */}
-          </div>
+          </motion.div>
 
           {/* === RIGHT COLUMN: Content === */}
-          <div className="w-full flex-1 pt-6 lg:pt-0">
-            <p className="text-lg font-semibold uppercase tracking-widest text-orange-500 mb-2">
+          <motion.div
+            className="w-full flex-1 pt-6 lg:pt-0"
+            variants={rightVariant}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 1, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <p className="text-md font-semibold uppercase tracking-widest text-orange-500 mb-2">
               <span className='bg-accent-foreground/50 px-4 py-1 rounded-md'>About Us</span>
             </p>
             <h2 className="text-4xl sm:text-5xl font-extrabold text-popover mb-6 leading-tight">
@@ -89,7 +114,7 @@ const AboutUsSection = () => {
               even slightly believable. If you are going to use passage...
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:pb-10 border-b border-gray-300">
               {/* Aligned to the Left layout */}
               <div className='flex flex-col gap-6'>
                 {/* Education Services Card */}
@@ -110,12 +135,12 @@ const AboutUsSection = () => {
               {/*  Aligned to the right layout */}
               <div className="relative">
                 {/* Overlay Quote Box */}
-                <div className="w-52 h-full p-4 bg-amber-100 rounded-2xl hidden lg:block">
+                <div className="w-52 h-52 p-5 bg-amber-100 rounded-2xl hidden lg:block">
                   <p className="text-gray-600 mb-2">
                     It is a long established fact that a reader will be distracted by the
                     content of a page when looking at its reader for the long words layout.
                   </p>
-                  <div className="absolute -bottom-1 right-22 text-6xl font-extrabold text-secondary select-none -translate-x-3 translate-y-3">
+                  <div className="absolute bottom-5 right-22 text-6xl font-extrabold text-secondary select-none -translate-x-3 translate-y-3">
                     <Quote className="w-10 h-10 fill-secondary" />
                   </div>
                 </div>
@@ -123,9 +148,10 @@ const AboutUsSection = () => {
 
             </div>
 
+            <div className='divider divide-gray-800'></div>
 
             {/* Call to Action and Contact */}
-            <div className="flex sm:flex-row flex-col-reverse gap-6 items-center sm:mt-16">
+            <div className="flex sm:flex-row flex-col-reverse gap-6 items-center sm:mt-4">
               <button className="flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
                 DISCOVER MORE <ArrowRight className="ml-2 w-5 h-5" />
               </button>
@@ -143,7 +169,7 @@ const AboutUsSection = () => {
               </div>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </div>
