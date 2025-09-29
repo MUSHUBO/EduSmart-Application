@@ -79,7 +79,7 @@ const Navbar = () => {
     <div
       id="navbarId"
       className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isFixed
-        ? "backdrop-blur-xl bg-background/85 font-extrabold shadow-sm shadow-accent"
+        ? "backdrop-blur-xl bg-background/90 font-extrabold shadow-sm shadow-accent"
         : "bg-transparent text-white dark:text-white"
         }`}
     >
