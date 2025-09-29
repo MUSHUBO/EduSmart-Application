@@ -13,8 +13,8 @@ const achievementsData = [
 
 const Achievements = () => {
   const [ref, inView] = useInView({
-    triggerOnce: true, // একবার scroll করলে animation শুধু একবার চলবে
-    threshold: 0.3,    // 30% section view হলে trigger হবে
+    triggerOnce: true,
+    threshold: 0.3,
   });
 
   return (
