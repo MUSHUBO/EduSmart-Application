@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -71,8 +71,9 @@ export default function HowItWorks() {
         </motion.div>
 
         {/* Background Line */}
+        {/* Background Line */}
         <motion.div
-          className="absolute inset-0 top-32 hidden md:block"
+          className="absolute inset-0 top-16 hidden md:block"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
@@ -85,6 +86,7 @@ export default function HowItWorks() {
             className="object-contain pointer-events-none"
           />
         </motion.div>
+
 
         {/* Steps */}
         <motion.div
@@ -102,9 +104,12 @@ export default function HowItWorks() {
             >
               {/* Image */}
               <motion.div
-                className={`relative w-44 h-44 mx-auto mb-4 rounded-lg shadow-lg overflow-hidden transform 
-                  ${index % 2 === 0 ? "-rotate-6" : "rotate-6"} hover:rotate-0 transition-transform duration-300`}
-                whileHover={{ scale: 1.05 }}
+                className={`relative w-44 h-44 mx-auto mb-4 overflow-hidden transform transition-transform duration-300
+                  ${index % 2 === 0 ? "-rotate-6" : "rotate-6"} hover:rotate-0`}
+                whileHover={{ scale: index === 2 ? 1.15 : 1.05, y: index === 2 ? -10 : 0 }}
+                style={{
+                  scale: index === 2 ? 1.1 : 1, // third image slightly bigger by default
+                }}
               >
                 <Image
                   src={step.img}
@@ -115,7 +120,7 @@ export default function HowItWorks() {
               </motion.div>
 
               {/* Info */}
-              <h3 className="font-bold text-lg text-gray-900 dark:text-white">
+              <h3 className="font-bold text-lg md:text-xl text-gray-900 dark:text-white">
                 {step.title}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 max-w-xs mx-auto">
