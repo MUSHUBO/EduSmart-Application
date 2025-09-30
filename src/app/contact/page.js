@@ -8,10 +8,10 @@ import SendMassage from "@/components2/contact/SendMassage";
 
 export default function ContactPage() {
   return (
-    <section className="bg-background py-8 lg:py-16 w-11/12 mx-auto">
-
-      <div className="container mx-auto space-y-2">
+    <section className=" mx-auto">
       <ContactBanner></ContactBanner>
+      <div className="container mx-auto space-y-2">
+
     <ContactSection></ContactSection>
      <SendMassage></SendMassage>
       <OurLocation></OurLocation> 
