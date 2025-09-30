@@ -11,11 +11,11 @@ const contactInfo = [
 export default function ContactSection() {
   return (
     <section className="py-12 bg-[var(--background)]">
-      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
+      <div className=" mt-5 max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
         {contactInfo.map((item, i) => (
           <div
             key={i}
-            className="bg-[var(--card)] text-[var(--card-foreground)] rounded-xl shadow-md hover:shadow-lg p-6 text-center transition-all duration-300 border-b-6 border-primary border-r-4 "
+            className="bg-[var(--card)] text-[var(--card-foreground)] rounded-xl shadow-2xl  hover:shadow-lg p-6 text-center transition-all duration-300 border-b-6 border-primary border-r-6 "
           >
            
             <div className="w-16 h-16 mx-auto flex items-center justify-center rounded-full bg-[var(--primary)] text-[var(--primary-foreground)] mb-4">

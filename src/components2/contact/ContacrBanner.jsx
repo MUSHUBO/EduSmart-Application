@@ -25,7 +25,9 @@ export default function ContactBanner({ title}) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-             
+             <h1 className="text-3xl md:text-6xl font-bold text-white mb-4">
+                    Contact us 
+             </h1>
            
      
             <div className="text-xl text-primary mb-3">
