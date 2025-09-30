@@ -5,6 +5,7 @@ import TeachersSection from "@/components/polishedHome/TeachersSection";
 import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
 import AboutUsSection from "@/components/sections/AboutUsSection";
 import Achievements from "@/components/sections/Achievements";
+import Blogs from "@/components/sections/Bolgs/Blogs";
 import CoursesSection from "@/components/sections/CoursesSection";
 import FAQ from "@/components/sections/FAQ";
 import Hero from "@/components/sections/Hero";
@@ -44,6 +45,7 @@ export default function Home() {
       </div>
       <Testimonials />
       <div className="w-11/12 mx-auto">
+      <Blogs></Blogs>
         <FAQ />
         <OurPages />
         <Marketing />
