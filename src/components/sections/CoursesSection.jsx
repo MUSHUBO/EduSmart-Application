@@ -48,7 +48,7 @@ export default function CoursesSection() {
                 height={500}
                 className="w-full h-[220px] object-cover rounded-lg"
               />
-              <span className="absolute top-6 left-6 bg-orange-500 text-white px-3 py-1 text-sm rounded-md">
+              <span className="absolute top-6 left-6 bg-primary text-white px-3 py-1 text-sm rounded-md">
                 {course.category}
               </span>
             </div>
@@ -62,15 +62,15 @@ export default function CoursesSection() {
                   <span>{course.lectures} Lessons</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <FaStar className="text-yellow-400" />
+                  <FaStar className="text-secondary" />
                   <span>(4.0)</span>
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-xl text-popover font-bold mb-2 h-16">{course.title}</h3>
-              <p className="text-gray-500 text-sm mb-4 h-14">
-                {course.description.slice(0, 100)}...
+              <h3 className="text-xl text-popover font-bold mb-2">{course.title}</h3>
+              <p className="text-gray-500 text-sm mb-4">
+                {course.description.slice(0, 130)}...
               </p>
 
               <div className='divider divide-gray-800'></div>
@@ -81,11 +81,11 @@ export default function CoursesSection() {
                   <FaUsers className="text-orange-500" />
                   <span>{course.students} Seats</span>
                 </div>
-                <div className="flex items-center gap-1 text-gray-600">
+                <div className="flex font-medium items-center gap-1 text-gray-600">
                   <MdOutlineWatchLater className="text-orange-500" />
-                  <span>{course.duration}</span>
+                  <span>{course.duration} Year</span>
                 </div>
-                <span className="bg-orange-500 text-white px-3 py-1 rounded-lg">
+                <span className="bg-primary text-white px-3 py-1 rounded-lg">
                   ${course.price}
                 </span>
               </div>
