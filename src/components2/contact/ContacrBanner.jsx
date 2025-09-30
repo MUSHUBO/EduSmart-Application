@@ -8,7 +8,7 @@ export default function ContactBanner({ title}) {
     <section className="relative w-full h-[70vh] md:h-[50vh] overflow-hidden flex items-center justify-center">
 
       <Image
-        src='/assets/achievements-imgs/01.jpg'
+        src='/images/admission/admission.jpg'
         alt='Student Contact'
         fill
         priority
