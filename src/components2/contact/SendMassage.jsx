@@ -1,17 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
 import Image from "next/image";
 
-export default function SendMassage() {
+export default function SendMessage() {
   const [form, setForm] = useState({
     parentName: "",
     email: "",
-    phone: "",
     studentName: "",
-    studentAge: "",
-    program: "",
     message: "",
   });
 
@@ -27,15 +23,6 @@ export default function SendMassage() {
     setLoading(true);
     setFeedback({ type: "", text: "" });
 
-    if (Number(form.studentAge) < 10) {
-      setFeedback({
-        type: "error",
-        text: "Student age must be at least 10 years old.",
-      });
-      setLoading(false);
-      return;
-    }
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -48,14 +35,14 @@ export default function SendMassage() {
         setForm({
           parentName: "",
           email: "",
-          phone: "",
           studentName: "",
-          studentAge: "",
-          program: "",
           message: "",
         });
       } else {
-        setFeedback({ type: "error", text: "Something went wrong. Try again!" });
+        setFeedback({
+          type: "error",
+          text: "Something went wrong. Try again!",
+        });
       }
     } catch (err) {
       setFeedback({ type: "error", text: "Error: Could not submit form." });
@@ -66,17 +53,19 @@ export default function SendMassage() {
 
   return (
     <section className="py-16 px-4 bg-[var(--background)]">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        {/* Left Side - Image */}
-        <div className="relative w-full h-[400px] lg:h-full">
-       
-          <div className="absolute left-0 top-0 bottom-0 w-6 bg-[var(--secondary)] skew-y-6 rounded-tr-lg rounded-br-lg z-10"></div>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+        
+        <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-xl">
+          {/* Orange Shape */}
+          <div className="absolute top-0 left-0 h-full w-[120px] bg-[var(--primary)] [clip-path:polygon(0_0,100%_0,20%_100%,0%_100%)] rounded-l-xl z-12"></div>
 
+          {/* Image */}
           <Image
-            src="/assets/contact/03.jpeg" 
+            src="/assets/contact/01.jpg"
             alt="Students"
             fill
-            className="object-cover rounded-lg"
+            className="object-cover rounded-l-xl"
+            priority
           />
         </div>
 
@@ -145,9 +134,7 @@ export default function SendMassage() {
           {feedback.text && (
             <p
               className={`mt-4 text-sm ${
-                feedback.type === "success"
-                  ? "text-green-600"
-                  : "text-red-600"
+                feedback.type === "success" ? "text-green-600" : "text-red-600"
               }`}
             >
               {feedback.text}
