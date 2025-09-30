@@ -41,12 +41,14 @@ export default function Home() {
         <PhotoGallery />
         <EventSlider />
         <HowItWorks />
-        <Testimonials />
+      </div>
+      <Testimonials />
+      <div className="w-11/12 mx-auto">
         <FAQ />
         <OurPages />
         <Marketing />
-      </div>
 
+      </div>
     </div>
   );
 }
