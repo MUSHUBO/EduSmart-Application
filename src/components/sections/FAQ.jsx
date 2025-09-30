@@ -1,8 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function FAQ() {
+  useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    }, []);
   const faqData1 = [
     {
       question: "What are the school hours at Little Learners Academy?",
@@ -41,7 +49,7 @@ export default function FAQ() {
   ];
 
   return (
-    <div className="w-full px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-18">
+    <div data-aos="fade-up" className="w-full px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-18">
       <div className="text-center max-w-3xl mx-auto px-6">
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-popover dark:text-popover">
           Frequently <span className="text-secondary">Asked Questions</span>
@@ -75,7 +83,7 @@ function AccordionItem({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="p-0.5 rounded-lg bg-gradient-to-r from-primary to-secondary dark:from-secondary dark:to-primary">
+    <div data-aos="fade-up" className="p-0.5 rounded-lg bg-gradient-to-r from-primary to-secondary dark:from-secondary dark:to-primary">
       <div className="bg-muted dark:bg-muted rounded-lg">
         <button
           onClick={() => setIsOpen(!isOpen)}

@@ -1,11 +1,20 @@
+"use client"
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { CgProfile } from "react-icons/cg";
 import { FaRegComments } from "react-icons/fa";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Blogs = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    }, []);
     // const articles = [
     //     {
     //         id: 1,
@@ -36,9 +45,8 @@ const Blogs = () => {
     //         link: "#"
     //     }
     // ];
-
     return (
-        <section className=' px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-24'>
+        <section data-aos="fade-up" className=' px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-24'>
             <div className="text-center max-w-3xl mx-auto px-6">
                 <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-popover dark:text-popover">
                     Latest News <span className="text-secondary">& Blog</span>
@@ -47,8 +55,8 @@ const Blogs = () => {
                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                 </p>
             </div>
-            <div className='max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6'>
-                <div className="relative p-2">
+            <div data-aos="fade-up" className='max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6'>
+                <div data-aos="fade-left" className="relative p-2">
                     <div className='bg-muted dark:bg-muted max-w-[380px] mx-auto group overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-shadow'>
 
 
@@ -113,7 +121,7 @@ const Blogs = () => {
                 </div>
 
 
-                <div className="max-w-[380px] mx-auto rounded-2xl shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
+                <div data-aos="fade-right" className="max-w-[380px] mx-auto rounded-2xl shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
                     <div className="bg-muted group rounded-t-2xl dark:bg-muted p-5 space-y-2 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
                         <div>
                             {/* Category Tag */}

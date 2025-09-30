@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Briefcase, ChevronLeft, ChevronRight } from "lucide-react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const people = [
   {
     id: 1,
@@ -84,6 +86,12 @@ export default function Parents() {
     const profileSize = isMobile ? 60 : 80;
     const containerSize = containerRadius * 2 + 100;
     const getRotation = React.useCallback(index => (index - activeIndex) * (360 / people.length), [activeIndex]);
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    }, []);
     const next = () => setActiveIndex(i => (i + 1) % people.length);
     const prev = () => setActiveIndex(i => (i - 1 + people.length) % people.length);
     const handleProfileClick = React.useCallback(index => {
@@ -97,9 +105,10 @@ export default function Parents() {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, []);
+
     return <div className="flex flex-col items-center p-4 relative min-h-[400px] transition-colors duration-300">
 
-        <div className="text-center max-w-3xl mx-auto px-6">
+        <div data-aos="fade-up" className="text-center max-w-3xl mx-auto px-6">
             <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-popover dark:text-popover">
                 Our <span className="text-secondary">Parents Say's </span>
             </h2>
