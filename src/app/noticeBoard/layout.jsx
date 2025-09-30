@@ -38,7 +38,7 @@ export default function DashboardLayout({ children }) {
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col fixed top-0 left-0 h-full bg-white dark:bg-[var(--muted)] border-r shadow-lg transition-all duration-300 w-20 lg:w-64">
     
-        <nav className="flex-1 p-4  lg:p-4 lg:py-8 lg:mt-7 space-y-1 lg:space-y-2">
+        <nav className="flex-1 p-4  lg:p-4 lg:py-8 lg:mt-8 space-y-1 lg:space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;

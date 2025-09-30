@@ -56,8 +56,8 @@ export default function SendMessage() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
         
         <div className="relative w-full h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-xl">
-          {/* Orange Shape */}
-          <div className="absolute top-0 left-0 h-full w-[120px] bg-[var(--primary)] [clip-path:polygon(0_0,100%_0,20%_100%,0%_100%)] rounded-l-xl z-12"></div>
+  
+          <div className="absolute top-0 left-0 h-full w-[60px] bg-[var(--primary)] [clip-path:polygon(0_0,100%_0,20%_100%,0%_100%)] rounded-l-xl z-12"></div>
 
           {/* Image */}
           <Image
