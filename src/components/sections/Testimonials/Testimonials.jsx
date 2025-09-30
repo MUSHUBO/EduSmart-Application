@@ -171,7 +171,6 @@ function Testimonials() {
                            </div>
                         </div>
                         <div className="bg-secondary w-[90%] mx-auto h-1.5 rounded-full">
-                           hello
                         </div>
                      </div>
                   ))}
