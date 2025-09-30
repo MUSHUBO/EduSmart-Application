@@ -103,9 +103,11 @@ function Testimonials() {
       ],
    };
 
+
+
    return (
       <section
-         className="relative bg-fixed bg-center bg-cover bg-no-repeat py-12 md:py-16 lg:py-24"
+         className="relative bg-fixed bg-center bg-cover bg-no-repeat px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-24"
          style={{
             backgroundImage:
                "url('images/portrait-successful-young-students-showing-thumbs-up.jpg')",
@@ -167,6 +169,9 @@ function Testimonials() {
                               {/* Quote Icon */}
                               <FaQuoteRight className="text-secondary text-4xl opacity-80" />
                            </div>
+                        </div>
+                        <div className="bg-secondary w-[90%] mx-auto h-1.5 rounded-full">
+                           hello
                         </div>
                      </div>
                   ))}
