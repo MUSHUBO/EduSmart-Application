@@ -34,15 +34,11 @@ export default function DashboardLayout({ children }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-[var(--background)]">
+    <div className="relative min-h-screen bg-[var(--background)] mt-4 ">
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex flex-col fixed top-0 left-0 h-full bg-white dark:bg-[var(--muted)] border-r shadow-lg transition-all duration-300 w-20 lg:w-64">
-        <div className="p-4 border-b">
-          <h2 className="hidden lg:block font-bold text-xl text-[var(--primary)]">
-            Digital Notice Board
-          </h2>
-        </div>
-        <nav className="flex-1 p-2 lg:p-4 space-y-1 lg:space-y-2">
+    
+        <nav className="flex-1 p-4  lg:p-4 lg:py-8 lg:mt-7 space-y-1 lg:space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -50,7 +46,7 @@ export default function DashboardLayout({ children }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-3 rounded-lg px-3 py-2 font-medium transition
+                className={`flex items-center gap-3 rounded-lg px-3 py-3 font-medium transition
                   ${isActive
                     ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
                     : "text-[var(--foreground)] hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"}
@@ -69,7 +65,7 @@ export default function DashboardLayout({ children }) {
         <>
           <aside className="fixed inset-0 z-50 w-64 bg-white dark:bg-[var(--muted)] border-r shadow-lg flex flex-col">
             <div className="flex items-center justify-between p-4 border-b">
-              <h2 className="font-bold text-lg text-[var(--primary)]">Digital Notice Board</h2>
+              
               <button onClick={() => setOpen(false)} className="text-gray-600">
                 <X />
               </button>
