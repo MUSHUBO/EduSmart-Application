@@ -1,19 +1,16 @@
 import { NextResponse } from "next/server";
 import { dbConnect, collectionNamesObj } from "@/library/dbConnect";
 
+// ✅ POST (already done)
 export async function POST(req) {
   try {
     console.log("POST /api/courses called");
 
     const coursesCollection = await dbConnect(collectionNamesObj.courseCollection);
-    console.log("Collection obtained:", coursesCollection.collectionName);
-
     const body = await req.json();
-    console.log("Request body:", body);
 
     // Validation
     if (!body.title || !body.instructor) {
-      console.log("Validation failed");
       return NextResponse.json(
         { success: false, message: "Title and Instructor required" },
         { status: 400 }
@@ -24,7 +21,6 @@ export async function POST(req) {
     body.createdAt = new Date();
 
     const result = await coursesCollection.insertOne(body);
-    console.log("Insert result:", result);
 
     return NextResponse.json({
       success: true,
@@ -32,7 +28,28 @@ export async function POST(req) {
       data: result,
     });
   } catch (error) {
-    console.error("Server error in /api/courses:", error);
+    console.error("Server error in POST /api/courses:", error);
+    return NextResponse.json(
+      { success: false, message: "Server error", error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+// ✅ GET (newly added)
+export async function GET() {
+  try {
+    console.log("GET /api/courses called");
+
+    const coursesCollection = await dbConnect(collectionNamesObj.courseCollection);
+    const courses = await coursesCollection.find().toArray();
+
+    return NextResponse.json({
+      success: true,
+      data: courses,
+    });
+  } catch (error) {
+    console.error("Server error in GET /api/courses:", error);
     return NextResponse.json(
       { success: false, message: "Server error", error: error.message },
       { status: 500 }
