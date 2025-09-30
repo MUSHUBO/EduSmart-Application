@@ -6,36 +6,36 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 
 const Blogs = () => {
-    const articles = [
-        {
-            id: 1,
-            image: "https://i.ibb.co.com/Hk7dxhd/01.jpg",
-            date: "June 18, 2025",
-            author: "Alicia Davis",
-            comments: 3,
-            title: "There Are Many Variations Passage Have Suffered Available.",
-            link: "#"
-        },
-        {
-            id: 2,
-            image: "https://source.unsplash.com/random/400x300?study",
-            date: "July 02, 2025",
-            author: "Michael Johnson",
-            comments: 5,
-            title: "Learning Never Exhausts the Mind, Explore New Knowledge Daily.",
-            link: "#",
-            category: "Learning"
-        },
-        {
-            id: 3,
-            image: "https://source.unsplash.com/random/400x300?team",
-            date: "August 12, 2025",
-            author: "Sophia Brown",
-            comments: 2,
-            title: "Collaboration and Teamwork Are the Keys to Growth and Success.",
-            link: "#"
-        }
-    ];
+    // const articles = [
+    //     {
+    //         id: 1,
+    //         image: "https://i.ibb.co.com/Hk7dxhd/01.jpg",
+    //         date: "June 18, 2025",
+    //         author: "Alicia Davis",
+    //         comments: 3,
+    //         title: "There Are Many Variations Passage Have Suffered Available.",
+    //         link: "#"
+    //     },
+    //     {
+    //         id: 2,
+    //         image: "https://source.unsplash.com/random/400x300?study",
+    //         date: "July 02, 2025",
+    //         author: "Michael Johnson",
+    //         comments: 5,
+    //         title: "Learning Never Exhausts the Mind, Explore New Knowledge Daily.",
+    //         link: "#",
+    //         category: "Learning"
+    //     },
+    //     {
+    //         id: 3,
+    //         image: "https://source.unsplash.com/random/400x300?team",
+    //         date: "August 12, 2025",
+    //         author: "Sophia Brown",
+    //         comments: 2,
+    //         title: "Collaboration and Teamwork Are the Keys to Growth and Success.",
+    //         link: "#"
+    //     }
+    // ];
 
     return (
         <section className=' px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-24'>
@@ -47,7 +47,7 @@ const Blogs = () => {
                     It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.
                 </p>
             </div>
-            <div className='flex flex-col lg:flex-row justify-center gap-6'>
+            <div className='max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-center gap-6'>
                 <div className="relative p-2">
                     <div className='bg-muted dark:bg-muted max-w-[380px] mx-auto group overflow-hidden rounded-2xl shadow-md hover:shadow-lg transition-shadow'>
 
@@ -114,7 +114,7 @@ const Blogs = () => {
 
 
                 <div className="max-w-[380px] mx-auto rounded-2xl shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between">
-                    <div className="bg-muted group dark:bg-muted p-5 space-y-2 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                    <div className="bg-muted group rounded-t-2xl dark:bg-muted p-5 space-y-2 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
                         <div>
                             {/* Category Tag */}
                             <Link href={"/"} className="relative inline-flex items-center justify-center px-3 py-3 md:px-4 md:py-2 lg:px-5 lg:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-secondary group">
@@ -139,7 +139,7 @@ const Blogs = () => {
                             <span className="text-base text-popover-foreground dark:text-popover-foreground font-semibold">July 02, 2025</span>
                         </div>
                     </div>
-                    <div className="bg-muted group dark:bg-muted space-y-2 p-5 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                    <div className="bg-muted group rounded-b-2xl dark:bg-muted space-y-2 p-5 shadow-md hover:shadow-lg transition-shadow overflow-hidden">
                         <div>
                             {/* Category Tag */}
                             <Link href={"/"} className="relative inline-flex items-center justify-center px-3 py-3 md:px-4 md:py-2 lg:px-5 lg:py-2.5 overflow-hidden font-mono font-medium tracking-tighter text-white bg-secondary group">
