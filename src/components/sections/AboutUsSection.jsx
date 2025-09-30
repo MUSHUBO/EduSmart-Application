@@ -3,6 +3,7 @@ import React from 'react';
 import { BookOpen, Globe, Phone, ArrowRight, Quote } from 'lucide-react';
 import Image from 'next/image';
 import { motion } from "framer-motion";
+import Link from 'next/link';
 
 
 // Images import
@@ -152,9 +153,11 @@ const AboutUsSection = () => {
 
             {/* Call to Action and Contact */}
             <div className="flex sm:flex-row flex-col-reverse gap-6 items-center sm:mt-4">
-              <button className="flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
+              <Link
+                href={'/about'}
+                className="flex items-center justify-center px-8 py-3 text-lg font-semibold text-white bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 transition duration-300">
                 DISCOVER MORE <ArrowRight className="ml-2 w-5 h-5" />
-              </button>
+              </Link>
 
               <div className="flex items-center space-x-3">
                 <div className="p-3 bg-teal-600 text-white rounded-full">
