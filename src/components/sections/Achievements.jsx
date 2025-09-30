@@ -44,7 +44,7 @@ const Achievements = () => {
               {/* Count with scroll-triggered animation */}
               <p className="text-3xl md:text-4xl font-extrabold mb-1">
                 {inView ? (
-                  <CountUp end={achievement.count} duration={2} separator="," />
+                  <CountUp end={achievement.count} duration={4} separator="," />
                 ) : (
                   0
                 )}

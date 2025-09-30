@@ -3,15 +3,15 @@ import { MongoClient, ServerApiVersion } from "mongodb"
 
 export const collectionNamesObj = {
   userCollection: "users",
- 
+  courseCollection: "courses",
 };
 
 
 let cachedClient = null;
 
 export async function dbConnect(collectionName) {
-  const uri = process.env.MONGODB_URL;
-  const dbName = process.env.DB_NAME;
+  const uri = process.env.MONGODB_URL
+  const dbName = process.env.DB_NAME
 
   if (!cachedClient) {
     cachedClient = new MongoClient(uri, {
