@@ -12,6 +12,7 @@ import Hero from "@/components/sections/Hero";
 import Marketing from "@/components/sections/Marketing/Marketing";
 import OurBenefits from "@/components/sections/OurBenefits";
 import OurPages from "@/components/sections/OurPages";
+import Parents from "@/components/sections/Parents/Parents";
 import Testimonials from "@/components/sections/Testimonials/Testimonials";
 
 export default function Home() {
@@ -46,10 +47,9 @@ export default function Home() {
       <Testimonials />
       <div className="w-11/12 mx-auto">
       <Blogs></Blogs>
+      <Parents></Parents>
         <FAQ />
-        <OurPages />
         <Marketing />
-
       </div>
     </div>
   );
