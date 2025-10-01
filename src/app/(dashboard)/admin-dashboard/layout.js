@@ -52,11 +52,9 @@ function AdminLayout({ children }) {
                 {/* Main Content Area */}
                 <main className="flex-1 p-6 bg-gray-50">{children}</main>
             </div>
-
             {/* Sidebar / Drawer */}
             <Sidebar />
         </div>
     );
 }
-
 export default AdminLayout;
