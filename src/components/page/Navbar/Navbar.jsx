@@ -19,37 +19,38 @@ const Navbar = () => {
   const pathname = usePathname()
   const router = useRouter()
 
-  console.log(pathname);
-  const logoutHandler = () => {
-    logoutAccount()
-      .then(() => {
-        toast.success('Logout Successfully', {
-          position: "top-right",
-          autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce
-        });
-        router.push("/")
-      })
-      .then(error => {
-        toast.error(`${error.code}`, {
-          position: "top-right",
-          autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce
-        });
-      })
-  }
+  // console.log(pathname);
+  
+  const logoutHandler = async () => {
+    try {
+      await logoutAccount();
+      toast.success('Logout Successfully', {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce
+      });
+      router.push("/");
+    } catch (error) {
+      toast.error(error?.code || error?.message || "Logout failed", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce
+      });
+    }
+  };
+
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
