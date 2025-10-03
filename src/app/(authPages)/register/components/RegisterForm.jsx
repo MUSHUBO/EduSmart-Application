@@ -10,6 +10,7 @@ import { Bounce, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import GoogleButton from '../../components/GoogleButton/GoogleButton';
 import GitHubButton from '../../components/GitHubButton/GitHubButton';
+import axios from 'axios';
 
 const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -89,22 +90,38 @@ const RegisterForm = () => {
           photoURL: attachmentUrl
         }
 
+        const userInfo = {
+          name: getname,
+          email: data.email,
+          role: "user",
+          photo: attachmentUrl,
+          created_at: new Date().toISOString(),
+          last_login: new Date().toISOString()
+        }
+
         profileUpdateNamePhoto(updateProfile)
-          .then(() => {
-            toast.success(' Profile create Successfully', {
-              position: "top-right",
-              autoClose: 1000,
-              hideProgressBar: false,
-              closeOnClick: false,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-              transition: Bounce
-            });
-            router.push("/")
-            reset();
-            console.log(updateProfile);
+          .then(async () => {
+            try {
+              const res = await axios.post("/api/users", userInfo);
+              setMessage(res.data.message);
+              console.log("Signup Success:", res.data);
+              toast.success(' Profile create Successfully', {
+                position: "top-right",
+                autoClose: 1000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce
+              });
+              router.push("/")
+              reset();
+            } catch (error) {
+              console.error("Signup Error:", error.response?.data || error.message);
+              setMessage(error.response?.data?.message || "Something went wrong!");
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -129,7 +146,7 @@ const RegisterForm = () => {
 
 
   return <div className="flex items-center justify-center p-4">
-        <div className="w-full max-w-md">
+    <div className="w-full max-w-md">
       { }
       <div className="signin-card bg-muted dark:bg-muted border-2 border-primary/45 dark:border-primary/45 rounded-lg shadow-sm p-6">
         { }
