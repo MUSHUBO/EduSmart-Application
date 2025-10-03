@@ -2,6 +2,14 @@
 import { useEffect, useState } from 'react';
 import { FaPhone, FaEnvelope } from 'react-icons/fa';
 
+
+const usersPromise  = async () =>{
+    const res = await fetch("process.env.LOCAL_DOMAIN/api/allUsers");
+    const result = res.json();
+    return result;
+}
+
+console.log(usersPromise)
 const AllStudent = () => {
     //   const [students, setStudents] = useState([]);
     const students = [
