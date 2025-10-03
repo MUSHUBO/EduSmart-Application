@@ -41,7 +41,7 @@ export default function CoursesSection() {
           >
             {/* Image */}
             <div className="relative p-4">
-              <img
+              <Image
                 src={course.image}
                 alt={course.title}
                 width={400}
