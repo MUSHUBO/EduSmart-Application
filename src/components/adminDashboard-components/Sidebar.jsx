@@ -68,11 +68,11 @@ export default function Sidebar() {
                 <FaChevronRight className="transition-transform group-open:rotate-90" />
               </summary>
               <div className="pl-6 mt-2 flex flex-col space-y-2">
-                <Link href="/teachers" className="flex items-center space-x-2 hover:text-gray-200">
+                <Link href="/admin-dashboard/all-teachers" className="flex items-center space-x-2 hover:text-gray-200">
                   <FaList size={14} />
                   <span>All Teachers</span>
                 </Link>
-                <Link href="/teachers/add" className="flex items-center space-x-2 hover:text-gray-200">
+                <Link href="/admin-dashboard/add-teacher" className="flex items-center space-x-2 hover:text-gray-200">
                   <FaPlus size={14} />
                   <span>Add Teacher</span>
                 </Link>

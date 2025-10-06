@@ -4,6 +4,7 @@ import { MongoClient, ServerApiVersion } from "mongodb"
 export const collectionNamesObj = {
   userCollection: "users",
   courseCollection: "courses",
+  studentCollection: "students",
 };
 
 
@@ -22,7 +23,7 @@ export async function dbConnect(collectionName) {
       }
     });
     await cachedClient.connect();
-      
+
   }
 
   return cachedClient.db(dbName).collection(collectionName);
