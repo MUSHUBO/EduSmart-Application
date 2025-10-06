@@ -17,14 +17,14 @@ export default function AddTeacherForm() {
     formData.append('upload_preset', process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET);
 
     const res = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+      `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`,
       { method: 'POST', body: formData }
     );
 
     if (!res.ok) throw new Error('Image upload failed');
 
     const data = await res.json();
-    return data.secure_url; // ✅ Image hosted link
+    return data.secure_url; 
   };
 
   // 🔹 2. Handle form submit
