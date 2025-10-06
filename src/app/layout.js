@@ -1,19 +1,24 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_Bengali, Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "../components/page/Footer/footer";
 import Navbar from "@/components/page/Navbar/Navbar";
 import AuthProvider from "@/Context/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+
+
+const poppins = Poppins({
   subsets: ["latin"],
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const notoBengali = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  variable: "--font-noto-bengali",
+  weight: ["400", "500", "600", "700"],
 });
+
 
 export const metadata = {
   title: "EduSmart",
@@ -21,15 +26,22 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  
   return (
-    <html lang="en">
+    <html  lang="en" suppressHydrationWarning={true}>
+       
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        suppressHydrationWarning={true} 
+          className={`${poppins.variable} ${notoBengali.variable} font-sans antialiased`}
+        suppressHydrationWarning={true}
+     
       >
+      
+       
         <AuthProvider>
           <div className="bg-background">
             <Navbar></Navbar>
+            
+       
             <div className="min-h-[calc(100vh-479px)]">
               {children}
             </div>
@@ -37,6 +49,7 @@ export default function RootLayout({ children }) {
           </div>
           <ToastContainer />
         </AuthProvider>
+        
 
       </body>
     </html>
