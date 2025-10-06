@@ -6,12 +6,12 @@ const AllTeachers = () => {
   const [teachers, setTeachers] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Fetch teachers from API
   useEffect(() => {
     const fetchTeachers = async () => {
       try {
-        const res = await fetch(`/api/teachers`, { cache: 'no-store' });
+        const res = await fetch('/api/teachers', { cache: 'no-store' });
         const data = await res.json();
-
         if (data.success && Array.isArray(data.data)) {
           setTeachers(data.data);
         } else {
@@ -23,7 +23,6 @@ const AllTeachers = () => {
         setLoading(false);
       }
     };
-
     fetchTeachers();
   }, []);
 
@@ -39,8 +38,8 @@ const AllTeachers = () => {
             <th className="p-3">#</th>
             <th className="p-3">Photo</th>
             <th className="p-3">Name</th>
-            <th className="p-3">Phone</th>
             <th className="p-3">Email</th>
+            <th className="p-3">Phone</th>
             <th className="p-3">Date Joined</th>
           </tr>
         </thead>
@@ -50,35 +49,26 @@ const AllTeachers = () => {
             teachers.map((teacher, index) => (
               <tr key={teacher._id || index} className="border-b hover:bg-gray-50">
                 <td className="p-3">{index + 1}</td>
-
                 <td className="p-3">
                   <img
-                    src={teacher.teacherPhoto || 'https://i.pravatar.cc/100?u=' + teacher.teacherEmail}
-                    alt={teacher.teacherFirstName}
+                    src={teacher.teacherPhoto || `https://i.pravatar.cc/100?u=${teacher.teacherEmail}`}
+                    alt={teacher.firstName}
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 </td>
-
-                <td className="p-3 font-semibold">
-                  {teacher.teacherFirstName} {teacher.teacherLastName}
-                </td>
-
+                <td className="p-3 font-semibold">{teacher.firstName} {teacher.lastName}</td>
                 <td className="p-3 text-blue-600">
-                  <a href={`tel:${teacher.teacherPhone}`} className="flex items-center gap-2">
-                    <FaPhone /> {teacher.teacherPhone}
+                  <a href={`mailto:${teacher.email}`} className="flex items-center gap-2">
+                    <FaEnvelope /> {teacher.email}
                   </a>
                 </td>
-
                 <td className="p-3 text-blue-600">
-                  <a href={`mailto:${teacher.teacherEmail}`} className="flex items-center gap-2">
-                    <FaEnvelope /> {teacher.teacherEmail}
+                  <a href={`tel:${teacher.phone}`} className="flex items-center gap-2">
+                    <FaPhone /> {teacher.phone}
                   </a>
                 </td>
-
                 <td className="p-3 text-gray-600">
-                  {teacher.createdAt
-                    ? new Date(teacher.createdAt).toLocaleDateString()
-                    : '—'}
+                  {teacher.createdAt ? new Date(teacher.createdAt).toLocaleDateString() : '—'}
                 </td>
               </tr>
             ))
