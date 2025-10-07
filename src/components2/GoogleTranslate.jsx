@@ -13,7 +13,7 @@ export default function GoogleTranslate() {
       new window.google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,bn",
+          includedLanguages: "en,bn,hi,es,ar",
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
         },
         "google_translate_element"
@@ -48,38 +48,51 @@ export default function GoogleTranslate() {
     setOpen(false);
   };
 
+   const languages = [
+    { code: "en", label: "English" },
+    { code: "bn", label: "বাংলা" },
+    { code: "hi", label: "हिन्दी" },
+    { code: "es", label: "Español" },
+    { code: "ar", label: "العربية" }, 
+  ];
   return (
-    <div className="relative">
-      {/* Hidden Google Element */}
-      <div
-        id="google_translate_element"
-        style={{ position: "absolute", left: "-9999px", top: 0 }}
-      />
+   
+    
+    <div className="relative select-none">
+      <div id="google_translate_element" style={{ position: "absolute", left: "-9999px" }} />
 
-      {/* Button */}
+      {/* 🌐 Globe button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2  py-2  p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors "
+        className="flex items-center justify-center gap-2 p-2 rounded-full
+                   text-[var(--foreground)]
+                   hover:bg-[var(--muted)] hover:text-[var(--primary)]
+                   transition-all duration-200"
       >
-        <FaGlobe className=" text-primary  transition md:w-6 md:h-6  lg:w-7 h-7" />
-   
+        <FaGlobe className="text-[var(--primary)] w-6 h-6" />
       </button>
 
-      {/* Dropdown */}
+      {/* 🌏 Dropdown list */}
       {open && (
-        <div className="absolute right-0 mt-2 w-32 bg-white border rounded-lg shadow-lg z-50">
-          <button
-            onClick={() => changeLanguage("en")}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-          >
-            En
-          </button>
-          <button
-            onClick={() => changeLanguage("bn")}
-            className="block w-full text-left px-4 py-2 hover:bg-gray-100"
-          >
-            Bn
-          </button>
+        <div
+          className="absolute right-0 mt-2 w-36 rounded-lg shadow-lg border
+                     border-[var(--border)] bg-[var(--background)]
+                     text-[var(--foreground)] z-50"
+        >
+          {languages.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => changeLanguage(l.code)}
+              className={`block w-full text-left px-4 py-2 transition-colors
+                ${
+                  lang === l.code
+                    ? "bg-[var(--primary)] text-[var(--primary-foreground)]"
+                    : "hover:bg-[var(--muted)] hover:text-[var(--primary)]"
+                }`}
+            >
+              {l.label}
+            </button>
+          ))}
         </div>
       )}
     </div>
