@@ -59,10 +59,10 @@ export default function GoogleTranslate() {
       {/* Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 px-3 py-2 rounded-md bg-primary text-white hover:bg-primary/80 transition"
+        className="flex items-center gap-2  py-2  p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors "
       >
-        <FaGlobe className="w-4 h-4" />
-        <span>{lang === "en" ? "English" : "বাংলা"}</span>
+        <FaGlobe className=" text-primary  transition md:w-6 md:h-6  lg:w-7 h-7" />
+   
       </button>
 
       {/* Dropdown */}
@@ -72,13 +72,13 @@ export default function GoogleTranslate() {
             onClick={() => changeLanguage("en")}
             className="block w-full text-left px-4 py-2 hover:bg-gray-100"
           >
-            English
+            En
           </button>
           <button
             onClick={() => changeLanguage("bn")}
             className="block w-full text-left px-4 py-2 hover:bg-gray-100"
           >
-            বাংলা
+            Bn
           </button>
         </div>
       )}
