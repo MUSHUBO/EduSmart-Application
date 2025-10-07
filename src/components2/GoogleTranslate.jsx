@@ -7,7 +7,7 @@ export default function GoogleTranslate() {
   const [lang, setLang] = useState("en");
   const [open, setOpen] = useState(false);
 
-  // Initialize Google Translate
+
   useEffect(() => {
     window.googleTranslateElementInit = () => {
       new window.google.translate.TranslateElement(
@@ -32,7 +32,6 @@ export default function GoogleTranslate() {
     }
   }, []);
 
-  // Change language
   const changeLanguage = (code) => {
     setLang(code);
     const combo = document.querySelector("select.goog-te-combo");
