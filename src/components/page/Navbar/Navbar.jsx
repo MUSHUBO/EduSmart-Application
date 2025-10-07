@@ -65,8 +65,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       const navbar = document.getElementById("navbarId");
-      if (!navbar) return;
-
+      if (!navbar) return; // ✅ Null check
       const navbarHeight = navbar.offsetHeight;
       if (window.scrollY > navbarHeight) {
         setIsFixed(true);
