@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
-import { useAuth } from '@/Hoks/UseAuth/UseAuth';
+import { useAuth } from '@/Hooks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
 import NavLinks from './NavLinks';
 import Image from 'next/image';
@@ -147,7 +147,7 @@ const Navbar = () => {
         </div>
 
 
-        <div className='navbar-end gap-2 md:gap-5'>
+        <div className='navbar-end gap-2 md:gap-4'>
           {/* Light/Dark Mode Button */}
           <div>
             <button
@@ -158,11 +158,16 @@ const Navbar = () => {
             </button>
           </div>
 
+
+          {/* Language Change */}
+          <Translate></Translate>
+
+
           {/* Profile Dropdown */}
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:w-7 md:h-7 lg:w-8 h-8 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
+              className="md:w-7 md:h-7 lg:w-8 lg:h-8 mt-1 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
             >
               {user?.email ? (
                 <img
@@ -228,8 +233,6 @@ const Navbar = () => {
             )}
           </div>
 
-
-          <Translate></Translate>
 
           {/* Login/Logout button */}
           <div>

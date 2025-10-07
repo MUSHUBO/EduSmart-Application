@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
-import { useAuth } from '@/Hoks/UseAuth/UseAuth';
+import { useAuth } from '@/Hooks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
 import GoogleTranslate from '@/components2/Translate';
 

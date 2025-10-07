@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useAuth } from "@/Hoks/UseAuth/UseAuth";
+import { useAuth } from "@/Hooks/UseAuth/UseAuth";
 
 
 export default function AddCourse() {

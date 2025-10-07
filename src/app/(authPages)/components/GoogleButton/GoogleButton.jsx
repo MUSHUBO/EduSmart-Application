@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from '@/Hoks/UseAuth/UseAuth';
+import { useAuth } from '@/Hooks/UseAuth/UseAuth';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';

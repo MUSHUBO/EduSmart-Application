@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import profile from "../../../../../public/lotttie-file/profile.json"
 import Lottie from 'lottie-react';
 import Link from 'next/link';
-import { useAuth } from '@/Hoks/UseAuth/UseAuth';
+import { useAuth } from '@/Hooks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
 import GoogleButton from '../../components/GoogleButton/GoogleButton';
 import GitHubButton from '../../components/GitHubButton/GitHubButton';
