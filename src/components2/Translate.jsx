@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaGlobe } from "react-icons/fa";
 
-export default function GoogleTranslate() {
+export default function Translate() {
   const [lang, setLang] = useState("en");
   const [open, setOpen] = useState(false);
 
