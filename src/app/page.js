@@ -1,22 +1,34 @@
+import PhotoGallery from "@/components/polishedHome/PhotoGallery";
+import TeachersSection from "@/components/polishedHome/TeachersSection";
+import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
 import FAQ from "@/components/sections/FAQ";
 import Hero from "@/components/sections/Hero";
+import Marketing from "@/components/sections/Marketing/Marketing";
 import OurBenefits from "@/components/sections/OurBenefits";
 import OurPages from "@/components/sections/OurPages";
 import Testimonials from "@/components/sections/Testimonials/Testimonials";
 
-
 export default function Home() {
   return (
     <div>
-      <div className="mx-2">
+      
+      {/* Hero section with full width */}
+      <div>
         <Hero />
       </div>
+
+      {/* Other Section */}
       <div className="w-10/12 mx-auto">
         <OurBenefits />
         <FAQ />
         <Testimonials />
         <OurPages />
+<Marketing></Marketing>
+        <TeachersSection/>
+        <WhyChooseUs/>
+        <PhotoGallery/>
       </div>
+
     </div>
   );
 }

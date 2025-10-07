@@ -2,6 +2,7 @@
 
 @plugin "daisyui";
 
+
 /* :root {
   --color-primary: #FF8D4D;
   --color-secondary: #FFAE80;
@@ -59,25 +60,25 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --background: #FFF5F0;
+  --background: oklch(0.9851 0 0);
 
   --foreground: oklch(0.145 0 0);
   --card-foreground: oklch(0.145 0 0);
 
-  --popover:  oklch(0.145 0 0);
-  --popover-foreground: oklch(0.205 0 0);
+  --popover: oklch(0.1501 0.0383 265.54);
+  --popover-foreground: oklch(0.3001 0.0383 265.54);
 
-  --primary: oklch(0.7563 0.158564 48.0427);
+  --primary: #2fbfa7;
   --primary-foreground: oklch(0.985 0 0);
-  
-  --secondary: oklch(0.819 0.113 50.2);
+
+  --secondary: #ff7029;
   --secondary-foreground: oklch(0.205 0 0);
 
-  --muted: oklch(0.97 0 0);
+  --muted: oklch(1 0 0);
   --muted-foreground: oklch(0.556 0 0);
 
-  --accent: oklch(0.9233 0.044 50.42);
-  --accent-foreground: oklch(0.205 0 0);
+  --accent: oklch(0.9388 0.031 184.17);
+  --accent-foreground: oklch(0.9328 0.0372 47.44);
 }
 
 .dark {
@@ -89,17 +90,17 @@ body {
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.9 0 0);
 
-  --primary: oklch(0.7563 0.158564 48.0427);
+  --primary: oklch(0.7254 0.1225 178.53);
   --primary-foreground: oklch(0.205 0 0);
 
-  --secondary: oklch(0.819 0.113 50.2);
+  --secondary: oklch(0.7103 0.1913 43.17);
   --secondary-foreground: oklch(0.985 0 0);
 
   --muted: oklch(0.1608 0.0405 261.85);
   --muted-foreground: oklch(0.708 0 0);
 
-  --accent: oklch(0.9233 0.044 50.42);
-  --accent-foreground: oklch(0.985 0 0);
+  --accent: oklch(0.9388 0.031 184.17);
+  --accent-foreground: oklch(0.9328 0.0372 47.44);
 
 
 }
