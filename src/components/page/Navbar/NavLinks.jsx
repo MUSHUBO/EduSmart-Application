@@ -19,10 +19,15 @@ const NavLinks = ({ pathname }) => {
         { href: "/student_life", label: "Student Life" },
       ],
     },
-    { href: "/admission", label: "Admission" },
-    { href: "/assignment", label: "Assignments" },
+    {
+      label: "Pages",
+      children: [
+        { href: "/assignment", label: "Assignments" },
+        { href: "/library", label: "Library" },
+        { href: "/admission", label: "Admission" },
+      ],
+    },
     { href: "/noticeBoard", label: "Notice" },
-    { href: "/library", label: "Library" },
     { href: "/contact", label: "Contact" },
     { href: "/admin-dashboard", label: "DashBoard-1" },
   ];

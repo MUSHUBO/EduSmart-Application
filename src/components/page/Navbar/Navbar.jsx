@@ -64,7 +64,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const navbarHeight = document.getElementById("navbarId").offsetHeight;
+      const navbar = document.getElementById("navbarId");
+      if (!navbar) return;
+
+      const navbarHeight = navbar.offsetHeight;
       if (window.scrollY > navbarHeight) {
         setIsFixed(true);
       } else {
@@ -72,11 +75,9 @@ const Navbar = () => {
       }
     };
 
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
 
 
   // ata dashboard e asle jeno navbar na dekhai sei jonno
@@ -84,8 +85,6 @@ const Navbar = () => {
   if (currentPathname.includes("dashboard")) {
     return <></>;
   }
-
-
 
 
   return (
@@ -149,7 +148,7 @@ const Navbar = () => {
         </div>
 
 
-        <div className='navbar-end gap-2 md:gap-5 lg:gap-8'>
+        <div className='navbar-end gap-2 md:gap-5'>
           {/* Light/Dark Mode Button */}
           <div>
             <button
@@ -160,17 +159,77 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Profile Avatar */}
-          <div>
-            <div className='md:w-7 md:h-7 lg:w-8 h-8 rounded-full  '>
-              {
-                user?.email ?
-                  <img className='w-full rounded-full' src={user?.photoURL} alt={user?.photoURL} /> :
-                  <IoPersonSharp className='w-full h-full text-primary ' />
-              }
+          {/* Profile Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:w-7 md:h-7 lg:w-8 h-8 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
+            >
+              {user?.email ? (
+                <img
+                  className="w-full h-full object-cover rounded-full"
+                  src={user?.photoURL || "/default-avatar.png"}
+                  alt="User Avatar"
+                />
+              ) : (
+                <IoPersonSharp className="w-full h-full text-primary" />
+              )}
+            </button>
 
-            </div>
+            {/* Dropdown Menu */}
+            {isOpen && (
+              <div className="absolute right-0 mt-3 w-44 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 z-50">
+                {user?.email ? (
+                  <>
+                    <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+                        {user?.displayName || "User"}
+                      </p>
+                      <p className="text-xs text-gray-500 truncate dark:text-gray-400">
+                        {user?.email}
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/admin-dashboard"
+                      onClick={() => setIsOpen(false)}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                    >
+                      Dashboard
+                    </Link>
+
+                    <Link
+                      href="/my-profile"
+                      onClick={() => setIsOpen(false)}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                    >
+                      My Profile
+                    </Link>
+
+                    <button
+                      onClick={() => {
+                        logoutHandler();
+                        setIsOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                  >
+                    Login
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
+
+
           <Translate></Translate>
 
           {/* Login/Logout button */}
