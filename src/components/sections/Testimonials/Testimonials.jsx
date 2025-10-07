@@ -1,19 +1,14 @@
+
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import "./testimonials.css"
-import { FaArrowRight } from "react-icons/fa6";
-import { FaArrowLeft } from "react-icons/fa6";
-import { FaStar, FaQuoteRight } from "react-icons/fa";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
+import { FaArrowRight, FaArrowLeft, FaStar, FaQuoteRight } from "react-icons/fa";
 
 const PrevArrow = ({ onClick }) => (
    <button
-      className="absolute -left-9 md:-left-12 lg:-left-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted text-popover dark:text-popover border border-popover dark:border-popover dark:hover:bg-primary p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary duration-150"
+      className="absolute -left-9 md:-left-12 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800 text-black dark:text-white border border-gray-300 p-2 z-30 rounded-full shadow-md hover:bg-secondary duration-150"
       onClick={onClick}
    >
       <FaArrowLeft size={18} />
@@ -22,7 +17,7 @@ const PrevArrow = ({ onClick }) => (
 
 const NextArrow = ({ onClick }) => (
    <button
-      className="absolute -right-9 md:-right-12 lg:-right-15 top-1/2 -translate-y-1/2 bg-muted dark:bg-muted  text-popover dark:text-popover border border-popover dark:border-popover p-1 md:p-2 lg:p-3 z-30 rounded-sm shadow-md hover:bg-primary dark:hover:bg-primary duration-150"
+      className="absolute -right-9 md:-right-12 top-1/2 -translate-y-1/2 bg-white/80 dark:bg-gray-800 text-black dark:text-white border border-gray-300 p-2 z-30 rounded-full shadow-md hover:bg-secondary duration-150"
       onClick={onClick}
    >
       <FaArrowRight size={18} />
@@ -37,7 +32,7 @@ export const testimonials = [
       photo: "https://randomuser.me/api/portraits/women/65.jpg",
       rating: 5,
       feedback:
-         "EduSmart makes managing classes so much easier. I can track attendance, share notes, and communicate with students in one place."
+         "EduSmart makes managing classes so much easier. I can track attendance and communicate with students in one place.",
    },
    {
       id: 2,
@@ -46,7 +41,7 @@ export const testimonials = [
       photo: "https://randomuser.me/api/portraits/men/78.jpg",
       rating: 5,
       feedback:
-         "The platform is very user-friendly. I can access assignments, grades, and announcements anytime from my phone."
+         "The platform is very user-friendly. I can access assignments, grades, and announcements anytime from my phone.",
    },
    {
       id: 3,
@@ -55,7 +50,7 @@ export const testimonials = [
       photo: "https://randomuser.me/api/portraits/women/44.jpg",
       rating: 4,
       feedback:
-         "EduSmart helps me stay updated with my child’s progress and attendance. It’s very helpful for busy parents like me."
+         "EduSmart helps me stay updated with my child’s progress and attendance. It’s very helpful for busy parents like me.",
    },
    {
       id: 4,
@@ -64,7 +59,7 @@ export const testimonials = [
       photo: "https://randomuser.me/api/portraits/men/32.jpg",
       rating: 5,
       feedback:
-         "From managing teachers to scheduling exams, EduSmart has streamlined everything. It saves us a lot of paperwork."
+         "From managing teachers to scheduling exams, EduSmart has streamlined everything. It saves us a lot of paperwork.",
    },
    {
       id: 5,
@@ -73,21 +68,17 @@ export const testimonials = [
       photo: "https://randomuser.me/api/portraits/women/65.jpg",
       rating: 4,
       feedback:
-         "The digital library system in EduSmart is amazing. Students can easily check available books and request them online."
-   }
+         "The digital library system in EduSmart is amazing. Students can easily check available books and request them online.",
+   },
 ];
-
-
 
 function Testimonials() {
 
    const settings = {
-      className: "center",
-      centerMode: false,
       infinite: true,
-      slidesToShow: 2,
-      slidesToScroll: 1,
       speed: 500,
+      slidesToShow: 3, // Default desktop
+      slidesToScroll: 1,
       nextArrow: <NextArrow />,
       prevArrow: <PrevArrow />,
       autoplay: true,
@@ -95,27 +86,18 @@ function Testimonials() {
       pauseOnHover: true,
       responsive: [
          {
-            breakpoint: 1024,
+            breakpoint: 1024, // <= 1024px
             settings: {
                slidesToShow: 2,
                slidesToScroll: 1,
-               centerMode: false,
+               infinite: true,
             },
          },
          {
-            breakpoint: 768,
+            breakpoint: 768, // <= 768px
             settings: {
                slidesToShow: 1,
                slidesToScroll: 1,
-               centerMode: false,
-            },
-         },
-         {
-            breakpoint: 640,
-            settings: {
-               slidesToShow: 1,
-               slidesToScroll: 1,
-               centerMode: false,
             },
          },
       ],
@@ -123,61 +105,82 @@ function Testimonials() {
 
 
 
-
-   useEffect(() => {
-      AOS.init({
-         duration: 1000,
-         once: true,
-      });
-   }, []);
-
    return (
-      <div data-aos="fade-up" className="slider-container px-4 md:px-6 lg:px-12">
-         <div className="text-center">
-            <h2 className="text-3xl md:text-4xl text-popover dark:text-popover font-bold mb-4 md:mb-6 ">
-               Our Testimonials
-            </h2>
-            <h3 className="text-sm md:text-base text-popover-foreground dark:text-popover-foreground max-w-[800px] mx-auto font-medium mb-6 md:mb-8 lg:mb-12">
-               Our testimonials are heartfelt reflections of the nurturing environment er provide, where children flourish both ocodemically and emotionally.
-            </h3>
-         </div>
+      <section
+         className="relative bg-fixed bg-center bg-cover bg-no-repeat px-6 md:px-8 lg:px-12 py-12 md:py-16 lg:py-24"
+         style={{
+            backgroundImage:
+               "url('images/portrait-successful-young-students-showing-thumbs-up.jpg')",
+            backgroundAttachment: "fixed",
+         }}
+      >
+         {/* Dark Overlay */}
+         <div className="absolute inset-0 bg-black/50"></div>
 
-         <Slider {...settings}>
+         {/* Section Title */}
+         <div className="relative z-10 text-center max-w-6xl mx-auto">
+            <div className="text-center max-w-3xl mx-auto px-6">
+               <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white">
+                  What Our <span className="text-secondary">Students Say's</span>
+               </h2>
+               <p className="text-lg text-gray-200 mb-10 mt-3">
+                  It is a long established fact that a reader will be distracted by the
+                  readable content of a page when looking at its layout.
+               </p>
+            </div>
 
+            {/* Slider */}
+            <div className="px-4">
+               <Slider {...settings}>
+                  {testimonials.map((t) => (
+                     <div key={t.id} className="px-3">
+                        <div className="bg-muted dark:bg-muted rounded-2xl shadow-lg p-3 md:p-4 lg:p-6 h-full flex flex-col justify-between">
+                           {/* Rating Stars */}
+                           <div className="flex text-secondary mb-4">
+                              {[...Array(t.rating)].map((_, i) => (
+                                 <FaStar key={i} className="text-xl" />
+                              ))}
+                           </div>
 
-            {testimonials.map((t) => (
-               <div className="bg-muted mr-12 max-h-[400px] rounded-xl shadow-md p-6 relative">
-                  {/* Quote Text */}
-                  <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                     {t.feedback}
-                  </p>
+                           {/* Review Text */}
+                           <p className="text-popover-foreground text-base text-start leading-relaxed mb-6 flex-grow">
+                              {t.feedback}
+                           </p>
 
-                  {/* User Info */}
-                  <div className="flex items-center gap-4">
-                     <img
-                        src={t.photo}
-                        alt={t.photo}
-                        className="w-14 h-14 rounded-full object-cover shadow"
-                     />
-                     <div>
-                        <h4 className="font-semibold text-gray-800">Gordon D Novak</h4>
-                        <p className="text-sm text-gray-700">{t.role}</p>
-                        {/* Stars */}
-                        <div className="flex text-orange-500 mt-1">
-                           {[...Array(5)].map((_, i) => (
-                              <FaStar key={i} />
-                           ))}
+                           {/* Footer Section */}
+                           <div className="flex items-center justify-between mt-6">
+                              {/* Profile */}
+                              <div className="flex items-center gap-3">
+                                 <div className="w-14 h-14 p-1 border-dashed rounded-full border-2 border-secondary">
+                                    <img
+                                       src={t.photo}
+                                       alt={t.name}
+                                       className="w-full h-full rounded-full object-cover"
+                                    />
+                                 </div>
+                                 <div className="flex flex-col items-start">
+                                    <h4 className="font-bold text-lg text-popover dark:text-popover">
+                                       {t.name}
+                                    </h4>
+                                    <p className="text-sm font-bold text-orange-500">{t.role}</p>
+                                 </div>
+                              </div>
+
+                              {/* Quote Icon */}
+                              <FaQuoteRight className="text-secondary text-4xl opacity-80" />
+                           </div>
+                        </div>
+                        <div className="bg-secondary w-[90%] mx-auto h-1.5 rounded-full">
                         </div>
                      </div>
-                  </div>
+                  ))}
+               </Slider>
+            </div>
 
-                  {/* Quote Icon */}
-                  <FaQuoteRight className="text-teal-500 text-4xl absolute bottom-4 right-4 opacity-80" />
-               </div>
-            ))}
-         </Slider>
-      </div>
+         </div>
+      </section>
    );
 }
 
 export default Testimonials;
+

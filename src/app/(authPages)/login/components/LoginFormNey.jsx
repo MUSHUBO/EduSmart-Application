@@ -1,4 +1,5 @@
 "use client";
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import profile from "../../../../../public/lotttie-file/profile.json"
@@ -6,10 +7,10 @@ import Lottie from 'lottie-react';
 import Link from 'next/link';
 import { useAuth } from '@/Hoks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 import GoogleButton from '../../components/GoogleButton/GoogleButton';
 import GitHubButton from '../../components/GitHubButton/GitHubButton';
 import { checkLoginAttempt, recordFailedAttempt, resetAttempts } from '@/utils/loginLimiter';
+import axios from 'axios';
 const MailIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
     <polyline points="22,6 12,13 2,6"></polyline>
@@ -28,6 +29,8 @@ const LoginFormNey = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { loginAccount } = useAuth()
     const router = useRouter()
+    const searchParams = useSearchParams();
+    const redirect = searchParams.get("redirect") || "/";
     const [attemptInfo, setAttemptInfo] = useState({ locked: false, remaining: 0 });
     const {
         register,
@@ -50,22 +53,38 @@ const LoginFormNey = () => {
             return;
         }
         loginAccount(email, password)
-            .then(() => {
+            .then(async () => {
                 resetAttempts(email);
                 setAttemptInfo({ locked: false, remaining: 0 });
-                toast.success('Login Successfully', {
-                    position: "top-right",
-                    autoClose: 500,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce
-                });
-                router.push("/")
-                reset()
+
+                const userInfo = {
+                    email: email,
+                    created_at: new Date().toISOString(),
+                    last_login: new Date().toISOString()
+                }
+
+                try {
+                    const res = await axios.post("/api/users", userInfo);
+                    setMessage(res.data.message);
+                    console.log("Signup Success:", res.data);
+                    toast.success('Login Successfully', {
+                        position: "top-right",
+                        autoClose: 500,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce
+                    });
+                    router.push(redirect);
+                    reset()
+                } catch (error) {
+                    console.error("Login Error:", error.response?.data || error.message);
+                    setMessage(error.response?.data?.message || "Something went wrong!");
+                }
+
             })
             .catch((error) => {
                 recordFailedAttempt(email);

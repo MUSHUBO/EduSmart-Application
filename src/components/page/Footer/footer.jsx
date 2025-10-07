@@ -129,6 +129,7 @@ export default function Footer() {
                     <p className="text-center mt-4 font-bold text-md">
                         Copyright © {new Date().getFullYear()} <span className="text-secondary">EduSmart</span>. All rights reserved.
                     </p>
+
                     <div className="flex gap-3">
                         <a href="#" className="p-3 bg-white rounded-md hover:bg-secondary hover:text-[#FFFFFF] duration-500 text-secondary">
                             <FaFacebookF size={16} />

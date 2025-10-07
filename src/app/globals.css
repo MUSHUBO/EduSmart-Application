@@ -101,6 +101,35 @@ body {
 
   --accent: oklch(0.9388 0.031 184.17);
   --accent-foreground: oklch(0.9328 0.0372 47.44);
+}
 
 
+
+/* achievements section background image */
+.bg-achievements {
+  background-image: url('/assets/achievements-imgs/01.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Hide Google Translate default toolbar */
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-gadget-icon,
+.goog-te-menu-value {
+  display: none !important;
+}
+
+/* Hide iframe offscreen, keep it alive */
+iframe.goog-te-menu-frame,
+.goog-te-combo {
+  position: absolute !important;
+  left: -9999px !important;
+  top: 0 !important;
+}
+
+/* Prevent page layout shift */
+body {
+  top: 0 !important;
 }

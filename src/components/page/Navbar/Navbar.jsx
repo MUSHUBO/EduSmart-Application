@@ -11,6 +11,8 @@ import NavLinks from './NavLinks';
 import Image from 'next/image';
 import logo from '../../../../public/images/eduSmart.png'
 
+import Translate from '@/components2/Translate';
+
 const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -19,37 +21,38 @@ const Navbar = () => {
   const pathname = usePathname()
   const router = useRouter()
 
-  console.log(pathname);
-  const logoutHandler = () => {
-    logoutAccount()
-      .then(() => {
-        toast.success('Logout Successfully', {
-          position: "top-right",
-          autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce
-        });
-        router.push("/")
-      })
-      .then(error => {
-        toast.error(`${error.code}`, {
-          position: "top-right",
-          autoClose: 500,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-          transition: Bounce
-        });
-      })
-  }
+  // console.log(pathname);
+  
+  const logoutHandler = async () => {
+    try {
+      await logoutAccount();
+      toast.success('Logout Successfully', {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce
+      });
+      router.push("/");
+    } catch (error) {
+      toast.error(error?.code || error?.message || "Logout failed", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce
+      });
+    }
+  };
+
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -61,7 +64,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const navbarHeight = document.getElementById("navbarId").offsetHeight;
+      const navbar = document.getElementById("navbarId");
+      if (!navbar) return; // ✅ Null check
+      const navbarHeight = navbar.offsetHeight;
       if (window.scrollY > navbarHeight) {
         setIsFixed(true);
       } else {
@@ -69,18 +74,24 @@ const Navbar = () => {
       }
     };
 
-    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+
+  // ata dashboard e asle jeno navbar na dekhai sei jonno
+  const currentPathname = usePathname();
+  if (currentPathname.includes("dashboard")) {
+    return <></>;
+  }
 
 
   return (
     <div
       id="navbarId"
       className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isFixed
-        ? "backdrop-blur-xl bg-background/60 shadow-md"
-        : "bg-transparent"
+        ? "backdrop-blur-xl bg-background/90 font-extrabold shadow-sm shadow-accent"
+        : "bg-transparent text-white dark:text-white"
         }`}
     >
       {/* Navbar */}
@@ -130,13 +141,13 @@ const Navbar = () => {
 
 
         <div className="navbar-center hidden lg:flex">
-          <ul className="flex gap-7 items-center text-base-100 font-medium dark:text-white menu-horizontal px-1">
+          <ul className="flex gap-7 items-center font-medium menu-horizontal px-1">
             <NavLinks pathname={pathname} />
           </ul>
         </div>
 
 
-        <div className='navbar-end gap-2 md:gap-5 lg:gap-8'>
+        <div className='navbar-end gap-2 md:gap-5'>
           {/* Light/Dark Mode Button */}
           <div>
             <button
@@ -147,17 +158,78 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Profile Avatar */}
-          <div>
-            <div className='md:w-7 md:h-7 lg:w-8 h-8 rounded-full  '>
-              {
-                user?.email ?
-                  <img className='w-full rounded-full' src={user?.photoURL} alt={user?.photoURL} /> :
-                  <IoPersonSharp className='w-full h-full text-primary ' />
-              }
+          {/* Profile Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:w-7 md:h-7 lg:w-8 h-8 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
+            >
+              {user?.email ? (
+                <img
+                  className="w-full h-full object-cover rounded-full"
+                  src={user?.photoURL || "/default-avatar.png"}
+                  alt="User Avatar"
+                />
+              ) : (
+                <IoPersonSharp className="w-full h-full text-primary" />
+              )}
+            </button>
 
-            </div>
+            {/* Dropdown Menu */}
+            {isOpen && (
+              <div className="absolute right-0 mt-3 w-44 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700 z-50">
+                {user?.email ? (
+                  <>
+                    <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
+                      <p className="text-sm font-semibold text-gray-800 dark:text-gray-100">
+                        {user?.displayName || "User"}
+                      </p>
+                      <p className="text-xs text-gray-500 truncate dark:text-gray-400">
+                        {user?.email}
+                      </p>
+                    </div>
+
+                    <Link
+                      href="/admin-dashboard"
+                      onClick={() => setIsOpen(false)}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                    >
+                      Dashboard
+                    </Link>
+
+                    <Link
+                      href="/my-profile"
+                      onClick={() => setIsOpen(false)}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                    >
+                      My Profile
+                    </Link>
+
+                    <button
+                      onClick={() => {
+                        logoutHandler();
+                        setIsOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/30"
+                    >
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    onClick={() => setIsOpen(false)}
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                  >
+                    Login
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
+
+
+          <Translate></Translate>
 
           {/* Login/Logout button */}
           <div>
