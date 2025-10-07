@@ -19,7 +19,7 @@ const Navbar = () => {
   const pathname = usePathname()
   const router = useRouter()
 
-  console.log(pathname);
+  // console.log(pathname);
   const logoutHandler = () => {
     logoutAccount()
       .then(() => {
