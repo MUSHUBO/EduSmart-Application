@@ -1,4 +1,5 @@
 "use client";
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import profile from "../../../../../public/lotttie-file/profile.json"
@@ -6,7 +7,6 @@ import Lottie from 'lottie-react';
 import Link from 'next/link';
 import { useAuth } from '@/Hoks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 import GoogleButton from '../../components/GoogleButton/GoogleButton';
 import GitHubButton from '../../components/GitHubButton/GitHubButton';
 import { checkLoginAttempt, recordFailedAttempt, resetAttempts } from '@/utils/loginLimiter';
@@ -29,6 +29,8 @@ const LoginFormNey = () => {
     const [showPassword, setShowPassword] = useState(false);
     const { loginAccount } = useAuth()
     const router = useRouter()
+    const searchParams = useSearchParams();
+    const redirect = searchParams.get("redirect") || "/";
     const [attemptInfo, setAttemptInfo] = useState({ locked: false, remaining: 0 });
     const {
         register,
@@ -51,7 +53,7 @@ const LoginFormNey = () => {
             return;
         }
         loginAccount(email, password)
-            .then( async () => {
+            .then(async () => {
                 resetAttempts(email);
                 setAttemptInfo({ locked: false, remaining: 0 });
 
@@ -76,7 +78,7 @@ const LoginFormNey = () => {
                         theme: "colored",
                         transition: Bounce
                     });
-                    router.push("/")
+                    router.push(redirect);
                     reset()
                 } catch (error) {
                     console.error("Login Error:", error.response?.data || error.message);

@@ -8,6 +8,7 @@ import Achievements from "@/components/sections/Achievements";
 import Blogs from "@/components/sections/Bolgs/Blogs";
 import CoursesSection from "@/components/sections/CoursesSection";
 import FAQ from "@/components/sections/FAQ";
+import CourseFeedback from "@/components/sections/feedback/CourseFeedback";
 import Hero from "@/components/sections/Hero";
 import Marketing from "@/components/sections/Marketing/Marketing";
 import OurBenefits from "@/components/sections/OurBenefits";
@@ -50,6 +51,7 @@ export default function Home() {
       <Parents></Parents>
         <FAQ />
         <Marketing />
+        <CourseFeedback/>
       </div>
     </div>
   );

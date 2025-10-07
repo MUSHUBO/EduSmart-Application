@@ -112,3 +112,24 @@ body {
   background-position: center;
   background-attachment: fixed;
 }
+
+/* Hide Google Translate default toolbar */
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-gadget-icon,
+.goog-te-menu-value {
+  display: none !important;
+}
+
+/* Hide iframe offscreen, keep it alive */
+iframe.goog-te-menu-frame,
+.goog-te-combo {
+  position: absolute !important;
+  left: -9999px !important;
+  top: 0 !important;
+}
+
+/* Prevent page layout shift */
+body {
+  top: 0 !important;
+}

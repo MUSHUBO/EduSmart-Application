@@ -6,6 +6,7 @@ import SendMassage from "@/components2/contact/SendMassage";
 
 
 
+
 export default function ContactPage() {
   return (
     <section className=" mx-auto">
@@ -15,6 +16,7 @@ export default function ContactPage() {
     <ContactSection></ContactSection>
      <SendMassage></SendMassage>
       <OurLocation></OurLocation> 
+ 
       </div>
       
     </section>

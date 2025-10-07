@@ -7,6 +7,8 @@ import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
 import { useAuth } from '@/Hoks/UseAuth/UseAuth';
 import { Bounce, toast } from 'react-toastify';
+import GoogleTranslate from '@/components2/Translate';
+
 
 const Navbar = () => {
     const [isDark, setIsDark] = useState(false);
@@ -122,6 +124,15 @@ const Navbar = () => {
                 Student Life
             </Link>
         </li>
+          <li>
+            <Link
+                href="/ai_assistant"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/student_life" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Ai Assistant
+            </Link>
+        </li>
     </>
 
 
@@ -145,6 +156,7 @@ const Navbar = () => {
             ? 'fixed top-0 left-0 right-0 backdrop-blur-xl bg-background/60 translate-y-0'
             : 'relative -top-30'
             }`}>
+                  
             <div className="navbar-start">
                 <div
                     className="dropdown max-w-8 p-1 cursor-pointer max-h-8"
@@ -173,7 +185,10 @@ const Navbar = () => {
                     {nav}
                 </ul>
             </div>
-            <div className='navbar-end gap-2 md:gap-5 lg:gap-8'>
+       
+            <div className='navbar-end gap-3 md:gap-6 lg:gap-8 pr-4'>
+
+              
                 <div>
                     <button
                         onClick={() => setIsDark(!isDark)}
@@ -182,7 +197,10 @@ const Navbar = () => {
                         {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
                     </button>
                 </div>
+              
+
                 <div>
+                    
                     <div className='md:w-7 md:h-7 lg:w-8 h-8 rounded-full  '>
                         {
                             user?.email ?  <img className='w-full rounded-full' src={user?.photoURL} alt={user?.photoURL} /> : <IoPersonSharp className='w-full h-full text-primary ' />
@@ -190,7 +208,13 @@ const Navbar = () => {
                         
                     </div>
                 </div>
+                 
+              
+
+
+               
                 <div className="">
+                
 
                     {
                         user?.email ? <button onClick={logoutHandler} className="rounded relative inline-flex group items-center justify-center px-2.5 md:px-3.5 py-1.5 md:py-2 m-1 cursor-pointer border-b-4 border-l-2 active:border-primary/85 active:shadow-none shadow-lg bg-gradient-to-tr from-primary/85 to-primary/90 border-primary text-black">
@@ -201,9 +225,11 @@ const Navbar = () => {
                             <span className="relative font-medium flex justify-center items-center text-sm md:text-base gap-1.5"><LogIn size={19} /> Login</span>
                         </Link>
                     }
-
+ 
                 </div>
+ 
             </div>
+ 
         </div>
     );
 };

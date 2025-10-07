@@ -11,6 +11,8 @@ import NavLinks from './NavLinks';
 import Image from 'next/image';
 import logo from '../../../../public/images/eduSmart.png'
 
+import Translate from '@/components2/Translate';
+
 const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -169,6 +171,7 @@ const Navbar = () => {
 
             </div>
           </div>
+          <Translate></Translate>
 
           {/* Login/Logout button */}
           <div>
