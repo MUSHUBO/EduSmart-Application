@@ -10,6 +10,7 @@ import { Bounce, toast } from 'react-toastify';
 import NavLinks from './NavLinks';
 import Image from 'next/image';
 import logo from '../../../../public/images/eduSmart.png'
+import GoogleTranslate from '@/components2/GoogleTranslate';
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
@@ -168,6 +169,7 @@ const Navbar = () => {
 
             </div>
           </div>
+          <GoogleTranslate></GoogleTranslate>
 
           {/* Login/Logout button */}
           <div>
