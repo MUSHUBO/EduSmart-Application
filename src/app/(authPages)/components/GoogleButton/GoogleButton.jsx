@@ -1,7 +1,7 @@
-
+"use client";
 import { useAuth } from '@/Hoks/UseAuth/UseAuth';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { Bounce, toast } from 'react-toastify';
 const GoogleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -13,9 +13,12 @@ const GoogleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" heig
 const GoogleButton = () => {
     const { googleLogin } = useAuth()
     const router = useRouter()
+    const searchParams = useSearchParams();
+    const redirect = searchParams.get("redirect") || "/";
     const googleHandler = () => {
         googleLogin()
             .then(async (result) => {
+              
                 const userInfo = {
                     name: result?.user?.displayName,
                     email: result?.user?.email,
@@ -24,11 +27,7 @@ const GoogleButton = () => {
                     created_at: new Date().toISOString(),
                     last_login: new Date().toISOString()
                 }
-                try {
-                    const res = await axios.post("/api/users", userInfo);
-                    setMessage(res.data.message);
-                    console.log("Signup Success:", res.data);
-                    toast.success('Google Login Successfully', {
+                toast.success('Google Login Successfully', {
                         position: "top-right",
                         autoClose: 500,
                         hideProgressBar: false,
@@ -39,25 +38,27 @@ const GoogleButton = () => {
                         theme: "colored",
                         transition: Bounce
                     });
-                    router.push("/")
+                 router.push(redirect);
+                try {
+                    const res = await axios.post("/api/users", userInfo);
+                    setMessage(res.data.message);
+                    console.log("Signup Success:", res.data);
+                    toast.success('Google Login Successfully new user', {
+                        position: "top-right",
+                        autoClose: 500,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                        transition: Bounce
+                    });
                 } catch (error) {
                     console.error("Google Login Error:", error.response?.data || error.message);
                     setMessage(error.response?.data?.message || "Something went wrong!");
                 }
 
-            })
-            .catch((error) => {
-                toast.error(`${error.code}`, {
-                    position: "top-right",
-                    autoClose: 500,
-                    hideProgressBar: false,
-                    closeOnClick: false,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    transition: Bounce
-                });
             })
     }
     return (

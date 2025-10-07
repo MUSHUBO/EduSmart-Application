@@ -22,6 +22,7 @@ const NavLinks = ({ pathname }) => {
     { href: "/admission", label: "Admission" },
     { href: "/assignment", label: "Assignments" },
     { href: "/noticeBoard", label: "Notice" },
+    { href: "/library", label: "Library" },
     { href: "/contact", label: "Contact" },
   ];
 

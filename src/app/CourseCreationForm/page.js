@@ -1,9 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { useAuth } from "@/Hoks/UseAuth/UseAuth";
+
 
 export default function AddCourse() {
+  const {loading, user } = useAuth()
+  const router = useRouter()
   const [formData, setFormData] = useState({
     title: "",
     instructor: "",
@@ -22,6 +27,14 @@ export default function AddCourse() {
     assessments: "",
   });
 
+useEffect(() => {
+  if (!loading && !user) {
+    router.push(`/login?redirect=/CourseCreationForm`);
+  }
+}, [user, loading, router]);
+
+if (loading) return <p>Loading...</p>;
+if (!user) return null;
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
