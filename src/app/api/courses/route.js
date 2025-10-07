@@ -36,20 +36,27 @@ export async function POST(req) {
   }
 }
 
-// ✅ GET (newly added)
+
+// ✅ GET 6 (newly added)
 export async function GET() {
   try {
-    console.log("GET /api/courses called");
+    console.log("GET /api/courses/limited called");
 
     const coursesCollection = await dbConnect(collectionNamesObj.courseCollection);
-    const courses = await coursesCollection.find().toArray();
+
+    // Fetch only 6 latest courses
+    const courses = await coursesCollection
+      .find()
+      .sort({ createdAt: -1 }) // newest first
+      .limit(6)
+      .toArray();
 
     return NextResponse.json({
       success: true,
       data: courses,
     });
   } catch (error) {
-    console.error("Server error in GET /api/courses:", error);
+    console.error("Server error in GET /api/courses/limited:", error);
     return NextResponse.json(
       { success: false, message: "Server error", error: error.message },
       { status: 500 }
