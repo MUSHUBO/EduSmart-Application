@@ -178,7 +178,7 @@ const Navbar = () => {
             </div>
        
             <div className='navbar-end gap-3 md:gap-6 lg:gap-8 pr-4'>
-<GoogleTranslate></GoogleTranslate>
+
               
                 <div>
                     <button
