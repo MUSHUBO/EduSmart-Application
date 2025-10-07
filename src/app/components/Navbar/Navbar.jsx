@@ -122,6 +122,15 @@ const Navbar = () => {
                 Student Life
             </Link>
         </li>
+          <li>
+            <Link
+                href="/ai_assistant"
+                className={`cursor-pointer dark:hover:text-primary text-popover dark:text-popover hover:text-primary duration-200 
+                ${pathname === "/student_life" ? "text-primary dark:text-primary border-b-2 border-primary" : ""}`}
+            >
+                Ai Assistant
+            </Link>
+        </li>
     </>
 
 
