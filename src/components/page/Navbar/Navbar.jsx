@@ -19,7 +19,7 @@ const Navbar = () => {
   const pathname = usePathname()
   const router = useRouter()
 
-  console.log(pathname);
+  // console.log(pathname);
   const logoutHandler = () => {
     logoutAccount()
       .then(() => {
@@ -69,10 +69,20 @@ const Navbar = () => {
       }
     };
 
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+
+
+  // ata dashboard e asle jeno navbar na dekhai sei jonno
+  const currentPathname = usePathname();
+  if (currentPathname.includes("dashboard")) {
+    return <></>;
+  }
+
+
 
 
   return (
