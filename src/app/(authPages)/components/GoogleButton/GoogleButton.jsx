@@ -2,7 +2,7 @@
 import { useAuth } from '@/Hooks/UseAuth/UseAuth';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import { Bounce, toast } from 'react-toastify';
 const GoogleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -15,10 +15,11 @@ const GoogleButton = () => {
     const router = useRouter()
     const searchParams = useSearchParams();
     const redirect = searchParams.get("redirect") || "/";
+    const [message, setMessage] = useState('');
     const googleHandler = () => {
         googleLogin()
             .then(async (result) => {
-              
+
                 const userInfo = {
                     name: result?.user?.displayName,
                     email: result?.user?.email,
@@ -28,20 +29,19 @@ const GoogleButton = () => {
                     last_login: new Date().toISOString()
                 }
                 toast.success('Google Login Successfully', {
-                        position: "top-right",
-                        autoClose: 500,
-                        hideProgressBar: false,
-                        closeOnClick: false,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                        transition: Bounce
-                    });
-                 router.push(redirect);
+                    position: "top-right",
+                    autoClose: 500,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce
+                });
+                router.push(redirect);
                 try {
                     const res = await axios.post("/api/users", userInfo);
-                    setMessage(res.data.message);
                     console.log("Signup Success:", res.data);
                     toast.success('Google Login Successfully new user', {
                         position: "top-right",
@@ -55,8 +55,9 @@ const GoogleButton = () => {
                         transition: Bounce
                     });
                 } catch (error) {
-                    console.error("Google Login Error:", error.response?.data || error.message);
+                    console.log("Google Login Error:",error.message);
                     setMessage(error.response?.data?.message || "Something went wrong!");
+                    console.log(message);
                 }
 
             })

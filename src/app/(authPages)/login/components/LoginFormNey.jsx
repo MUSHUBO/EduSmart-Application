@@ -31,6 +31,7 @@ const LoginFormNey = () => {
     const router = useRouter()
     const searchParams = useSearchParams();
     const redirect = searchParams.get("redirect") || "/";
+    const [message, setMessage] = useState('');
     const [attemptInfo, setAttemptInfo] = useState({ locked: false, remaining: 0 });
     const {
         register,
@@ -62,11 +63,12 @@ const LoginFormNey = () => {
                     created_at: new Date().toISOString(),
                     last_login: new Date().toISOString()
                 }
-
+                   router.push(redirect);
                 try {
                     const res = await axios.post("/api/users", userInfo);
                     setMessage(res.data.message);
                     console.log("Signup Success:", res.data);
+                    console.log(message);
                     toast.success('Login Successfully', {
                         position: "top-right",
                         autoClose: 500,
@@ -78,11 +80,11 @@ const LoginFormNey = () => {
                         theme: "colored",
                         transition: Bounce
                     });
-                    router.push(redirect);
                     reset()
                 } catch (error) {
-                    console.error("Login Error:", error.response?.data || error.message);
+                    console.log("Login Error:", error.response?.data || error.message);
                     setMessage(error.response?.data?.message || "Something went wrong!");
+                    console.log(message);
                 }
 
             })
