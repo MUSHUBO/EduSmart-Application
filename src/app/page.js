@@ -5,14 +5,13 @@ import TeachersSection from "@/components/polishedHome/TeachersSection";
 import WhyChooseUs from "@/components/polishedHome/WhyChooseUs";
 import AboutUsSection from "@/components/sections/AboutUsSection";
 import Achievements from "@/components/sections/Achievements";
-import Blogs from "@/components/sections/Bolgs/Blogs";
+import Blogs from "@/components/sections/Blogs/Blogs";
 import CoursesSection from "@/components/sections/CoursesSection";
 import FAQ from "@/components/sections/FAQ";
 import CourseFeedback from "@/components/sections/feedback/CourseFeedback";
 import Hero from "@/components/sections/Hero";
 import Marketing from "@/components/sections/Marketing/Marketing";
 import OurBenefits from "@/components/sections/OurBenefits";
-import OurPages from "@/components/sections/OurPages";
 import Parents from "@/components/sections/Parents/Parents";
 import Testimonials from "@/components/sections/Testimonials/Testimonials";
 
@@ -45,14 +44,17 @@ export default function Home() {
         <EventSlider />
         <HowItWorks />
       </div>
+
       <Testimonials />
+
       <div className="w-11/12 mx-auto">
-      <Blogs></Blogs>
-      <Parents></Parents>
+        <Blogs />
+        <Parents />
         <FAQ />
         <Marketing />
-        <CourseFeedback/>
+        <CourseFeedback />
       </div>
+
     </div>
   );
 }
