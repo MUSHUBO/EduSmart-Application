@@ -33,7 +33,6 @@ const RegisterForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  const [file, setFile] = useState(null);
   const [message, setMessage] = useState('');
   const [attachmentUrl, setAttachmentUrl] = useState('');
   const { createAccount, profileUpdateNamePhoto } = useAuth()
@@ -43,7 +42,6 @@ const RegisterForm = () => {
     const selectedFile = e.target.files[0];
     if (!selectedFile) return;
 
-    setFile(selectedFile);
     setMessage('');
     setAttachmentUrl('');
     let uploadedFileUrl = '';
@@ -67,9 +65,11 @@ const RegisterForm = () => {
         setAttachmentUrl(uploadedFileUrl);
       } else {
         setMessage(`File upload error: ${fileData.error || 'Unknown error.'}`);
+         console.log(message);
       }
     } catch (error) {
       setMessage('File upload failed.');
+       console.log(message);
     }
   };
 
@@ -103,7 +103,6 @@ const RegisterForm = () => {
           .then(async () => {
             try {
               const res = await axios.post("/api/users", userInfo);
-              setMessage(res.data.message);
               console.log("Signup Success:", res.data);
               toast.success(' Profile create Successfully', {
                 position: "top-right",
@@ -119,8 +118,9 @@ const RegisterForm = () => {
               router.push("/")
               reset();
             } catch (error) {
-              console.error("Signup Error:", error.response?.data || error.message);
+              console.log("Signup Error:", error.response?.data || error.message);
               setMessage(error.response?.data?.message || "Something went wrong!");
+               console.log(message);
             }
           })
           .catch((error) => {
