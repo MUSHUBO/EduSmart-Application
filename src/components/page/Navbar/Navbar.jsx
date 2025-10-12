@@ -167,12 +167,12 @@ const Navbar = () => {
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:w-7 md:h-7 lg:w-8 lg:h-8 mt-1 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
+              className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 mt-1 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
             >
               {user?.email ? (
                 <img
                   className="w-full h-full object-cover rounded-full"
-                  src={user?.photoURL || "/default-avatar.png"}
+                  src={user?.photoURL || "default-avatar"}
                   alt="User Avatar"
                 />
               ) : (

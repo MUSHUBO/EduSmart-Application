@@ -23,6 +23,7 @@ const NavLinks = ({ pathname }) => {
       label: "Pages",
       children: [
         { href: "/assignment", label: "Assignments" },
+        { href: "/bookForm", label: "BookForm" },
         { href: "/library", label: "Library" },
         { href: "/admission", label: "Admission" },
       ],
