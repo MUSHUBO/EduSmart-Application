@@ -1,9 +1,9 @@
-import AdminSidebar from "@/components/adminDashboard-components/AdminSidebar";
+import Sidebar from "@/components/adminDashboard-components/AdminSidebar";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaBell, FaSearch, } from "react-icons/fa";
-function AdminLayout({ children }) {
+function UserLayout({ children }) {
     return (
         <div className="drawer lg:drawer-open">
             {/* Drawer toggle for mobile */}
@@ -53,8 +53,8 @@ function AdminLayout({ children }) {
                 <main className="flex-1 p-6 bg-gray-50">{children}</main>
             </div>
             {/* Sidebar / Drawer */}
-            <AdminSidebar/>
+            <Sidebar />
         </div>
     );
 }
-export default AdminLayout;
+export default UserLayout;
