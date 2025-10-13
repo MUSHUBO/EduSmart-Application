@@ -152,9 +152,9 @@ const Navbar = () => {
           <div>
             <button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors"
             >
-              {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#FF8D4D' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
+              {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#2fbfa7' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
             </button>
           </div>
 

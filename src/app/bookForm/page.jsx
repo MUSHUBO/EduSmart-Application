@@ -48,7 +48,7 @@ export default function bookForm() {
                 theme: "colored",
                 transition: Bounce
             });
-            // reset()
+            reset()
         } catch (error) {
             console.log("Book information Error:", error.response?.data || error.message);
             setMessage(error.response?.data?.message || "Something went wrong!");

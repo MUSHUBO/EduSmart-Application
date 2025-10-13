@@ -65,16 +65,16 @@ const NavLinks = ({ pathname }) => {
           {/* Dropdown */}
           {link.children && (
             <ul
-              className="absolute left-0 top-full mt-2 w-44 rounded-lg bg-gray-100 dark:bg-gray-800 shadow-lg opacity-0 invisible 
+              className="absolute left-0 top-full mt-2 w-44 rounded-lg bg-primary dark:bg-gray-800 shadow-lg opacity-0 invisible 
               group-hover:opacity-100 group-hover:visible transition-all duration-300"
             >
               {link.children.map((child) => (
                 <li key={child.href}>
                   <Link
                     href={child.href}
-                    className={`block px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 duration-200 ${
+                    className={`block px-4 py-2 rounded-md duration-200 ${
                       pathname === child.href
-                        ? "text-primary dark:text-primary font-semibold"
+                        ? "text-[#FFFFFF] dark:text-[#FFFFFF] font-semibold"
                         : "text-gray-700 dark:text-gray-200"
                     }`}
                   >
