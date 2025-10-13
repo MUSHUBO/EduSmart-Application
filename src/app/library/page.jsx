@@ -2,17 +2,9 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { Bars } from "react-loader-spinner";
 
 export default function Library() {
-  // const libraryData = [
-  //   {
-  //     id: 1,
-  //     name: "Mathematics for Beginners",
-  //     image: "https://i.ibb.co.com/cc6LpMp7/9781474998543-Mathematics-for-Beginners-Hardcover-Usborne-Books-02-cc4e2511-b7f0-49a7-8836-f1139e847.webp",
-  //     rating: 4.5,
-  //     comments: 120,
-  //   }
-  // ];
 
   const [booksData, setbooksData] = useState([]);
 
@@ -37,35 +29,51 @@ export default function Library() {
           Explore our curated selection of books, from classics to modern masterpieces. Browse by top rated, most commented, or new arrivals.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {booksData.map((book) => (
-          <div key={book._id} className="bg-muted dark:bg-muted rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-            <img src={book.photoUrl} alt={book.name} className="w-full h-52 object-cover" />
-            <div className="p-4">
-              <h2 className="font-semibold text-lg mb-2">{book.name}</h2>
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-secondary mr-2">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <span key={i}>
-                      {i < Math.floor(book.rating) ? "★" : "☆"}
-                    </span>
-                  ))}
+      {
+        booksData.length > 0 ?
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {booksData.map((book) => (
+              <div key={book._id} className="bg-muted dark:bg-muted rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                <img src={book.photoUrl} alt={book.name} className="w-full h-52 object-cover" />
+                <div className="p-4">
+                  <h2 className="font-semibold text-lg mb-2">{book.name}</h2>
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="text-secondary mr-2">
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <span key={i}>
+                          {i < Math.floor(book.rating) ? "★" : "☆"}
+                        </span>
+                      ))}
+                    </div>
+                    <span className="text-popover-foreground dark:text-popover-foreground text-sm">({book.comments.length} comments)</span>
+                  </div>
+                  <Link href={`/library/${book._id}`}  >
+                    <button className="w-full bg-primary/90 text-white py-2 rounded hover:bg-primary duration-300 cursor-pointer transition-colors">
+
+
+
+                      View
+                    </button>
+                  </Link>
+
                 </div>
-                <span className="text-popover-foreground dark:text-popover-foreground text-sm">({book.comments} comments)</span>
               </div>
-              <Link href={`/library/${book._id}`}  >
-              <button className="w-full bg-primary/90 text-white py-2 rounded hover:bg-primary duration-300 cursor-pointer transition-colors">
-
-
-                
-                  View
-                  </button>
-                </Link>
-              
-            </div>
+            ))}
           </div>
-        ))}
-      </div>
+          :
+          <div className="flex justify-center items-center"> 
+            <Bars
+            height="50"
+            width="50"
+            color="#4fa94d"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+           </div>
+      }
+
     </div>
   );
 }
