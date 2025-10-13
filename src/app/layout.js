@@ -4,6 +4,7 @@ import Footer from "../components/page/Footer/footer";
 import Navbar from "@/components/page/Navbar/Navbar";
 import AuthProvider from "@/Context/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
+import ScrollUp from "@/components/ScrollUp/ScrollUp";
 
 
 
@@ -47,6 +48,7 @@ export default function RootLayout({ children }) {
             </div>
             <Footer></Footer>
           </div>
+           <ScrollUp></ScrollUp>
           <ToastContainer />
         </AuthProvider>
         
