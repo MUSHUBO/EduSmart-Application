@@ -30,6 +30,7 @@ const NavLinks = ({ pathname }) => {
     },
     { href: "/noticeBoard", label: "Notice" },
     { href: "/contact", label: "Contact" },
+    { href: "/aionix", label: "Aionix" },
     // { href: "/admin-dashboard", label: "DashBoard-1" },
   ];
 
