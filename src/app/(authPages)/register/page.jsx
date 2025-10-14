@@ -17,7 +17,7 @@ const RegisterPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-6 py-4 md:py-8 lg:py-12">
         <div data-aos="fade-left" className="p-4 w-xl md:w-2xl lg:w-3xl">
         <RegisterForm />
       </div>
