@@ -6,7 +6,8 @@ export const collectionNamesObj = {
   courseCollection: "courses",
   studentCollection: "students",
   teacherCollection: "teachers",
-  coursesFeedbackCollection: "courseFeedback"
+  coursesFeedbackCollection: "courseFeedback",
+  bookCollection: "books",
 };
 
 

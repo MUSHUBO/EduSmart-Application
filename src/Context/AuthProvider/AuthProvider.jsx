@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '@/Firebase/Firebase.config';
 import { AuthContext } from '../AuthContext/AuthContext';
 
@@ -10,6 +10,8 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const googleProvider = new GoogleAuthProvider();
     const[themeChanger, setThemeChanger] = useState()
+
+    const provider = new GithubAuthProvider();
 
     const createAccount = (email, password) => {
         setLoading(true)
@@ -29,6 +31,11 @@ const AuthProvider = ({ children }) => {
     const googleLogin = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
+    }
+
+    const gitHubLogin = () => {
+        setLoading(true)
+        return signInWithPopup(auth, provider) 
     }
 
     const logoutAccount = () => {
@@ -58,6 +65,7 @@ const AuthProvider = ({ children }) => {
         createAccount,
         loginAccount,
         googleLogin,
+        gitHubLogin,
         profileUpdateNamePhoto,
         logoutAccount,
         user,
