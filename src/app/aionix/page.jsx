@@ -37,12 +37,13 @@ export default function SchoolAIPage() {
     };
 
     return (
-        <div className="w-full flex flex-col items-center bg-gradient-to-b from-gray-900 to-gray-800 text-white px-6 md:px-9 lg:px-12 py-12 md:py-18 lg:py-24">
+        <div className="w-full flex flex-col items-center 
+         text-white px-6 md:px-9 lg:px-12 py-18 md:py-24 lg:py-28">
             <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-10">
-                <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold flex items-center justify-center gap-2">
+                <h1 className="text-popover text-2xl md:text-4xl lg:text-5xl font-bold flex items-center justify-center gap-2">
                     <Brain size={35} className="text-primary mt-1" /> School AI Learning Path Generator
                 </h1>
-                <p className="text-gray-300 mt-2">Select your options to generate a personalized roadmap for students.</p>
+                <p className="text-popover-foreground mt-2">Select your options to generate a personalized roadmap for students.</p>
             </motion.div>
 
             <Card className="w-full max-w-2xl bg-gray-800/70 border-gray-700 text-white">

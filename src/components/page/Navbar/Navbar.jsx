@@ -18,9 +18,7 @@ const Navbar = () => {
   const { user, logoutAccount } = useAuth()
   const pathname = usePathname()
   const router = useRouter()
-
-  // console.log(pathname);
-  
+  const navbg = pathname === "/"
   const logoutHandler = async () => {
     try {
       await logoutAccount();
@@ -80,8 +78,8 @@ const Navbar = () => {
     <div
       id="navbarId"
       className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isFixed
-        ? "backdrop-blur-xl bg-background/90 font-extrabold shadow-sm shadow-accent"
-        : "bg-transparent text-white dark:text-white"
+        ? `backdrop-blur-xl bg-primary/30 font-extrabold shadow-sm shadow-accent`
+        : `${navbg ? "bg-transparent text-white" : "bg-background text-popover"}`
         }`}
     >
       {/* Navbar */}

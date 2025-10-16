@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronDown } from "lucide-react";
 
 const NavLinks = ({ pathname }) => {
+    const navbg = pathname !== "/"
   const links = [
     { href: "/", label: "Home" },
     {
@@ -41,19 +42,19 @@ const NavLinks = ({ pathname }) => {
           {/* Parent Link */}
           {link.children ? (
             <span
-              className={`flex items-center gap-1 cursor-pointer px-1 py-2 duration-200 ${
+              className={`flex items-center gap-1 cursor-pointer px-1 py-2 ${navbg && "text-popover"} ${
                 pathname === link.href
                   ? "text-primary dark:text-primary border-b-2 border-primary"
                   : ""
               }`}
             >
               {link.label}
-              <ChevronDown size={16} className="transition-transform group-hover:rotate-180" />
+              <ChevronDown size={16} className={`transition-transform group-hover:rotate-180`} />
             </span>
           ) : (
             <Link
               href={link.href}
-              className={`px-1 py-2 cursor-pointer duration-200 ${
+              className={`px-1 py-2 cursor-pointer ${navbg && "text-popover"} ${
                 pathname === link.href
                   ? "text-primary dark:text-primary border-b-2 border-primary"
                   : ""
@@ -75,8 +76,8 @@ const NavLinks = ({ pathname }) => {
                     href={child.href}
                     className={`block px-4 py-2 rounded-md duration-200 ${
                       pathname === child.href
-                        ? "text-[#FFFFFF] dark:text-[#FFFFFF] font-semibold"
-                        : "text-gray-700 dark:text-gray-200"
+                        ? "text-[#FFFFFF] dark:text-[#000000] font-semibold"
+                        : "text-[#000000] dark:text-[#FFFFFF]"
                     }`}
                   >
                     {child.label}
