@@ -205,7 +205,7 @@ export default function BookInfoTabs({ params }) {
                                     <div>
                                         <form
                                             onSubmit={handleSubmit(onSubmit)}
-                                            className=" rounded-lg p-4 mb-6 bg-gray-50"
+                                            className=" rounded-lg p-4 mb-6 bg-muted"
                                         >
                                             {/* ===== Rating ===== */}
                                             <div className="mb-3">

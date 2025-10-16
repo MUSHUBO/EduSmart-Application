@@ -66,7 +66,7 @@ const NavLinks = ({ pathname }) => {
           {/* Dropdown */}
           {link.children && (
             <ul
-              className="absolute left-0 top-full mt-2 w-44 rounded-lg bg-primary dark:bg-gray-800 shadow-lg opacity-0 invisible 
+              className="absolute left-0 top-full mt-2 w-44 rounded-lg bg-primary shadow-lg opacity-0 invisible 
               group-hover:opacity-100 group-hover:visible transition-all duration-300"
             >
               {link.children.map((child) => (
