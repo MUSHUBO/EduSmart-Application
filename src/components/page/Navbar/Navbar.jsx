@@ -1,5 +1,5 @@
 "use client";
-import { LogIn, LogOut, Moon, Sun } from 'lucide-react';
+import { LogIn, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -10,20 +10,17 @@ import { Bounce, toast } from 'react-toastify';
 import NavLinks from './NavLinks';
 import Image from 'next/image';
 import logo from '../../../../public/images/eduSmart.png'
-
 import Translate from '@/components2/Translate';
 
 const Navbar = () => {
-  const [isDark, setIsDark] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const { user, logoutAccount } = useAuth()
   const [role, setRole] = useState(null);
   const pathname = usePathname()
   const router = useRouter()
-
+  const navbg = pathname === "/"
   // console.log(pathname);
-
   const logoutHandler = async () => {
     try {
       await logoutAccount();
@@ -53,14 +50,6 @@ const Navbar = () => {
       });
     }
   };
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [isDark]);
 
 
   useEffect(() => {
@@ -122,8 +111,8 @@ const Navbar = () => {
     <div
       id="navbarId"
       className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isFixed
-        ? "backdrop-blur-xl bg-background/90 font-extrabold shadow-sm shadow-accent"
-        : "bg-transparent text-white dark:text-white"
+        ? `backdrop-blur-xl bg-primary/30 font-extrabold shadow-sm shadow-accent`
+        : `${navbg ? "bg-transparent text-white" : "bg-background text-popover"}`
         }`}
     >
       {/* Navbar */}
@@ -150,24 +139,15 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link className='max-w-[100px] md:max-w-[150px]' href={"/"}>
-            {
-              isDark ?
+            
                 <Image
                   src={logo}
-                  alt="edusmarty_light_icon"
+                  alt="edusmarty_icon"
                   width={150}
                   height={50}
                   className="w-full h-auto"
                 />
-                :
-                <Image
-                  src={logo}
-                  alt="edusmarty_dark_icon"
-                  width={150}
-                  height={50}
-                  className="w-full h-auto"
-                />
-            }
+                
           </Link>
         </div>
 
@@ -180,20 +160,8 @@ const Navbar = () => {
 
 
         <div className='navbar-end gap-2 md:gap-4'>
-          {/* Light/Dark Mode Button */}
-          <div>
-            <button
-              onClick={() => setIsDark(!isDark)}
-              className="p-2 cursor-pointer rounded-full text-gray-600 dark:text-gray-300 hover:bg-primary/20 dark:hover:bg-primary/20 transition-colors"
-            >
-              {isDark ? <Sun className="md:w-6 md:h-6  lg:w-7 h-7 text-primary" /> : <Moon fill='#2fbfa7' className="md:w-6 md:h-6 lg:w-7 lg:h-7  text-primary" />}
-            </button>
-          </div>
-
-
           {/* Language Change */}
           <Translate></Translate>
-
 
           {/* Profile Dropdown */}
           <div className="relative">

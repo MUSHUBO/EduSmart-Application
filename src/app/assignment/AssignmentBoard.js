@@ -50,7 +50,7 @@ export default function AssignmentBoard() {
                 {assignments.map((assignment) => (
                     <div key={assignment._id} className="relative group">
                         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-primary/30 via-primary/20 to-transparent rounded-xl transition-all group-hover:opacity-50"></div>
-                        <div className="relative border-2 border-primary/50 rounded-xl p-6 bg-white flex flex-col min-h-[300px] shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:scale-105">
+                        <div className="relative border-2 border-primary/50 rounded-xl p-6 bg-muted flex flex-col min-h-[300px] shadow-xl hover:shadow-2xl transform transition-all duration-300 hover:scale-105">
                             {assignment.attachmentUrl && (
                                 <div className="absolute top-4 right-4">
                                     <AttachmentPreview url={assignment.attachmentUrl} className="w-20 h-20 border-4 border-primary/40 rounded-full" />
