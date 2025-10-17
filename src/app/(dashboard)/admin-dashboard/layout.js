@@ -1,4 +1,4 @@
-import Sidebar from "@/components/adminDashboard-components/Sidebar";
+import AdminSidebar from "@/components/adminDashboard-components/AdminSidebar";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -53,7 +53,7 @@ function AdminLayout({ children }) {
                 <main className="flex-1 p-6 bg-gray-50">{children}</main>
             </div>
             {/* Sidebar / Drawer */}
-            <Sidebar />
+            <AdminSidebar/>
         </div>
     );
 }

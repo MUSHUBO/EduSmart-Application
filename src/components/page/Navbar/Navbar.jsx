@@ -16,6 +16,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
   const { user, logoutAccount } = useAuth()
+  const [role, setRole] = useState(null);
   const pathname = usePathname()
   const router = useRouter()
   const navbg = pathname === "/"
@@ -67,6 +68,37 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+
+  useEffect(() => {
+    const fetchRole = async () => {
+      if (user?.email) {
+        try {
+          const res = await fetch(`/api/getUserRole?email=${user?.email}`);
+          const data = await res.json();
+          if (data?.role) {
+            setRole(data.role);
+          };
+        } catch (err) {
+          console.error("Failed to fetch role:", err);
+        }
+      }
+    };
+    fetchRole();
+  }, [user?.email]);
+
+
+  const handleDashboard = () => {
+    if (role === "admin") {
+      router.push("/admin-dashboard");
+    }
+    else if (role === "parent") {
+      router.push("/parent-dashboard");
+    }
+    else {
+      router.push("/user-dashboard");
+    }
+  }
 
   // ata dashboard e asle jeno navbar na dekhai sei jonno
   const currentPathname = usePathname();
@@ -162,13 +194,14 @@ const Navbar = () => {
                       </p>
                     </div>
 
-                    <Link
-                      href="/admin-dashboard"
-                      onClick={() => setIsOpen(false)}
-                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
-                    >
-                      Dashboard
-                    </Link>
+                    <div onClick={handleDashboard}>
+                      <p
+                        onClick={() => setIsOpen(false)}
+                        className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary hover:text-white transition-all"
+                      >
+                        Dashboard
+                      </p>
+                    </div>
 
                     <Link
                       href="/my-profile"
