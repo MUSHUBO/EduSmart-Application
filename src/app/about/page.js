@@ -8,7 +8,7 @@ import HistorySection from '../components/about-ourTeam/HistorySection';
 
 const About = () => {
   return (
-    <div className='w-11/12 mx-auto'>
+    <div className='w-11/12 mx-auto px-6 md:px-9 lg:px-12 py-12 md:py-16 lg:py-18'>
       <section className="relative mx-5 mt-8 lg:mt-16">
       <div className="absolute top-2 left-2 w-full h-full bg-primary rounded-3xl"></div>
 
@@ -25,7 +25,7 @@ const About = () => {
           <div className="flex flex-col items-start">
             <div className="relative group mb-6">
               <div className="absolute top-1.5 left-1.5 w-full h-full bg-primary rounded group-hover:top-0 group-hover:left-0 transition-all duration-200"></div>
-              <button className="relative text-black bg-white border border-primary rounded text-sm font-medium px-5 py-1 group-hover:top-1.5 group-hover:left-1.5 transition-all duration-200">
+              <button className="relative text-black bg-accent border border-primary rounded text-sm font-medium px-5 py-1 group-hover:top-1.5 group-hover:left-1.5 transition-all duration-200">
                 Overview
               </button>
             </div>

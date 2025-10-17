@@ -12,7 +12,7 @@ import {
   FaChevronRight
 } from 'react-icons/fa';
 
-export default function Sidebar() {
+export default function AdminSidebar() {
   return (
     <div className="drawer-side">
       <label htmlFor="admin-drawer" className="drawer-overlay"></label>

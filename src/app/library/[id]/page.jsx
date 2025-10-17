@@ -95,7 +95,7 @@ export default function BookInfoTabs({ params }) {
     };
 
     return (
-        <div className="px-6 md:px-9 lg:px-12 py-12 md:py-18 lg:py-24">
+        <div className="px-6 md:px-9 lg:px-12 py-18 md:py-24 lg:py-28">
             {
                 singleData ?
                     <div className="max-w-5xl mx-auto my-10 bg-muted dark:bg-muted shadow-lg rounded-2xl overflow-hidden">
@@ -205,7 +205,7 @@ export default function BookInfoTabs({ params }) {
                                     <div>
                                         <form
                                             onSubmit={handleSubmit(onSubmit)}
-                                            className=" rounded-lg p-4 mb-6 bg-gray-50"
+                                            className=" rounded-lg p-4 mb-6 bg-muted"
                                         >
                                             {/* ===== Rating ===== */}
                                             <div className="mb-3">

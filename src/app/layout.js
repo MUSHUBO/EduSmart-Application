@@ -1,10 +1,11 @@
-import { Geist, Geist_Mono, Noto_Sans_Bengali, Poppins } from "next/font/google";
+import { Noto_Sans_Bengali, Poppins } from "next/font/google";
 import "./globals.css";
 import Footer from "../components/page/Footer/footer";
 import Navbar from "@/components/page/Navbar/Navbar";
 import AuthProvider from "@/Context/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
+import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 
 
 
@@ -29,7 +30,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   
   return (
-    <html  lang="en" suppressHydrationWarning={true}>
+    <html data-theme="light"  lang="en" suppressHydrationWarning={true}>
        
       <body
           className={`${poppins.variable} ${notoBengali.variable} font-sans antialiased`}
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
             <Footer></Footer>
           </div>
            <ScrollUp></ScrollUp>
+           <ThemeToggle></ThemeToggle>
           <ToastContainer />
         </AuthProvider>
         

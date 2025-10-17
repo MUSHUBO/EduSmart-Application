@@ -20,7 +20,7 @@ export default function Library() {
   }, []);
 
   return (
-    <div className="px-6 md:px-9 lg:px-12 py-12 md:py-18 lg:py-24">
+    <div className="px-6 md:px-9 lg:px-12 py-18 md:py-24 lg:py-28">
       <div className="text-center max-w-3xl mx-auto px-6">
         <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-popover dark:text-popover">
           Our <span className="text-secondary">Library</span>

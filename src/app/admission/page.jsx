@@ -6,7 +6,7 @@ import React from 'react';
 
 const AdmissionPage = () => {
     return (
-        <div className='mx-auto'>
+        <div className='mx-auto py-8 md:py-12 lg:py-16'>
             <AdmissionHero />
             <div className='w-11/12 mx-auto'>
 {/* 
