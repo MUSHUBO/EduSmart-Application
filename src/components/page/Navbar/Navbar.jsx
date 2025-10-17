@@ -19,6 +19,7 @@ const Navbar = () => {
   const pathname = usePathname()
   const router = useRouter()
   const navbg = pathname === "/"
+  // console.log(pathname);
   const logoutHandler = async () => {
     try {
       await logoutAccount();
