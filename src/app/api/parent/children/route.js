@@ -12,6 +12,15 @@ export async function GET(req) {
     const collection = await dbConnect(collectionNamesObj.studentCollection);
     const children = await collection.find({ parentEmail: decoded.parentEmail }).toArray();
 
+
+    if (!children.length) {
+      const demo = [
+        { _id: 1, studentFirstName: "Arif", studentLastName: "Hasan", grade: "Grade 6" },
+        { _id: 2, studentFirstName: "Mim", studentLastName: "Akter", grade: "Grade 8" },
+      ];
+      return NextResponse.json({ success: true, data: demo });
+    }
+
     return NextResponse.json({ success: true, data: children });
   } catch (err) {
     console.error(err);

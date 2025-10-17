@@ -2,22 +2,21 @@
 import { PieChart, Pie, Cell } from "recharts";
 
 export default function FocusGauge({ score = 70 }) {
-  const percent = score / 100;
+  const percent = Math.max(0, Math.min(100, +score));
   const data = [
     { name: "filled", value: percent },
-    { name: "empty", value: 1 - percent },
+    { name: "empty", value: 100 - percent },
   ];
-
-  const COLORS = ["#10b981", "#e5e7eb"]; // green + gray
+  const COLORS = ["#10b981", "#e6e6e6"]; 
 
   return (
     <div className="flex flex-col items-center">
-      <PieChart width={160} height={100}>
+      <PieChart width={180} height={110}>
         <Pie
           data={data}
           startAngle={180}
           endAngle={0}
-          innerRadius={60}
+          innerRadius={52}
           outerRadius={80}
           paddingAngle={2}
           dataKey="value"
@@ -28,9 +27,8 @@ export default function FocusGauge({ score = 70 }) {
           ))}
         </Pie>
       </PieChart>
-      <div className="text-2xl font-bold text-[var(--popover-foreground)] -mt-4">
-        {score}
-      </div>
+      <div className="mt-[-32px] text-2xl font-bold text-[var(--popover-foreground)]">{percent}</div>
+      <div className="text-sm text-[var(--muted-foreground)]">Focus</div>
     </div>
   );
 }

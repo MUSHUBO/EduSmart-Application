@@ -1,3 +1,4 @@
+
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { dbConnect, collectionNamesObj } from "@/library/dbConnect";
@@ -17,10 +18,13 @@ export async function POST(req) {
       success: true,
       message: "Login successful",
       token,
-      parent: { name: `${student.parentFirstName} ${student.parentLastName}`, email: student.parentEmail },
+      parent: {
+        name: `${student.parentFirstName} ${student.parentLastName}`,
+        email: student.parentEmail,
+      },
     });
   } catch (err) {
-    console.error(err);
+    console.error("Login Error:", err);
     return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }
 }

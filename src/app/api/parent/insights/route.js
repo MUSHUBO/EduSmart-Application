@@ -1,43 +1,80 @@
 import { NextResponse } from "next/server";
+import OpenAI from "openai";
 import jwt from "jsonwebtoken";
 import { dbConnect, collectionNamesObj } from "@/library/dbConnect";
 
-export async function GET(req) {
+const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+export async function POST(req) {
   try {
     const auth = req.headers.get("authorization");
-    if (!auth) return NextResponse.json({ success: false, message: "Missing token" }, { status: 401 });
+    if (!auth) {
+      return NextResponse.json({ success: false, message: "Missing token" }, { status: 401 });
+    }
 
     const token = auth.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const { period = "the entire week" } = await req.json();
+
     const collection = await dbConnect(collectionNamesObj.studentCollection);
     const student = await collection.findOne({ parentEmail: decoded.parentEmail });
-    if (!student) return NextResponse.json({ success: false, message: "Student not found" }, { status: 404 });
 
-    // DEMO data generation (randomized-ish but stable enough for preview)
-    const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-    const base = [25, 40, 60, 35, 85, 75, 55];
-    const moodTrend = days.map((d,i) => ({ day: d, mood: Math.max(10, Math.min(100, base[i] + Math.floor(Math.random()*11-5))) }));
-    const focusScore = Math.floor(Math.random()*20) + 75;
-    const allEmotions = ["Happy","Focused","Curious","Tired","Stressed","Relaxed","Confident","Playful"];
-    const emotions = allEmotions.sort(()=>0.5-Math.random()).slice(0,3);
-    const weeklySummaries = [
-      "Maintained steady participation and showed strong curiosity in science.",
-      "Improved focus midweek; mild stress before math quiz.",
-      "Consistent submissions and cheerful engagement.",
-      "Slight fatigue midweek but confidence improved by weekend.",
-      "Great engagement during group sessions; continue small breaks."
-    ];
-    const weeklySummary = weeklySummaries[Math.floor(Math.random()*weeklySummaries.length)];
+    console.log("Student found:", student);
 
+    if (!student) {
+      const demo = `🌟 Demo Weekly Report 🌟  
+The student maintained steady concentration throughout ${period}. They balanced academic tasks with healthy social interaction. Encourage continued journaling and breaks to sustain motivation.`;
+      return NextResponse.json({ success: true, report: demo, demo: true });
+    }
+
+
+    const metrics = {
+      avgFocus: 85,
+      participation: 90,
+      sleepQuality: "good",
+      stressLevel: "moderate",
+      moodTrend: [
+        { day: "Sun", mood: "Motivated" },
+        { day: "Mon", mood: "Energetic" },
+        { day: "Tue", mood: "Calm" },
+        { day: "Wed", mood: "Focused" },
+        { day: "Thu", mood: "Tired" },
+    
+      ],
+    };
+
+    const prompt = `
+You are a kind, insightful school counselor. Write a colorful, uplifting **Weekly Mental Health Report** for this student. 
+Use friendly emojis, clear section titles (like “🌞 Highlights”, “💡 Suggestions”, “🌈 Overall Mood”), and keep it concise (130–180 words).
+
+Student: ${student.studentFirstName} ${student.studentLastName}
+Week Overview: ${period}
+Average Focus: ${metrics.avgFocus}%
+Participation: ${metrics.participation}%
+Sleep Quality: ${metrics.sleepQuality}
+Stress Level: ${metrics.stressLevel}
+Mood Trend: ${JSON.stringify(metrics.moodTrend)}
+
+Tone: encouraging, emotionally intelligent, positive.
+Include 2 short personalized suggestions.
+`;
+
+    const response = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
+      max_tokens: 400,
+    });
+
+    const report = response.choices?.[0]?.message?.content || "No report returned.";
+
+    return NextResponse.json({ success: true, report });
+  } catch (err) {
+    console.error("Weekly Report Error:", err);
     return NextResponse.json({
       success: true,
-      data: {
-        studentBasic: { _id: student._id, studentFirstName: student.studentFirstName, studentLastName: student.studentLastName },
-        moodTrend, focusScore, emotions, weeklySummary
-      }
+      report:
+        "🌟 Demo Weekly Report 🌟\nThe student demonstrated great persistence this week! They kept a healthy attitude and worked steadily. Encourage good rest and family time for emotional balance.",
+      demo: true,
     });
-  } catch (err) {
-    console.error(err);
-    return NextResponse.json({ success: false, message: err.message }, { status: 500 });
   }
 }

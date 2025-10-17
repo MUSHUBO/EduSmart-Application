@@ -129,3 +129,8 @@ iframe.goog-te-menu-frame {
 body {
   top: 0px !important;
 }
+.card-glow { transition: transform .18s ease, box-shadow .18s ease; }
+.card-glow:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+
+
+.recharts-text { fill: var(--popover-foreground) !important; }
