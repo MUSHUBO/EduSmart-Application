@@ -65,7 +65,7 @@ export default function ParentDashboardPage() {
   // 🔒 Logout Function
   function handleLogout() {
     localStorage.removeItem("parentToken");
-    window.location.href = "/parents/login";
+    window.location.href = "/";
   }
 
   // 🎨 Emotion Colors

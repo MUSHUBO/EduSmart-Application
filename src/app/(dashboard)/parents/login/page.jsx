@@ -24,7 +24,7 @@ export default function ParentLogin() {
       const data = await res.json();
       if (!data.success) return setErr(data.message);
       localStorage.setItem("parentToken", data.token);
-      router.push("/parents/dashboard");
+      router.push("/user-dashboard/parent-dashboard");
     } catch {
       setErr("Network error");
     }
