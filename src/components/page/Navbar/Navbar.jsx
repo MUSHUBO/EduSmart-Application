@@ -23,7 +23,7 @@ const Navbar = () => {
   const logoutHandler = async () => {
     try {
       await logoutAccount();
-      toast.success('Logout Successfully', {
+      toast.success('Logout Successfully!', {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
