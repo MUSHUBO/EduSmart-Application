@@ -62,7 +62,7 @@ const HistorySection = () => {
                   <div className="flex flex-col md:flex-row md:items-center gap-y-4 md:gap-x-4">
                     <div className="relative flex-shrink-0">
                       <div className="absolute top-1 left-1 w-full h-full bg-primary rounded-xl"></div>
-                      <div className="relative border-2 border-primary rounded-xl px-4 py-2 flex items-center gap-4 bg-white">
+                      <div className="relative border-2 border-primary rounded-xl px-4 py-2 flex items-center gap-4 bg-accent">
                         <div className="hidden md:block absolute top-1/2 -left-2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full z-10"></div>
                         <div className="flex-shrink-0 w-10 h-10">
                           <Image

@@ -9,7 +9,7 @@ export default function StudentLife() {
 
   // Shared card style
   const cardStyle =
-    "bg-white p-6 rounded-lg shadow-sm text-left relative pt-12 border-t border-l border-black border-r-[6px] border-b-[6px]";
+    "bg-muted p-6 rounded-lg shadow-sm text-left relative pt-12 border-t border-l border-primary border-r-[6px] border-b-[6px]";
 
   // Extracurricular activities data
   const extracurriculars = [
@@ -99,16 +99,16 @@ export default function StudentLife() {
   ];
 
   return (
-    <section className="bg-white py-8 lg:py-16 w-11/12 mx-auto border border-gray-200 rounded-lg shadow-xl mb-12">
+    <section className=" w-11/12 mx-auto px-6 md:px-9 lg:px-12 py-12 md:py-18 lg:py-28 mb-12">
       {/* Intro Section */}
-      <div className="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row mb-16 border p-4 rounded-xl border-r-[6px] border-b-[6px] border-t border-l border-black">
+      <div className="container mx-auto px-4 lg:px-8 flex flex-col md:flex-row mb-16 border p-4 rounded-xl border-r-[6px] border-b-[6px] border-t border-l border-primary">
         {/* Left side */}
         <div className="relative md:w-1/2 lg:w-5/12 pr-4 mb-6 md:mb-0">
           <div className="relative pt-16 lg:pt-20 z-10">
-            <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-gray-700 border border-gray-400 rounded-full bg-white">
+            <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-gray-700 border border-gray-400 rounded-full bg-accent">
               Enriching Student Life
             </span>
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-gray-800 leading-tight">
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-popover leading-tight">
               Embracing Learning with Discovery and Joy
             </h2>
           </div>
@@ -116,7 +116,7 @@ export default function StudentLife() {
 
         {/* Right side */}
         <div className="md:w-1/2 lg:w-7/12 pt-0 md:pl-8 flex items-center">
-          <p className="text-gray-600 text-lg leading-relaxed">
+          <p className="text-popover-foreground text-lg leading-relaxed">
             Welcome to our Student Life page, where the magic of childhood comes
             alive through the enriching experiences and adventures that our
             students embark on each day. At our kindergarten school, we believe
@@ -147,8 +147,8 @@ export default function StudentLife() {
             >
               <span className="text-xl">{icon}</span>
             </div>
-            <h4 className="text-xl font-bold text-gray-800 mb-2">{label}</h4>
-            <p className="text-gray-600 text-base">{desc}</p>
+            <h4 className="text-xl font-bold text-popover mb-2">{label}</h4>
+            <p className="text-popover-foreground text-base">{desc}</p>
           </div>
         ))}
       </Section>
@@ -170,16 +170,16 @@ export default function StudentLife() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <h4 className="text-xl font-bold text-gray-800 mb-2">{label}</h4>
-            <p className="text-gray-600 text-base">{desc}</p>
+            <h4 className="text-xl font-bold text-popover mb-2">{label}</h4>
+            <p className="text-popover-foreground text-base">{desc}</p>
           </div>
         ))}
       </Section>
 
       {/* Student Support */}
       <div
-        style={{ backgroundColor: peachBackground }}
-        className="mt-16 lg:mt-24 py-16"
+        
+        className="mt-16 lg:mt-24 py-16 bg-muted rounded-3xl"
       >
         <Section
           title="Student Support"
@@ -191,13 +191,12 @@ export default function StudentLife() {
           {supports.map(({ icon, label, desc }) => (
             <div key={label} className={cardStyle}>
               <div
-                className="absolute -top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center border border-gray-300"
-                style={{ backgroundColor: peachAccent }}
+                className="absolute -top-6 left-6 w-12 h-12 rounded-full flex items-center justify-center border border-gray-300 bg-accent"
               >
                 <span className="text-xl">{icon}</span>
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-2">{label}</h4>
-              <p className="text-gray-600 text-base">{desc}</p>
+              <h4 className="text-xl font-bold text-popover mb-2">{label}</h4>
+              <p className="text-popover-foreground text-base">{desc}</p>
             </div>
           ))}
         </Section>
@@ -210,13 +209,13 @@ export default function StudentLife() {
 function Section({ tag, title, desc, children }) {
   return (
     <div className="container mx-auto px-4 lg:px-8 text-center mt-16 lg:mt-24 mb-16">
-      <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-gray-700 border border-gray-400 rounded-full bg-white">
+      <span className="inline-block px-4 py-1 mb-4 text-sm font-semibold text-gray-700 border border-gray-400 rounded-full bg-accent">
         {tag}
       </span>
-      <h3 className="text-4xl lg:text-5xl font-extrabold text-gray-800 mb-6">
+      <h3 className="text-4xl lg:text-5xl font-extrabold text-popover mb-6">
         {title}
       </h3>
-      <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed mb-12 lg:mb-16">
+      <p className="text-popover-foreground text-lg max-w-3xl mx-auto leading-relaxed mb-12 lg:mb-16">
         {desc}
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
