@@ -16,6 +16,7 @@ import {
   FaCertificate,
   FaUser,
   FaGift,
+  FaUserFriends,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth"; // make sure you have this
@@ -159,6 +160,14 @@ export default function UserSidebar() {
             >
               <FaCalendarAlt />
               <span>Events</span>
+            </Link>
+            <Link
+              href="/user-dashboard/parent-dashboard"
+              className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md transition-colors"
+            >
+              <FaUserFriends></FaUserFriends>
+              
+              <span>Parents</span>
             </Link>
 
             {/* Settings */}
