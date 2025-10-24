@@ -36,6 +36,10 @@ export default function AdminSidebar() {
               <FaHome />
               <span>Dashboard</span>
             </Link>
+            <Link href="/admin-dashboard/allUsers" className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md">
+              <FaHome />
+              <span>All USERS</span>
+            </Link>
 
             {/* Students Dropdown */}
             <details className="group">
