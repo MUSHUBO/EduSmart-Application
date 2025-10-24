@@ -27,7 +27,7 @@ export default function CoursesSection() {
     };
     fetchCourses();
   }, []);
-
+  console.log(courses)
   if (loading) return <p className="text-center min-h-screen flex justify-center items-center">Loading...</p>;
 
   return (
@@ -49,6 +49,7 @@ export default function CoursesSection() {
             >
               {/* Image */}
               <div className="relative p-4">
+                
                 <Image
                   src={course.image}
                   alt={course.title}
