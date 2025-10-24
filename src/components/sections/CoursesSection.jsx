@@ -50,13 +50,13 @@ export default function CoursesSection() {
               {/* Image */}
               <div className="relative p-4">
                 
-                {/* <Image
+                <Image
                   src={course.image}
                   alt={course.title}
                   width={400}
                   height={500}
                   className="w-full h-[220px] object-cover rounded-lg"
-                /> */}
+                />
                 <span className="absolute top-6 left-6 bg-primary text-white px-3 py-1 text-sm rounded-md">
                   {course.category}
                 </span>
