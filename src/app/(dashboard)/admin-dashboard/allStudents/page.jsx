@@ -1,6 +1,7 @@
 'use client';
+
 import { useEffect, useState } from 'react';
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaUserCircle } from 'react-icons/fa';
 
 const AllStudent = () => {
   const [students, setStudents] = useState([]);
@@ -27,69 +28,105 @@ const AllStudent = () => {
     fetchStudents();
   }, []);
 
-  if (loading) return <div className="p-6 text-center text-gray-500">Loading students...</div>;
+  if (loading)
+    return (
+      <div className="p-6 text-center text-gray-500 animate-pulse">
+        Loading students...
+      </div>
+    );
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-md overflow-x-auto">
-      <h2 className="text-2xl font-semibold mb-4 text-gray-800">All Students</h2>
+    <div className="p-6 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-x-auto transition-all duration-300">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+        <h2 className="text-3xl font-bold text-gray-800">All Students</h2>
+        <p className="text-gray-500 text-sm">
+          Total: <span className="font-semibold text-gray-700">{students.length}</span>
+        </p>
+      </div>
 
-      <table className="min-w-full text-sm">
-        <thead className="text-left bg-gray-100">
+      <table className="min-w-full text-sm text-gray-700">
+        <thead className="bg-gray-100 sticky top-0 z-10 shadow-sm text-gray-600 uppercase text-xs">
           <tr>
-            <th className="p-3">#</th>
-            <th className="p-3">Photo</th>
-            <th className="p-3">Name</th>
-            <th className="p-3">Parent</th>
-            <th className="p-3">Phone</th>
-            <th className="p-3">Email</th>
-            <th className="p-3">Date</th>
+            <th className="px-4 py-3 text-left font-semibold">#</th>
+            <th className="px-4 py-3 text-left font-semibold">Photo</th>
+            <th className="px-4 py-3 text-left font-semibold">Name</th>
+            <th className="px-4 py-3 text-left font-semibold">Parent</th>
+            <th className="px-4 py-3 text-left font-semibold">Phone</th>
+            <th className="px-4 py-3 text-left font-semibold">Email</th>
+            <th className="px-4 py-3 text-left font-semibold">Date</th>
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="divide-y divide-gray-100">
           {students.length > 0 ? (
             students.map((student, index) => (
-              <tr key={student._id || index} className="border-b hover:bg-gray-50">
-                <td className="p-3">{index + 1}</td>
-
-                <td className="p-3">
-                  <img
-                    src={student.studentPhoto || 'https://i.pravatar.cc/100?u=' + student.studentEmail}
-                    alt={student.studentFirstName}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+              <tr
+                key={student._id || index}
+                className="hover:bg-blue-50 transition-all duration-150"
+              >
+                {/* Index */}
+                <td className="px-4 py-3 text-gray-500 font-medium">
+                  {index + 1}
                 </td>
 
-                <td className="p-3 font-semibold">
+                {/* Photo */}
+                <td className="px-4 py-3">
+                  {student.studentPhoto ? (
+                    <img
+                      src={student.studentPhoto}
+                      alt={student.studentFirstName}
+                      className="w-10 h-10 rounded-full object-cover ring-2 ring-gray-200"
+                    />
+                  ) : (
+                    <FaUserCircle className="w-10 h-10 text-gray-400" />
+                  )}
+                </td>
+
+                {/* Name */}
+                <td className="px-4 py-3 font-semibold text-gray-800 whitespace-nowrap">
                   {student.studentFirstName} {student.studentLastName}
                 </td>
 
-                <td className="p-3">
+                {/* Parent */}
+                <td className="px-4 py-3 text-gray-700 whitespace-nowrap">
                   {student.parentFirstName} {student.parentLastName}
                 </td>
 
-                <td className="p-3 text-blue-600">
-                  <a href={`tel:${student.studentPhone}`} className="flex items-center gap-2">
-                    <FaPhone /> {student.studentPhone}
+                {/* Phone */}
+                <td className="px-4 py-3 text-blue-600 whitespace-nowrap">
+                  <a
+                    href={`tel:${student.studentPhone}`}
+                    className="flex items-center gap-2 hover:underline"
+                  >
+                    <FaPhone className="text-blue-500" /> {student.studentPhone}
                   </a>
                 </td>
 
-                <td className="p-3 text-blue-600">
-                  <a href={`mailto:${student.studentEmail}`} className="flex items-center gap-2">
-                    <FaEnvelope /> {student.studentEmail}
+                {/* Email */}
+                <td className="px-4 py-3 text-blue-600 whitespace-nowrap">
+                  <a
+                    href={`mailto:${student.studentEmail}`}
+                    className="flex items-center gap-2 hover:underline"
+                  >
+                    <FaEnvelope className="text-blue-500" />{' '}
+                    {student.studentEmail}
                   </a>
                 </td>
 
-                <td className="p-3 text-gray-600">
+                {/* Date */}
+                <td className="px-4 py-3 text-gray-600 whitespace-nowrap">
                   {student.createdAt
-                    ? new Date(student.createdAt).toLocaleDateString()
+                    ? new Date(student.createdAt).toLocaleDateString('en-GB')
                     : '—'}
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="7" className="p-6 text-center text-gray-500">
+              <td
+                colSpan="7"
+                className="p-6 text-center text-gray-500 italic bg-gray-50"
+              >
                 No students found.
               </td>
             </tr>

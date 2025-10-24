@@ -64,7 +64,7 @@ export default function AllUsersPage() {
         <div className="p-6">
             {/* Toggle Button */}
             <div className="flex justify-between items-center mb-6">
-                <h1 className="text-3xl font-bold">All Users</h1>
+                <h1 className="text-3xl font-bold dark:text-black">All Users</h1>
                 <button
                     onClick={() => setViewMode(viewMode === "table" ? "grid" : "table")}
                     className="relative inline-flex items-center justify-center p-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full shadow-lg text-white font-semibold transition-transform duration-300 hover:scale-105 focus:outline-none"
@@ -179,9 +179,9 @@ export default function AllUsersPage() {
                             <img
                                 src={user.photo}
                                 alt={user.name}
-                                className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-indigo-200"
+                                className="w-20 h-20 rounded-full object-cover mb-4 border-4 border-indigo-200 dark:text-black"
                             />
-                            <h2 className="text-xl font-semibold mb-1">{user.name}</h2>
+                            <h2 className="text-xl font-semibold mb-1 dark:text-black">{user.name}</h2>
                             <p className="text-gray-500 flex items-center gap-1 justify-center mb-2">
                                 <FaEnvelope /> {user.email}
                             </p>
