@@ -1,9 +1,12 @@
+"use client"
 import AdminSidebar from "@/components/adminDashboard-components/AdminSidebar";
+import { AuthContext } from "@/Context/AuthContext/AuthContext";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
 import { FaBell, FaSearch, } from "react-icons/fa";
 function AdminLayout({ children }) {
+    const { user } = useContext(AuthContext);
     return (
         <div className="drawer lg:drawer-open">
             {/* Drawer toggle for mobile */}
@@ -40,11 +43,13 @@ function AdminLayout({ children }) {
                             <Image
                                 height={40}
                                 width={40}
-                                src="/images/events/01 (2).jpg"
+                                src={user?.photoURL || "/default-avatar.png"}
                                 alt="profile"
-                                className="w-10 h-10 rounded-full"
+                                className="w-10 h-10 rounded-full object-cover"
                             />
-                            <span className="text-gray-700 font-medium">Admin</span>
+                            <span className="text-gray-700 font-medium hidden sm:block">
+                                {user?.displayName || "User"}
+                            </span>
                         </div>
                     </div>
                 </header>
@@ -53,7 +58,7 @@ function AdminLayout({ children }) {
                 <main className="flex-1 p-6 bg-gray-50">{children}</main>
             </div>
             {/* Sidebar / Drawer */}
-            <AdminSidebar/>
+            <AdminSidebar />
         </div>
     );
 }
