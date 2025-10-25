@@ -22,12 +22,12 @@ const AllCourses = () => {
 
   return (
     <div className="w-10/12 mx-auto py-14 pt-20 bg-background min-h-screen">
-      <h2 className="text-4xl font-bold text-center mb-12 text-primary">
-        📚 Explore All Courses
+      <h2 className="text-4xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
+        <BookOpen size={36} /> Explore All Courses
       </h2>
 
       {courses.length === 0 ? (
-        <p className="text-center text-gray-500 dark:text-gray-300">No courses found.</p>
+        <p className="text-center text-xl text-gray-500 mt-38 dark:text-gray-300">No courses found.</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {courses.map((course) => (
@@ -44,6 +44,10 @@ const AllCourses = () => {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
+                
+                <span className="absolute top-3 left-3 bg-primary text-white px-3 py-1 text-sm rounded-md">
+                  {course.category}
+                </span>
               </div>
 
               {/* Card Content */}
