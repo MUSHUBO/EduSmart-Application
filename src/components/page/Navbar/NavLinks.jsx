@@ -9,7 +9,7 @@ const NavLinks = ({ pathname }) => {
     {
       label: "Courses",
       children: [
-        { href: "/all_courses", label: "All Courses" },
+        { href: "/allCourses", label: "All Courses" },
         { href: "/CourseCreationForm", label: "Add Course" },
       ],
     },
