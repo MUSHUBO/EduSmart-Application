@@ -20,6 +20,7 @@ import {
   Image as ImageIcon,
   MessageSquare,
   Zap,
+  PlusCircle,
 } from "lucide-react";
 
 // List of common categories for the dropdown
@@ -35,8 +36,8 @@ const courseCategories = [
   "Other",
 ];
 
-// --- FIXED Reusable Input Component (Now with explicit height and border style) ---
-const IconInput = ({ icon: Icon, label, name, value, onChange, placeholder, type = "text", required = false, disabled = false }) => (
+// Reusable Input Component
+const IconInput = ({ icon: Icon, label, name, value, onChange, placeholder, type = "text", required = true, disabled = false }) => ( // required set to true by default
   <div>
     <label className="block mb-1 text-popover font-semibold">{label}</label>
     <div className="relative">
@@ -47,8 +48,11 @@ const IconInput = ({ icon: Icon, label, name, value, onChange, placeholder, type
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        // FIX: Removed 'input input-bordered' and added consistent styling (h-12, border, rounded-lg)
-        className={`w-full h-12 pl-10 pr-4 bg-white text-foreground border border-gray-300 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors ${disabled ? 'cursor-not-allowed bg-gray-100' : ''}`}
+        className={`w-full h-12 pl-10 pr-4 
+                          bg-white dark:bg-background text-foreground 
+                          border border-gray-300 dark:border-muted-foreground 
+                          rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors 
+                          ${disabled ? 'cursor-not-allowed bg-gray-100 dark:bg-muted-foreground/20' : ''}`}
         required={required}
         disabled={disabled}
       />
@@ -56,7 +60,7 @@ const IconInput = ({ icon: Icon, label, name, value, onChange, placeholder, type
   </div>
 );
 
-// Reusable Select Component (No structural changes needed, it's already fixed)
+// Reusable Select Component
 const IconSelect = ({ icon: Icon, label, name, value, onChange, options }) => (
   <div>
     <label className="block mb-1 text-popover font-semibold">{label}</label>
@@ -67,7 +71,11 @@ const IconSelect = ({ icon: Icon, label, name, value, onChange, options }) => (
         name={name}
         value={value}
         onChange={onChange}
-        className="w-full h-12 pl-10 pr-10 bg-white text-foreground border border-gray-300 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none"
+        className="w-full h-12 pl-10 pr-10 
+                           bg-white dark:bg-background text-foreground 
+                           border border-gray-300 dark:border-muted-foreground rounded-lg 
+                           focus:border-primary focus:ring-1 focus:ring-primary transition-colors appearance-none"
+        required // Added required attribute
       >
         <option value="" disabled>Select option</option>
         {options.map((option) => (
@@ -75,7 +83,7 @@ const IconSelect = ({ icon: Icon, label, name, value, onChange, options }) => (
         ))}
       </select>
       {/* Custom chevron (Right Icon) */}
-      <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none z-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+      <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 dark:text-muted-foreground pointer-events-none z-20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
     </div>
   </div>
 );
@@ -129,6 +137,8 @@ export default function AddCourse() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // The validation is handled by the 'required' attribute on the inputs,
+    // but the final data clean-up still needs to happen here.
     const galleryArray = formData.galleryImages
       .split(",")
       .map(url => url.trim())
@@ -185,8 +195,10 @@ export default function AddCourse() {
     <div className="py-12 my-16 bg-background">
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="max-w-4xl mx-auto p-8 bg-card rounded-2xl shadow-2xl border border-gray-100">
-        <h2 className="text-4xl font-extrabold text-center mb-10 text-popover border-b pb-4">
+      <div className="max-w-4xl mx-auto p-8 bg-card rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700">
+        {/* HEADER WITH ICON (FIXED) */}
+        <h2 className="text-4xl font-extrabold text-center mb-10 text-popover border-b pb-4 flex items-center justify-center gap-3">
+          <PlusCircle size={32} className="text-primary" />
           Add New Course
         </h2>
 
@@ -195,13 +207,13 @@ export default function AddCourse() {
           className="space-y-8 text-popover"
         >
           {/* 1. Basic Info & Pricing */}
-          <div className="space-y-4 border p-6 rounded-lg bg-gray-50/50">
-            <h3 className="text-xl font-bold text-popover flex items-center gap-2 border-b pb-2 text-primary">
+          <div className="space-y-4 border p-6 rounded-lg bg-gray-50/50 dark:bg-gray-900/50 dark:border-gray-700">
+            <h3 className="text-xl font-bold flex items-center gap-2 border-b pb-2 text-primary">
               <Briefcase size={22} /> Course Identity
             </h3>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              <IconInput icon={BookOpen} label="Course Title" name="title" value={formData.title} onChange={handleChange} placeholder="e.g. Advanced React Development" required />
+              <IconInput icon={BookOpen} label="Course Title" name="title" value={formData.title} onChange={handleChange} placeholder="e.g. Advanced React Development" />
 
               <IconInput
                 icon={User}
@@ -211,12 +223,11 @@ export default function AddCourse() {
                 onChange={handleChange}
                 placeholder="Fetched automatically..."
                 disabled
-                required
+                required={true} // Explicitly required
               />
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4">
-              {/* Category Select Input (Now uses IconSelect) */}
               <IconSelect icon={Layers} label="Category" name="category" value={formData.category} onChange={handleChange} options={courseCategories} />
 
               <IconInput icon={DollarSign} label="Course Fees (USD)" name="price" value={formData.price} onChange={handleChange} placeholder="e.g. 499" type="number" />
@@ -230,12 +241,13 @@ export default function AddCourse() {
               onChange={handleChange}
               placeholder="Fetched automatically..."
               disabled
+              required={true} // Explicitly required
             />
           </div>
 
           {/* 2. Course Features */}
-          <div className="space-y-4 border p-6 rounded-lg bg-gray-50/50">
-            <h3 className="text-xl font-bold text-popover flex items-center gap-2 border-b pb-2 text-primary">
+          <div className="space-y-4 border p-6 rounded-lg bg-gray-50/50 dark:bg-gray-900/50 dark:border-gray-700">
+            <h3 className="text-xl font-bold flex items-center gap-2 border-b pb-2 text-primary">
               <ClipboardList size={22} /> Course Specifications
             </h3>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -250,16 +262,14 @@ export default function AddCourse() {
             </div>
             <div className="grid sm:grid-cols-3 gap-4">
               <IconInput icon={Users} label="Students Limit" name="students" value={formData.students} onChange={handleChange} placeholder="e.g. 50" type="number" />
-              {/* Certificate Select Input */}
               <IconSelect icon={Award} label="Certificate" name="certificate" value={formData.certificate} onChange={handleChange} options={["Yes", "No"]} />
-              {/* Assessments Select Input */}
               <IconSelect icon={ClipboardList} label="Assessments" name="assessments" value={formData.assessments} onChange={handleChange} options={["Yes", "No"]} />
             </div>
           </div>
 
           {/* 3. Images and Description */}
-          <div className="space-y-4 border p-6 rounded-lg bg-gray-50/50">
-            <h3 className="text-xl font-bold text-popover flex items-center gap-2 border-b pb-2 text-primary">
+          <div className="space-y-4 border p-6 rounded-lg bg-gray-50/50 dark:bg-gray-900/50 dark:border-gray-700">
+            <h3 className="text-xl font-bold flex items-center gap-2 border-b pb-2 text-primary">
               <ImageIcon size={22} /> Media & Content
             </h3>
 
@@ -273,15 +283,18 @@ export default function AddCourse() {
                 placeholder="Paste 3-4 image URLs, separated by a comma (e.g., url1, url2, url3)"
                 value={formData.galleryImages}
                 onChange={handleChange}
-                // FIX: Applied consistent styling to textarea as well
-                className="w-full p-3 bg-white text-foreground border border-gray-300 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                className="w-full p-3 
+                               bg-white dark:bg-background text-foreground 
+                               border border-gray-300 dark:border-muted-foreground 
+                               rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                 rows="3"
+                required // Made required
               ></textarea>
             </div>
 
             {/* Description Textarea (Manual styling for textarea) */}
             <div>
-              <label className="block mb-1 text-popover font-semibold flex items-center gap-1">
+              <label className="mb-1 text-popover font-semibold flex items-center gap-1">
                 <MessageSquare size={18} className="text-secondary" /> Course Description
               </label>
               <textarea
@@ -289,9 +302,12 @@ export default function AddCourse() {
                 placeholder="Write something about the course..."
                 value={formData.description}
                 onChange={handleChange}
-                // FIX: Applied consistent styling to textarea as well
-                className="w-full p-3 bg-white text-foreground border border-gray-300 rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
+                className="w-full p-3 
+                               bg-white dark:bg-background text-foreground 
+                               border border-gray-300 dark:border-muted-foreground 
+                               rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                 rows="4"
+                required // Made required
               ></textarea>
             </div>
           </div>
