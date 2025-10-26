@@ -36,7 +36,7 @@ export default function CoursesSection() {
         <h2 className="text-5xl font-bold mb-6">Let's Check Our <span className="text-primary">Courses</span> </h2>
         <p className="">It is a long established fact that a reader will be distracted by the readable <br /> content of a page when looking at its layout.</p>
       </div>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6 max-w-7xl mx-auto">
         {courses.map((course) => (
 
           <Link key={course._id} href={`/courses/${course._id}`} className="group">
