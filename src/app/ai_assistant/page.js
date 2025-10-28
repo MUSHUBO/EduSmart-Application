@@ -1,24 +1,24 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { AuthContext } from "@/Context/AuthContext/AuthContext";
 import { FaSpinner } from "react-icons/fa";
 
+// Define a constant for the loading message key
+const LOADING_MESSAGE = "__LOADING__";
+
+// ---------------- Sidebar ----------------
 const Sidebar = ({ handleGetMessages, user }) => {
   const [conversations, setConversations] = useState([]);
-  const [loading, setLoading] = useState(false); // Loading state for fetching
-  const [processing, setProcessing] = useState(false); // Loading state for create/delete
-  const [selectedConvId, setSelectedConvId] = useState(null); // Selected conversation
+  const [loading, setLoading] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [selectedConvId, setSelectedConvId] = useState(null);
 
-  // Fetch conversations on mount or when user changes
   useEffect(() => {
     const getConversations = async () => {
       if (!user?.email) return;
-
       try {
         setLoading(true);
-        const res = await fetch(
-          `/api/conversations/all?creator=${user?.email}`
-        );
+        const res = await fetch(`/api/conversations/all?creator=${user.email}`);
         const data = await res.json();
         if (data.success) setConversations(data.conversations);
       } catch (err) {
@@ -58,7 +58,7 @@ const Sidebar = ({ handleGetMessages, user }) => {
       });
       const data = await res.json();
       if (data.success) setConversations([]);
-      setSelectedConvId(null); // Clear selected conversation
+      setSelectedConvId(null);
     } catch (err) {
       console.error(err);
     } finally {
@@ -72,7 +72,7 @@ const Sidebar = ({ handleGetMessages, user }) => {
   };
 
   return (
-    <div className="p-4 border-r border-gray-300 w-1/4 h-[calc(100vh-64px)] flex flex-col">
+    <div className="p-4 border-r border-gray-300 w-1/4 h-[calc(100vh-64px)] flex flex-col pt-8 bg-base-300">
       <h1 className="text-xl font-semibold mb-4">Conversations</h1>
 
       <button
@@ -81,10 +81,9 @@ const Sidebar = ({ handleGetMessages, user }) => {
         disabled={processing}
       >
         {processing && <FaSpinner className="animate-spin" />}
-        Delete All
+        Delete All Conversations
       </button>
 
-      {/* Conversations List */}
       {loading ? (
         <div className="flex-1 flex justify-center items-center">
           <FaSpinner className="animate-spin text-2xl text-blue-500" />
@@ -95,13 +94,13 @@ const Sidebar = ({ handleGetMessages, user }) => {
             const isSelected = conv._id === selectedConvId;
             return (
               <li
-                key={conv?._id}
+                key={conv._id}
                 className={`btn w-full text-left ${
-                  isSelected ? "btn-neutral" : "btn-outline"
+                  isSelected ? "bg-secondary" : "btn-outline"
                 }`}
                 onClick={() => handleSelectConversation(conv)}
               >
-                {new Date(conv?.createdAt).toLocaleString()}
+                {new Date(conv.createdAt).toLocaleString()}
               </li>
             );
           })}
@@ -119,95 +118,169 @@ const Sidebar = ({ handleGetMessages, user }) => {
   );
 };
 
-// ✅ Center Component
-const Center = ({ messages }) => {
+// ---------------- Center ----------------
+const Center = ({ messages, selectedConvId, messagesLoading }) => {
+  const messagesContainerRef = useRef(null);
+
+  const scrollToBottom = () => {
+    const container = messagesContainerRef.current;
+    if (container) {
+      // Scroll to the bottom using container's scrollHeight
+      container.scrollTop = container.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    // Scroll after the component has rendered the new messages
+    const timer = setTimeout(() => {
+      scrollToBottom();
+    }, 0);
+    return () => clearTimeout(timer); // Cleanup function
+  }, [messages, selectedConvId]); // Scroll on new messages AND when a new convo is selected
+
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       <div className="p-4 border-b border-gray-300">
         <h2 className="text-lg font-bold">Ask Mithu</h2>
       </div>
-
-      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-background">
-        {messages.length === 0 ? (
+      {/* Scrollable area with ref attached */}
+      <div
+        className="flex-1 overflow-y-auto p-4 space-y-3 bg-background"
+        ref={messagesContainerRef}
+      >
+        {/* Conditional rendering for initial state */}
+        {!selectedConvId ? (
+          <p className="text-gray-500 text-center mt-10 text-xl font-medium">
+            Please select a conversation from to start.
+          </p>
+        ) : messagesLoading ? ( // Check for message loading
+          <div className="flex justify-center items-center h-full pt-20">
+            <FaSpinner className="animate-spin text-4xl text-blue-500" />
+          </div>
+        ) : messages.length === 0 ? (
           <p className="text-gray-500 text-center mt-10">
-            No messages yet. Select a conversation.
+            No messages yet. Start a conversation!
           </p>
         ) : (
-          messages.map((m, index) => (
-            <div
-              key={index}
-              className={`p-3 rounded-lg shadow-sm w-fit max-w-[50%] ${
-                m.role === "assistant"
-                  ? "bg-primary dark:bg-muted mr-auto text-left"
-                  : "bg-primary-foreground ml-auto text-right"
-              }`}
-            >
-              {m.message}
-            </div>
-          ))
+          messages.map((m, i) => {
+            const isUser = m.role !== "assistant";
+            const isAiLoading = m.message === LOADING_MESSAGE;
+
+            return (
+              <div
+                key={i}
+                className={`p-3 rounded-lg shadow-sm w-fit max-w-[50%] ${
+                  isUser
+                    ? "bg-primary-foreground ml-auto text-right"
+                    : "bg-primary dark:bg-muted mr-auto text-left"
+                }`}
+              >
+                {isAiLoading ? (
+                  <div className="flex items-center gap-2 text-gray-500">
+                    <FaSpinner className="animate-spin" />
+                    <span className="italic">loading</span>
+                  </div>
+                ) : (
+                  m.message
+                )}
+              </div>
+            );
+          })
         )}
       </div>
     </div>
   );
 };
 
-// ✅ AddNewMessage Component
-const AddNewMessage = ({ setNewMessage, newMessage, addNewMessage }) => {
+// ---------------- AddNewMessage ----------------
+const AddNewMessage = ({
+  setNewMessage,
+  newMessage,
+  addNewMessage,
+  aiLoading,
+  selectedConvId,
+}) => {
+  // Disabled if AI is loading OR if no conversation is selected
+  const isDisabled = aiLoading || !selectedConvId;
+
   const handleSubmit = () => {
-    if (!newMessage.trim()) return;
+    if (isDisabled || !newMessage.trim()) return;
     addNewMessage();
-    setNewMessage("");
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") handleSubmit();
+    if (e.key === "Enter" && !isDisabled) handleSubmit();
   };
 
   return (
     <div className="p-4 bg-background border-t border-gray-300 flex items-center justify-center gap-2 w-full">
       <input
         className="input input-bordered flex-1 bg-transparent"
-        placeholder="Write a message..."
+        placeholder={
+          !selectedConvId
+            ? "Please select a conversation..."
+            : "Write a message..."
+        }
         onChange={(e) => setNewMessage(e.target.value)}
         onKeyDown={handleKeyDown}
         value={newMessage}
+        disabled={isDisabled}
       />
-      <button className="btn btn-primary" onClick={handleSubmit}>
+      <button
+        className="btn btn-primary"
+        onClick={handleSubmit}
+        disabled={isDisabled}
+      >
+        {aiLoading && <FaSpinner className="animate-spin mr-2" />}
         Send
       </button>
     </div>
   );
 };
 
-// ✅ Main Page Component
+// ---------------- Main Page ----------------
 const Page = () => {
   const { user } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [selectedConvId, setSelectedConvId] = useState(null);
+  const [aiLoading, setAiLoading] = useState(false);
+  const [messagesLoading, setMessagesLoading] = useState(false); // State for fetching conversation history
 
   const handleGetMessages = async (conv) => {
     try {
-      setSelectedConvId(conv?._id);
+      setSelectedConvId(conv._id);
+      setMessagesLoading(true); // Start loading when selecting conversation
 
       const res = await fetch(`/api/conversations/${conv._id}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       });
-
       const data = await res.json();
 
-      if (data.success) {
-        setMessages(data.conversation.messages || []);
-      } else {
-        console.error("Failed to fetch messages:", data.error);
-      }
+      if (data.success) setMessages(data.conversation.messages || []);
     } catch (err) {
-      console.error("Error fetching messages:", err);
+      console.error(err);
+    } finally {
+      setMessagesLoading(false); // Stop loading after fetch completes
     }
   };
 
   const addNewMessage = async () => {
+    if (!selectedConvId || !newMessage.trim()) return;
+
+    const userMessage = newMessage.trim();
+
+    // 1. Immediately update state with user message and AI loading placeholder
+    const tempMessages = [
+      ...messages,
+      { role: "person", message: userMessage },
+      { role: "assistant", message: LOADING_MESSAGE },
+    ];
+    setMessages(tempMessages);
+    setNewMessage("");
+    setAiLoading(true);
+
     try {
       const res = await fetch("/api/conversations/chat/new", {
         method: "POST",
@@ -215,96 +288,44 @@ const Page = () => {
         body: JSON.stringify({
           convId: selectedConvId,
           role: "person",
-          message: newMessage,
+          message: userMessage,
         }),
       });
 
       const data = await res.json();
 
       if (data.success) {
-        // ✅ Append message locally
-        setMessages((prev) => [
-          ...prev,
-          { role: "person", message: newMessage },
-        ]);
-        setNewMessage("");
-        await addNewResponse(newMessage);
+        // 2. Replace temporary messages with the final, updated conversation
+        setMessages(data.conversation.messages || []);
       } else {
-        console.error("Failed:", data.error);
+        // Handle failure: Revert
+        setMessages(messages);
+        console.error("Failed to send message:", data.error);
       }
     } catch (err) {
+      // Handle error: Revert
+      setMessages(messages);
       console.error(err);
-    }
-  };
-
-  const addNewResponse = async (userMsg) => {
-    try {
-      // 1️⃣ Call OpenRouter API
-      const aiRes = await fetch(
-        "https://openrouter.ai/api/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENROUTER_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo", // or another available model
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You are Mithu, a friendly and knowledgeable tutor. Answer the students questions clearly and helpfully.",
-              },
-              { role: "user", content: userMsg },
-            ],
-          }),
-        }
-      );
-
-      const aiData = await aiRes.json();
-      const aiMessage =
-        aiData?.choices?.[0]?.message?.content ||
-        "Sorry, I couldn't generate a response.";
-
-      // 2️⃣ Save the assistant message in MongoDB
-      const saveRes = await fetch("/api/conversations/chat/new", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          convId: selectedConvId,
-          role: "assistant",
-          message: aiMessage,
-        }),
-      });
-
-      const saveData = await saveRes.json();
-
-      if (saveData.success) {
-        // 3️⃣ Append assistant message locally
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", message: aiMessage },
-        ]);
-      } else {
-        console.error("Failed to save assistant message:", saveData.error);
-      }
-    } catch (error) {
-      console.error("Error in addNewResponse:", error);
+    } finally {
+      setAiLoading(false);
     }
   };
 
   return (
     <div className="flex h-[calc(100vh-64px)] relative">
-      {" "}
-      {/* Adjust height to exclude navbar (≈64px) */}
       <Sidebar handleGetMessages={handleGetMessages} user={user} />
       <div className="flex flex-col flex-1 relative">
-        <Center messages={messages} />
+        <Center
+          messages={messages}
+          selectedConvId={selectedConvId}
+          messagesLoading={messagesLoading} // Pass messagesLoading
+        />
         <AddNewMessage
           setNewMessage={setNewMessage}
           newMessage={newMessage}
           addNewMessage={addNewMessage}
+          aiLoading={aiLoading}
+          selectedConvId={selectedConvId}
         />
       </div>
     </div>
