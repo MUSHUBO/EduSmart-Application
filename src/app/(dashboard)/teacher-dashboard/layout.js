@@ -1,5 +1,5 @@
 "use client";
-import UserSidebar from "@/components/userDashboard-components/UserSidebar";
+import TeacherSidebar from "@/components/teacherDashboardComponent/teacherSidebar";
 import { AuthContext } from "@/Context/AuthContext/AuthContext";
 import Image from "next/image";
 import React, { useContext } from "react";
@@ -62,7 +62,7 @@ function UserLayout({ children }) {
       </div>
 
       {/* Sidebar / Drawer */}
-      <UserSidebar />
+      <TeacherSidebar />
     </div>
   );
 }

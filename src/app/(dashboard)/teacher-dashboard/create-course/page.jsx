@@ -91,7 +91,6 @@ const IconSelect = ({ icon: Icon, label, name, value, onChange, options }) => (
 
 export default function AddCourse() {
   const { loading, user } = useAuth();
-  
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -152,7 +151,6 @@ export default function AddCourse() {
       lectures: Number(formData.lectures) || 0,
       quizzes: Number(formData.quizzes) || 0,
       students: Number(formData.students) || 0,
-      gmail: user?.email,
     };
 
     try {
@@ -194,7 +192,7 @@ export default function AddCourse() {
   };
 
   return (
-    <div className="py-12 my-16 bg-background">
+    <div className=" my-6 bg-background">
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="max-w-4xl mx-auto p-8 bg-card rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700">
