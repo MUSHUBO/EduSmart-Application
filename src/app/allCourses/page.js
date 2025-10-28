@@ -4,11 +4,9 @@ import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { BookOpen, Star, Users, Clock, DollarSign } from "lucide-react";
-import { Bars } from "react-loader-spinner"; // ✅ added
 
 const AllCourses = () => {
   const [courses, setCourses] = useState([]);
-  const [loading, setLoading] = useState(true); // ✅ loading state added
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -17,40 +15,19 @@ const AllCourses = () => {
         setCourses(res.data.data || []);
       } catch (err) {
         console.error("Failed to fetch all courses:", err);
-      } finally {
-        setLoading(false); // ✅ stop loading when data fetch finishes
       }
     };
     fetchCourses();
   }, []);
 
-  // ✅ Show loader while fetching data
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <Bars
-          height="80"
-          width="80"
-          color="#4fa94d"
-          ariaLabel="loading"
-          wrapperStyle={{}}
-          wrapperClass=""
-          visible={true}
-        />
-      </div>
-    );
-  }
-
   return (
-    <div className="w-11/12 mx-auto py-14 pt-4 bg-background min-h-screen">
+    <div className="w-10/12 mx-auto py-14 pt-20 bg-background min-h-screen">
       <h2 className="text-4xl font-bold text-center mb-12 text-primary flex items-center justify-center gap-3">
         <BookOpen size={36} /> Explore All Courses
       </h2>
 
       {courses.length === 0 ? (
-        <p className="text-center text-xl text-gray-500 mt-38 dark:text-gray-300">
-          No courses found.
-        </p>
+        <p className="text-center text-xl text-gray-500 mt-38 dark:text-gray-300">No courses found.</p>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
           {courses.map((course) => (
@@ -67,7 +44,7 @@ const AllCourses = () => {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 />
-
+                
                 <span className="absolute top-3 left-3 bg-primary text-white px-3 py-1 text-sm rounded-md">
                   {course.category}
                 </span>

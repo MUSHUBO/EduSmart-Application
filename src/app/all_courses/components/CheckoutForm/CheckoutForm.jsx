@@ -1,14 +1,26 @@
 "use client"
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React from 'react';
+import React, { useState } from 'react';
 
 const CheckoutForm = () => {
 
     const stripe = useStripe();
     const elements = useElements();
+    const [error, setError] = useState("")
+    const [paymentLoading, setPaymentLoading] = useState(false)
+
+    // const amount = singleData?.price;
+    // const newAmmount = parseInt(amount)
+    // const amountInCents = newAmmount * 100;
+
+    const amountObject = {
+        amountInCents : 1000000,
+        parcelId: 1111
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setPaymentLoading(true)
 
         if (!stripe || !elements) {
             return;
@@ -26,9 +38,11 @@ const CheckoutForm = () => {
         });
 
         if (error) {
+            setError(error.message)
             console.log('[error]', error);
         } else {
             console.log('[PaymentMethod]', paymentMethod);
+            setPaymentLoading(false)
         }
     }
     return (
@@ -49,9 +63,16 @@ const CheckoutForm = () => {
                     },
                 }}
             />
-            <button className='text-red-700' type="submit" disabled={!stripe}>
-                Pay
+            <button type='submit' disabled={!stripe} className={`w-full py-3 rounded-lg duration-200 text-popover text-base font-bold transition
+      ${stripe ? 'bg-primary' : 'bg-gray-400 cursor-not-allowed'}
+    `}>
+
+                Pay For Booking {paymentLoading && <><span className="loading loading-dots loading-xs"></span>
+                    <span className="loading loading-dots loading-sm"></span></>}
             </button>
+            {
+                error && <h1 className='text-red-600 text-sm'>{error}</h1>
+            }
         </form>
     );
 };
