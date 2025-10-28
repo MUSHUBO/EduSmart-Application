@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaUserCircle } from 'react-icons/fa';
+import { Bars } from 'react-loader-spinner';
 
 const AllTeachers = () => {
   const [teachers, setTeachers] = useState([]);
@@ -26,63 +27,106 @@ const AllTeachers = () => {
     fetchTeachers();
   }, []);
 
-  if (loading) return <div className="p-6 text-center text-gray-500">Loading teachers...</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Bars
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-md overflow-x-auto">
-      <h2 className="text-2xl font-semibold mb-4 text-gray-800">All Teachers</h2>
+    <div className="p-6 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-x-auto transition-all duration-300">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+        <h2 className="text-4xl font-extrabold text-gray-800">All Teachers</h2>
+        <p className="text-gray-500 text-sm mt-2 sm:mt-0">
+          Total: <span className="font-semibold text-gray-700">{teachers.length}</span>
+        </p>
+      </div>
 
-      <table className="min-w-full text-sm">
-        <thead className="text-left bg-gray-100">
-          <tr>
-            <th className="p-3">#</th>
-            <th className="p-3">Photo</th>
-            <th className="p-3">Name</th>
-            <th className="p-3">Email</th>
-            <th className="p-3">Phone</th>
-            <th className="p-3">Date Joined</th>
-          </tr>
-        </thead>
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="table w-full border-collapse text-gray-700">
+          <thead className="bg-gray-100 text-gray-600 uppercase text-xs font-semibold sticky top-0 z-10">
+            <tr>
+              <th className="px-4 py-3">#</th>
+              <th className="px-4 py-3">Photo</th>
+              <th className="px-4 py-3">Name</th>
+              <th className="px-4 py-3">Email</th>
+              <th className="px-4 py-3">Phone</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {teachers.length > 0 ? (
-            teachers.map((teacher, index) => (
-              <tr key={teacher._id || index} className="border-b hover:bg-gray-50">
-                <td className="p-3">{index + 1}</td>
-                <td className="p-3">
-                  <img
-                    src={teacher.teacherPhoto || `https://i.pravatar.cc/100?u=${teacher.teacherEmail}`}
-                    alt={teacher.firstName}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                </td>
-                <td className="p-3 font-semibold">{teacher.firstName} {teacher.lastName}</td>
-                <td className="p-3 text-blue-600">
-                  <a href={`mailto:${teacher.email}`} className="flex items-center gap-2">
-                    <FaEnvelope /> {teacher.email}
-                  </a>
-                </td>
-                <td className="p-3 text-blue-600">
-                  <a href={`tel:${teacher.phone}`} className="flex items-center gap-2">
-                    <FaPhone /> {teacher.phone}
-                  </a>
-                </td>
-                <td className="p-3 text-gray-600">
-                  {teacher.createdAt ? new Date(teacher.createdAt).toLocaleDateString() : '—'}
+          <tbody className="divide-y divide-gray-100">
+            {teachers.length > 0 ? (
+              teachers.map((teacher, index) => (
+                <tr
+                  key={teacher._id || index}
+                  className="hover:bg-blue-50 transition-all duration-150"
+                >
+                  {/* Index */}
+                  <td className="px-4 py-3 text-gray-500 font-medium">
+                    {index + 1}
+                  </td>
+
+                  {/* Photo */}
+                  <td className="px-4 py-3">
+                    <div className="avatar">
+                      <div className="w-10 h-10 rounded-full ring ring-gray-200">
+                        {teacher.teacherPhoto ? (
+                          <img
+                            src={teacher.teacherPhoto}
+                            alt={teacher.firstName}
+                            className="object-cover"
+                          />
+                        ) : (
+                          <FaUserCircle className="w-full h-full text-gray-400" />
+                        )}
+                      </div>
+                    </div>
+                  </td>
+
+                  {/* Name */}
+                  <td className="px-4 py-3 font-semibold text-gray-800 whitespace-nowrap">
+                    {teacher.firstName} {teacher.lastName}
+                  </td>
+
+                  {/* Email */}
+                  <td className="px-4 py-3 text-gray-900 whitespace-nowrap">
+                    {teacher.email}
+                  </td>
+
+                  {/* Phone */}
+                  <td className="px-4 py-3 text-gray-900 whitespace-nowrap">
+                    {teacher.phone}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="p-6 text-center text-gray-500 italic bg-gray-50"
+                >
+                  No teachers found.
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="6" className="p-6 text-center text-gray-500">
-                No teachers found.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
+
 };
 
 export default AllTeachers;

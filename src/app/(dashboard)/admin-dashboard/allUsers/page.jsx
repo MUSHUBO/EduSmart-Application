@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { FaEnvelope } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { Bars } from "react-loader-spinner";
 
 export default function AllUsersPage() {
     const [users, setUsers] = useState([]);
@@ -58,7 +59,21 @@ export default function AllUsersPage() {
         }
     };
 
-    if (loading) return <p className="text-center mt-10">Loading...</p>;
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <Bars
+                    height="80"
+                    width="80"
+                    color="#4fa94d"
+                    ariaLabel="loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                />
+            </div>
+        );
+    }
 
     return (
         <div className="p-6">
@@ -73,6 +88,8 @@ export default function AllUsersPage() {
                 </button>
             </div>
 
+            {/* Table and Grid view rendering here (same as your original code) */}
+            {/* ... */}
             {viewMode === "table" && (
                 <div className="space-y-6">
                     <div className="overflow-x-auto rounded-2xl border border-gray-100 shadow-md">
@@ -125,8 +142,8 @@ export default function AllUsersPage() {
                                         <td className="px-6 py-3 text-center">
                                             <span
                                                 className={`px-3 py-1 rounded-full text-xs font-semibold border ${user.role === "admin"
-                                                        ? "bg-blue-100 text-blue-700 border-blue-200"
-                                                        : "bg-green-100 text-green-700 border-green-200"
+                                                    ? "bg-blue-100 text-blue-700 border-blue-200"
+                                                    : "bg-green-100 text-green-700 border-green-200"
                                                     }`}
                                             >
                                                 {user.role}
@@ -138,8 +155,8 @@ export default function AllUsersPage() {
                                             <button
                                                 onClick={() => updateRole(user._id, "admin")}
                                                 className={`px-4 py-1.5 rounded-md text-white font-medium transition-all duration-200 ${user.role === "admin"
-                                                        ? "bg-blue-300 cursor-not-allowed"
-                                                        : "bg-blue-600 hover:bg-blue-700 hover:scale-105 shadow-sm"
+                                                    ? "bg-blue-300 cursor-not-allowed"
+                                                    : "bg-blue-600 hover:bg-blue-700 hover:scale-105 shadow-sm"
                                                     }`}
                                                 disabled={user.role === "admin"}
                                             >
@@ -148,8 +165,8 @@ export default function AllUsersPage() {
                                             <button
                                                 onClick={() => updateRole(user._id, "student")}
                                                 className={`px-4 py-1.5 rounded-md text-white font-medium transition-all duration-200 ${user.role === "student"
-                                                        ? "bg-green-300 cursor-not-allowed"
-                                                        : "bg-green-600 hover:bg-green-700 hover:scale-105 shadow-sm"
+                                                    ? "bg-green-300 cursor-not-allowed"
+                                                    : "bg-green-600 hover:bg-green-700 hover:scale-105 shadow-sm"
                                                     }`}
                                                 disabled={user.role === "student"}
                                             >
