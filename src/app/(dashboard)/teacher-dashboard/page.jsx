@@ -57,12 +57,12 @@ const foodData = [
 
 const COLORS = ["#3b82f6", "#f97316", "#10b981", "#f43f5e"];
 
-export default function UserDashboard() {
+export default function StudentDashboard() {
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       {/* Welcome Header */}
       <div className="mb-6">
-        <h2 className="text-3xl font-bold text-gray-800">Welcome Back, <span className="text-blue-600">user dashboard!</span></h2>
+        <h2 className="text-3xl font-bold text-gray-800">Welcome Back, <span className="text-blue-600">teacher dashboard!</span></h2>
         <p className="text-gray-500 mt-1">Here’s an overview of your activities and progress.</p>
       </div>
 
