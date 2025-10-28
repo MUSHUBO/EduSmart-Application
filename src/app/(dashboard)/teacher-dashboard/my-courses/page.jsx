@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BookOpen, Star, Users, Clock, DollarSign } from "lucide-react";
 import { motion } from "framer-motion";
 import { AuthContext } from "@/Context/AuthContext/AuthContext";
+import { Bars } from "react-loader-spinner";
 
 export default function MyCreatedCourses() {
   const { user } = useContext(AuthContext);
@@ -32,12 +33,21 @@ export default function MyCreatedCourses() {
     fetchMyCourses();
   }, [user]);
 
-  if (loading)
+   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen text-lg text-gray-600">
-        Loading your created courses...
+      <div className="flex justify-center items-center h-screen">
+        <Bars
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
       </div>
     );
+  }
 
   if (courses.length === 0)
     return (

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BookOpen, Star } from "lucide-react";
 import { AuthContext } from "@/Context/AuthContext/AuthContext";
 import { motion } from "framer-motion";
+import { Bars } from "react-loader-spinner";
 
 export default function MyCreatedBooks() {
   const { user } = useContext(AuthContext);
@@ -43,12 +44,21 @@ export default function MyCreatedBooks() {
     }),
   };
 
-  if (loading)
+  if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen text-lg text-gray-600">
-        Loading your created books...
+      <div className="flex justify-center items-center h-screen">
+        <Bars
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
       </div>
     );
+  }
 
   return (
     <div className="w-11/12 mx-auto py-14 bg-gray-50 min-h-screen">
