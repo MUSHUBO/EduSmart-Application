@@ -62,8 +62,8 @@ export default function StudentDashboard() {
     <div className="p-6 bg-gray-100 min-h-screen">
       {/* Welcome Header */}
       <div className="mb-6">
-        <h2 className="text-3xl font-bold text-gray-800">Welcome Back, <span className="text-blue-600">teacher dashboard!</span></h2>
-        <p className="text-gray-500 mt-1">Here’s an overview of your activities and progress.</p>
+        <h2 className="text-3xl font-bold text-gray-800 flex justify-center items-center mx-auto">Welcome Back, <span className="text-blue-600">teacher dashboard!</span></h2>
+        <p className="text-gray-500 mt-1 flex justify-center items-center mx-auto">Here’s an overview of your activities and progress.</p>
       </div>
 
       {/* Stats Cards */}
