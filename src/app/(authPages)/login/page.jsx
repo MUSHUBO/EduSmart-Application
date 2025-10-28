@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, Suspense } from 'react';
 import loginlottie from "../../../../public/lotttie-file/loginLottie.json";
 import Lottie from 'lottie-react';
