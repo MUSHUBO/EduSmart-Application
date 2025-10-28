@@ -1,29 +1,23 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import {
   FaHome,
   FaBook,
-  FaTasks,
-  FaCalendarAlt,
-  FaCog,
-  FaList,
   FaPlus,
+  FaList,
+  FaChalkboardTeacher,
   FaSignOutAlt,
-  FaChevronRight,
-  FaHeart,
-  FaCertificate,
-  FaUser,
-  FaGift,
-  FaUserFriends,
+  FaCog,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth";
 
-export default function UserSidebar() {
+export default function TeacherSidebar() {
   const router = useRouter();
-  const pathname = usePathname(); // <-- Current route
+  const pathname = usePathname();
   const { logoutAccount, user } = useAuth();
 
   const logoutHandler = async () => {
@@ -46,18 +40,17 @@ export default function UserSidebar() {
     }
   };
 
-  // Helper function for active link style
   const linkClass = (path) =>
     `flex items-center space-x-2 p-2 rounded-md transition-colors ${
       pathname === path
-        ? "bg-blue-800 font-bold text-white" // active style
+        ? "bg-blue-800 font-bold text-white"
         : "hover:bg-blue-500 text-gray-100"
     }`;
 
   return (
     <div className="drawer-side">
-      <label htmlFor="user-drawer" className="drawer-overlay"></label>
-      <aside className="menu p-5 w-64 bg-gradient-to-b from-blue-700 to-blue-600 text-white min-h-full flex flex-col justify-between">
+      <label htmlFor="teacher-drawer" className="drawer-overlay"></label>
+      <aside className="menu p-5 w-64 bg-gradient-to-b from-blue-700 to-blue-600 text-white min-h-full flex flex-col justify-between shadow-lg">
         <div>
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 mb-8">
@@ -70,38 +63,68 @@ export default function UserSidebar() {
             />
           </Link>
 
+          {/* Teacher Info */}
+          <div className="mb-6 text-center">
+            <div className="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-white shadow-md">
+              <Image
+                src={user?.photoURL || "/images/teacher-avatar.png"}
+                alt="Teacher Avatar"
+                width={64}
+                height={64}
+                className="object-cover"
+              />
+            </div>
+            <h3 className="mt-2 font-semibold text-lg">{user?.displayName || "Teacher"}</h3>
+            <p className="text-sm text-blue-200">Instructor</p>
+          </div>
+
           {/* Navigation */}
           <nav className="space-y-3 text-[15px] font-medium">
-            <Link
-              href="/user-dashboard"
-              className={linkClass("/user-dashboard")}
-            >
+            <Link href="/teacher-dashboard" className={linkClass("/teacher-dashboard")}>
               <FaHome />
-              <span>Dashboard</span>
+              <span>Dashboard Home</span>
             </Link>
 
-            {/* All Courses */}
+            {/* Create Course */}
             <Link
-              href="/user-dashboard/all-courses"
-              className={`${linkClass("/user-dashboard/all-courses")} text-[17px]`}
+              href="/teacher-dashboard/create-course"
+              className={linkClass("/teacher-dashboard/create-course")}
+            >
+              <FaChalkboardTeacher />
+              <span>Create Course</span>
+            </Link>
+
+            {/* Create Book */}
+            <Link
+              href="/teacher-dashboard/create-book"
+              className={linkClass("/teacher-dashboard/create-book")}
+            >
+              <FaPlus />
+              <span>Create Book</span>
+            </Link>
+
+            {/* My Created Courses */}
+            <Link
+              href="/teacher-dashboard/my-courses"
+              className={linkClass("/teacher-dashboard/my-courses")}
             >
               <FaList />
-              <span>All Courses</span>
+              <span>My Created Courses</span>
             </Link>
 
-            {/* All Books */}
+            {/* My Created Books */}
             <Link
-              href="/user-dashboard/all-books"
-              className={`${linkClass("/user-dashboard/all-books")} text-[17px]`}
+              href="/teacher-dashboard/my-books"
+              className={linkClass("/teacher-dashboard/my-books")}
             >
               <FaBook />
-              <span>All Books</span>
+              <span>My Created Books</span>
             </Link>
 
             {/* Settings */}
             <Link
-              href="/user-dashboard/settings"
-              className={linkClass("/user-dashboard/settings")}
+              href="#"
+              className={linkClass("/teacher-dashboard/settings")}
             >
               <FaCog />
               <span>Settings</span>
