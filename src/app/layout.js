@@ -5,7 +5,7 @@ import Navbar from "@/components/page/Navbar/Navbar";
 import AuthProvider from "@/Context/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
-import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
+import ThemeWrapper from "@/components/ThemeWrapper/ThemeWrapper";
 
 
 
@@ -28,7 +28,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  
   return (
     <html data-theme="light"  lang="en" suppressHydrationWarning={true}>
        
@@ -50,7 +49,7 @@ export default function RootLayout({ children }) {
             <Footer></Footer>
           </div>
            <ScrollUp></ScrollUp>
-           <ThemeToggle></ThemeToggle>
+          <ThemeWrapper></ThemeWrapper>
           <ToastContainer />
         </AuthProvider>
         
