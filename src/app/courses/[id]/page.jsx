@@ -147,7 +147,9 @@ export default function CourseDetailsPage() {
 
             {/* Enroll Button */}
             <div className="mt-8 pt-4 border-t dark:border-gray-800">
-              <Link href={`/courses/stripe`} className="w-full bg-primary text-white py-3 rounded-lg font-bold text-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
+              <Link
+               href={`/courses/stripe?courseId=${course._id}`}
+                className="w-full bg-primary text-white py-3 rounded-lg font-bold text-lg hover:bg-primary/90 transition-colors shadow-lg shadow-primary/30 flex items-center justify-center gap-2">
                 Enroll Now <Users size={20} />
               </Link>
             </div>
