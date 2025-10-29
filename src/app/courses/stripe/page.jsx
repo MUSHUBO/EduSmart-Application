@@ -10,7 +10,7 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 
 
-const stripePromise = loadStripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 const PaymentMethod = () => {
     const [selected, setSelected] = useState("");
@@ -25,22 +25,14 @@ const PaymentMethod = () => {
 
         const fetchCourse = async () => {
             try {
-                // Assuming your API endpoint is correct for fetching by ID
+               
                 const res = await axios.get(`/api/courses/${courseId}`);
                 if (res.data.success && res.data.data) {
-                    // Normalize the incoming data to simple types if MongoDB numbers are used
+                    
                     const rawData = res.data.data;
                     const normalizedData = {
                         ...rawData,
                         price: rawData.price?.$numberInt ? Number(rawData.price.$numberInt) : (Number(rawData.price) || 0),
-                        lectures: rawData.lectures?.$numberInt ? Number(rawData.lectures.$numberInt) : (Number(rawData.lectures) || 0),
-                        quizzes: rawData.quizzes?.$numberInt ? Number(rawData.quizzes.$numberInt) : (Number(rawData.quizzes) || 0),
-                        students: rawData.students?.$numberInt ? Number(rawData.students.$numberInt) : (Number(rawData.students) || 0),
-                        // Convert comma-separated string back to array if needed, otherwise use the array from form
-                        galleryImages: Array.isArray(rawData.galleryImages)
-                            ? rawData.galleryImages
-                            : (rawData.galleryImages || "").split(',').map(s => s.trim()).filter(s => s.length > 0),
-                        // Use instructor and teacherImage from the data
                         teacherName: rawData.instructor,
                     };
 
@@ -51,8 +43,6 @@ const PaymentMethod = () => {
             } catch (err) {
                 console.error(err);
                 setError("Error fetching course data");
-            } finally {
-                setLoading(false);
             }
         };
 
@@ -73,7 +63,7 @@ const PaymentMethod = () => {
     return (
         <div className='max-w-[1000px] mx-auto text-3xl px-6 md:px-9 lg:px-12 py-18 md:py-24 lg:py-28'>
             {/* Header */}
-            <div className='p-6 md:p-8 lg:p-12 bg-accent rounded-2xl'>
+            <div className='p-6 md:p-8 lg:p-22 bg-accent rounded-2xl'>
                 <div className="flex items-center mb-4 gap-2 ">
 
 
@@ -149,7 +139,7 @@ const PaymentMethod = () => {
                         </h4>
                         <div className="modal-action flex justify-between items-end">
                             <Elements stripe={stripePromise}>
-                                <CheckoutForm setIsModalOpen={setIsModalOpen}></CheckoutForm>
+                                <CheckoutForm course={course} setIsModalOpen={setIsModalOpen}></CheckoutForm>
                             </Elements>
                             <button onClick={closeModal} className="btn btn-ghost bg-red-700 rounded-md text-[#FFFFFF]">
                                 Cancel
