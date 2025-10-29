@@ -21,7 +21,8 @@ const events = [
     date: "16 June, 2025",
     time: "10.00AM - 04.00PM",
     location: "25/B Milford Road, New York",
-    description: "There are many variations of passages the majority have some injected humour.",
+    description:
+      "Join our annual school program filled with fun, creativity, and new learning opportunities for all students.",
     img: "/images/events/01 (2).jpg",
   },
   {
@@ -30,7 +31,8 @@ const events = [
     date: "20 June, 2025",
     time: "09.00AM - 02.00PM",
     location: "25/B Milford Road, New York",
-    description: "Explore creative science projects made by students and learn together.",
+    description:
+      "Discover amazing science projects and ideas presented by young innovators and creative minds.",
     img: "/images/events/02 (2).jpg",
   },
   {
@@ -39,7 +41,8 @@ const events = [
     date: "25 June, 2025",
     time: "01.00PM - 06.00PM",
     location: "25/B Milford Road, New York",
-    description: "An event full of joy, cultural performances, music, and celebration.",
+    description:
+      "Enjoy performances, music, and dance showcasing the rich culture and talent of our students.",
     img: "/images/events/03 (2).jpg",
   },
   {
@@ -48,10 +51,12 @@ const events = [
     date: "01 July, 2025",
     time: "08.00AM - 05.00PM",
     location: "25/B Milford Road, New York",
-    description: "Exciting sports competitions and teamwork activities all day long.",
+    description:
+      "Experience thrilling competitions, teamwork, and the true spirit of sportsmanship throughout the day.",
     img: "/images/events/04 (2).jpg",
   },
 ];
+
 
 // Variants for card animation
 const cardVariants = {

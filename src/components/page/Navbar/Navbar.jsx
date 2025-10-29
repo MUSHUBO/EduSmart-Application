@@ -24,7 +24,7 @@ const Navbar = () => {
   const logoutHandler = async () => {
     try {
       await logoutAccount();
-      toast.success('Logout Successfully', {
+      toast.success('Logout Successfully!', {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,
@@ -94,6 +94,9 @@ const Navbar = () => {
     }
     else if (role === "parent") {
       router.push("/parent-dashboard");
+    }
+    else if (role === "teacher") {
+      router.push("/teacher-dashboard");
     }
     else {
       router.push("/user-dashboard");

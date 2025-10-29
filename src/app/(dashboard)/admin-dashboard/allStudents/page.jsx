@@ -1,6 +1,8 @@
 'use client';
+
 import { useEffect, useState } from 'react';
-import { FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaUserCircle, FaRegUserCircle } from 'react-icons/fa';
+import { Bars } from 'react-loader-spinner';
 
 const AllStudent = () => {
   const [students, setStudents] = useState([]);
@@ -27,77 +29,96 @@ const AllStudent = () => {
     fetchStudents();
   }, []);
 
-  if (loading) return <div className="p-6 text-center text-gray-500">Loading students...</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Bars
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
+
 
   return (
-    <div className="p-6 bg-white rounded-xl shadow-md overflow-x-auto">
-      <h2 className="text-2xl font-semibold mb-4 text-gray-800">All Students</h2>
+    <div className="p-6 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-x-auto transition-all duration-300">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+        <h2 className="text-4xl font-extrabold text-gray-800">All Students</h2>
+        <p className="text-gray-500 text-xl mt-2 sm:mt-0">
+          Total: <span className="font-semibold text-gray-700">{students.length}</span>
+        </p>
+      </div>
 
-      <table className="min-w-full text-sm">
-        <thead className="text-left bg-gray-100">
-          <tr>
-            <th className="p-3">#</th>
-            <th className="p-3">Photo</th>
-            <th className="p-3">Name</th>
-            <th className="p-3">Parent</th>
-            <th className="p-3">Phone</th>
-            <th className="p-3">Email</th>
-            <th className="p-3">Date</th>
-          </tr>
-        </thead>
+      {/* Table */}
+      <div className="overflow-x-auto">
+        <table className="table w-full border-collapse text-gray-700">
+          <thead className="bg-gray-100 text-gray-600 uppercase text-bold font-semibold sticky top-0 z-10 text-xl">
+            <tr>
+              <th className="px-4 py-3">#</th>
+              <th className="px-4 py-3">Photo</th>
+              <th className="px-4 py-3">Name</th>
+              <th className="px-4 py-3">Parent</th>
+              <th className="px-4 py-3">Phone</th>
+              <th className="px-4 py-3">Email</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {students.length > 0 ? (
-            students.map((student, index) => (
-              <tr key={student._id || index} className="border-b hover:bg-gray-50">
-                <td className="p-3">{index + 1}</td>
+          <tbody className="divide-y divide-gray-100 text-sm">
+            {students.length > 0 ? (
+              students.map((student, index) => (
+                <tr key={student._id || index} className="hover:bg-blue-50 transition-all duration-150">
+                  <td className="px-4 py-3 text-gray-500 font-medium">{index + 1}</td>
 
-                <td className="p-3">
-                  <img
-                    src={student.studentPhoto || 'https://i.pravatar.cc/100?u=' + student.studentEmail}
-                    alt={student.studentFirstName}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
-                </td>
+                  {/* Photo with DaisyUI avatar */}
+                  <td className="px-4 py-3">
+                    <div className="avatar">
+                      <div className="w-10 h-10 rounded-full ring ring-gray-200">
+                        {student.studentPhoto ? (
+                          <img src={student.studentPhoto} alt={student.studentFirstName} />
+                        ) : (
+                          <FaRegUserCircle className="w-full h-full text-gray-400" />
+                        )}
+                      </div>
+                    </div>
+                  </td>
 
-                <td className="p-3 font-semibold">
-                  {student.studentFirstName} {student.studentLastName}
-                </td>
+                  {/* Name */}
+                  <td className="px-4 py-3 font-semibold text-gray-800 whitespace-nowrap">
+                    {student.studentFirstName} {student.studentLastName}
+                  </td>
 
-                <td className="p-3">
-                  {student.parentFirstName} {student.parentLastName}
-                </td>
+                  {/* Parent */}
+                  <td className="px-4 py-3 text-gray-700 whitespace-nowrap">
+                    {student.parentFirstName} {student.parentLastName}
+                  </td>
 
-                <td className="p-3 text-blue-600">
-                  <a href={`tel:${student.studentPhone}`} className="flex items-center gap-2">
-                    <FaPhone /> {student.studentPhone}
-                  </a>
-                </td>
+                  {/* Phone */}
+                  <td className="px-4 py-3 text-gray-900 whitespace-nowrap">{student.studentPhone}</td>
 
-                <td className="p-3 text-blue-600">
-                  <a href={`mailto:${student.studentEmail}`} className="flex items-center gap-2">
-                    <FaEnvelope /> {student.studentEmail}
-                  </a>
-                </td>
-
-                <td className="p-3 text-gray-600">
-                  {student.createdAt
-                    ? new Date(student.createdAt).toLocaleDateString()
-                    : '—'}
+                  {/* Email */}
+                  <td className="px-4 py-3 text-gray-900 whitespace-nowrap">{student.studentEmail}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="p-6 text-center text-gray-500 italic bg-gray-50">
+                  No students found.
                 </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="7" className="p-6 text-center text-gray-500">
-                No students found.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
+
 };
 
 export default AllStudent;

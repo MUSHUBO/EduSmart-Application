@@ -9,7 +9,7 @@ const NavLinks = ({ pathname }) => {
     {
       label: "Courses",
       children: [
-        { href: "/all_courses", label: "All Courses" },
+        { href: "/allCourses", label: "All Courses" },
         { href: "/CourseCreationForm", label: "Add Course" },
       ],
     },
@@ -21,12 +21,13 @@ const NavLinks = ({ pathname }) => {
       ],
     },
     {
-      label: "Pages",
+      label: "Pages2",
       children: [
         { href: "/assignment", label: "Assignments" },
         { href: "/bookForm", label: "BookForm" },
         { href: "/library", label: "Library" },
         { href: "/admission", label: "Admission" },
+        { href: "/ai_assistant", label: "AI Assistant" },
       ],
     },
     { href: "/noticeBoard", label: "Notice" },
