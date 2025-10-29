@@ -6,6 +6,7 @@ import AuthProvider from "@/Context/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import ThemeWrapper from "@/components/ThemeWrapper/ThemeWrapper";
+import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 
 
 
