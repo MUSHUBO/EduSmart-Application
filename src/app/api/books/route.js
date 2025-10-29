@@ -9,7 +9,7 @@ export async function GET() {
 
         const booksCollection = await dbConnect(collectionNamesObj.bookCollection);
         const books = await booksCollection.find().sort({ createdAt: -1 }).toArray();
-
+      console.log(books)
         return NextResponse.json({
             success: true,
             message: "Books fetched successfully!",

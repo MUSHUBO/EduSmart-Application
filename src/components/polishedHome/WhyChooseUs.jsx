@@ -51,7 +51,7 @@ export default function WhyChooseUs() {
   return (
     <section
       style={{
-        backgroundImage: "url('/images/teachers/whyImageBg.jpg')",
+        backgroundImage: "url('/images/teachers/whyImageBg.png')",
       }}
       className="relative py-16 px-6 md:px-20 my-10 bg-[#0e4a49] bg-no-repeat bg-left-bottom bg-cover"
     >

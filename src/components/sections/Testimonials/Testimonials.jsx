@@ -134,7 +134,7 @@ function Testimonials() {
                <Slider {...settings}>
                   {testimonials.map((t) => (
                      <div key={t.id} className="px-3">
-                        <div className="bg-muted dark:bg-muted rounded-2xl shadow-lg p-3 md:p-4 lg:p-6 h-full flex flex-col justify-between">
+                        <div className="bg-muted dark:bg-muted rounded-tl-4xl rounded-br-4xl shadow-lg p-3 md:p-4 lg:p-6 h-full flex flex-col justify-between">
                            {/* Rating Stars */}
                            <div className="flex text-secondary mb-4">
                               {[...Array(t.rating)].map((_, i) => (

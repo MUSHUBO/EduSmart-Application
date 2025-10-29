@@ -15,7 +15,7 @@ export async function GET() {
       .sort({ createdAt: -1 }) // newest first
       .limit(6)
       .toArray();
-
+    // console.log(courses);
     return NextResponse.json({
       success: true,
       data: courses,

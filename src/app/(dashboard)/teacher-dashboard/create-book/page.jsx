@@ -1,15 +1,13 @@
 "use client";
 import { useForm } from "react-hook-form";
-import booklottie from "../../../public/lotttie-file/book.json"
+import bookLottie from "../../../../../public/lotttie-file/book.json";
 import Lottie from 'lottie-react';
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import axios from "axios";
 import { Bounce, toast } from "react-toastify";
-import { AuthContext } from "@/Context/AuthContext/AuthContext";
 export default function bookForm() {
-    const {user} = useContext(AuthContext)
     const [message, setMessage] = useState('');
     
     const {
@@ -31,8 +29,7 @@ export default function bookForm() {
         const bookInfo = {
             ...data,
             comments: [],
-            rating: [],
-            gmail: user?.email,
+            rating: []
         }
         console.log(bookInfo);
         try {
@@ -60,11 +57,11 @@ export default function bookForm() {
 
     };
     return (
-        <div className="-8 md:py-16 lg:py-24">
+        <div className="-8 md:py-6 lg:py-6">
             <div className="max-w-5xl mx-auto p-6 sm:p-8 md:p-10 border border-primary rounded-2xl shadow-xl">
                 <div className="text-3xl md:text-4xl lg:text-5xl  font-bold text-center mb-6 text-popover dark:text-popover flex justify-center items-center gap-2">
                     <div data-aos="fade-left" className="max-w-[100px] p-4">
-                        <Lottie animationData={booklottie} loop={true} />
+                        <Lottie animationData={bookLottie} loop={true} />
                     </div> <div data-aos="fade-right">Add New <span className="text-primary">Book</span></div>
                 </div>
 
@@ -91,31 +88,7 @@ export default function bookForm() {
                         {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
                     </div>
 
-                    {/* Rating */}
-                    {/* <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Rating</label>
-          <input
-            type="number"
-            step="0.1"
-            {...register("rating", { required: "Rating is required" })}
-            placeholder="Enter rating (e.g., 4.5)"
-            className="w-full mt-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:ring-2 focus:ring-primary outline-none"
-          />
-          {errors.rating && <p className="text-red-500 text-sm mt-1">{errors.rating.message}</p>}
-        </div> */}
-
-                    {/* Comment */}
-                    {/* <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Comment</label>
-          <input
-            {...register("comment", { required: "Comment is required" })}
-            placeholder="Enter your comment"
-            className="w-full mt-1 p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 focus:ring-2 focus:ring-primary outline-none"
-          />
-          {errors.comment && <p className="text-red-500 text-sm mt-1">{errors.comment.message}</p>}
-        </div> */}
-
-                    {/* Edition */}
+    
                     <div>
                         <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Edition</label>
                         <input
