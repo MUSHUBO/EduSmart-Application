@@ -10,7 +10,7 @@ export function CardHeader({ children, className }) {
 }
 
 export function CardTitle({ children, className }) {
-  return <h2 className={`text-xl font-bold text-white ${className}`}>{children}</h2>;
+  return <h2 className={`text-xl font-bold text-popover ${className}`}>{children}</h2>;
 }
 
 export function CardContent({ children, className }) {
