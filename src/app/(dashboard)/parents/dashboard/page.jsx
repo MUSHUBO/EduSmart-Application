@@ -15,12 +15,13 @@ export default function ParentDashboardPage() {
   const [selectedChild, setSelectedChild] = useState(null);
   const [report, setReport] = useState("");
   const [loading, setLoading] = useState(false);
-  const token = typeof window !== "undefined" ? localStorage.getItem("parentToken") : null;
+  const parentEmail =
+    typeof window !== "undefined" ? localStorage.getItem("parentEmail") : null;
 
   // 🌟 Demo Data
   const demoData = {
     focusScore: 82,
-    emotions: ["Happy", "Calm", "Motivated","Depressed"],
+    emotions: ["Happy", "Calm", "Motivated", "Depressed"],
     weeklySummary:
       "Your child showed consistent focus this week! Participation was high, and mood balance remained steady.",
     moodTrend: [
@@ -29,19 +30,21 @@ export default function ParentDashboardPage() {
       { day: "Tue", mood: 70 },
       { day: "Wed", mood: 75 },
       { day: "Thu", mood: 65 },
-
     ],
   };
 
+
   useEffect(() => {
-    if (!token) {
+    if (!parentEmail) {
       window.location.href = "/parents/login";
       return;
     }
 
-    fetch(`/api/parent/insights${selectedChild ? `?studentId=${selectedChild._id}` : ""}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
+    const query = selectedChild
+      ? `?studentId=${selectedChild._id}&email=${parentEmail}`
+      : `?email=${parentEmail}`;
+
+    fetch(`/api/parent/insights${query}`)
       .then((r) => r.json())
       .then((d) => {
         if (d.success) setInsight(d.data);
@@ -51,12 +54,12 @@ export default function ParentDashboardPage() {
   }, [selectedChild]);
 
   async function generateReport() {
-    if (!token) return;
+    if (!parentEmail) return;
     setLoading(true);
     const res = await fetch("/api/parent/mental-report", {
       method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ period: "this week" }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: parentEmail, period: "this week" }),
     });
     const data = await res.json();
     if (data.success) setReport(data.report);
@@ -64,13 +67,13 @@ export default function ParentDashboardPage() {
     setLoading(false);
   }
 
-  // 🔒 Logout Function
+ 
   function handleLogout() {
-    localStorage.removeItem("parentToken");
+    localStorage.removeItem("parentEmail");
     window.location.href = "/user-dashboard";
   }
 
-  // 🎨 Emotion Colors
+ 
   const emotionColors = {
     Happy: "bg-yellow-200 text-yellow-800",
     Calm: "bg-blue-200 text-blue-800",
@@ -79,8 +82,8 @@ export default function ParentDashboardPage() {
     Angry: "bg-red-200 text-red-800",
     Excited: "bg-pink-200 text-pink-800",
     Relaxed: "bg-teal-200 text-teal-800",
+    Depressed: "bg-purple-200 text-purple-800",
   };
-
   return (
     <div className="min-h-screen p-6 bg-gradient-to-br from-[#f8fafc] to-[#e0f2fe] dark:from-[#0f172a] dark:to-[#1e293b] transition-all duration-700">
       <div className="max-w-6xl mx-auto space-y-8">
