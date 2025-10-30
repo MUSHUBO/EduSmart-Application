@@ -1,23 +1,32 @@
-
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
 import { dbConnect, collectionNamesObj } from "@/library/dbConnect";
 
 export async function POST(req) {
   try {
     const { email } = await req.json();
-    if (!email) return NextResponse.json({ success: false, message: "Email required" }, { status: 400 });
 
+    if (!email) {
+      return NextResponse.json(
+        { success: false, message: "Email required" },
+        { status: 400 }
+      );
+    }
+
+    // Database connect
     const collection = await dbConnect(collectionNamesObj.studentCollection);
     const student = await collection.findOne({ parentEmail: email });
-    if (!student) return NextResponse.json({ success: false, message: "Parent not found" }, { status: 404 });
 
-    const token = jwt.sign({ parentEmail: email }, process.env.JWT_SECRET, { expiresIn: "7d" });
+    if (!student) {
+      return NextResponse.json(
+        { success: false, message: "Parent not found" },
+        { status: 404 }
+      );
+    }
+
 
     return NextResponse.json({
       success: true,
       message: "Login successful",
-      token,
       parent: {
         name: `${student.parentFirstName} ${student.parentLastName}`,
         email: student.parentEmail,
@@ -25,6 +34,9 @@ export async function POST(req) {
     });
   } catch (err) {
     console.error("Login Error:", err);
-    return NextResponse.json({ success: false, message: err.message }, { status: 500 });
+    return NextResponse.json(
+      { success: false, message: "Server error: " + err.message },
+      { status: 500 }
+    );
   }
 }

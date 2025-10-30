@@ -6,6 +6,7 @@ import AuthProvider from "@/Context/AuthProvider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import ScrollUp from "@/components/ScrollUp/ScrollUp";
 import ThemeWrapper from "@/components/ThemeWrapper/ThemeWrapper";
+import ThemeToggle from "@/components/ThemeToggle/ThemeToggle";
 
 
 
@@ -28,32 +29,29 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  
   return (
-    <html data-theme="light"  lang="en" suppressHydrationWarning={true}>
-       
+    <html data-theme="light" lang="en" suppressHydrationWarning={true}>
+
       <body
-          className={`${poppins.variable} ${notoBengali.variable} font-sans antialiased`}
+        className={`${poppins.variable} ${notoBengali.variable} font-sans antialiased`}
         suppressHydrationWarning={true}
-     
       >
-      
-       
         <AuthProvider>
           <div className="bg-background">
             <Navbar></Navbar>
-            
-       
+
             <div className="min-h-[calc(100vh-479px)]">
               {children}
             </div>
+
             <Footer></Footer>
           </div>
            <ScrollUp></ScrollUp>
-          <ThemeWrapper></ThemeWrapper>
+           <ThemeToggle></ThemeToggle>
           <ToastContainer />
+          
         </AuthProvider>
-        
-
       </body>
     </html>
   );

@@ -1,16 +1,12 @@
-
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 export default function ParentLogin() {
   const [email, setEmail] = useState("");
   const [err, setErr] = useState("");
- 
   const router = useRouter();
-
- 
 
   const submit = async (e) => {
     e.preventDefault();
@@ -22,8 +18,13 @@ export default function ParentLogin() {
         body: JSON.stringify({ email }),
       });
       const data = await res.json();
+
       if (!data.success) return setErr(data.message);
-      localStorage.setItem("parentToken", data.token);
+
+      // ✅ Save parent info (no token)
+      localStorage.setItem("parentEmail", data.parent.email);
+      localStorage.setItem("parentName", data.parent.name);
+
       router.push("/user-dashboard/parent-dashboard");
     } catch {
       setErr("Network error");
@@ -31,31 +32,16 @@ export default function ParentLogin() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center relative overflow-hidden transition-all duration-700 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_#93C5FD,_transparent_70%),_radial-gradient(circle_at_bottom_right,_#F9A8D4,_transparent_70%)] dark:bg-[radial-gradient(circle_at_top_left,_#1E3A8A,_transparent_70%),_radial-gradient(circle_at_bottom_right,_#831843,_transparent_70%)] blur-3xl opacity-50"
-      />
-
-
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <motion.div
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8 }}
         className="relative z-10 max-w-md w-full bg-white/70 dark:bg-gray-800/60 backdrop-blur-xl border border-gray-200 dark:border-gray-700 rounded-3xl shadow-2xl p-8 mx-3"
       >
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
-            Parent Login
-          </h2>
-          
-        </div>
-
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-6">
-          Enter your registered email to view your child’s performance insights.
-        </p>
+        <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-4">
+          Parent Login
+        </h2>
 
         <form onSubmit={submit} className="space-y-5">
           <div>
@@ -89,7 +75,7 @@ export default function ParentLogin() {
         </form>
 
         <p className="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} SmartSchool Analytics. All rights reserved.
+          © {new Date().getFullYear()} SmartSchool Analytics
         </p>
       </motion.div>
     </div>
