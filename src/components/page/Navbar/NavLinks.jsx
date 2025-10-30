@@ -6,13 +6,15 @@ const NavLinks = ({ pathname }) => {
     const navbg = pathname !== "/"
   const links = [
     { href: "/", label: "Home" },
-    {
-      label: "Courses",
-      children: [
-        { href: "/allCourses", label: "All Courses" },
-        { href: "/CourseCreationForm", label: "Add Course" },
-      ],
-    },
+    { href: "/allCourses", label: "Courses" },
+
+    // {
+    //   label: "Courses",
+    //   children: [
+    //     { href: "/CourseCreationForm", label: "Add Course" },
+    //   ],
+    // },
+
     {
       label: "Pages",
       children: [
@@ -24,15 +26,16 @@ const NavLinks = ({ pathname }) => {
       label: "Pages2",
       children: [
         { href: "/assignment", label: "Assignments" },
-        { href: "/bookForm", label: "BookForm" },
+        // { href: "/bookForm", label: "BookForm" },
+        // { href: "/noticeBoard/add-notice", label: "Add Notice" },
         { href: "/library", label: "Library" },
         { href: "/admission", label: "Admission" },
         { href: "/ai_assistant", label: "AI Assistant" },
       ],
     },
     { href: "/noticeBoard", label: "Notice" },
-    { href: "/contact", label: "Contact" },
     { href: "/aionix", label: "Aionix" },
+    { href: "/contact", label: "Contact" },
     // { href: "/admin-dashboard", label: "DashBoard-1" },
   ];
 
