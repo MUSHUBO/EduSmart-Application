@@ -6,8 +6,8 @@ import {
   FaHome,
   FaBook,
   FaList,
-  FaCog,
   FaSignOutAlt,
+  FaUser,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth";

@@ -34,7 +34,7 @@ function UserLayout({ children }) {
             {/* Search Bar */}
             <div
               className="hidden md:flex items-center px-3 py-2 rounded-full w-1/3
-              bg-[var(--secondary)] text-[var(--secondary-foreground)]"
+              bg-base-200 border text-[var(--secondary-foreground)]"
             >
               <FaSearch className="text-[var(--muted-foreground)]" />
               <input
