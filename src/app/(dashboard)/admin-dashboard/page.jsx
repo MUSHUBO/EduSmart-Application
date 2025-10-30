@@ -1,4 +1,5 @@
 'use client';
+
 import React from "react";
 import {
   FaUserGraduate,
@@ -23,6 +24,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { motion } from "framer-motion";
 
 // Demo Data
 const performanceData = [
@@ -55,111 +57,184 @@ const foodData = [
   { name: "Dinner", value: 100 },
 ];
 
-const COLORS = ["#3b82f6", "#f97316", "#10b981", "#f43f5e"];
+const COLORS = [
+  "var(--primary)",
+  "var(--secondary)",
+  "var(--accent-foreground)",
+  "var(--accent)",
+];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 function AdminDashboard() {
   return (
-    <div>
-      <h2 className="text-2xl font-semibold mb-6">Dashboard</h2>
+    <div className="space-y-10">
+      <motion.h2
+        className="text-3xl font-bold mb-4 text-[var(--foreground)]"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        Welcome  Admin 
+      </motion.h2>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-blue-100 p-3 rounded-full text-blue-600">
-            <FaUserGraduate />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Students</p>
-            <h3 className="text-xl font-bold">932</h3>
-          </div>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-red-100 p-3 rounded-full text-red-600">
-            <FaChalkboardTeacher />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Teachers</p>
-            <h3 className="text-xl font-bold">754</h3>
-          </div>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-yellow-100 p-3 rounded-full text-yellow-600">
-            <FaCalendarAlt />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Events</p>
-            <h3 className="text-xl font-bold">40</h3>
-          </div>
-        </div>
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-purple-100 p-3 rounded-full text-purple-600">
-            <FaUtensils />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Foods</p>
-            <h3 className="text-xl font-bold">32k</h3>
-          </div>
-        </div>
+      {/* ==== Stats Cards ==== */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {[
+          {
+            title: "Students",
+            value: "932",
+            icon: <FaUserGraduate />,
+            color: "bg-[var(--primary)]",
+          },
+          {
+            title: "Teachers",
+            value: "754",
+            icon: <FaChalkboardTeacher />,
+            color: "bg-[var(--secondary)]",
+          },
+          {
+            title: "Events",
+            value: "40",
+            icon: <FaCalendarAlt />,
+            color: "bg-[var(--accent-foreground)]",
+          },
+          {
+            title: "Foods",
+            value: "32k",
+            icon: <FaUtensils />,
+            color: "bg-[var(--accent)]",
+          },
+        ].map((item, index) => (
+          <motion.div
+            key={index}
+            variants={cardVariants}
+            initial="hidden"
+            animate="visible"
+            whileHover={{ scale: 1.05, y: -5 }}
+            className={`p-6 rounded-2xl shadow-lg flex items-center space-x-4 
+              bg-[var(--background)] border border-[var(--accent)] transition-all`}
+          >
+            <div
+              className={`${item.color} p-4 rounded-full text-[var(--primary-foreground)] shadow-md`}
+            >
+              {item.icon}
+            </div>
+            <div>
+              <p className="text-sm text-[var(--muted-foreground)]">
+                {item.title}
+              </p>
+              <h3 className="text-2xl font-bold text-[var(--foreground)]">
+                {item.value}
+              </h3>
+            </div>
+          </motion.div>
+        ))}
       </div>
 
-      {/* Charts Section */}
+      {/* ==== Charts Section ==== */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Line Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4">School Performance</h4>
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.1 }}
+          className="bg-[var(--background)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]"
+        >
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">
+            School Performance
+          </h4>
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={performanceData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+              <XAxis dataKey="month" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={3} />
+              <Line
+                type="monotone"
+                dataKey="value"
+                stroke="var(--primary)"
+                strokeWidth={3}
+              />
             </LineChart>
           </ResponsiveContainer>
-        </div>
+        </motion.div>
 
         {/* Bar Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4">Subject Overview</h4>
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.2 }}
+          className="bg-[var(--background)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]"
+        >
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">
+            Subject Overview
+          </h4>
           <ResponsiveContainer width="100%" height={250}>
             <BarChart data={overviewData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="name" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Bar dataKey="students" fill="#f59e0b" radius={[10, 10, 0, 0]} />
+              <Bar dataKey="students" fill="var(--secondary)" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
-        </div>
+        </motion.div>
 
         {/* Area Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4">Attendance Trend</h4>
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.3 }}
+          className="bg-[var(--background)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]"
+        >
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">
+            Attendance Trend
+          </h4>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={attendanceData}>
               <defs>
                 <linearGradient id="colorPresent" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="day" />
-              <YAxis />
+              <XAxis dataKey="day" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
               <Area
                 type="monotone"
                 dataKey="present"
-                stroke="#10b981"
+                stroke="var(--primary)"
                 fillOpacity={1}
                 fill="url(#colorPresent)"
               />
             </AreaChart>
           </ResponsiveContainer>
-        </div>
+        </motion.div>
 
         {/* Pie Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4">Cafeteria Distribution</h4>
+        <motion.div
+          variants={cardVariants}
+          initial="hidden"
+          animate="visible"
+          transition={{ delay: 0.4 }}
+          className="bg-[var(--background)] p-6 rounded-2xl shadow-lg border border-[var(--accent)]"
+        >
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">
+            Cafeteria Distribution
+          </h4>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
@@ -168,18 +243,20 @@ function AdminDashboard() {
                 cy="50%"
                 labelLine={false}
                 outerRadius={80}
-                fill="#8884d8"
                 dataKey="value"
               >
-                {foodData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                {foodData.map((_, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
                 ))}
               </Pie>
               <Tooltip />
               <Legend />
             </PieChart>
           </ResponsiveContainer>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
