@@ -17,6 +17,8 @@ import { Users, Bell, Calendar, Trophy } from "lucide-react";
 import SearchNotice from "./SearchNotice";
 import NoticeTablePage from "./NoticeTablePage";
 import ExamPage from "./UpcomingExam";
+import EventList from "./Event/EventList";
+import StatsCards from "./StatsCard";
 
 export default function NoticeBoard() {
   const [stats, setStats] = useState({});
@@ -89,73 +91,11 @@ export default function NoticeBoard() {
       </div>
 
       {/* Top Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {[
-          { icon: Users, title: "Total Students", value: stats.students || 1250, border: "border-blue-500" },
-          { icon: Bell, title: "Active Notices", value: stats.notices || 45, border: "border-green-500" },
-          { icon: Calendar, title: "Upcoming Events", value: stats.exams || 8, border: "border-purple-500" },
-          { icon: Trophy, title: "Achievements", value: stats.achievements || 23, border: "border-yellow-500" },
-        ].map((item, i) => {
-          const Icon = item.icon;
-          return (
-            <div
-              key={i}
-              className={`p-3 sm:p-4 bg-background text-foreground rounded-lg shadow flex items-center gap-3 border-t-4 ${item.border}`}
-            >
-              <Icon className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 text-current" />
-              <div className="flex-1">
-                <p className="text-xs sm:text-sm text-muted-foreground">{item.title}</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold">{item.value}</h2>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+     
+<StatsCards></StatsCards>
+    <EventList></EventList>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
-        {/* Weekly Attendance */}
-        <div className="bg-background text-foreground p-3 sm:p-4 rounded shadow w-full min-h-[220px] md:min-h-[280px]">
-          <h2 className="font-semibold mb-2 text-base sm:text-lg">Weekly Attendance</h2>
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={weeklyAttendance}>
-              <XAxis dataKey="day" stroke="currentColor" />
-              <YAxis stroke="currentColor" />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "var(--background)",
-                  color: "var(--foreground)",
-                }}
-              />
-              <Legend />
-              <Bar dataKey="present" stackId="a" fill="#10B981" name="Present" />
-              <Bar dataKey="absent" stackId="a" fill="#EF4444" name="Absent" />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-
-        {/* Notices by Department */}
-        <div className="bg-background text-foreground p-3 sm:p-4 rounded shadow w-full min-h-[220px] md:min-h-[280px]">
-          <h2 className="font-semibold mb-2 text-base sm:text-lg">Notices by Department</h2>
-          <ResponsiveContainer width="100%" height="100%">
-            <PieChart>
-              <Pie
-                data={dataByDept}
-                dataKey="value"
-                cx="50%"
-                cy="50%"
-                outerRadius="70%"
-                label
-              >
-                {dataByDept.map((_, i) => (
-                  <Cell key={i} fill={deptColors[i % deptColors.length]} />
-                ))}
-              </Pie>
-              <Legend />
-            </PieChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+       
 
       {/* Other Sections */}
       <div className="space-y-3">
