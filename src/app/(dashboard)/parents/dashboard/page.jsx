@@ -7,6 +7,8 @@ import ChildSelector from "@/components2/parents/ChildSector";
 import FocusGauge from "@/components2/parents/FocusGuge";
 import SummaryCards from "@/components2/parents/SummuryCards";
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from "recharts";
+import { FaCalendar, FaDoorClosed } from "react-icons/fa";
+import { FaUser } from "react-icons/fa6";
 
 export default function ParentDashboardPage() {
   const [insight, setInsight] = useState(null);
@@ -18,7 +20,7 @@ export default function ParentDashboardPage() {
   // 🌟 Demo Data
   const demoData = {
     focusScore: 82,
-    emotions: ["Happy", "Calm", "Motivated"],
+    emotions: ["Happy", "Calm", "Motivated","Depressed"],
     weeklySummary:
       "Your child showed consistent focus this week! Participation was high, and mood balance remained steady.",
     moodTrend: [
@@ -65,7 +67,7 @@ export default function ParentDashboardPage() {
   // 🔒 Logout Function
   function handleLogout() {
     localStorage.removeItem("parentToken");
-    window.location.href = "/";
+    window.location.href = "/user-dashboard";
   }
 
   // 🎨 Emotion Colors
@@ -90,10 +92,11 @@ export default function ParentDashboardPage() {
         >
           <div>
             <h1 className="text-3xl font-bold text-[var(--popover-foreground)]">
-              👨‍👩‍👧 Parent Dashboard
+              <FaUser></FaUser>
+              <span> Parent Dashboard</span>
             </h1>
             <p className="text-[var(--muted-foreground)]">
-              Track your child’s emotional growth and learning balance 🌿
+              Track your child’s emotional growth and learning balance 
             </p>
           </div>
 
@@ -110,7 +113,8 @@ export default function ParentDashboardPage() {
               onClick={handleLogout}
               className="py-2 px-4 bg-gradient-to-r from-red-500 to-orange-500 text-white font-semibold rounded-full shadow hover:scale-105 transition-all"
             >
-              🚪 Logout
+              <FaDoorClosed></FaDoorClosed>
+            <span>   Logout</span>
             </button>
           </div>
         </motion.div>
@@ -119,7 +123,7 @@ export default function ParentDashboardPage() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.2 }}>
           <div className="grid sm:grid-cols-3 gap-4">
             <div className="bg-[var(--card)] p-4 rounded-xl shadow card-glow border border-white/10">
-              <p className="text-sm text-[var(--muted-foreground)]">🎯 Focus Score</p>
+              <p className="text-sm text-[var(--muted-foreground)]"> Focus Score</p>
               <p className="text-3xl font-bold text-[var(--popover-foreground)]">
                 {insight?.focusScore || demoData.focusScore}
               </p>
@@ -142,7 +146,7 @@ export default function ParentDashboardPage() {
             </div>
 
             <div className="bg-[var(--card)] p-4 rounded-xl shadow card-glow border border-white/10">
-              <p className="text-sm text-[var(--muted-foreground)]">📅 Weekly Summary</p>
+              <p className="text-sm text-[var(--muted-foreground)]"><FaCalendar></FaCalendar> <span>Weekly Summary</span></p>
               <p className="mt-2 text-[var(--popover-foreground)] text-sm leading-relaxed">
                 {insight?.weeklySummary || demoData.weeklySummary}
               </p>
@@ -158,7 +162,7 @@ export default function ParentDashboardPage() {
             className="md:col-span-2 bg-[var(--card)] p-6 rounded-2xl shadow-xl border border-white/10 dark:border-white/5 backdrop-blur-sm"
           >
             <h3 className="font-semibold mb-4 text-[var(--popover-foreground)] flex items-center gap-2">
-              🌈 Weekly Mood Trend
+               Weekly Mood Trend
             </h3>
             <div style={{ width: "100%", height: 240 }}>
               <ResponsiveContainer>
@@ -204,7 +208,7 @@ export default function ParentDashboardPage() {
         <AiInsightCard
           report={
             report ||
-            `🌟 Demo Insight 🌟  
+            `  
 This week, your child maintained strong focus and a positive attitude.  
 Encourage outdoor breaks and creative play to keep the balance.`
           }
