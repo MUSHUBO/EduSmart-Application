@@ -95,6 +95,9 @@ const Navbar = () => {
     else if (role === "parent") {
       router.push("/parent-dashboard");
     }
+    else if (role === "student") {
+      router.push("/student-dashboard");
+    }
     else if (role === "teacher") {
       router.push("/teacher-dashboard");
     }

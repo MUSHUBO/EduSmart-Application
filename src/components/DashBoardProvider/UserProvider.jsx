@@ -9,7 +9,7 @@ export default function UserProvider({ children }) {
   const { user } = useContext(AuthContext);
   const [role, setRole] = useState(null);
   const router = useRouter();
-
+  console.log(role)
   useEffect(() => {
     const fetchRole = async () => {
       if (!user?.email) return;
@@ -17,7 +17,7 @@ export default function UserProvider({ children }) {
       try {
         const res = await fetch(`/api/getUserRole?email=${user.email}`);
         const data = await res.json();
-
+        console.log(data)
         if (data.role === "user") {
           setRole("user");
         } else {
@@ -31,21 +31,21 @@ export default function UserProvider({ children }) {
     fetchRole();
   }, [user]);
 
-    if (!role) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <Bars
-                    height="80"
-                    width="80"
-                    color="#4fa94d"
-                    ariaLabel="loading"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                />
-            </div>
-        );
-    }
+  if (!role) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <Bars
+          height="80"
+          width="80"
+          color="#4fa94d"
+          ariaLabel="loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
 
   return <>{children}</>;
 }
