@@ -7,7 +7,11 @@ const ScrollUp = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     const scrollToTop = () => {
-        audioRef.current.play();
+        if (audioRef.current) {
+            audioRef.current.volume = 0.05;
+            audioRef.current.play();
+        }
+
         window.scrollTo({
             top: 0,
             behavior: "smooth",
