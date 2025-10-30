@@ -72,7 +72,7 @@ export default function WhyChooseUs() {
           </motion.p>
 
           <motion.h2
-            className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-snug mb-4"
+            className="text-2xl sm:text-3xl lg:text-5xl font-bold text-black leading-snug mb-4"
             variants={cardVariants}
           >
             We Are Expert &{" "}
@@ -80,7 +80,7 @@ export default function WhyChooseUs() {
           </motion.h2>
 
           <motion.p
-            className="text-white/80 mb-8 max-w-md"
+            className="text-black mb-8 max-w-md"
             variants={cardVariants}
           >
             It is a long established fact that a reader will be distracted by the

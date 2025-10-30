@@ -1,10 +1,10 @@
 'use client';
 import React from "react";
 import {
-  FaUserGraduate,
   FaChalkboardTeacher,
+  FaUserGraduate,
+  FaBook,
   FaCalendarAlt,
-  FaUtensils,
 } from "react-icons/fa";
 import {
   LineChart,
@@ -24,161 +24,121 @@ import {
   Legend,
 } from "recharts";
 
-// Demo Data
-const performanceData = [
-  { month: "Jan", value: 80 },
-  { month: "Feb", value: 90 },
-  { month: "Mar", value: 70 },
-  { month: "Apr", value: 100 },
-  { month: "May", value: 95 },
+// Demo Data for Teacher Dashboard
+const coursesData = [
+  { month: "Jan", courses: 3 },
+  { month: "Feb", courses: 4 },
+  { month: "Mar", courses: 2 },
+  { month: "Apr", courses: 5 },
+  { month: "May", courses: 4 },
 ];
 
-const overviewData = [
-  { name: "Math", students: 400 },
-  { name: "Science", students: 300 },
-  { name: "English", students: 500 },
-  { name: "Art", students: 200 },
+const studentsData = [
+  { course: "Math", students: 40 },
+  { course: "Science", students: 35 },
+  { course: "English", students: 50 },
+  { course: "History", students: 30 },
 ];
 
 const attendanceData = [
-  { day: "Mon", present: 95 },
-  { day: "Tue", present: 88 },
-  { day: "Wed", present: 90 },
-  { day: "Thu", present: 92 },
-  { day: "Fri", present: 85 },
+  { day: "Mon", attendance: 90 },
+  { day: "Tue", attendance: 85 },
+  { day: "Wed", attendance: 88 },
+  { day: "Thu", attendance: 92 },
+  { day: "Fri", attendance: 80 },
 ];
 
-const foodData = [
-  { name: "Breakfast", value: 400 },
-  { name: "Lunch", value: 300 },
-  { name: "Snacks", value: 200 },
-  { name: "Dinner", value: 100 },
-];
+const COLORS = ["var(--primary)", "var(--secondary)", "var(--accent-foreground)", "var(--accent)"];
 
-const COLORS = ["#3b82f6", "#f97316", "#10b981", "#f43f5e"];
-
-export default function StudentDashboard() {
+export default function TeacherDashboard() {
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-[var(--background)] min-h-screen space-y-8">
       {/* Welcome Header */}
-      <div className="mb-6">
-        <h2 className="text-3xl font-bold text-gray-800 flex justify-center items-center mx-auto">Welcome Back, <span className="text-blue-600">teacher dashboard!</span></h2>
-        <p className="text-gray-500 mt-1 flex justify-center items-center mx-auto">Here’s an overview of your activities and progress.</p>
+      <div className="text-center">
+        <h2 className="text-3xl font-bold text-[var(--foreground)]">
+          Welcome Back, <span className="text-[var(--primary)]">Teacher!</span>
+        </h2>
+        <p className="text-[var(--muted-foreground)] mt-1">
+          Here's an overview of your courses, students, and activities.
+        </p>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-blue-100 p-3 rounded-full text-blue-600">
-            <FaUserGraduate />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        {[
+          { title: "Courses Created", value: 12, icon: <FaChalkboardTeacher />, color: "var(--primary)" },
+          { title: "Students Enrolled", value: 250, icon: <FaUserGraduate />, color: "var(--secondary)" },
+          { title: "Books Uploaded", value: 18, icon: <FaBook />, color: "var(--accent-foreground)" },
+          { title: "Upcoming Classes", value: 5, icon: <FaCalendarAlt />, color: "var(--accent)" },
+        ].map((item, idx) => (
+          <div key={idx} className="bg-[var(--card-background)] p-6 rounded-2xl shadow border border-[var(--accent)] flex items-center space-x-4">
+            <div className="p-4 rounded-full shadow-md" style={{ backgroundColor: item.color, color: "var(--card-foreground)" }}>
+              {item.icon}
+            </div>
+            <div>
+              <p className="text-sm text-[var(--muted-foreground)]">{item.title}</p>
+              <h3 className="text-2xl font-bold text-[var(--foreground)]">{item.value}</h3>
+            </div>
           </div>
-          <div>
-            <p className="text-sm text-gray-500">Completed Courses</p>
-            <h3 className="text-xl font-bold">12</h3>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-red-100 p-3 rounded-full text-red-600">
-            <FaChalkboardTeacher />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Active Teachers</p>
-            <h3 className="text-xl font-bold">8</h3>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-yellow-100 p-3 rounded-full text-yellow-600">
-            <FaCalendarAlt />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Upcoming Events</p>
-            <h3 className="text-xl font-bold">5</h3>
-          </div>
-        </div>
-
-        <div className="bg-white p-6 rounded-xl shadow flex items-center space-x-4">
-          <div className="bg-purple-100 p-3 rounded-full text-purple-600">
-            <FaUtensils />
-          </div>
-          <div>
-            <p className="text-sm text-gray-500">Cafeteria Points</p>
-            <h3 className="text-xl font-bold">1.2k</h3>
-          </div>
-        </div>
+        ))}
       </div>
 
-      {/* Charts Section */}
+      {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Line Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4 text-gray-700">Performance Progress</h4>
+        {/* Line Chart: Courses Created Over Months */}
+        <div className="bg-[var(--card-background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Courses Created Over Time</h4>
           <ResponsiveContainer width="100%" height={250}>
-            <LineChart data={performanceData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+            <LineChart data={coursesData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--muted-foreground)" />
+              <XAxis dataKey="month" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={3} />
+              <Line type="monotone" dataKey="courses" stroke="var(--primary)" strokeWidth={3} />
             </LineChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Bar Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4 text-gray-700">Subject Overview</h4>
+        {/* Bar Chart: Students Per Course */}
+        <div className="bg-[var(--card-background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Students Per Course</h4>
           <ResponsiveContainer width="100%" height={250}>
-            <BarChart data={overviewData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+            <BarChart data={studentsData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--muted-foreground)" />
+              <XAxis dataKey="course" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Bar dataKey="students" fill="#f59e0b" radius={[10, 10, 0, 0]} />
+              <Bar dataKey="students" fill="var(--secondary)" radius={[10, 10, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Area Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4 text-gray-700">Attendance Trend</h4>
+        {/* Area Chart: Attendance Trend */}
+        <div className="bg-[var(--card-background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Attendance Trend</h4>
           <ResponsiveContainer width="100%" height={250}>
             <AreaChart data={attendanceData}>
               <defs>
-                <linearGradient id="colorPresent" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                <linearGradient id="colorAttendance" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.8}/>
+                  <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <XAxis dataKey="day" />
-              <YAxis />
+              <XAxis dataKey="day" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Area
-                type="monotone"
-                dataKey="present"
-                stroke="#10b981"
-                fillOpacity={1}
-                fill="url(#colorPresent)"
-              />
+              <Area type="monotone" dataKey="attendance" stroke="var(--primary)" fill="url(#colorAttendance)" fillOpacity={1}/>
             </AreaChart>
           </ResponsiveContainer>
         </div>
 
-        {/* Pie Chart */}
-        <div className="bg-white p-6 rounded-xl shadow">
-          <h4 className="font-semibold mb-4 text-gray-700">Cafeteria Distribution</h4>
+        {/* Pie Chart: Course Distribution */}
+        <div className="bg-[var(--card-background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Course Distribution</h4>
           <ResponsiveContainer width="100%" height={250}>
             <PieChart>
-              <Pie
-                data={foodData}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="value"
-              >
-                {foodData.map((entry, index) => (
+              <Pie data={studentsData} dataKey="students" cx="50%" cy="50%" outerRadius={80} label>
+                {studentsData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>

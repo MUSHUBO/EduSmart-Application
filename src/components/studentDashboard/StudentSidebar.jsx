@@ -3,18 +3,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter, usePathname } from "next/navigation";
 import {
-  FaHome,
   FaBook,
   FaList,
-  FaCog,
+  FaHeart,
+  FaTasks,
   FaSignOutAlt,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth";
 
-export default function UserSidebar() {
+export default function StudentSidebar() {
   const router = useRouter();
-  const pathname = usePathname(); // Current route
+  const pathname = usePathname();
   const { logoutAccount, user } = useAuth();
 
   const logoutHandler = async () => {
@@ -37,7 +37,13 @@ export default function UserSidebar() {
     }
   };
 
-  // Helper for active link
+  const menuItems = [
+    { name: "My Enrolled Courses", href: "/student-dashboard/my-courses", icon: <FaList /> },
+    { name: "My Books", href: "/student-dashboard/my-books", icon: <FaBook /> },
+    { name: "Wish-List", href: "/student-dashboard/wishlist", icon: <FaHeart /> },
+    { name: "My Assignments", href: "/student-dashboard/my-assignments", icon: <FaTasks /> },
+  ];
+
   const linkClass = (path) =>
     `flex items-center space-x-3 px-4 py-3 rounded-lg font-medium text-base transition-all duration-300 ${
       pathname === path
@@ -50,7 +56,7 @@ export default function UserSidebar() {
       <label htmlFor="user-drawer" className="drawer-overlay"></label>
       <aside
         className="menu p-6 w-64 min-h-full flex flex-col justify-between
-          bg-[var(--background)] text-[var(--foreground)] border-r border-[var(--accent)] shadow-lg"
+        bg-[var(--background)] text-[var(--foreground)] border-r border-[var(--accent)] shadow-lg"
       >
         <div>
           {/* Logo */}
@@ -66,25 +72,12 @@ export default function UserSidebar() {
 
           {/* Navigation */}
           <nav className="space-y-2">
-            <Link href="/user-dashboard" className={linkClass("/user-dashboard")}>
-              <FaHome />
-              <span>Dashboard</span>
-            </Link>
-
-            <Link href="/user-dashboard/all-courses" className={linkClass("/user-dashboard/all-courses")}>
-              <FaList />
-              <span>All Courses</span>
-            </Link>
-
-            <Link href="/user-dashboard/all-books" className={linkClass("/user-dashboard/all-books")}>
-              <FaBook />
-              <span>All Books</span>
-            </Link>
-
-            {/* <Link href="/user-dashboard/settings" className={linkClass("/user-dashboard/settings")}>
-              <FaCog />
-              <span>Settings</span>
-            </Link> */}
+            {menuItems.map((item) => (
+              <Link key={item.href} href={item.href} className={linkClass(item.href)}>
+                {item.icon}
+                <span>{item.name}</span>
+              </Link>
+            ))}
           </nav>
         </div>
 

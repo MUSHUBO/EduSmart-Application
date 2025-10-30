@@ -41,31 +41,34 @@ export default function TeacherSidebar() {
   };
 
   const linkClass = (path) =>
-    `flex items-center space-x-2 p-2 rounded-md transition-colors ${
+    `flex items-center space-x-2 px-4 py-3 rounded-lg font-medium text-base transition-all duration-300 ${
       pathname === path
-        ? "bg-blue-800 font-bold text-white"
-        : "hover:bg-blue-500 text-gray-100"
+        ? "bg-[var(--primary)] text-[var(--primary-foreground)] shadow-md"
+        : "hover:bg-[var(--secondary)] hover:text-[var(--secondary-foreground)]"
     }`;
 
   return (
     <div className="drawer-side">
       <label htmlFor="teacher-drawer" className="drawer-overlay"></label>
-      <aside className="menu p-5 w-64 bg-gradient-to-b from-blue-700 to-blue-600 text-white min-h-full flex flex-col justify-between shadow-lg">
+      <aside
+        className="menu p-6 w-64 min-h-full flex flex-col justify-between
+          bg-[var(--background)] text-[var(--foreground)] border-r border-[var(--accent)] shadow-lg"
+      >
         <div>
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 mb-8">
+          <Link href="/" className="flex items-center space-x-2 mb-10">
             <Image
               src="/images/eduSmart.png"
               alt="logo"
-              width={150}
-              height={50}
+              width={160}
+              height={60}
               className="w-auto h-auto"
             />
           </Link>
 
           {/* Teacher Info */}
           <div className="mb-6 text-center">
-            <div className="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-white shadow-md">
+            <div className="w-16 h-16 mx-auto rounded-full overflow-hidden border-2 border-[var(--primary)] shadow-md">
               <Image
                 src={user?.photoURL || "/images/teacher-avatar.png"}
                 alt="Teacher Avatar"
@@ -75,17 +78,15 @@ export default function TeacherSidebar() {
               />
             </div>
             <h3 className="mt-2 font-semibold text-lg">{user?.displayName || "Teacher"}</h3>
-            <p className="text-sm text-blue-200">Instructor</p>
+            <p className="text-sm text-[var(--secondary)]">Instructor</p>
           </div>
 
           {/* Navigation */}
-          <nav className="space-y-3 text-[15px] font-medium">
+          <nav className="space-y-2">
             <Link href="/teacher-dashboard" className={linkClass("/teacher-dashboard")}>
               <FaHome />
               <span>Dashboard Home</span>
             </Link>
-
-            {/* Create Course */}
             <Link
               href="/teacher-dashboard/create-course"
               className={linkClass("/teacher-dashboard/create-course")}
@@ -93,8 +94,6 @@ export default function TeacherSidebar() {
               <FaChalkboardTeacher />
               <span>Create Course</span>
             </Link>
-
-            {/* Create Book */}
             <Link
               href="/teacher-dashboard/create-book"
               className={linkClass("/teacher-dashboard/create-book")}
@@ -102,8 +101,6 @@ export default function TeacherSidebar() {
               <FaPlus />
               <span>Create Book</span>
             </Link>
-
-            {/* My Created Courses */}
             <Link
               href="/teacher-dashboard/my-courses"
               className={linkClass("/teacher-dashboard/my-courses")}
@@ -111,8 +108,6 @@ export default function TeacherSidebar() {
               <FaList />
               <span>My Created Courses</span>
             </Link>
-
-            {/* My Created Books */}
             <Link
               href="/teacher-dashboard/my-books"
               className={linkClass("/teacher-dashboard/my-books")}
@@ -120,15 +115,10 @@ export default function TeacherSidebar() {
               <FaBook />
               <span>My Created Books</span>
             </Link>
-
-            {/* Settings */}
-            <Link
-              href="#"
-              className={linkClass("/teacher-dashboard/settings")}
-            >
+            {/* <Link href="#" className={linkClass("/teacher-dashboard/settings")}>
               <FaCog />
               <span>Settings</span>
-            </Link>
+            </Link> */}
           </nav>
         </div>
 
@@ -137,7 +127,8 @@ export default function TeacherSidebar() {
           onClick={() => {
             if (confirm("Are you sure you want to log out?")) logoutHandler();
           }}
-          className="flex items-center space-x-2 text-red-200 hover:text-red-400 mt-6 transition-colors"
+          className="flex items-center space-x-2 mt-6 text-[var(--secondary)] hover:text-[var(--primary)]
+            transition-colors duration-300 font-semibold text-lg"
         >
           <FaSignOutAlt />
           <span>Logout</span>

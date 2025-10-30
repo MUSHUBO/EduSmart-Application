@@ -3,10 +3,10 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import {
-  FaUserGraduate,
-  FaChalkboardTeacher,
+  FaBook,
+  FaTasks,
   FaCalendarAlt,
-  FaUtensils,
+  FaHeart,
   FaComments,
 } from "react-icons/fa";
 import {
@@ -30,19 +30,19 @@ import { AuthContext } from "@/Context/AuthContext/AuthContext";
 
 // Demo Data
 const performanceData = [
-  { month: "Jan", value: 80 },
-  { month: "Feb", value: 92 },
-  { month: "Mar", value: 76 },
-  { month: "Apr", value: 99 },
-  { month: "May", value: 95 },
-  { month: "Jun", value: 97 },
+  { month: "Jan", value: 85 },
+  { month: "Feb", value: 90 },
+  { month: "Mar", value: 78 },
+  { month: "Apr", value: 95 },
+  { month: "May", value: 88 },
+  { month: "Jun", value: 92 },
 ];
 
-const overviewData = [
-  { name: "Mathematics", students: 420 },
-  { name: "Physics", students: 360 },
-  { name: "English", students: 480 },
-  { name: "Art", students: 210 },
+const enrolledCourses = [
+  { name: "Mathematics", progress: 80 },
+  { name: "Physics", progress: 70 },
+  { name: "English", progress: 95 },
+  { name: "Art", progress: 60 },
 ];
 
 const attendanceData = [
@@ -66,7 +66,6 @@ export default function StudentDashboard() {
   const { user } = useContext(AuthContext);
   const userName = user?.displayName || "Student";
 
-  // Animation Variants
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
     visible: (i = 1) => ({
@@ -85,21 +84,20 @@ export default function StudentDashboard() {
     }),
   };
 
-  // Mock chat messages
   const userChats = [
     {
       sender: "System",
-      msg: `🎉 Welcome back ${userName}! Your learning streak is strong!`,
+      msg: `🎉 Welcome back ${userName}! You have 3 assignments due this week.`,
       time: "Today, 8:45 AM",
     },
     {
-      sender: "Ms. Taylor (Math Teacher)",
-      msg: "Great work on your last assignment. You improved your score by 15%! 💪",
+      sender: "Prof. Adams",
+      msg: "Excellent progress in Physics. Keep it up! 💡",
       time: "Yesterday, 6:30 PM",
     },
     {
       sender: "Campus Bot",
-      msg: "Don’t forget: Science Fair on Thursday at 10 AM 🧪",
+      msg: "Reminder: Submit your project by Friday at 5 PM 📝",
       time: "2 days ago",
     },
   ];
@@ -107,17 +105,12 @@ export default function StudentDashboard() {
   return (
     <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
       {/* Welcome Header */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        className="mb-8"
-      >
-        <h2 className="text-4xl font-extrabold text-gray-800 mx-auto items-center flex justify-center">
-          Welcome Back, <span className="text-blue-600">{userName} </span>
+      <motion.div initial="hidden" animate="visible" variants={fadeUp} className="mb-8">
+        <h2 className="text-4xl font-extrabold text-gray-800 mx-auto flex justify-center items-center">
+          Welcome Back, <span className="text-blue-600">{userName}</span>
         </h2>
-        <p className="text-gray-500 mt-1 text-lg mx-auto items-center flex justify-center">
-          Here’s a personalized snapshot of your progress and updates.
+        <p className="text-gray-500 mt-1 text-lg mx-auto flex justify-center items-center">
+          Here’s your personalized student dashboard!
         </p>
       </motion.div>
 
@@ -125,31 +118,31 @@ export default function StudentDashboard() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         {[
           {
-            icon: <FaUserGraduate />,
-            label: "Courses Completed",
-            value: "12",
-            change: "+2 this month",
+            icon: <FaBook />,
+            label: "Enrolled Courses",
+            value: "5",
+            change: "1 new this month",
             color: "blue",
           },
           {
-            icon: <FaChalkboardTeacher />,
-            label: "Active Teachers",
-            value: "8",
-            change: "3 new mentors added",
+            icon: <FaTasks />,
+            label: "Assignments Pending",
+            value: "3",
+            change: "Submit by Friday",
             color: "red",
           },
           {
             icon: <FaCalendarAlt />,
-            label: "Upcoming Events",
-            value: "5",
-            change: "Science Fair this week",
+            label: "Upcoming Exams",
+            value: "2",
+            change: "Math & Physics this week",
             color: "yellow",
           },
           {
-            icon: <FaUtensils />,
-            label: "Cafeteria Points",
-            value: "1,240",
-            change: "+120 bonus points 🎁",
+            icon: <FaHeart />,
+            label: "Wishlist Items",
+            value: "4",
+            change: "New books added",
             color: "purple",
           },
         ].map((item, i) => (
@@ -176,7 +169,7 @@ export default function StudentDashboard() {
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Performance Progress */}
+        {/* Performance */}
         <motion.div custom={1} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
           <h4 className="font-semibold mb-4 text-gray-700">Performance Progress</h4>
           <ResponsiveContainer width="100%" height={260}>
@@ -190,21 +183,21 @@ export default function StudentDashboard() {
           </ResponsiveContainer>
         </motion.div>
 
-        {/* Subject Overview */}
+        {/* Enrolled Courses Progress */}
         <motion.div custom={2} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
-          <h4 className="font-semibold mb-4 text-gray-700">Subject Overview</h4>
+          <h4 className="font-semibold mb-4 text-gray-700">Course Progress</h4>
           <ResponsiveContainer width="100%" height={260}>
-            <BarChart data={overviewData}>
+            <BarChart data={enrolledCourses}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="students" fill="#f59e0b" radius={[10, 10, 0, 0]} />
+              <Bar dataKey="progress" fill="#f59e0b" radius={[10, 10, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </motion.div>
 
-        {/* Attendance Trend */}
+        {/* Attendance */}
         <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
           <h4 className="font-semibold mb-4 text-gray-700">Attendance Trend</h4>
           <ResponsiveContainer width="100%" height={260}>
@@ -223,9 +216,9 @@ export default function StudentDashboard() {
           </ResponsiveContainer>
         </motion.div>
 
-        {/* Cafeteria Distribution */}
+        {/* Cafeteria */}
         <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
-          <h4 className="font-semibold mb-4 text-gray-700">Cafeteria Distribution</h4>
+          <h4 className="font-semibold mb-4 text-gray-700">Cafeteria Points</h4>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
               <Pie data={foodData} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value">
@@ -240,25 +233,15 @@ export default function StudentDashboard() {
         </motion.div>
       </div>
 
-      {/* Real Chat Section */}
-      <motion.div
-        custom={5}
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        className="mt-10 bg-white p-6 rounded-2xl shadow-md"
-      >
+      {/* Chat Section */}
+      <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp} className="mt-10 bg-white p-6 rounded-2xl shadow-md">
         <div className="flex items-center mb-4 space-x-2">
           <FaComments className="text-blue-500 text-2xl" />
           <h4 className="font-semibold text-gray-700 text-lg">Recent Messages</h4>
         </div>
         <div className="space-y-4">
           {userChats.map((chat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.2 }}
+            <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.2 }}
               className="p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all border border-gray-100"
             >
               <p className="font-medium text-gray-800">{chat.sender}</p>
