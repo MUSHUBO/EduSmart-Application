@@ -1,78 +1,131 @@
-"use client"
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useState } from 'react';
+"use client";
+import { useAuth } from "@/Hooks/UseAuth/UseAuth";
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
 
-const CheckoutForm = () => {
-
+const CheckoutForm = ({ course, setIsModalOpen }) => {
     const stripe = useStripe();
     const elements = useElements();
-    const [error, setError] = useState("")
-    const [paymentLoading, setPaymentLoading] = useState(false)
+    const [error, setError] = useState("");
+    const [paymentLoading, setPaymentLoading] = useState(false);
+    const router = useRouter();
+    const { user } = useAuth();
 
-    // const amount = singleData?.price;
-    // const newAmmount = parseInt(amount)
-    // const amountInCents = newAmmount * 100;
-
-    const amountObject = {
-        amountInCents : 1000000,
-        parcelId: 1111
-    }
+    const amount = course?.price || 0;
+    const newAmount = Math.round(amount * 100);
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        setPaymentLoading(true)
+        e.preventDefault();
+        setPaymentLoading(true);
 
-        if (!stripe || !elements) {
-            return;
-        }
+        if (!stripe || !elements) return;
 
         const card = elements.getElement(CardElement);
+        if (!card) return;
 
-        if (card == null) {
-            return;
-        }
-
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
-            type: 'card',
+        // Create payment method
+        const { error: methodError } = await stripe.createPaymentMethod({
+            type: "card",
             card,
         });
 
-        if (error) {
-            setError(error.message)
-            console.log('[error]', error);
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
-            setPaymentLoading(false)
+        if (methodError) {
+            setError(methodError.message);
+            setPaymentLoading(false);
+            return;
         }
-    }
+
+        setError("");
+
+        // Create Payment Intent
+        const res = await axios.post(`/api/createPaymentIntent`, { newAmount });
+        const clientSecret = res.data.clientSecret;
+
+        // Confirm Payment
+        const result = await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card,
+                billing_details: {
+                    name: user?.displayName,
+                    email: user?.email,
+                },
+            },
+        });
+
+        if (result.error) {
+
+            setError(result.error.message);
+            setPaymentLoading(false);
+        } else if (result.paymentIntent.status === "succeeded") {
+            // Save payment record
+
+            const paymentRecord = {
+                Id: course?._id,
+                courseTitle: course?.title,
+                price: newAmount,
+                transactionId: result.paymentIntent.id,
+                paymentMethod: result.paymentIntent.payment_method_types,
+                userEmail: user?.email,
+                userName: user?.displayName,
+            };
+
+            const saveRes = await axios.post(`/api/payments`, paymentRecord);
+
+            if (saveRes.data?.insertedId) {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Payment Successful!",
+                    html: `<p>Transaction ID: <b>${result.paymentIntent.id}</b></p>`,
+                    confirmButtonText: "Go to My Courses",
+                    confirmButtonColor: "#28a745",
+                }).then(() => {
+                    setIsModalOpen(false);
+                    router.push("/allCourses");
+                });
+            }
+            setPaymentLoading(false);
+        }
+    };
+
     return (
-        <form onSubmit={handleSubmit} className='space-y-4 bg-yellow-50 p-6 rounded-xl shadow-md w-full max-w-md mx-auto'>
+        <form
+            onSubmit={handleSubmit}
+            className="space-y-4 bg-yellow-50 p-6 rounded-xl shadow-md w-full max-w-md mx-auto"
+        >
             <CardElement
                 options={{
                     style: {
                         base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
-                            },
+                            fontSize: "16px",
+                            color: "#424770",
+                            "::placeholder": { color: "#aab7c4" },
                         },
-                        invalid: {
-                            color: '#9e2146',
-                        },
+                        invalid: { color: "#9e2146" },
                     },
                 }}
             />
-            <button type='submit' disabled={!stripe} className={`w-full py-3 rounded-lg duration-200 text-popover text-base font-bold transition
-      ${stripe ? 'bg-primary' : 'bg-gray-400 cursor-not-allowed'}
-    `}>
-
-                Pay For Booking {paymentLoading && <><span className="loading loading-dots loading-xs"></span>
-                    <span className="loading loading-dots loading-sm"></span></>}
+            <button
+                type="submit"
+                disabled={!stripe || paymentLoading}
+                className={`w-full py-3 rounded-lg text-white font-bold text-base transition ${!stripe || paymentLoading
+                        ? "bg-gray-400 cursor-not-allowed"
+                        : "bg-primary hover:bg-primary/90"
+                    }`}
+            >
+                {paymentLoading ? (
+                    <>
+                        Processing <span className="loading loading-dots loading-sm"></span>
+                    </>
+                ) : (
+                    `Pay $${amount}`
+                )}
             </button>
-            {
-                error && <h1 className='text-red-600 text-sm'>{error}</h1>
-            }
+
+            {error && <p className="text-red-600 text-sm">{error}</p>}
         </form>
     );
 };
