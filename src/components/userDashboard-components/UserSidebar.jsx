@@ -21,6 +21,7 @@ import {
 import toast from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth";
 
+
 export default function UserSidebar() {
   const router = useRouter();
   const pathname = usePathname(); // <-- Current route
@@ -96,6 +97,14 @@ export default function UserSidebar() {
             >
               <FaBook />
               <span>All Books</span>
+            </Link>
+            {/* Preants */}
+            <Link
+              href="/user-dashboard/parent-dashboard"
+              className={`${linkClass("/user-dashboard/parent-dashboard")} text-[17px]`}
+            >
+              <FaUser />
+              <span>Preants</span>
             </Link>
 
             {/* Settings */}
