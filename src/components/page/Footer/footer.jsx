@@ -1,13 +1,20 @@
-
+"use client"
 import { FaFacebookF, FaPhoneAlt, FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BiSolidRightArrow } from "react-icons/bi";
 import Link from "next/link";
 import { SiMinutemailer } from "react-icons/si";
 import { FaXTwitter } from "react-icons/fa6";
+import { usePathname } from "next/navigation";
 
 
 export default function Footer() {
+    // ata dashboard e asle jeno navbar na dekhai sei jonno
+    const currentPathname = usePathname();
+    if (currentPathname.includes("dashboard")) {
+        return <></>;
+    }
+
     return (
         <footer
             className="relative text-white bg-black py-6 md:py-8 lg:py-12 px-8 md:px-16 lg:px-24"
@@ -19,7 +26,7 @@ export default function Footer() {
             }}
         >
             {/* Overlay */}
-              <div className="absolute inset-0 bg-[#012758] bg-opacity-20"></div>
+            <div className="absolute inset-0 bg-[#012758] bg-opacity-20"></div>
 
             {/* Content */}
             <div className="relative z-10 container mx-auto">

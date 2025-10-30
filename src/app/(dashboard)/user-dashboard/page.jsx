@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import {
@@ -60,99 +59,50 @@ const foodData = [
   { name: "Dinner", value: 180 },
 ];
 
-const COLORS = ["#3b82f6", "#f97316", "#10b981", "#f43f5e"];
+const COLORS = ["var(--primary)", "var(--secondary)", "var(--accent)", "var(--primary-foreground)"];
 
 export default function UserDashboard() {
   const { user } = useContext(AuthContext);
   const userName = user?.displayName || "Student";
 
-  // Animation Variants
   const fadeUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: (i = 1) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" },
-    }),
+    visible: (i = 1) => ({ opacity: 1, y: 0, transition: { delay: i * 0.15, duration: 0.6, ease: "easeOut" } }),
   };
 
   const bounce = {
-    hidden: { scale: 0.9, opacity: 0 },
-    visible: (i = 1) => ({
-      scale: 1,
-      opacity: 1,
-      transition: { delay: i * 0.1, type: "spring", stiffness: 120 },
-    }),
+    hidden: { scale: 0.95, opacity: 0 },
+    visible: (i = 1) => ({ scale: 1, opacity: 1, transition: { delay: i * 0.1, type: "spring", stiffness: 120 } }),
   };
 
-  // Mock chat messages
   const userChats = [
-    {
-      sender: "System",
-      msg: `🎉 Welcome back ${userName}! Your learning streak is strong!`,
-      time: "Today, 8:45 AM",
-    },
-    {
-      sender: "Ms. Taylor (Math Teacher)",
-      msg: "Great work on your last assignment. You improved your score by 15%! 💪",
-      time: "Yesterday, 6:30 PM",
-    },
-    {
-      sender: "Campus Bot",
-      msg: "Don’t forget: Science Fair on Thursday at 10 AM 🧪",
-      time: "2 days ago",
-    },
+    { sender: "System", msg: `🎉 Welcome back ${userName}! Keep up the great work!`, time: "Today, 8:45 AM" },
+    { sender: "Ms. Taylor (Math Teacher)", msg: "Well done on your last assignment! You improved 15% ", time: "Yesterday, 6:30 PM" },
+    { sender: "Campus Bot", msg: "Reminder: Science Fair on Thursday at 10 AM ", time: "2 days ago" },
+  ];
+
+  const statsCards = [
+    { icon: <FaUserGraduate />, label: "Courses Completed", value: "12", change: "+2 this month", color: "primary" },
+    { icon: <FaChalkboardTeacher />, label: "Active Teachers", value: "8", change: "3 new mentors added", color: "secondary" },
+    { icon: <FaCalendarAlt />, label: "Upcoming Events", value: "5", change: "Science Fair this week", color: "accent" },
+    { icon: <FaUtensils />, label: "Cafeteria Points", value: "1,240", change: "+120 bonus points ", color: "primary-foreground" },
   ];
 
   return (
-    <div className="p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
-      {/* Welcome Header */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        className="mb-8"
-      >
-        <h2 className="text-4xl font-extrabold text-gray-800 mx-auto items-center flex justify-center">
-          Welcome Back, <span className="text-blue-600">{userName} </span>
+    <div className="p-6 bg-[var(--background)] min-h-screen">
+      {/* Header */}
+      <motion.div initial="hidden" animate="visible" variants={fadeUp} className="mb-8 text-center">
+        <h2 className="text-4xl font-extrabold text-[var(--foreground)]">
+          Welcome Back, <span className="text-[var(--primary)]">{userName}</span>
         </h2>
-        <p className="text-gray-500 mt-1 text-lg mx-auto items-center flex justify-center">
-          Here’s a personalized snapshot of your progress and updates.
+        <p className="text-[var(--muted-foreground)] mt-2 text-lg">
+          Here's a personalized overview of your progress and updates
         </p>
       </motion.div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        {[
-          {
-            icon: <FaUserGraduate />,
-            label: "Courses Completed",
-            value: "12",
-            change: "+2 this month",
-            color: "blue",
-          },
-          {
-            icon: <FaChalkboardTeacher />,
-            label: "Active Teachers",
-            value: "8",
-            change: "3 new mentors added",
-            color: "red",
-          },
-          {
-            icon: <FaCalendarAlt />,
-            label: "Upcoming Events",
-            value: "5",
-            change: "Science Fair this week",
-            color: "yellow",
-          },
-          {
-            icon: <FaUtensils />,
-            label: "Cafeteria Points",
-            value: "1,240",
-            change: "+120 bonus points 🎁",
-            color: "purple",
-          },
-        ].map((item, i) => (
+        {statsCards.map((item, i) => (
           <motion.div
             key={i}
             custom={i}
@@ -160,75 +110,75 @@ export default function UserDashboard() {
             animate="visible"
             variants={bounce}
             whileHover={{ scale: 1.05 }}
-            className="bg-white p-6 rounded-2xl shadow-md flex flex-col items-start justify-between transition-all hover:shadow-lg"
+            className="bg-[var(--background)] border border-[var(--accent)] p-6 rounded-2xl shadow flex flex-col items-start justify-between transition-all hover:shadow-lg"
           >
-            <div className={`p-3 rounded-full bg-${item.color}-100 text-${item.color}-600 text-2xl`}>
+            <div className={`p-3 rounded-full bg-[var(--${item.color})]-100 text-[var(--${item.color}-foreground)] text-2xl`}>
               {item.icon}
             </div>
             <div className="mt-3">
-              <p className="text-sm text-gray-500">{item.label}</p>
-              <h3 className="text-2xl font-bold text-gray-800">{item.value}</h3>
-              <p className="text-xs text-gray-400 mt-1">{item.change}</p>
+              <p className="text-sm text-[var(--muted-foreground)]">{item.label}</p>
+              <h3 className="text-2xl font-bold text-[var(--foreground)]">{item.value}</h3>
+              <p className="text-xs text-[var(--muted-foreground)] mt-1">{item.change}</p>
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Charts Section */}
+      {/* Charts */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Performance Progress */}
-        <motion.div custom={1} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
-          <h4 className="font-semibold mb-4 text-gray-700">Performance Progress</h4>
+        {/* Performance */}
+        <motion.div custom={1} initial="hidden" animate="visible" variants={fadeUp} className="bg-[var(--background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Performance Progress</h4>
           <ResponsiveContainer width="100%" height={260}>
             <LineChart data={performanceData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--muted-foreground)" />
+              <XAxis dataKey="month" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Line type="monotone" dataKey="value" stroke="#3b82f6" strokeWidth={3} dot={{ r: 4 }} />
+              <Line type="monotone" dataKey="value" stroke="var(--primary)" strokeWidth={3} dot={{ r: 4 }} />
             </LineChart>
           </ResponsiveContainer>
         </motion.div>
 
         {/* Subject Overview */}
-        <motion.div custom={2} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
-          <h4 className="font-semibold mb-4 text-gray-700">Subject Overview</h4>
+        <motion.div custom={2} initial="hidden" animate="visible" variants={fadeUp} className="bg-[var(--background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Subject Overview</h4>
           <ResponsiveContainer width="100%" height={260}>
             <BarChart data={overviewData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--muted-foreground)" />
+              <XAxis dataKey="name" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Bar dataKey="students" fill="#f59e0b" radius={[10, 10, 0, 0]} />
+              <Bar dataKey="students" fill="var(--secondary)" radius={[10, 10, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </motion.div>
 
         {/* Attendance Trend */}
-        <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
-          <h4 className="font-semibold mb-4 text-gray-700">Attendance Trend</h4>
+        <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="bg-[var(--background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Attendance Trend</h4>
           <ResponsiveContainer width="100%" height={260}>
             <AreaChart data={attendanceData}>
               <defs>
                 <linearGradient id="colorPresent" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#10b981" stopOpacity={0} />
+                  <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="var(--primary)" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <XAxis dataKey="day" />
-              <YAxis />
+              <XAxis dataKey="day" stroke="var(--muted-foreground)" />
+              <YAxis stroke="var(--muted-foreground)" />
               <Tooltip />
-              <Area type="monotone" dataKey="present" stroke="#10b981" fillOpacity={1} fill="url(#colorPresent)" />
+              <Area type="monotone" dataKey="present" stroke="var(--primary)" fill="url(#colorPresent)" fillOpacity={1} />
             </AreaChart>
           </ResponsiveContainer>
         </motion.div>
 
-        {/* Cafeteria Distribution */}
-        <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="bg-white p-6 rounded-2xl shadow-md">
-          <h4 className="font-semibold mb-4 text-gray-700">Cafeteria Distribution</h4>
+        {/* Cafeteria */}
+        <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="bg-[var(--background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
+          <h4 className="font-semibold mb-4 text-[var(--foreground)]">Cafeteria Distribution</h4>
           <ResponsiveContainer width="100%" height={260}>
             <PieChart>
-              <Pie data={foodData} cx="50%" cy="50%" labelLine={false} outerRadius={80} fill="#8884d8" dataKey="value">
+              <Pie data={foodData} cx="50%" cy="50%" labelLine={false} outerRadius={80} dataKey="value">
                 {foodData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
@@ -240,30 +190,20 @@ export default function UserDashboard() {
         </motion.div>
       </div>
 
-      {/* Real Chat Section */}
-      <motion.div
-        custom={5}
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-        className="mt-10 bg-white p-6 rounded-2xl shadow-md"
-      >
+      {/* Chat Section */}
+      <motion.div custom={5} initial="hidden" animate="visible" variants={fadeUp} className="mt-10 bg-[var(--background)] p-6 rounded-2xl shadow border border-[var(--accent)]">
         <div className="flex items-center mb-4 space-x-2">
-          <FaComments className="text-blue-500 text-2xl" />
-          <h4 className="font-semibold text-gray-700 text-lg">Recent Messages</h4>
+          <FaComments className="text-[var(--primary)] text-2xl" />
+          <h4 className="font-semibold text-[var(--foreground)] text-lg">Recent Messages</h4>
         </div>
         <div className="space-y-4">
           {userChats.map((chat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.2 }}
-              className="p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-all border border-gray-100"
+            <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.2 }}
+              className="p-4 rounded-xl bg-[var(--accent)] hover:bg-[var(--accent-foreground)] transition-all border border-[var(--accent)]"
             >
-              <p className="font-medium text-gray-800">{chat.sender}</p>
-              <p className="text-gray-600 text-sm mt-1">{chat.msg}</p>
-              <p className="text-xs text-gray-400 mt-1">{chat.time}</p>
+              <p className="font-medium text-[var(--foreground)]">{chat.sender}</p>
+              <p className="text-[var(--muted-foreground)] text-sm mt-1">{chat.msg}</p>
+              <p className="text-xs text-[var(--muted-foreground)] mt-1">{chat.time}</p>
             </motion.div>
           ))}
         </div>
