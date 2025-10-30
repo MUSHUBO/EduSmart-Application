@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   FaHome,
   FaBook,
@@ -19,10 +19,11 @@ import {
   FaUserFriends,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { useAuth } from "@/Hooks/UseAuth/UseAuth"; // make sure you have this
+import { useAuth } from "@/Hooks/UseAuth/UseAuth";
 
 export default function UserSidebar() {
   const router = useRouter();
+  const pathname = usePathname(); // <-- Current route
   const { logoutAccount, user } = useAuth();
 
   const logoutHandler = async () => {
@@ -45,6 +46,14 @@ export default function UserSidebar() {
     }
   };
 
+  // Helper function for active link style
+  const linkClass = (path) =>
+    `flex items-center space-x-2 p-2 rounded-md transition-colors ${
+      pathname === path
+        ? "bg-blue-800 font-bold text-white" // active style
+        : "hover:bg-blue-500 text-gray-100"
+    }`;
+
   return (
     <div className="drawer-side">
       <label htmlFor="user-drawer" className="drawer-overlay"></label>
@@ -63,117 +72,36 @@ export default function UserSidebar() {
 
           {/* Navigation */}
           <nav className="space-y-3 text-[15px] font-medium">
-            {/* Dashboard */}
             <Link
-              href="/dashboard/user-dashboard"
-              className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md transition-colors"
+              href="/user-dashboard"
+              className={linkClass("/user-dashboard")}
             >
               <FaHome />
               <span>Dashboard</span>
             </Link>
 
-            {/* Explore Courses */}
-            <details className="group">
-              <summary className="flex items-center justify-between hover:bg-blue-500 p-2 rounded-md cursor-pointer">
-                <div className="flex items-center space-x-2">
-                  <FaBook />
-                  <span>Courses</span>
-                </div>
-                <FaChevronRight className="transition-transform group-open:rotate-90" />
-              </summary>
-              <div className="pl-6 mt-2 flex flex-col space-y-2">
-                <Link
-                  href="/user-dashboard/all-courses"
-                  className="flex items-center space-x-2 hover:text-gray-200"
-                >
-                  <FaList size={14} />
-                  <span>All Courses</span>
-                </Link>
-
-                <Link
-                  href="/user-dashboard/enrolled"
-                  className="flex items-center space-x-2 hover:text-gray-200"
-                >
-                  <FaBook size={14} />
-                  <span>My Enrolled</span>
-                </Link>
-
-                <Link
-                  href="/user-dashboard/favorites"
-                  className="flex items-center space-x-2 hover:text-gray-200"
-                >
-                  <FaHeart size={14} />
-                  <span>Wishlist</span>
-                </Link>
-
-                <Link
-                  href="/user-dashboard/become-student"
-                  className="flex items-center space-x-2 hover:text-gray-200"
-                >
-                  <FaPlus size={14} />
-                  <span>Become a Student</span>
-                </Link>
-              </div>
-            </details>
-
-            {/* Special Access */}
-            <details className="group">
-              <summary className="flex items-center justify-between hover:bg-blue-500 p-2 rounded-md cursor-pointer">
-                <div className="flex items-center space-x-2">
-                  <FaGift />
-                  <span>Special Access</span>
-                </div>
-                <FaChevronRight className="transition-transform group-open:rotate-90" />
-              </summary>
-              <div className="pl-6 mt-2 flex flex-col space-y-2">
-                <Link
-                  href="/user-dashboard/certificates"
-                  className="flex items-center space-x-2 hover:text-gray-200"
-                >
-                  <FaCertificate size={14} />
-                  <span>Certificates</span>
-                </Link>
-
-                <Link
-                  href="/user-dashboard/profile"
-                  className="flex items-center space-x-2 hover:text-gray-200"
-                >
-                  <FaUser size={14} />
-                  <span>My Profile</span>
-                </Link>
-              </div>
-            </details>
-
-            {/* Assignments */}
+            {/* All Courses */}
             <Link
-              href="/user-dashboard/assignments"
-              className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md transition-colors"
+              href="/user-dashboard/all-courses"
+              className={`${linkClass("/user-dashboard/all-courses")} text-[17px]`}
             >
-              <FaTasks />
-              <span>Assignments</span>
+              <FaList />
+              <span>All Courses</span>
             </Link>
 
-            {/* Events */}
+            {/* All Books */}
             <Link
-              href="/user-dashboard/events"
-              className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md transition-colors"
+              href="/user-dashboard/all-books"
+              className={`${linkClass("/user-dashboard/all-books")} text-[17px]`}
             >
-              <FaCalendarAlt />
-              <span>Events</span>
-            </Link>
-            <Link
-              href="/user-dashboard/parent-dashboard"
-              className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md transition-colors"
-            >
-              <FaUserFriends></FaUserFriends>
-              
-              <span>Parents</span>
+              <FaBook />
+              <span>All Books</span>
             </Link>
 
             {/* Settings */}
             <Link
               href="/user-dashboard/settings"
-              className="flex items-center space-x-2 hover:bg-blue-500 p-2 rounded-md transition-colors"
+              className={linkClass("/user-dashboard/settings")}
             >
               <FaCog />
               <span>Settings</span>

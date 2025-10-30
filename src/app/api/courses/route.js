@@ -2,42 +2,6 @@ import { NextResponse } from "next/server";
 import { dbConnect, collectionNamesObj } from "@/library/dbConnect";
 import nodemailer from "nodemailer";
 
-//  POST (already done)
-// export async function POST(req) {
-//   try {
-//     console.log("POST /api/courses called");
-
-//     const coursesCollection = await dbConnect(collectionNamesObj.courseCollection);
-//     const body = await req.json();
-
-//     // Validation
-//     if (!body.title || !body.instructor) {
-//       return NextResponse.json(
-//         { success: false, message: "Title and Instructor required" },
-//         { status: 400 }
-//       );
-//     }
-
-//     if (body.price) body.price = Number(body.price);
-//     body.createdAt = new Date();
-
-//     const result = await coursesCollection.insertOne(body);
-
-//     return NextResponse.json({
-//       success: true,
-//       message: "Course added successfully!",
-//       data: result,
-//     });
-//   } catch (error) {
-//     console.error("Server error in POST /api/courses:", error);
-//     return NextResponse.json(
-//       { success: false, message: "Server error", error: error.message },
-//       { status: 500 }
-//     );
-//   }
-// }
-
-
 // GET 6 (newly added)
 export async function GET() {
   try {
@@ -51,7 +15,7 @@ export async function GET() {
       .sort({ createdAt: -1 }) // newest first
       .limit(6)
       .toArray();
-
+    // console.log(courses);
     return NextResponse.json({
       success: true,
       data: courses,
@@ -115,7 +79,7 @@ export async function POST(req) {
               <p><strong>Course:</strong> ${body.title}</p>
               <p><strong>Instructor:</strong> ${body.instructor}</p>
               ${body.description ? `<p>${body.description}</p>` : ""}
-              <a href="${process.env.NEXTAUTH_URL}/courses"
+              <a href="${process.env.NEXTAUTH_URL}/allCourses"
                 style="display:inline-block;margin-top:10px;background:#2563eb;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;">
                 View Course
               </a>

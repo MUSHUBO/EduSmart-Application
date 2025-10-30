@@ -77,9 +77,9 @@ export default function CoursesSection() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-xl text-popover font-bold mb-2">{course.title}</h3>
+                <h3 className="text-xl text-popover font-bold mb-2 line-clamp-1">{course.title}</h3>
                 <p className="text-gray-500 text-sm mb-4">
-                  {course.description.slice(0, 130)}...
+                  {course.description.slice(0, 120)}...
                 </p>
 
                 <div className='divider divide-gray-800'></div>

@@ -2,12 +2,14 @@
 import { useForm } from "react-hook-form";
 import booklottie from "../../../public/lotttie-file/book.json"
 import Lottie from 'lottie-react';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import axios from "axios";
 import { Bounce, toast } from "react-toastify";
+import { AuthContext } from "@/Context/AuthContext/AuthContext";
 export default function bookForm() {
+    const {user} = useContext(AuthContext)
     const [message, setMessage] = useState('');
     
     const {
@@ -29,7 +31,8 @@ export default function bookForm() {
         const bookInfo = {
             ...data,
             comments: [],
-            rating: []
+            rating: [],
+            gmail: user?.email,
         }
         console.log(bookInfo);
         try {

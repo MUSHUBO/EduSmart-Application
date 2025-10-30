@@ -1,9 +1,10 @@
 
-import { FaFacebookF, FaTwitter, FaPhoneAlt, FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaPhoneAlt, FaMapMarkerAlt, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { BiSolidRightArrow } from "react-icons/bi";
 import Link from "next/link";
 import { SiMinutemailer } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
 
 
 export default function Footer() {
@@ -125,7 +126,7 @@ export default function Footer() {
 
                 <div className="border-t border-gray-600 my-6"></div>
 
-                <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+                <div className="flex flex-col-reverse md:flex-row gap-2.5 justify-between items-center text-sm">
                     <p className="text-center mt-4 font-bold text-md">
                         Copyright © {new Date().getFullYear()} <span className="text-secondary">EduSmart</span>. All rights reserved.
                     </p>
@@ -135,7 +136,7 @@ export default function Footer() {
                             <FaFacebookF size={16} />
                         </a>
                         <a href="#" className="p-3 bg-white rounded-md hover:bg-secondary hover:text-[#FFFFFF] duration-500 text-secondary">
-                            <FaTwitter size={16} />
+                            <FaXTwitter size={16} />
                         </a>
                         <a href="#" className="p-3 bg-white rounded-md hover:bg-secondary hover:text-[#FFFFFF] duration-500 text-secondary">
                             <FaInstagram size={16} />

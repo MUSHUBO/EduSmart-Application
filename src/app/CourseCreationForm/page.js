@@ -4,24 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth";
-import {
-  BookOpen,
-  User,
-  DollarSign,
-  Briefcase,
-  Layers,
-  Clock,
-  Globe,
-  Signal,
-  MapPin,
-  Users,
-  Award,
-  ClipboardList,
-  Image as ImageIcon,
-  MessageSquare,
-  Zap,
-  PlusCircle,
-} from "lucide-react";
+import { BookOpen, User, DollarSign, Briefcase, Layers, Clock, Globe, Signal, MapPin, Users, Award, ClipboardList, Image as ImageIcon, MessageSquare, Zap, PlusCircle, } from "lucide-react";
 
 // List of common categories for the dropdown
 const courseCategories = [
@@ -91,6 +74,7 @@ const IconSelect = ({ icon: Icon, label, name, value, onChange, options }) => (
 
 export default function AddCourse() {
   const { loading, user } = useAuth();
+
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -100,8 +84,8 @@ export default function AddCourse() {
     category: "",
     price: "",
     description: "",
-    image: "", // Main course image
-    galleryImages: "", // Comma-separated string
+    image: "",
+    galleryImages: "",
     lectures: "",
     quizzes: "",
     duration: "",
@@ -151,6 +135,7 @@ export default function AddCourse() {
       lectures: Number(formData.lectures) || 0,
       quizzes: Number(formData.quizzes) || 0,
       students: Number(formData.students) || 0,
+      gmail: user?.email,
     };
 
     try {
@@ -288,7 +273,7 @@ export default function AddCourse() {
                                border border-gray-300 dark:border-muted-foreground 
                                rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                 rows="3"
-                required // Made required
+                required
               ></textarea>
             </div>
 
@@ -307,7 +292,7 @@ export default function AddCourse() {
                                border border-gray-300 dark:border-muted-foreground 
                                rounded-lg focus:border-primary focus:ring-1 focus:ring-primary transition-colors"
                 rows="4"
-                required // Made required
+                required
               ></textarea>
             </div>
           </div>
