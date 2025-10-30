@@ -24,7 +24,8 @@ export default function ThemeToggle() {
   }, [theme, mounted]);
 
   const handleToggle = (e) => {
-    audioRef.current.play()
+    audioRef.current.play();
+    audioRef.current.volume = 0.05;
     setTheme(e.target.checked ? "dark" : "light");
   };
 

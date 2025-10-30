@@ -117,8 +117,10 @@ const Navbar = () => {
     <div
       id="navbarId"
       className={`navbar fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isFixed
-        ? `backdrop-blur-xl bg-primary/30 font-extrabold shadow-sm shadow-accent`
-        : `${navbg ? "bg-transparent text-white" : "bg-background text-popover"}`
+        ? "bg-white dark:bg-gray-900 font-extrabold shadow-sm shadow-accent"
+        : navbg
+          ? "bg-transparent text-white"
+          : "bg-background text-popover dark:bg-gray-900 dark:text-white"
         }`}
     >
       {/* Navbar */}
@@ -145,15 +147,15 @@ const Navbar = () => {
 
           {/* Logo */}
           <Link className='max-w-[100px] md:max-w-[150px]' href={"/"}>
-            
-                <Image
-                  src={logo}
-                  alt="edusmarty_icon"
-                  width={150}
-                  height={50}
-                  className="w-full h-auto"
-                />
-                
+
+            <Image
+              src={logo}
+              alt="edusmarty_icon"
+              width={150}
+              height={50}
+              className="w-full h-auto"
+            />
+
           </Link>
         </div>
 

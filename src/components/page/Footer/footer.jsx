@@ -126,7 +126,7 @@ export default function Footer() {
 
                 <div className="border-t border-gray-600 my-6"></div>
 
-                <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+                <div className="flex flex-col-reverse md:flex-row gap-2.5 justify-between items-center text-sm">
                     <p className="text-center mt-4 font-bold text-md">
                         Copyright © {new Date().getFullYear()} <span className="text-secondary">EduSmart</span>. All rights reserved.
                     </p>

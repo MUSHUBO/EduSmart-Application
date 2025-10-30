@@ -85,7 +85,7 @@ const AllCourses = () => {
                   </span>
                   <span className="flex items-center gap-2">
                     <Clock size={18} className="text-primary" />
-                    {course.duration || "N/A"} Months
+                    {course.duration || "N/A"} Year
                   </span>
                   <span className="flex bg-primary text-black items-center px-2 py-1 gap-1 rounded-lg font-semibold">
                     <DollarSign size={18} />
