@@ -1,19 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-} from "recharts";
-import { Users, Bell, Calendar, Trophy } from "lucide-react";
+
 import SearchNotice from "./SearchNotice";
 import NoticeTablePage from "./NoticeTablePage";
 import ExamPage from "./UpcomingExam";
@@ -50,34 +38,49 @@ export default function NoticeBoard() {
 
   return (
     <div className="mx-auto max-w-[1280px] space-y-6 p-3 sm:p-4 md:p-6 text-foreground">
-      {/* 🔴 Breaking News */}
-      <div className="bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg shadow-md overflow-hidden">
-        <div className="flex flex-col sm:flex-row items-center py-2 px-3 sm:px-4 gap-2">
-          <span className="font-bold text-yellow-300 text-sm sm:text-base md:text-lg">
-            🔔 BREAKING NEWS
+  
+  {/* 🔴 Breaking News */}
+      <div className="relative bg-gradient-to-r from-[#ff416c] via-[#ff4b2b] to-[#ff9a3c] text-white rounded-xl shadow-lg overflow-hidden border border-white/20">
+        <div className="flex flex-col sm:flex-row items-center py-3 px-4 gap-3">
+          <span className="font-semibold text-white text-sm sm:text-base md:text-lg flex items-center tracking-wide drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
+            🔥 BREAKING NEWS
+            <span className="mx-2 text-white/80 text-lg font-extrabold">|</span>
           </span>
-          <div className="overflow-hidden w-full">
-            <div
-              style={{
-                display: "inline-block",
-                whiteSpace: "nowrap",
-                animation: "marquee 40s linear infinite",
-              }}
-              className="text-xs sm:text-sm md:text-base"
-            >
-              {notices.length > 0
-                ? notices.map((n, i) => (
-                    <span
-                      key={i}
-                      className="mr-6 inline-block truncate max-w-[200px] sm:max-w-[300px] md:max-w-[400px]"
+
+          {/* Marquee Container */}
+          <div className="overflow-hidden w-full relative">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-[#ff416c] to-transparent pointer-events-none"></div>
+            <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-[#ff9a3c] to-transparent pointer-events-none"></div>
+
+            {/* Moving Text */}
+            <div className="marquee text-xs sm:text-sm md:text-base text-white/95 hover:pause-animation">
+              {notices.map((n, i) => {
+                const daysAgo = [10, 15, 20, 25, 30][i % 5];
+                return (
+                  <span
+                    key={i}
+                    className="mr-20 inline-block px-3 py-1 rounded-md hover:bg-white/30 text-white font-lg transition-all duration-200"
+                  >
+                    <span className="text-yellow-200 font-semibold">
+                      {daysAgo} days ago:
+                    </span>{" "}
+                    <span className="text-white">{n.title}</span>{" "}
+                    <a
+                      href={n.view}
+                      target="_blank"
+                      className="underline text-yellow-300 hover:text-white"
                     >
-                      {n.title}
-                    </span>
-                  ))
-                : "🚨 No new notices available"}
+                      View
+                    </a>
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
+
+        {/* Animation */}
         <style jsx>{`
           @keyframes marquee {
             0% {
@@ -87,8 +90,28 @@ export default function NoticeBoard() {
               transform: translateX(-100%);
             }
           }
+
+          .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation-name: marquee;
+            animation-duration: 110s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+          }
+
+          .marquee:hover {
+            animation-play-state: paused;
+          }
+
+          .pause-animation {
+            animation-play-state: paused;
+          }
         `}</style>
       </div>
+
+
+
 
       {/* Top Stats */}
      
