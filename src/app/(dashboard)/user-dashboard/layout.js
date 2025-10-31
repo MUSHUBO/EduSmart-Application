@@ -10,7 +10,7 @@ function UserLayout({ children }) {
   const { user } = useContext(AuthContext);
 
   return (
-    // <UserProvider>
+    <UserProvider>
 
       <div className="drawer lg:drawer-open">
         {/* Drawer toggle for mobile */}
@@ -73,7 +73,7 @@ function UserLayout({ children }) {
         {/* Sidebar / Drawer */}
         <UserSidebar />
       </div>
-    // </UserProvider>
+    </UserProvider>
   );
 }
 
