@@ -11,8 +11,7 @@ function TeacherLayout({ children }) {
   const { user } = useContext(AuthContext);
 
   return (
-    // <TeacherProvider>
-    //    </TeacherProvider>
+    <TeacherProvider>
       <div className="drawer lg:drawer-open">
         {/* Drawer toggle for mobile */}
         <input id="teacher-drawer" type="checkbox" className="drawer-toggle" />
@@ -72,7 +71,7 @@ function TeacherLayout({ children }) {
         {/* Sidebar */}
         <TeacherSidebar />
       </div>
-
+    </TeacherProvider>
   );
 }
 

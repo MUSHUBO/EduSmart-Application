@@ -88,7 +88,7 @@ export default function SchoolAIPage() {
     };
 
     return (
-        <div className="w-full flex flex-col items-center text-white px-6 md:px-9 lg:px-12 py-16">
+        <div className="min-h-screen flex flex-col justify-center items-center text-white px-6 md:px-9 lg:px-12 py-16">
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
