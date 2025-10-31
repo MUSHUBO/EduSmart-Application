@@ -2,12 +2,16 @@
 import { FaMoon } from "react-icons/fa6";
 import { MdSunny } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function ThemeToggle() {
+ 
   const [theme, setTheme] = useState("light"); // SSR-safe default theme
   const [mounted, setMounted] = useState(false); // hydration fix flag
   const audioRef = useRef(null)
+ const pathname = usePathname();
 
+ 
   // Load theme only after client mounts
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
@@ -30,6 +34,10 @@ export default function ThemeToggle() {
   };
 
   if (!mounted) return null; // prevent mismatch during hydration
+  
+
+  if ((pathname === "/ai_assistant") || (pathname.startsWith("/noticeBoard")) || (pathname.startsWith("/user-dashboard")) || (pathname.startsWith("/admin-dashboard")) || (pathname.startsWith("/teacher-dashboard")) || (pathname.startsWith("/student-dashboard"))) return null;
+
 
   return (
     <div className="p-0.5 rounded-full hover:bg-primary/30 duration-500 max-w-19 fixed top-40 rotate-90 z-20">
