@@ -39,72 +39,76 @@ export default function NoticeBoard() {
   return (
     <div className="mx-auto max-w-[1280px] space-y-6 p-3 sm:p-4 md:p-6 text-foreground">
   
-{/* 💖 Elegant Breaking News Section */}
-<div className="relative bg-gradient-to-r from-[#FF416C] via-[#FF4B2B] to-[#FF9966] text-white rounded-xl shadow-lg overflow-hidden border border-[#ffb199]/60">
-  <div className="flex flex-col sm:flex-row items-center py-3 px-4 gap-3">
-    {/* Title */}
-    <span className="font-bold text-white text-sm sm:text-base md:text-lg flex items-center tracking-wide drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
-      BREAKING NEWS
-      <span className="mx-2 text-white text-lg font-extrabold">|</span>
-    </span>
+  {/* 🔴 Breaking News */}
+      <div className="relative bg-gradient-to-r from-[#ff416c] via-[#ff4b2b] to-[#ff9a3c] text-white rounded-xl shadow-lg overflow-hidden border border-white/20">
+        <div className="flex flex-col sm:flex-row items-center py-3 px-4 gap-3">
+          <span className="font-semibold text-white text-sm sm:text-base md:text-lg flex items-center tracking-wide drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">
+            🔥 BREAKING NEWS
+            <span className="mx-2 text-white/80 text-lg font-extrabold">|</span>
+          </span>
 
-    {/* Marquee Section */}
-    <div className="overflow-hidden w-full relative">
-      {/* Soft Fade on Edges */}
-      <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-[#FF416C] to-transparent pointer-events-none"></div>
-      <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-[#FF9966] to-transparent pointer-events-none"></div>
+          {/* Marquee Container */}
+          <div className="overflow-hidden w-full relative">
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-[#ff416c] to-transparent pointer-events-none"></div>
+            <div className="absolute right-0 top-0 w-16 h-full bg-gradient-to-l from-[#ff9a3c] to-transparent pointer-events-none"></div>
 
-      {/* Moving Text */}
-      <div
-        style={{
-          display: "inline-block",
-          whiteSpace: "nowrap",
-          animation: "marquee 110s linear infinite",
-        }}
-        className="text-xs sm:text-sm md:text-base text-white"
-      >
-        {notices.length > 0 ? (
-          notices.map((n, i) => {
-            const daysAgo = [2, 5, 8, 10, 12][i % 5];
-            return (
-              <span
-                key={i}
-                className="mr-20 inline-block px-4 py-1 rounded-md bg-white/20 hover:bg-white/30 backdrop-blur-sm font-medium transition-all"
-              >
-                <span className="text-yellow-200 font-semibold">
-                  {daysAgo} days ago:
-                </span>{" "}
-                <span className="text-white">{n.title}</span>{" "}
-                <a
-                  href={n.view}
-                  target="_blank"
-                  className="underline text-yellow-300 hover:text-white"
-                >
-                  View
-                </a>
-              </span>
-            );
-          })
-        ) : (
-          <span>✨ No new notices right now</span>
-        )}
+            {/* Moving Text */}
+            <div className="marquee text-xs sm:text-sm md:text-base text-white/95 hover:pause-animation">
+              {notices.map((n, i) => {
+                const daysAgo = [10, 15, 20, 25, 30][i % 5];
+                return (
+                  <span
+                    key={i}
+                    className="mr-20 inline-block px-3 py-1 rounded-md hover:bg-white/30 text-white font-lg transition-all duration-200"
+                  >
+                    <span className="text-yellow-200 font-semibold">
+                      {daysAgo} days ago:
+                    </span>{" "}
+                    <span className="text-white">{n.title}</span>{" "}
+                    <a
+                      href={n.view}
+                      target="_blank"
+                      className="underline text-yellow-300 hover:text-white"
+                    >
+                      View
+                    </a>
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* Animation */}
+        <style jsx>{`
+          @keyframes marquee {
+            0% {
+              transform: translateX(100%);
+            }
+            100% {
+              transform: translateX(-100%);
+            }
+          }
+
+          .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation-name: marquee;
+            animation-duration: 110s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+          }
+
+          .marquee:hover {
+            animation-play-state: paused;
+          }
+
+          .pause-animation {
+            animation-play-state: paused;
+          }
+        `}</style>
       </div>
-    </div>
-  </div>
-
-  {/* Animation */}
-  <style jsx>{`
-    @keyframes marquee {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
-    }
-  `}</style>
-</div>
-
 
 
 
