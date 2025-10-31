@@ -12,10 +12,10 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
-import { useAuth } from "@/Hooks/UseAuth/UseAuth"; // Make sure you have this hook
+import { useAuth } from "@/Hooks/UseAuth/UseAuth"; 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { FaNotesMedical } from "react-icons/fa6";
+import { FaNotesMedical, FaRegNoteSticky } from "react-icons/fa6";
 
 // SweetAlert2 with React
 const MySwal = withReactContent(Swal);
@@ -69,6 +69,7 @@ export default function AdminSidebar() {
     { name: "All Courses", href: "/admin-dashboard/all-courses", icon: <FaBookOpen /> },
     { name: "All Books", href: "/admin-dashboard/all-books", icon: <FaBook /> },
     { name: "ADD Notice", href: "/admin-dashboard/addNotice", icon: <FaNotesMedical /> },
+    { name: "Sell Courses", href: "/admin-dashboard/Sell-Courses", icon: <FaRegNoteSticky /> },
   ];
 
   const isActive = (path) => pathname === path;

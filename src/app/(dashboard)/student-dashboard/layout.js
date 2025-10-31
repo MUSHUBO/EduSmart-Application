@@ -27,7 +27,7 @@ function StudentLayout({ children }) {
           </label>
 
           {/* Search Bar */}
-          <div className="hidden md:flex items-center bg-[var(--secondary)] px-4 py-2 rounded-full w-1/3 transition-all hover:bg-[var(--accent)]">
+          <div className="hidden md:flex items-center bg-[var(--accent)] px-4 py-2 rounded-full w-1/3 transition-all hover:bg-[var(--accent)]">
             <FaSearch className="text-[var(--muted-foreground)] mr-2" />
             <input
               type="text"
