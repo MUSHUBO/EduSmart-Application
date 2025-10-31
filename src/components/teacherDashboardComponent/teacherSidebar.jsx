@@ -12,8 +12,14 @@ import {
   FaSignOutAlt,
   FaCog,
 } from "react-icons/fa";
+import { FaRegNoteSticky } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { useAuth } from "@/Hooks/UseAuth/UseAuth";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
+// Initialize SweetAlert2 with React
+const MySwal = withReactContent(Swal);
 
 export default function TeacherSidebar() {
   const router = useRouter();
@@ -37,6 +43,23 @@ export default function TeacherSidebar() {
         hideProgressBar: false,
         theme: "colored",
       });
+    }
+  };
+
+  const handleLogoutClick = async () => {
+    const result = await MySwal.fire({
+      title: "Are you sure?",
+      text: "Do you really want to logout?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, logout!",
+      cancelButtonText: "Cancel",
+    });
+
+    if (result.isConfirmed) {
+      logoutHandler();
     }
   };
 
@@ -102,6 +125,13 @@ export default function TeacherSidebar() {
               <span>Create Book</span>
             </Link>
             <Link
+              href="/teacher-dashboard/create-notice"
+              className={linkClass("/teacher-dashboard/create-notice")}
+            >
+              <FaRegNoteSticky />
+              <span>Create Notice</span>
+            </Link>
+            <Link
               href="/teacher-dashboard/my-courses"
               className={linkClass("/teacher-dashboard/my-courses")}
             >
@@ -115,18 +145,12 @@ export default function TeacherSidebar() {
               <FaBook />
               <span>My Created Books</span>
             </Link>
-            {/* <Link href="#" className={linkClass("/teacher-dashboard/settings")}>
-              <FaCog />
-              <span>Settings</span>
-            </Link> */}
           </nav>
         </div>
 
         {/* Logout */}
         <button
-          onClick={() => {
-            if (confirm("Are you sure you want to log out?")) logoutHandler();
-          }}
+          onClick={handleLogoutClick}
           className="flex items-center space-x-2 mt-6 text-[var(--secondary)] hover:text-[var(--primary)]
             transition-colors duration-300 font-semibold text-lg"
         >
