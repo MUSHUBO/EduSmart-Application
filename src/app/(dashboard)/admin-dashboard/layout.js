@@ -10,7 +10,8 @@ export default function AdminLayout({ children }) {
   const { user } = useContext(AuthContext);
 
   return (
-    <AdminProvider>
+    // <AdminProvider>
+    //       </AdminProvider>
       <div className="drawer lg:drawer-open min-h-screen bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
         {/* Drawer Toggle for Mobile */}
         <input id="admin-drawer" type="checkbox" className="drawer-toggle" />
@@ -72,6 +73,6 @@ export default function AdminLayout({ children }) {
         {/* ===== Sidebar ===== */}
         <AdminSidebar />
       </div>
-    </AdminProvider>
+
   );
 }

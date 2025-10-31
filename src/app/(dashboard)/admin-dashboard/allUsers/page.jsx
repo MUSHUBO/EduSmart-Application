@@ -100,9 +100,7 @@ export default function AllUsersPage() {
               {users.map((user, idx) => (
                 <tr
                   key={user._id}
-                  className={`transition-all duration-200 ${
-                    idx % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  } hover:bg-indigo-50`}
+                  className={`transition-all duration-200 ${idx % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-indigo-50`}
                 >
                   {/* Name */}
                   <td className="px-6 py-3">
@@ -137,7 +135,7 @@ export default function AllUsersPage() {
                     </span>
                   </td>
 
-                  {/* Actions (Dropdown) */}
+                  {/* Actions */}
                   <td className="px-6 py-3 text-right relative">
                     <button
                       onClick={() =>
@@ -182,6 +180,76 @@ export default function AllUsersPage() {
               ))}
             </tbody>
           </table>
+        </div>
+      )}
+
+      {/* GRID VIEW */}
+      {viewMode === "grid" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {users.map((user) => (
+            <div
+              key={user._id}
+              className="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center text-center transition-transform hover:scale-105"
+            >
+              <img
+                src={user.photo}
+                alt={user.name}
+                className="w-20 h-20 rounded-full object-cover border border-gray-200 mb-3"
+              />
+              <h3 className="font-semibold text-lg">{user.name}</h3>
+              <p className="text-sm text-gray-500 mb-2">{user.email}</p>
+              <span
+                className={`px-3 py-1 rounded-full text-xs font-semibold border mb-3 ${
+                  user.role === "admin"
+                    ? "bg-blue-100 text-blue-700 border-blue-200"
+                    : "bg-green-100 text-green-700 border-green-200"
+                }`}
+              >
+                {user.role}
+              </span>
+              {/* Change Role Dropdown */}
+              <div className="relative w-full">
+                <button
+                  onClick={() =>
+                    setOpenDropdown(openDropdown === user._id ? null : user._id)
+                  }
+                  className="w-full px-3 py-1.5 rounded-md bg-[var(--primary)] text-white font-medium flex items-center justify-center gap-2 transition-all hover:bg-[var(--secondary)]"
+                >
+                  Change Role <FaChevronDown className="text-xs" />
+                </button>
+
+                <AnimatePresence>
+                  {openDropdown === user._id && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute mt-2 w-full bg-white shadow-xl rounded-lg border font-extrabold border-gray-100 overflow-hidden z-50"
+                    >
+                      {roles.map((role) => (
+                        <button
+                          key={role}
+                          onClick={() => {
+                            updateRole(user._id, role);
+                            setOpenDropdown(null);
+                          }}
+                          disabled={user.role === role}
+                          className={`w-full text-left px-4 py-2 text-sm capitalize ${
+                            user.role === role
+                              ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                              : "hover:bg-indigo-50 text-gray-700"
+                          }`}
+                        >
+                          {role}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
