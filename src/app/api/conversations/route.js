@@ -8,6 +8,7 @@ export async function POST(req) {
 
     const result = await conversationsCollection.insertOne({
       creator,
+      title: "",
       messages: [],
       createdAt: new Date(),
     });
