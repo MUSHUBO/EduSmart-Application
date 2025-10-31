@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import AiInsightCard from "@/components2/parents/AiInstantCard";
 import ChildSelector from "@/components2/parents/ChildSector";
 import FocusGauge from "@/components2/parents/FocusGuge";
-import SummaryCards from "@/components2/parents/SummuryCards";
 import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from "recharts";
 import { FaCalendar, FaDoorClosed } from "react-icons/fa";
 import { FaUser } from "react-icons/fa6";
@@ -95,8 +94,8 @@ export default function ParentDashboardPage() {
         >
           <div>
             <h1 className="text-3xl font-bold text-[var(--popover-foreground)]">
-              <FaUser></FaUser>
-              <span> Parent Dashboard</span>
+              
+              <span className="flex"> <FaUser></FaUser> Parent Dashboard</span>
             </h1>
             <p className="text-[var(--muted-foreground)]">
               Track your child’s emotional growth and learning balance 
@@ -110,14 +109,14 @@ export default function ParentDashboardPage() {
               disabled={loading}
               className="py-2 px-5 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 text-white font-semibold shadow-md hover:shadow-xl hover:scale-105 transition-all"
             >
-              {loading ? "Generating..." : "✨ AI Report"}
+              {loading ? "Generating..." : " AI Report"}
             </button>
             <button
               onClick={handleLogout}
               className="py-2 px-4 bg-gradient-to-r from-red-500 to-orange-500 text-white font-semibold rounded-full shadow hover:scale-105 transition-all"
             >
-              <FaDoorClosed></FaDoorClosed>
-            <span>   Logout</span>
+              
+            <span className="flex "> <FaDoorClosed size={24}></FaDoorClosed>  Logout</span>
             </button>
           </div>
         </motion.div>

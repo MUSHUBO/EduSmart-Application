@@ -46,7 +46,8 @@
     "seraui": "^0.0.2",
     "slick-carousel": "^1.8.1",
     "stripe": "^19.1.0",
-    "sweetalert2": "^11.23.0"
+    "sweetalert2": "^11.23.0",
+    "sweetalert2-react-content": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
