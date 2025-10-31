@@ -21,7 +21,7 @@ export default function ParentLogin() {
 
       if (!data.success) return setErr(data.message);
 
-      // ✅ Save parent info (no token)
+     
       localStorage.setItem("parentEmail", data.parent.email);
       localStorage.setItem("parentName", data.parent.name);
 
@@ -75,7 +75,7 @@ export default function ParentLogin() {
         </form>
 
         <p className="mt-6 text-center text-xs text-gray-500 dark:text-gray-400">
-          © {new Date().getFullYear()} SmartSchool Analytics
+        parentsEmail: praents@edusmart.com
         </p>
       </motion.div>
     </div>
