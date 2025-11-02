@@ -52,7 +52,7 @@ export default function Home() {
         <Parents />
         <FAQ />
         <Marketing />
-        {/* <CourseFeedback /> */}
+        {/* <CourseFeedback /> */}s
       </div>
 
     </div>

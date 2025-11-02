@@ -36,7 +36,7 @@ const ScrollUp = () => {
             {isVisible && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-12 right-5 w-11 h-11 bg-primary text-muted hover:text-primary border-2 border-primary hover:bg-muted rounded-md flex justify-center items-center transform -rotate-90 hover:-translate-y-1 duration-500 ease-in-out cursor-pointer"
+                    className="hidden md:flex fixed bottom-12 right-5 w-11 h-11 bg-primary text-muted hover:text-primary border-2 border-primary hover:bg-muted rounded-md justify-center items-center transform -rotate-90 hover:-translate-y-1 duration-500 ease-in-out cursor-pointer"
                 >
                     <MdOutlineDoubleArrow size={36} />
                 </button>
