@@ -2,7 +2,7 @@
 import { LogIn, LogOut } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { RiMenuLine, RiMenuUnfold2Fill } from "react-icons/ri";
 import { IoPersonSharp } from "react-icons/io5";
 import { useAuth } from '@/Hooks/UseAuth/UseAuth';
@@ -17,6 +17,7 @@ const Navbar = () => {
   const [isFixed, setIsFixed] = useState(false);
   const { user, logoutAccount } = useAuth()
   const [role, setRole] = useState(null);
+  const dropdownRef = useRef(null);
   const pathname = usePathname()
   const router = useRouter()
   const navbg = pathname === "/"
@@ -68,6 +69,19 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
 
   useEffect(() => {
@@ -172,7 +186,7 @@ const Navbar = () => {
           <Translate></Translate>
 
           {/* Profile Dropdown */}
-          <div className="relative">
+          <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="w-6 h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 mt-1 rounded-full overflow-hidden border border-gray-300 focus:outline-none"
