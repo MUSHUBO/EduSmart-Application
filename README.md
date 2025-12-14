@@ -35,7 +35,7 @@ It provides **courses, assignments, quizzes, AI assistance**, and **personalized
 
 | Layer              | Technology                                   | Purpose                                  |
 | ------------------ | -------------------------------------------- | ---------------------------------------- |
-| **Frontend**       | Next.js, React 19.1.0, Tailwind CSS, DaisyUI | SSR, UI development, responsive design   |
+| **Frontend**       | Next.js, Tailwind CSS, DaisyUI | SSR, UI development, responsive design   |
 | **Animations**     | Framer Motion, AOS                           | Smooth UI & scroll effects               |
 | **Backend**        | Node.js, Express.js, MongoDB                 | API & database management                |
 | **Authentication** | Firebase Authentication, JWT                 | Secure login & role-based access         |
