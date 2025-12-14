@@ -33,14 +33,14 @@ It provides **courses, assignments, quizzes, AI assistance**, and **personalized
 
 ## 💻 Technology Stack
 
-| Layer              | Technology                                          | Purpose                                |
-| ------------------ | --------------------------------------------------- | -------------------------------------- |
-| **Frontend**       | React 19.1.0, Next.js 15.5.0, Tailwind CSS, DaisyUI | UI & SSR, responsive design            |
-| **Animations**     | Framer Motion, AOS                                  | Smooth UI transitions & scroll effects |
-| **Backend**        | Node.js, Express.js, MongoDB                        | API & database management              |
-| **Authentication** | Firebase Authentication, JWT                        | Secure user login & access             |
-| **Payment**        | Stripe                                              | Online payments & subscriptions        |
-| **Utilities**      | Axios, React Hook Form, React Toastify              | API calls, forms, notifications        |
+| Layer              | Technology                                   | Purpose                                  |
+| ------------------ | -------------------------------------------- | ---------------------------------------- |
+| **Frontend**       | Next.js, React 19.1.0, Tailwind CSS, DaisyUI | SSR, UI development, responsive design   |
+| **Animations**     | Framer Motion, AOS                           | Smooth UI & scroll effects               |
+| **Backend**        | Node.js, Express.js, MongoDB                 | API & database management                |
+| **Authentication** | Firebase Authentication, JWT                 | Secure login & role-based access         |
+| **Payment**        | Stripe                                       | Online payment & subscription management |
+| **Utilities**      | Axios, React Hook Form, React Toastify       | API requests, forms, notifications       |
 
 ---
 
