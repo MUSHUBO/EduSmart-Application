@@ -1,3 +1,49 @@
+📘 EduSmart — Online Education System
+
+Team: Final Battle Squad
+Leader: Moin Uddin Shuvo
+
+1️⃣ Project Overview
+
+EduSmart is an online education platform connecting students, teachers, and parents. It offers courses, assignments, quizzes, AI assistance, and personalized learning paths to make learning efficient, interactive, and accessible.
+
+2️⃣ Core Features
+
+Course Management 📚 – Teachers manage courses; students enroll easily.
+
+Assignments & Quizzes 📝 – Instant feedback for student submissions.
+
+Digital Notice Board 📢 – Real-time updates for all users.
+
+Language Church 🌐 – Interactive lessons and practice for multiple languages.
+
+AI Assistant 🤖 – Answers questions and provides study tips instantly.
+
+AI Learning Path 🧠 – Personalized study roadmap for each student.
+
+Payment & Subscription 💳 – Secure one-time or monthly payments.
+
+Notifications 📩 – Email alerts for new courses or assignments.
+
+Admin Dashboard 🧩 – Manages users, courses, payments, and content.
+
+3️⃣ Target Users
+
+Students: Access classes, materials, and assessments.
+
+Teachers: Create and deliver content.
+
+Parents: Monitor updates and progress.
+
+Institutions: Schools and coaching centers digitizing their system.
+
+4️⃣ Technology
+
+Next.js – Chosen for SSR (fast loading), API routes, scalability, SEO-friendly content, and easy deployment on Vercel.
+
+
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
