@@ -1,46 +1,57 @@
-📘 EduSmart — Online Education System
+# 📘 EduSmart — Online Education System
 
-Team: Final Battle Squad
-Leader: Moin Uddin Shuvo
+**Team:** Final Battle Squad
+**Team Leader:** Moin Uddin Shuvo
+**Team Members:** Mazedul Islam, Md Sabbir Hossain, Md Mahafuj Hossain, Md Rabiul Islam, Md Mehedi Hassah
 
-1️⃣ Project Overview
+**🌐 Live Project:** [edu-smart-application.vercel.app](https://edu-smart-application.vercel.app/)
 
-EduSmart is an online education platform connecting students, teachers, and parents. It offers courses, assignments, quizzes, AI assistance, and personalized learning paths to make learning efficient, interactive, and accessible.
+---
 
-2️⃣ Core Features
+## 📝 Project Overview
 
-Course Management 📚 – Teachers manage courses; students enroll easily.
+EduSmart is a **modern online education platform** connecting **students, teachers, and parents**.
+It provides **courses, assignments, quizzes, AI assistance**, and **personalized learning paths** to make learning **efficient, interactive, and accessible**.
 
-Assignments & Quizzes 📝 – Instant feedback for student submissions.
+---
 
-Digital Notice Board 📢 – Real-time updates for all users.
+## 🌟 Core Features
 
-Language Church 🌐 – Interactive lessons and practice for multiple languages.
+| Feature                       | Description                                                                               |
+| ----------------------------- | ----------------------------------------------------------------------------------------- |
+| 📚 **Course Management**      | Teachers can create, update, and organize courses; students can browse and enroll easily. |
+| 📝 **Assignments & Quizzes**  | Teachers create assignments/quizzes; students get instant feedback.                       |
+| 📢 **Digital Notice Board**   | Real-time announcements for students, teachers, and parents.                              |
+| 🌐 **Language Learning**      | Interactive lessons and exercises for multiple languages.                                 |
+| 🤖 **AI Assistant**           | Answers questions and provides study tips instantly.                                      |
+| 🧠 **AI Learning Path**       | Personalized study roadmap for each student.                                              |
+| 💳 **Payment & Subscription** | Secure one-time or monthly payments with tracking.                                        |
+| 📩 **Notifications**          | Email alerts for new courses, assignments, and updates.                                   |
+| 🧩 **Admin Dashboard**        | Manage users, courses, payments, and content efficiently.                                 |
 
-AI Assistant 🤖 – Answers questions and provides study tips instantly.
+---
 
-AI Learning Path 🧠 – Personalized study roadmap for each student.
+## 💻 Technology Stack
 
-Payment & Subscription 💳 – Secure one-time or monthly payments.
+| Layer              | Technology                                   | Purpose                                  |
+| ------------------ | -------------------------------------------- | ---------------------------------------- |
+| **Frontend**       | Next.js, Tailwind CSS, DaisyUI | SSR, UI development, responsive design   |
+| **Animations**     | Framer Motion, AOS                           | Smooth UI & scroll effects               |
+| **Backend**        | Node.js, Express.js, MongoDB                 | API & database management                |
+| **Authentication** | Firebase Authentication, JWT                 | Secure login & role-based access         |
+| **Payment**        | Stripe                                       | Online payment & subscription management |
+| **Utilities**      | Axios, React Hook Form, React Toastify       | API requests, forms, notifications       |
 
-Notifications 📩 – Email alerts for new courses or assignments.
+---
 
-Admin Dashboard 🧩 – Manages users, courses, payments, and content.
+## 🚀 Future Scope
 
-3️⃣ Target Users
+* **Live Classes & Video Conferencing** – Real-time interactive learning
+* **Gamification** – Badges, points, and rewards for engagement
+* **Advanced Analytics** – Track student performance and course effectiveness
+* **Multi-language Support** – Expand accessibility globally
 
-Students: Access classes, materials, and assessments.
-
-Teachers: Create and deliver content.
-
-Parents: Monitor updates and progress.
-
-Institutions: Schools and coaching centers digitizing their system.
-
-4️⃣ Technology
-
-Next.js – Chosen for SSR (fast loading), API routes, scalability, SEO-friendly content, and easy deployment on Vercel.
-
+---
 
 
 
